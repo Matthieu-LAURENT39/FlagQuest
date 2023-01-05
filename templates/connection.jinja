@@ -1,0 +1,15 @@
+{% include 'header.jinja' %}
+    <main class=m-3>
+        <!-- formulaire de connexion -->
+        <div class="d-flex justify-content-center p-5 bg-dark">
+            <form class="form-login" id="form-login">
+                <br><br>
+                <h1 class="h3 mb-3 font-weight-normal text-white">Se connecter</h1>
+                    <!-- <label for="inputUsername" class="sr-only">Nom d'utilisateur</label> -->
+                    <input type="text" id="inputUsername" class="form-control mb-3" placeholder="Nom d'utilisateur" required autofocus>
+                    <!-- <label for="inputPassword" class="sr-only">Mot de passe</label> -->
+                    <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Mot de passe" required>
+                <button class="btn btn-lg btn-primary fw-bold btn-block bg-white border border-primary rounded text-primary border-3" type="submit">Se connecter</button>
+            </form>
+        </div>
+{% include 'footer.jinja' %}
