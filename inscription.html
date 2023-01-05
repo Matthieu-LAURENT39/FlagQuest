@@ -1,40 +1,56 @@
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="fr">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CTF - Inscription</title>
+    <link rel="script" href="inscription.js">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  </head>
-  <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
 
-    <h1>Formulaire d'inscription</h1>
+<body class="text-center d-flex justify-content-center bg-dark">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-white fixed-top bg-white">
+            <div class="container-fluid">
 
-    <form action="action.php" method="get">
-        <!-- email-->
-        <div class="mb-3">
-            <label for="username" class="form-label">Nom d'utilisateur</label>
-            <input type="email" class="form-control" id="register_email" aria-describedby="emailHelp" placeholder="exemple@mail.fr">
+                <!--//////logo du lycée/////////////////////////////////////-->
+                <img src="logo.png" alt="" width="40" height="40" class="me-2">
+
+                <!--////////////////////////////Nom Lycée//////////////////////////////////////////////////////////////////////////////-->
+                <a class="navbar-brand" href="#">Root Me</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="">Home</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-secondary" href="https://example.com" role="button">Inscription</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class=m-3>
+        <div class="d-flex justify-content-center p-5 bg-dark">
+            <!-- formulaire d'inscription -->
+            <form class="form-register .d-none" id="form-register">
+                <br><br>
+                <h1 class="h3 mb-3 font-weight-normal text-white">S'inscrire</h1>
+                <!-- <label for="inputEmail" class="sr-only">Email</label> -->
+                <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email" required autofocus>
+                <!-- <label for="inputEmail" class="sr-only">Nom d'utilisateur</label> -->
+                <input type="email" id="inputUsername" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
+                <!-- <label for="inputPassword" class="sr-only">Mot de passe</label> -->
+                <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                <button class="btn btn-lg btn-primary fw-bold btn-block m-3 bg-white border border-primary rounded text-primary border-3" type="submit">S'inscrire</button>
+            </form>
         </div>
-
-        <!-- mot de passe-->
-        <div class="mb-3">
-            <label for="password" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="register_password" placeholder="Mot de passe">
-        </div>
-        <button type="submit" class="btn btn-primary">S'inscrire</button>
-    </form>
+    </main>
+</body>
 
 
-    <!-- test QCM-->
-    <!-- <select class="form-select" aria-label="Default select example">
-      <option selected>Quel jour est on ?</option>
-      <option value="2">Mardi</option>
-      <option value="3">Mercredi</option>
-      <option value="3">Jeudi</option>
-    </select> -->
-
-
-  </body>
 </html>
