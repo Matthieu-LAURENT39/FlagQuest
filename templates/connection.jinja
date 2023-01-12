@@ -1,15 +1,49 @@
 {% include 'header.jinja' %}
-    <main class=m-3>
-        <!-- formulaire de connexion -->
-        <div class="d-flex justify-content-center p-5 bg-dark">
-            <form class="form-login" id="form-login">
-                <br><br>
-                <h1 class="h3 mb-3 font-weight-normal text-white">Se connecter</h1>
-                    <!-- <label for="inputUsername" class="sr-only">Nom d'utilisateur</label> -->
-                    <input type="text" id="inputUsername" class="form-control mb-3" placeholder="Nom d'utilisateur" required autofocus>
-                    <!-- <label for="inputPassword" class="sr-only">Mot de passe</label> -->
-                    <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Mot de passe" required>
-                <button class="btn btn-lg btn-primary fw-bold btn-block bg-white border border-primary rounded text-primary border-3" type="submit">Se connecter</button>
-            </form>
+<main class="bg-black">
+    <!-- formulaire de connection -->
+    <div class="modal modal-signin position-static d-block bg-black py-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4  bg-dark">
+                <div class="modal-header px-5 pb-0 border-bottom-0">
+                    <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+                    <h1 class="text-white">
+                        <img src="./static/img/logo_login.svg" width="48" height="48">
+                        &nbsp;Se connecter
+                    </h1>
+                </div>
+                <span class="login-description p-5 pt-0 fw-semibold ms-1 fs-7">Identifiants personnels</span>
+
+                <div class="modal-body p-5 pt-0">
+                    <form class="">
+                        <!-- LOGIN -->
+                        <div class="mb-3 col-12">
+                            <label for="firstName" class="form-label text-white fw-semibold ms-1 fs-5">Login ou adresse
+                                email : *</label>
+                            <input type="text" class="input-login-username form-control" id="username"
+                                placeholder="hecker@rootme.org" value="" required="">
+                            <!-- si champ username vide -->
+                            <div class="invalid-feedback">
+                                Veuillez renseigner ce champ.
+                            </div>
+                        </div>
+
+                        <!-- PASSWORD -->
+                        <div class="mb-3 col-12">
+                            <label for="firstName" class="form-label text-white fw-semibold ms-1 fs-5">Mot de passe :
+                                *</label>
+                            <input type="password" class="input-login-password form-control" id="password"
+                                placeholder="**********" value="" required="">
+                            <!-- si champ username vide -->
+                            <div class="invalid-feedback">
+                                Veuillez renseigner ce champ.
+                            </div>
+                        </div>
+                        <button class="btn rounded-1 border-2 active text-info fs-5 fw-semibold px-4 py-2 mt-5"
+                            type="submit">Valider</button>
+                    </form>
+                </div>
+            </div>
         </div>
-{% include 'footer.jinja' %}
+    </div>
+
+    {% include 'footer.jinja' %}

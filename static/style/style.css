@@ -1,0 +1,99 @@
+/* theme couleur root-me */
+/*
+dark-grey = gris formulaire (presque noir)
+grey = police pour paragraphe
+ */
+
+:root {
+  --dark-grey: #4d4d4d;
+  --grey: #767676;
+  --black: #000;
+  --white: #fff;
+  --blue: #2ba6cb;
+  --red: ##de2b0f;
+  --green: #0C0;
+  --orange: #de770f;
+}
+
+/* test */
+.ok {
+  color: green;
+  font-weight: bold;
+}
+
+
+/* inverse la couleur du logo rootme normalement noir vers blanc */
+.logo-rootme {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  width: 48px;
+  height: 48px;
+}
+
+/* nom de site avec font spéciale */
+.site-name {
+  /* min-width: 45px;
+  width: 62px;
+  height: 100%;  */
+  line-height: 62px;
+  padding-left: 7px;
+  font-family: 'logo';
+  font-size: 40px;
+}
+
+/* boutton en forme d'ecole, accès root me PRO */
+.a-rootme-pro {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.logo-rootme-pro {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  width: 32px;
+  height: 32px;
+}
+
+.login-description {
+  color: white;
+}
+
+
+/* connection */
+.input-login-username:focus,
+.input-login-password:focus {
+  background: #181818;
+}
+
+
+/*  footer */
+/* largeur des img des icones twitter linkedin rss et discord */
+footer>ul>li>a>img {
+  width: 24px;
+  height: 24px;
+}
+
+
+
+/* font logo "Root Me" avec files au-dessus */
+@font-face {
+  font-family: "logo";
+  src: local("logo"),
+    url("../font/HangingLetters.woff") format("woff");
+}
+
+
+
+
+
+
+
+
+
+
+
+/* @media only screen and (min-width: 40.063em){
+.site-name {
+  color: white;
+  display: none!important;
+}} */
