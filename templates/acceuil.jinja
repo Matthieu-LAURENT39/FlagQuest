@@ -15,8 +15,86 @@
     </div>
   </div> #}
 
+  {# FORM INSCRIPTION #}
+  <div class="d-flex px-5 bg-black">
+    {# PARTIE DE GAUCHE #}
+    <div class="bg-black text-center px-5">
+      <img class="logo-rootme-large" src="./static/img/logo_rootme.svg" alt="logo root-me.org" itemprop=image>
+      <h3 class="text-white fw-normal">Une plateforme rapide, accessible et réaliste pour tester vos compétences en
+        hacking.</h3>
+      <h5 class="text-info">la root est longue mais la voie est Libre</h5>
+    </div>
+    {# PARTIE DE DROITE #}
+    <div class="bg-success">
+      <div class="modal modal-signin position-static d-block bg-black" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content rounded-4  bg-dark">
+            <div class="modal-header pb-0 border-bottom-0">
+              <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+              <h1 class="text-white">
+                &nbsp;S'inscrire
+              </h1>
+            </div>
+            <span class="login-description p-5 pt-0 fw-semibold ms-1 fs-7">Identifiants personnels</span>
 
-  <div class="p-5 bg-black row align-items-md-stretch pt-1">
+            <div class="modal-body p-5 pt-0">
+              <form class="">
+                {# PESUDO #}
+                <div class="mb-3 col-12">
+                  <label for="username" class="form-label text-white fw-semibold ms-1 fs-5">Votre nom ou votre
+                    pseudo *</label>
+                  <input type="text" class="input-login-username form-control" id="username" placeholder="haxor"
+                    value="" required="">
+                  <!-- si champ username vide -->
+                  <div class="invalid-feedback">
+                    Veuillez renseigner ce champ.
+                  </div>
+                </div>
+                <!-- LOGIN -->
+                <div class="mb-3 col-12">
+                  <label for="email" class="form-label text-white fw-semibold ms-1 fs-5">Votre adresse email *</label>
+                  <input type="email" class="input-login-username form-control" id="email"
+                    placeholder="hecker@rootme.org" value="" required="">
+                  <!-- si champ username vide -->
+                  <div class="invalid-feedback">
+                    Veuillez renseigner ce champ.
+                  </div>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="mb-3 col-12">
+                  <label for="password" class="form-label text-white fw-semibold ms-1 fs-5">Mot de passe
+                    *</label>
+                  <input type="password" class="input-login-password form-control" id="password"
+                    placeholder="**********" value="" required="">
+                  <!-- si champ username vide -->
+                  <div class="invalid-feedback">
+                    Veuillez renseigner ce champ.
+                  </div>
+                </div>
+                <!-- PASSWORD CONFIRMATION-->
+                <div class="mb-3 col-12">
+                  <label for="password" class="form-label text-white fw-semibold ms-1 fs-5">Confirmer ce nouveau mot de
+                    passe *</label>
+                  <input type="password" class="input-login-password form-control" id="password"
+                    placeholder="**********" value="" required="">
+                  <!-- si champ username vide -->
+                  <div class="invalid-feedback">
+                    Veuillez renseigner ce champ.
+                  </div>
+                </div>
+                <button class="btn rounded-1 border-2 active text-info fs-5 fw-semibold px-4 py-2 mt-5"
+                  type="submit">Valider</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {# <div class="p-5 bg-black row align-items-md-stretch pt-1">
     <div class="col-md-6">
       <div class="h-100 p-5 bg-light rounded-3 bg-black text-white">
         <h2>lorem ipsum dolor sit amet</h2>
@@ -57,7 +135,7 @@
             <div class="mb-3 col-12">
               <label for="firstName" class="form-label text-white fw-semibold ms-1 fs-5">Mot de passe :
                 *</label>
-              <input type="password" class="input-login-password form-control" id="password" placeholder="**********"
+              <input type="password" class="input-login-password form-control " id="password" placeholder="**********"
                 value="" required="">
               <!-- si champ username vide -->
               <div class="invalid-feedback">
@@ -70,9 +148,10 @@
         </div>
 
         </p>
+
       </div>
     </div>
-  </div>
+  </div> #}
 
 
 

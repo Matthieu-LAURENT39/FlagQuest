@@ -30,6 +30,14 @@ grey = police pour paragraphe
   height: 48px;
 }
 
+.logo-rootme-large {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  width: 150x;
+  height: 150px;
+}
+
+
 /* nom de site avec font spéciale */
 .site-name {
   /* min-width: 45px;
