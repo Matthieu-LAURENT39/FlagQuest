@@ -1,18 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CTF - Accueil</title>
-  <!--////////////////logo du lycée/////////////////////////////////////-->
+  <!-- logo du lycée-->
   <link rel="icon" href="./static/img/logo_rootme.svg">
+  <!-- css personnel -->
+  <link rel="stylesheet" href="./static/style/style.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="./static/style/style.css">
+
+  {# script js bootstrap (utilisé pour le dropdown de l'avatar utilisateur) #}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="bg-black">
   <header class="text-dark bg-black">
     <div class="container-fluid m-0">
       <div class="d-flex align-items-center justify-content-between ">
@@ -20,15 +27,16 @@
           <img class="logo-rootme" src="./static/img/logo_rootme.svg" alt="logo root-me.org" itemprop=image>
           <span class="site-name" itemprop="name">Root&nbsp;Me</span>
         </a>
+
+        {# CACHER CETTE PARTIE PARTOUT, A PART QUAND ON EST PAS CONNECTE - AVEC PYTHON #}
         <div class="text-end">
           <!-- <button type="button" class="btn btn-outline-light me-2"><a href="connection.html" text-decoration-none>J'ai déjà un compte</a></button> -->
           <a href="/connection" class="btn rounded-1 border-2 active text-info fw-semibold px-2 py-1" role="button"
             aria-pressed="true">J'ai déjà un compte</a>
-          <a class="a-rootme-pro" href="#fairelien">
-            <img class="logo-rootme-pro" src="./static/img/university.svg" alt="Root Me for Pro">
+          <a class="a-rootme-pro" href="http://www.lyceebranly.com/">
+            <img class="logo-rootme-pro" src="./static/img/university.svg" alt="Logo d'une université"
+              title="Lycée Edouard Branly">
           </a>
-
-
         </div>
       </div>
     </div>
