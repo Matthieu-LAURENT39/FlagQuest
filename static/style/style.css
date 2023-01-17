@@ -1,0 +1,231 @@
+/* theme couleur root-me */
+/*
+dark-grey = gris formulaire (presque noir)
+grey = police pour paragraphe
+ */
+
+:root {
+  --dark-grey: #4d4d4d;
+  --grey: #767676;
+  --night-grey: #191C22;
+  --black: #000;
+  --white: #fff;
+  --blue: #2ba6cb;
+  --red: ##de2b0f;
+  --green: #0C0;
+  --orange: #de770f;
+}
+
+/* test */
+.ok {
+  color: green;
+  font-weight: bold;
+}
+
+/* --------------- header --------------- */
+
+/* inverse la couleur du logo rootme normalement noir vers blanc */
+.logo-rootme {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  width: 48px;
+  height: 48px;
+}
+
+/* root-me logo plus gros pour accueil par exemple */
+.logo-rootme-large {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  width: 150px;
+  height: 150px;
+}
+
+/* nom de site avec font spéciale */
+.site-name {
+  /* min-width: 45px;
+  width: 62px;
+  height: 100%;  */
+  line-height: 62px;
+  padding-left: 7px;
+  font-family: 'logo';
+  font-size: 40px;
+}
+
+/* boutton en forme d'ecole, accès root me PRO/lycée branly */
+.a-rootme-pro {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.logo-rootme-pro {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  width: 32px;
+  height: 32px;
+}
+
+.login-description {
+  color: white;
+}
+
+
+/* --------------- header user connecté --------------- */
+
+/* gère background de l'avatar utilisateur (par défaut transparent) */
+.avatar-user {
+  background-color: var(--dark-grey);
+  border: solid 1px var(--green);
+  width: 36px;
+  height: 36px;
+}
+
+/* quand icon user est survolé --> agrandir, bg, animation... */
+.avatar-user:hover {
+  background-color: var(--night-grey);
+  border: solid 2px var(--green);
+  width: 38px;
+  height: 38px;
+  transition: all 200ms ease-out 100ms;
+}
+
+/* curseur cliquable pour défilement */
+.curseur-avatar::after {
+  color: var(--dark-grey);
+  border-top: 0.35em solid;
+  border-right: 0.35em solid transparent;
+  border-bottom: 0;
+  border-left: 0.35em solid transparent;
+}
+
+/* cible/englobe la liste qui défile une fois le curseur cliqué */
+.dropdown-content {
+  background-color: var(--night-grey);
+  border-radius: 3px;
+}
+
+/* touche à chaque item/element de la liste défilante */
+.dropdown-item {
+  color: var(--white);
+}
+
+/* quand element dropdown liste est survolé */
+.dropdown-item:hover {
+  color: var(--grey);
+  background-color: var(--night-grey);
+  transition: color 200ms ease-out 100ms
+}
+
+.dropdown-icon {
+  padding-right: 1.5rem;
+  background: url('./static/img/avatar.png') right center no-repeat;
+  background-size: contain;
+}
+
+
+/* --------------- navbar user connecté --------------- */
+
+/* forme cercle englobant l'icon de chaque catégorie */
+.span-icon-navbar {
+  display: block;
+  align-items: center;
+  background-color: var(--orange);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+/* style de l'icon de chaque catégorie */
+.img-icon-navbar {
+  opacity: 0.75;
+  width: 20px;
+  height: 20px;
+  /* padding-left: 5px;
+  padding-bottom: 5px; */
+}
+
+
+/* --------------- connection --------------- */
+
+/* cible l'élément "Identifiants personnels" */
+.login-description {
+  color: white;
+}
+
+/* censé changer la couleur arriere plan de l'input quand focus */
+/* .input-login-username:focus,
+.input-login-password:focus {
+  background: #181818;
+} */
+
+/* test animation hover + input connection form */
+/* .btn-valider:hover {
+  background-color: #161a1d;
+  transition: background-color 500ms ease-out 100ms
+} */
+
+
+/* --------------- footer --------------- */
+/* largeur des img des icones twitter linkedin rss et discord */
+footer>ul>li>a>img {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* --------------- font --------------- */
+
+/* font logo "Root Me" avec files au-dessus */
+@font-face {
+  font-family: "logo";
+  src: local("logo"),
+    url("../font/HangingLetters.woff") format("woff");
+}
+
+
+/* --------------- responsive --------------- */
+
+/* gere le responsive de l'acceuil, quand trop etroit on empile on lieu d'aligner */
+@media only screen and (max-width: 1024px) {
+  .container-index {
+    display: block;
+  }
+
+  .index-right-part {
+    margin-top: 32px;
+  }
+}
+
+
+
+/* affiche plus le nom du site "Root Me" avec la font spécial si trop étroit */
+@media only screen and (max-width: 40.063em) {
+  .site-name {
+    color: white;
+    display: none !important;
+  }
+}
+
+
+
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 664px;
+}
