@@ -14,11 +14,13 @@ login_manager.init_app(app)
 class LoginForm(FlaskForm):
     """Formulaire de connection"""
 
-    login = wtforms.StringField("login", validators=[wtforms.validators.DataRequired()])
-    """Username OU email"""
-    password = wtforms.StringField(
-        "Email Address", validators=[wtforms.validators.DataRequired()]
+    login = wtforms.StringField(
+        "Login ou adresse email", validators=[wtforms.validators.DataRequired()]
     )
+    password = wtforms.StringField(
+        "Mot de passe", validators=[wtforms.validators.DataRequired()]
+    )
+    submit = wtforms.SubmitField("Valider")
 
 
 @login_manager.user_loader
@@ -26,17 +28,20 @@ def load_user(user_id: str):
     return User.query.filter_by(id=user_id).first()
 
 
-@app.route("/login", methods=["POST"])
-def login():
+@app.route("/connexion", methods=["GET", "POST"])
+def connexion():
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
     # if flask.request.method == "POST":
     form = LoginForm()
     # Si le formulaire a été correctement rempli
-    if form.validate():
+    if form.validate_on_submit():
+        print("ehdciuhcuih")
         # On cherche l'utilisateur demandé
         user = User.query.filter_by(username=form.login).first()
+        if user is None:
+            return flask.Response("No user with this username.", 400)
 
         # user should be an instance of your `User` class
         login_user(user)
@@ -51,4 +56,4 @@ def login():
 
         return flask.redirect(next or flask.url_for("/"))
     else:
-        return json.dumps(form.errors)
+        return flask.render_template("connection.jinja", login_form=form)

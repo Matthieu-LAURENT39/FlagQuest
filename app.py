@@ -37,11 +37,6 @@ def inscription():
     return render_template("inscription.jinja")
 
 
-@app.route("/connection")
-def connection():
-    return render_template("connection.jinja")
-
-
 @app.route("/room/<nom_room>")
 def room(nom_room: str):
     return render_template(f"room/{nom_room}.jinja")
