@@ -40,4 +40,8 @@ def connection():
     return render_template("connection.jinja")
 
 
+@app.route("/room/<nom_room>")
+def room(nom_room: str):
+    return render_template(f"room/{nom_room}.jinja")
+
 app.run("0.0.0.0", 8080, debug=True)
