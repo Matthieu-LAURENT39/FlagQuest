@@ -1,7 +1,7 @@
 from app import app
 from flask_restful import reqparse, abort, Api, Resource
 
-api = Api(app)
+api = Api(app, prefix="/api")
 
 
 class User(Resource):
