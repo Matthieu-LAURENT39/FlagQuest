@@ -2,7 +2,7 @@ import mimetypes
 from app import app
 import backend
 from database import User
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 
 mimetypes.add_type("application/javascript", ".js")
 
