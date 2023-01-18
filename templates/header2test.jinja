@@ -29,19 +29,29 @@
         <div class="dropdown text-end"> <!-- creation menu / bouton qui permet le défilement -->
           <a href="/test" class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="./static/img/avatar.png" alt="mdo" width="36" height="36" class="avatar-user rounded-circle">
+            <img src="/static/img/avatar.png" alt="mdo" width="36" height="36" class="avatar-user rounded-circle">
           </a>
           <ul class="dropdown-content dropdown-menu text-small" style=""> <!-- contenu du menu / ce qui défile -->
-            <li><a class="dropdown-item" href="#">
-                <span class="dropdown-icon">Mon profil</span></a></li>
+            <li>
+              <a class="dropdown-item" href="https://www.google.com">
+                <span>Mon profil</span>
+                <img src="./static/img/avatar.png">
+              </a>
+            </li>
             {# <li><a class="dropdown-item" href="#">Mes paramètre</a></li> #}
             {# <li><a class="dropdown-item" href="#">Mes messages</a></li> #}
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Se déconnecter</a></li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com">
+                <span>Se déconnecter</span>
+                <img src="/static/img/logout.svg">
+              </a>
+            </li>
           </ul>
-        </div>
+        </div> {# fin partie avatar #}
+
         {# <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
@@ -64,7 +74,7 @@
     </div>
   </header>
 
-  <nav>
+  {# <nav>
 
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
       <ul class="nav nav-pills flex-column mb-auto">
@@ -94,4 +104,4 @@
       <hr>
       <p>test</p>
     </div>
-  </nav>
+  </nav> #}

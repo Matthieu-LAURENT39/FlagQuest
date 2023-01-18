@@ -124,29 +124,29 @@ grey = police pour paragraphe
 
 /* --------------- navbar user connecté --------------- */
 
+/* agencement en ligne des sections navbar gauche */
+.nav-item>.nav-link {
+  color: var(--white);
+  width: 100%;
+  padding-right: 5px;
+  padding-left: 0px;
+  display: flex;
+  justify-content: flex;
+  align-items: center;
+}
+
 /* forme cercle englobant l'icon de chaque catégorie */
-.span-icon-navbar {
+.img-icon-navbar {
   display: block;
   align-items: center;
-  background-color: var(--orange);
+  background: var(--orange);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   line-height: 40px;
   text-align: center;
-  vertical-align: middle;
   margin-right: 10px;
 }
-
-/* style de l'icon de chaque catégorie */
-.img-icon-navbar {
-  opacity: 0.75;
-  width: 20px;
-  height: 20px;
-  /* padding-left: 5px;
-  padding-bottom: 5px; */
-}
-
 
 /* --------------- connection --------------- */
 
@@ -186,19 +186,18 @@ footer>ul>li>a>img {
 }
 
 
-/* --------------- responsive --------------- */
+/* --------------- @media / responsive --------------- */
 
 /* gere le responsive de l'acceuil, quand trop etroit on empile on lieu d'aligner */
 @media only screen and (max-width: 1024px) {
   .container-index {
-    display: block;
+    flex-direction: column;
   }
 
-  .index-right-part {
-    margin-top: 32px;
+  #modalSignin {
+    margin-top: 40px;
   }
 }
-
 
 
 /* affiche plus le nom du site "Root Me" avec la font spécial si trop étroit */
