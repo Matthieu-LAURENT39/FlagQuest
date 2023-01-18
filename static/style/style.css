@@ -16,10 +16,12 @@ grey = police pour paragraphe
   --orange: #de770f;
 }
 
-/* test */
-.ok {
-  color: green;
-  font-weight: bold;
+
+/* padding droite 10 px */
+.nom-utilisateur {
+  padding-right: 10px;
+  color: white;
+  text-decoration: underline;
 }
 
 /* --------------- header --------------- */
