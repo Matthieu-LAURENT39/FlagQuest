@@ -16,6 +16,7 @@ with app.app_context():
             username="admin",
             email="feur@desu.wa",
             password_hash=generate_password_hash("admin"),
+            is_admin=True,
         )
         backend.db.session.add(user)
         backend.db.session.commit()

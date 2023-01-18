@@ -1,5 +1,5 @@
 from backend.db import db
-from sqlalchemy import Integer, Column, String
+from sqlalchemy import Integer, Column, String, Boolean
 from flask_login import UserMixin
 
 # On hérite UserMixin afin d'avoir les @property par défaut
@@ -16,3 +16,5 @@ class User(db.Model, UserMixin):
     Hash du mot de passe, de la forme 'method$salt$hash'
     Voir également https://werkzeug.palletsprojects.com/en/1.0.x/utils/#werkzeug.security.generate_password_hash
     """
+
+    is_admin = Column(Boolean, nullable=False, default=False)

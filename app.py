@@ -12,7 +12,10 @@ app.config["SECRET_KEY"] = "ChangeMeIAmNotSecure"
 
 @app.route("/")
 def acceuil():
-    return render_template("acceuil.jinja")
+    from backend import SignupForm
+
+    signup_form = SignupForm()
+    return render_template("acceuil.jinja", signup_form=signup_form)
 
 
 @app.route("/header")
@@ -30,11 +33,6 @@ def header2():
 @app.route("/test")
 def test():
     return render_template("test.jinja")
-
-
-@app.route("/inscription")
-def inscription():
-    return render_template("inscription.jinja")
 
 
 @app.route("/room/<nom_room>")
