@@ -106,45 +106,27 @@ grey = police pour paragraphe
 /* touche à chaque item/element de la liste défilante */
 .dropdown-item {
   color: var(--white);
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* gere icon du défilement profile user */
+.dropdown-item>img {
+  width: 28px;
+  height: 28px;
+  margin-left: 20px;
 }
 
 /* quand element dropdown liste est survolé */
 .dropdown-item:hover {
   color: var(--grey);
-  background-color: var(--night-grey);
-  transition: color 200ms ease-out 100ms
-}
-
-.dropdown-icon {
-  padding-right: 1.5rem;
-  background: url('./static/img/avatar.png') right center no-repeat;
-  background-size: contain;
-}
-
-
-/* --------------- navbar user connecté --------------- */
-
-/* forme cercle englobant l'icon de chaque catégorie */
-.span-icon-navbar {
-  display: block;
-  align-items: center;
-  background-color: var(--orange);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  vertical-align: middle;
-  margin-right: 10px;
-}
-
-/* style de l'icon de chaque catégorie */
-.img-icon-navbar {
   opacity: 0.75;
-  width: 20px;
-  height: 20px;
-  /* padding-left: 5px;
-  padding-bottom: 5px; */
+  background-color: var(--night-grey);
+  transition: color 200ms ease-out 100ms;
+  transition: opacity 200ms ease-out 100ms;
 }
 
 
@@ -191,15 +173,13 @@ footer>ul>li>a>img {
 /* gere le responsive de l'acceuil, quand trop etroit on empile on lieu d'aligner */
 @media only screen and (max-width: 1024px) {
   .container-index {
-    display: block;
+    flex-direction: column;
   }
 
-  .index-right-part {
-    margin-top: 32px;
+  #modalSignin {
+    margin-top: 40px;
   }
 }
-
-
 
 /* affiche plus le nom du site "Root Me" avec la font spécial si trop étroit */
 @media only screen and (max-width: 40.063em) {
