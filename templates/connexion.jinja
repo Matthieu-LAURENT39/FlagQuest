@@ -26,6 +26,13 @@
                                 class="form-label text-white fw-semibold ms-1 fs-5">{{login_form.login.label}}</label>
                             {{ login_form.login(class_="input-login-username form-control text-white bg-black rounded-2
                             p-1 ps-3 border border-1 border-info-subtle") }}
+                            {% if login_form.login.errors %}
+                            <ul class="errors">
+                                {% for error in login_form.login.errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
                         </div>
 
                         {# MOT DE PASSE #}
@@ -34,6 +41,13 @@
                                 class="form-label text-white fw-semibold ms-1 fs-5">{{login_form.password.label}}</label>
                             {{login_form.password(class_="input-login-password form-control text-white bg-black
                             rounded-2 p-1 ps-3 border border-1 border-info-subtle")}}
+                            {% if login_form.password.errors %}
+                            <ul class="errors">
+                                {% for error in login_form.password.errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
                         </div>
 
                         {# bouton valider #}
