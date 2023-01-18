@@ -14,7 +14,7 @@ login_manager.init_app(app)
 
 
 class LoginForm(FlaskForm):
-    """Formulaire de connection"""
+    """Formulaire de connexion"""
 
     login = wtforms.StringField(
         "Login ou adresse email", validators=[wtforms.validators.DataRequired()]
@@ -62,4 +62,4 @@ def connexion():
 
         return flask.redirect(next or flask.url_for("acceuil"))
     else:
-        return flask.render_template("connection.jinja", login_form=form)
+        return flask.render_template("connexion.jinja", login_form=form)
