@@ -17,7 +17,10 @@
                 <div class="modal-body p-5 px-4 pt-0">
 
                     <form method="POST" action="/connexion">
-                        <!-- LOGIN -->
+                        {# Token CSRF #}
+                        {{ login_form.csrf_token }}
+
+                        {# LOGIN #}
                         <div class="mb-3 col-12">
                             <label for="username"
                                 class="form-label text-white fw-semibold ms-1 fs-5">{{login_form.login.label}}</label>
@@ -25,7 +28,7 @@
                             p-1 ps-3 border border-1 border-info-subtle") }}
                         </div>
 
-                        <!-- PASSWORD -->
+                        {# MOT DE PASSE #}
                         <div class="mb-3 col-12">
                             <label for="password"
                                 class="form-label text-white fw-semibold ms-1 fs-5">{{login_form.password.label}}</label>
@@ -39,6 +42,7 @@
                             fw-semibold px-4 py-2 mt-5") }}
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
 from backend.db import db
 from sqlalchemy import Integer, Column, String
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
-
-class User(db.Model):
+# On hérite UserMixin afin d'avoir les @property par défaut
+class User(db.Model, UserMixin):
     """Un utilisateur du site web"""
 
     __tablename__ = "users"
