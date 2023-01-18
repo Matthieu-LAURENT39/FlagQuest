@@ -24,6 +24,11 @@ grey = police pour paragraphe
   text-decoration: underline;
 }
 
+
+.avatar-user:hover{
+  color: red;
+}
+
 /* --------------- header --------------- */
 
 /* inverse la couleur du logo rootme normalement noir vers blanc */
