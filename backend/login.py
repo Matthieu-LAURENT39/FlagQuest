@@ -3,7 +3,7 @@ from app import app
 import wtforms
 from flask_wtf import FlaskForm
 import json
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, logout_user, login_required
 from database.user import User
 from typing import Optional
 from backend import db
@@ -43,11 +43,11 @@ def connexion():
         # On cherche l'utilisateur demandé
         user: User = User.query.filter_by(username=form.login.data).first()
         if user is None:
-            return flask.Response("No user with this username.", 401)
+            return flask.Response("Cet utilisateur n'existe pas.", 401)
 
         # Vérification du hash du mot de passe
         if not check_password_hash(user.password_hash, form.password.data):
-            return flask.Response("Invalid password.", 401)
+            return flask.Response("Mot de passe invalide.", 401)
 
         # On connecte l'utilisateur avec Flask-login (ajout des cookies de session)
         login_user(user)
@@ -63,3 +63,11 @@ def connexion():
         return flask.redirect(next or flask.url_for("acceuil"))
     else:
         return flask.render_template("connexion.jinja", login_form=form)
+
+
+@app.route("/deconnexion")
+@login_required
+def deconnexion():
+    logout_user()
+    flask.flash("Vous avez été déconnecté.")
+    return flask.redirect(flask.url_for("acceuil"))
