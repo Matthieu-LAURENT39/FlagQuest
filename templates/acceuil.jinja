@@ -5,7 +5,7 @@
 <main class="container bg-black pt-5">
   <div class="container-index row">
     <!-- partie gauche avec logo + texte -->
-    <div class="index-left-part col text-center">
+    <div class="index-left-part col text-center pb-5">
       <img src="./static/img/logo_rootme.svg" alt="logo Root Me" class="logo-rootme-large">
       <h1 class="text-white fs-2 fw-normal">Une plateforme rapide, accessible et réaliste pour tester vos compétences en
         hacking.
@@ -14,6 +14,7 @@
     </div>
 
     <!-- partie droite avec formulaire d'inscription -->
+    {% if not current_user.is_authenticated %}
     <div class="index-right-part modal modal-signin position-static d-block bg-black col " tabindex="-1" role="dialog"
       id="modalSignin">
       <div class="modal-dialog" role="document">
@@ -73,6 +74,7 @@
         </div>
       </div> <!--- fin formulaire de connexion a cette div -->
     </div>
+    {% endif %}
   </div>
 
   {# <div class="container py-4">
@@ -85,7 +87,7 @@
     </div> #}
 
     <div class="row align-items-md-stretch">
-      <div class="col-md-6 pb-3">
+      <div class="col-md-6">
         <div class="background_effect h-100 p-5 bg-light rounded-3  text-black">
           <h2>lorem ipsum dolor sit amet</h2>
           <p>lorem ipsum dolor sit amet</p>
