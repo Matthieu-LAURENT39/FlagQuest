@@ -1,0 +1,51 @@
+{% include 'header.jinja' %}
+
+<main class="bg-black">
+    <!-- formulaire de connexion -->
+    <div class="modal modal-signin position-static d-block bg-black py-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-2 bg-dark">
+                <div class="modal-header px-4 pb-0 border-bottom-0">
+                    <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+                    <h1 class="text-white">
+                        <img src="./static/img/logo_login.svg" width="48" height="48">
+                        &nbsp;Se connecter
+                    </h1>
+                </div>
+                <span class="login-description p-5 px-4 pt-0 fw-semibold ms-1 fs-7">Identifiants personnels</span>
+
+                <div class="modal-body p-5 px-4 pt-0">
+
+                    <form method="POST" action="/connexion">
+                        {# Token CSRF #}
+                        {{ login_form.csrf_token }}
+
+                        {# LOGIN #}
+                        <div class="mb-3 col-12">
+                            <label for="username"
+                                class="form-label text-white fw-semibold ms-1 fs-5">{{login_form.login.label}}</label>
+                            {{ login_form.login(class_="input-login-username form-control text-white bg-black rounded-2
+                            p-1 ps-3 border border-1 border-info-subtle") }}
+                        </div>
+
+                        {# MOT DE PASSE #}
+                        <div class="mb-3 col-12">
+                            <label for="password"
+                                class="form-label text-white fw-semibold ms-1 fs-5">{{login_form.password.label}}</label>
+                            {{login_form.password(class_="input-login-password form-control text-white bg-black
+                            rounded-2 p-1 ps-3 border border-1 border-info-subtle")}}
+                        </div>
+
+                        {# bouton valider #}
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            {{ login_form.submit(class_="btn-valider btn rounded-1 border-2 active text-info fs-5
+                            fw-semibold px-4 py-2 mt-5") }}
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+</main>
+
+{% include 'footer.jinja' %}

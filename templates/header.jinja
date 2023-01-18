@@ -28,11 +28,16 @@
           <span class="site-name" itemprop="name">Root&nbsp;Me</span>
         </a>
 
-        {# CACHER CETTE PARTIE PARTOUT, A PART QUAND ON EST PAS CONNECTE - AVEC PYTHON #}
         <div class="text-end">
-          <!-- <button type="button" class="btn btn-outline-light me-2"><a href="connection.html" text-decoration-none>J'ai déjà un compte</a></button> -->
-          <a href="/connection" class="btn rounded-1 border-2 active text-info fw-semibold px-2 py-1" role="button"
-            aria-pressed="true">J'ai déjà un compte</a>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('deconnexion') }}" type="button"
+            class="btn btn-outline-danger rounded-1 border-2 fw-semibold px-2 py-1">Déconnexion</a>
+          {{current_user.username}}
+          {% else %}
+          <!-- <button type="button" class="btn btn-outline-light me-2"><a href="connexion.html" text-decoration-none>J'ai déjà un compte</a></button> -->
+          <a href="{{ url_for('connexion') }}" class="btn rounded-1 border-2 active text-info fw-semibold px-2 py-1"
+            role="button" aria-pressed="true">J'ai déjà un compte</a>
+          {% endif %}
           <a class="a-rootme-pro" href="http://www.lyceebranly.com/">
             <img class="logo-rootme-pro" src="/static/img/university.svg" alt="Logo d'une université"
               title="Lycée Edouard Branly">

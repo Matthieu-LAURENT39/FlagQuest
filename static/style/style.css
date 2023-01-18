@@ -123,14 +123,44 @@ grey = police pour paragraphe
 /* quand element dropdown liste est survolé */
 .dropdown-item:hover {
   color: var(--grey);
-  opacity: 0.75;
   background-color: var(--night-grey);
-  transition: color 200ms ease-out 100ms;
-  transition: opacity 200ms ease-out 100ms;
+  transition: color 200ms ease-out 100ms
+}
+
+.dropdown-icon {
+  padding-right: 1.5rem;
+  background: url('./static/img/avatar.png') right center no-repeat;
+  background-size: contain;
 }
 
 
-/* --------------- connection --------------- */
+/* --------------- navbar user connecté --------------- */
+
+/* agencement en ligne des sections navbar gauche */
+.nav-item>.nav-link {
+  color: var(--white);
+  width: 100%;
+  padding-right: 5px;
+  padding-left: 0px;
+  display: flex;
+  justify-content: flex;
+  align-items: center;
+}
+
+/* forme cercle englobant l'icon de chaque catégorie */
+.img-icon-navbar {
+  display: block;
+  align-items: center;
+  background: var(--orange);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  line-height: 40px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+/* --------------- connexion --------------- */
 
 /* cible l'élément "Identifiants personnels" */
 .login-description {
@@ -143,7 +173,7 @@ grey = police pour paragraphe
   background: #181818;
 } */
 
-/* test animation hover + input connection form */
+/* test animation hover + input connexion form */
 /* .btn-valider:hover {
   background-color: #161a1d;
   transition: background-color 500ms ease-out 100ms
@@ -168,7 +198,7 @@ footer>ul>li>a>img {
 }
 
 
-/* --------------- responsive --------------- */
+/* --------------- @media / responsive --------------- */
 
 /* gere le responsive de l'acceuil, quand trop etroit on empile on lieu d'aligner */
 @media only screen and (max-width: 1024px) {

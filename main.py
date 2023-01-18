@@ -1,47 +1,23 @@
-from flask import Flask, render_template
+import mimetypes
+from app import app
+import backend
+from database import User
+from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(
-    __name__,
-    static_folder="static",
-    template_folder="templates",
-    static_url_path="/static",
-)
+mimetypes.add_type("application/javascript", ".js")
 
+with app.app_context():
+    backend.db.create_all()
 
-@app.route("/")
-def acceuil():
-    return render_template("acceuil.jinja")
-
-
-@app.route("/header")
-def header():
-    return render_template("header.jinja")
-
-
-# test header une fois connecté
-@app.route("/header2")
-def header2():
-    return render_template("header2test.jinja")
-
-
-# test tout court
-@app.route("/test")
-def test():
-    return render_template("test.jinja")
-
-
-@app.route("/inscription")
-def inscription():
-    return render_template("inscription.jinja")
-
-
-@app.route("/connection")
-def connection():
-    return render_template("connection.jinja")
-
-
-@app.route("/room/<nom_room>")
-def room(nom_room: str):
-    return render_template(f"room/{nom_room}.jinja")
+with app.app_context():
+    user = User.query.filter_by(username="admin").first()
+    if user is None:
+        user = User(
+            username="admin",
+            email="feur@desu.wa",
+            password_hash=generate_password_hash("admin"),
+        )
+        backend.db.session.add(user)
+        backend.db.session.commit()
 
 app.run("0.0.0.0", 8080, debug=True)

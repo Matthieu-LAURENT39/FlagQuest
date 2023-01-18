@@ -1,2 +1,7 @@
 proxmoxer
 flask
+flask-restful
+SQLAlchemy
+wtforms[email]
+Flask-SQLAlchemy
+Flask-WTF
