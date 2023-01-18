@@ -19,7 +19,7 @@ class LoginForm(FlaskForm):
     login = wtforms.StringField(
         "Login ou adresse email", validators=[wtforms.validators.DataRequired()]
     )
-    password = wtforms.StringField(
+    password = wtforms.PasswordField(
         "Mot de passe", validators=[wtforms.validators.DataRequired()]
     )
     submit = wtforms.SubmitField("Valider")
@@ -39,7 +39,6 @@ def connexion():
     form = LoginForm()
     # Si le formulaire a été correctement rempli
     if form.validate_on_submit():
-        print("ehdciuhcuih")
         # On cherche l'utilisateur demandé
         user: User = User.query.filter_by(username=form.login.data).first()
         if user is None:
