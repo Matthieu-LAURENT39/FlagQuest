@@ -3,16 +3,18 @@ from app import app
 import wtforms
 from flask_wtf import FlaskForm
 import json
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, logout_user, login_required
 from database.user import User
+from typing import Optional
 from backend import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 
 class LoginForm(FlaskForm):
-    """Formulaire de connection"""
+    """Formulaire de connexion"""
 
     login = wtforms.StringField(
         "Login ou adresse email", validators=[wtforms.validators.DataRequired()]
@@ -24,7 +26,7 @@ class LoginForm(FlaskForm):
 
 
 @login_manager.user_loader
-def load_user(user_id: str):
+def load_user(user_id: str) -> Optional[User]:
     return User.query.filter_by(id=user_id).first()
 
 
@@ -39,11 +41,15 @@ def connexion():
     if form.validate_on_submit():
         print("ehdciuhcuih")
         # On cherche l'utilisateur demandé
-        user = User.query.filter_by(username=form.login).first()
+        user: User = User.query.filter_by(username=form.login.data).first()
         if user is None:
-            return flask.Response("No user with this username.", 400)
+            return flask.Response("Cet utilisateur n'existe pas.", 401)
 
-        # user should be an instance of your `User` class
+        # Vérification du hash du mot de passe
+        if not check_password_hash(user.password_hash, form.password.data):
+            return flask.Response("Mot de passe invalide.", 401)
+
+        # On connecte l'utilisateur avec Flask-login (ajout des cookies de session)
         login_user(user)
 
         flask.flash("Logged in successfully.")
@@ -54,6 +60,14 @@ def connexion():
         # if not is_safe_url(next):
         #     return flask.abort(400)
 
-        return flask.redirect(next or flask.url_for("/"))
+        return flask.redirect(next or flask.url_for("acceuil"))
     else:
-        return flask.render_template("connection.jinja", login_form=form)
+        return flask.render_template("connexion.jinja", login_form=form)
+
+
+@app.route("/deconnexion")
+@login_required
+def deconnexion():
+    logout_user()
+    flask.flash("Vous avez été déconnecté.")
+    return flask.redirect(flask.url_for("acceuil"))
