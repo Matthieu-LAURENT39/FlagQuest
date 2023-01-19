@@ -14,7 +14,8 @@
                 "FLASK_DEBUG": "true",
             },
             "args": [
-                "run"
+                "run",
+                "--host=0.0.0.0"
             ],
             "jinja": true
         },

@@ -6,3 +6,4 @@ wtforms[email]
 Flask-SQLAlchemy
 Flask-WTF
 flask-login
+marshmallow-sqlalchemy
