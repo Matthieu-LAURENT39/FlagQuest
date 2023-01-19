@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
+from jinja2 import TemplateNotFound
 
 
 app = Flask(
@@ -37,4 +38,7 @@ def test():
 
 @app.route("/room/<nom_room>")
 def room(nom_room: str):
-    return render_template(f"room/{nom_room}.jinja")
+    try:
+        return render_template(f"room/{nom_room}.jinja")
+    except TemplateNotFound:
+        abort(404)
