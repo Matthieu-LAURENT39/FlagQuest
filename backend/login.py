@@ -1,13 +1,14 @@
-import flask
-from app import app
-import wtforms
-from flask_wtf import FlaskForm
-import json
-from flask_login import LoginManager, login_user, logout_user, login_required
-from database.user import User
 from typing import Optional
+
+import flask
+import wtforms
+from flask_login import LoginManager, login_required, login_user, logout_user
+from flask_wtf import FlaskForm
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from app import app
 from backend import db
-from werkzeug.security import generate_password_hash, check_password_hash
+from database.user import User
 
 login_manager = LoginManager()
 login_manager.init_app(app)
