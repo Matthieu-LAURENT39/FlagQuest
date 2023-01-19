@@ -1,10 +1,12 @@
 from app import app
 from flask_restful import Api, Resource
 from flask_login import login_required, current_user
-from flask import redirect, jsonify, Blueprint
+from flask import redirect, jsonify, Blueprint, Response, abort
 from models import User, Room
 import backend
 from models.schemas import user_schema
+import json
+import werkzeug.exceptions
 
 api = Blueprint(
     "api",
@@ -21,7 +23,9 @@ class UserResource(Resource):
     """Informations lié à un utilisateur"""
 
     def get(self, username):
-        user: User = User.query.filter_by(username=username).first_or_404()
+        user: User = User.query.filter_by(username=username).first_or_404(
+            description="Cet utilisateur n'existe pas."
+        )
         return user_schema.dump(user)
 
 
@@ -30,6 +34,27 @@ class RoomResource(Resource):
 
     def get(self, room_id):
         return {"room_id": room_id}
+
+
+@api.after_request
+def api_after_request(r: Response) -> Response:
+    """Edite toute les réponse de l'API"""
+    j: dict = r.get_json()
+
+    # Des fois il n'y a pas de data
+    if isinstance(j, dict):
+        # On ajoute le champ avec le succès de la requête
+        j["success"] = r.status_code == 200
+
+    r.data = json.dumps(j, indent=4)
+    return r
+
+
+# Formate toutes les erreurs en json
+@api.errorhandler(werkzeug.exceptions.HTTPException)
+def api_error_handler(error: werkzeug.exceptions.HTTPException):
+    """Formatte toutes les erreurs d'API en json"""
+    return {"message": error.description}, error.code
 
 
 @api.route("/profile", methods=["GET"])
@@ -42,9 +67,11 @@ def profile():
 @api.route("/join_room/<int:room_id>", methods=["POST"])
 @login_required
 def join_room(room_id: int):
-    room: Room = Room.query.filter_by(id=room_id).first_or_404()
+    room: Room = Room.query.filter_by(id=room_id).first_or_404(
+        description="Cette room n'existe pas."
+    )
     if current_user in room.users:
-        return {"success": False, "error": "L'utilisateur est déja dans la room."}
+        abort(400, "L'utilisateur est déja dans la room.")
     room.users.append(current_user)
     backend.db.session.commit()
     return {"success": True}
