@@ -1,7 +1,12 @@
-{% include 'header.jinja' %}
+{% extends 'base.jinja' %}
 {# recup url du site #}
 {# {{ url_for(request.endpoint) }} #}
 
+{% block title %}
+{{ super() }} - Accueil
+{% endblock %}
+
+{% block content %}
 <main class="container bg-black pt-5">
   <div class="container-index row">
     <!-- partie gauche avec logo + texte -->
@@ -122,4 +127,4 @@
       </div>
     </div>
   </div> #}
-  {% include 'footer.jinja' %}
+  {% endblock %}

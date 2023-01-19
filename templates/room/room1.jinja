@@ -1,4 +1,10 @@
-{% include 'header.jinja' %}
+{% extends 'base.jinja' %}
+
+{% block title %}
+{{ super() }} - Room 1
+{% endblock %}
+
+{% block content %}
 <main>
     <div class="row" style="max-width:100%">
         <div class="col-sm-5">
@@ -21,4 +27,4 @@
     </div>
 
 </main>
-{% include 'footer.jinja' %}
+{% endblock %}

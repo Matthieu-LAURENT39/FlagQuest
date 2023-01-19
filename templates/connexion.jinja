@@ -1,5 +1,10 @@
-{% include 'header.jinja' %}
+{% extends 'base.jinja' %}
 
+{% block title %}
+{{ super() }} - Connexion
+{% endblock %}
+
+{% block content %}
 <main class="bg-black">
     <!-- formulaire de connexion -->
     <div class="modal modal-signin position-static d-block bg-black py-5" tabindex="-1" role="dialog" id="modalSignin">
@@ -61,5 +66,4 @@
             </div>
         </div>
 </main>
-
-{% include 'footer.jinja' %}
+{% endblock %}

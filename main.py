@@ -21,4 +21,5 @@ with app.app_context():
         backend.db.session.add(user)
         backend.db.session.commit()
 
-app.run("0.0.0.0", 8080, debug=True)
+if __name__ == "__main__":
+    app.run("0.0.0.0", 5000, debug=True)
