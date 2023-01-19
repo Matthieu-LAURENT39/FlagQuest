@@ -1,7 +1,13 @@
 {% extends 'base.jinja' %}
 
+
 {% block title %}
-{{ super() }} - Room 1
+{{ super() }} - {{room.name}}
+{% endblock %}
+
+{% block head %}
+{{super()}}
+<script src="{{url_for('static', filename='script/room.js')}}"></script>
 {% endblock %}
 
 {% block content %}
@@ -9,9 +15,30 @@
     <div class="row" style="max-width:100%">
         <div class="col-sm-5">
             <div class="align-item-top">
-                <a href="..." class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Commencer
+                {#
+                <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
                     la room
                 </a>
+                #}
+                <script>
+                    function joinRoom() {
+                        fetch('{{ url_for('api.join_room', room_url_name = room.url_name) }}', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                        })
+                            .then(response => response.json())
+                            .then(response => alert(JSON.stringify(response)))
+                    }
+                </script>
+
+                <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
+                    la room
+                </button>
             </div>
             <div class=" p-5">
                 <div class=" p-3 bg-light rounded-3  text-black">
