@@ -1,7 +1,7 @@
 {% extends 'base.jinja' %}
 {# recup url du site #}
 {# {{ url_for(request.endpoint) }} #}
-{% from 'parts/_acceuil.jinja' import room_widget %}
+{% from 'macros/_acceuil.jinja' import room_widget %}
 
 {% block title %}
 {{ super() }} - Accueil
@@ -98,6 +98,7 @@
       {{room_widget("Room 2", "lorem ipsum dolor sit amet", "room2")}}
       {{room_widget("Mr Robot", "Une simulation hacker", "mr_robot")}}
       {{room_widget("Desu wa", "Wow j'adore sylphyn", "desuwa")}}
+      {{room_widget("Mr robot 2", "incroyable", "mr_robot_2")}}
 
     </div>
 
