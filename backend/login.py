@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import app
 from backend import db
-from database.user import User
+from models.user import User
 
 login_manager = LoginManager()
 login_manager.init_app(app)
