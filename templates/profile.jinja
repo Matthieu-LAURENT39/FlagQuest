@@ -1,0 +1,121 @@
+{% extends 'base.jinja' %}
+
+
+{% block title %}
+Profile - {{current_user.username}}
+{% endblock %}
+
+{% block content %}
+<main class="container bg-black pt-5">
+    <div class="container-index">
+
+
+        <!-- bar principal profile -->
+        <div class="main-profile-bar row">
+            {# partie droite #}
+            <div class="col-md-auto">
+                <div class="div-pseudo">
+                    <img src="/static/img/avatar.png" alt="photo de profil de l'utilisateur" class="col avatar-profile">
+                    <h1 class="username-profile col">{{current_user.username}}</h1>
+                    <img src="/static/img/france.svg" alt="logo Root Me" class="country-profile col">
+                </div>
+            </div>
+
+            {# partie gauche #}
+            <div class="col col-lg-5">
+                <div class="div-statistiques">
+                    <div class="sous-div-stat">
+                        <h2 class="variable-stat">
+                            <img class="icon-stat" src="/static/img/podium.svg" alt="logo de la catégorie classement">
+                            122<!-- variable classement -->
+                        </h2>
+                        <h3 class="title-stat">Position</h3>
+                    </div>
+                    <div class="sous-div-stat score">
+                        <h2 class="variable-stat">
+                            <img class="icon-stat" src="/static/img/points.svg"
+                                alt="logo de la catégorie score (nombre de points)">
+                            2800<!-- variable score -->
+                        </h2>
+                        <h3 class="title-stat">Points</h3>
+                    </div>
+                    <div class="sous-div-stat challenges">
+                        <h2 class="variable-stat">
+                            <img class="icon-stat" src="/static/img/challenges.svg"
+                                alt="logo de la catégorie challenges (nombre de challenges terminés)">
+                            134<!-- variable challenge terminés -->
+                        </h2>
+                        <h3 class="title-stat">Challenges</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- partie rooms terminées + classement à gauche -->
+        <div class="second-part-profile row">
+
+            {# partie droite / rooms faites#}
+            <div class="rooms col">
+                <h2 class="title-sous-section">
+                    <img class="icon-second-part-profile" src="/static/img/challenges.svg"
+                        alt="logo de le section challenges réussis">
+                    &nbsp;Rooms complétées
+                </h2>
+            </div>
+
+            {# partie gauche / classement #}
+            <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
+            <div class="ranking col">
+                <h2 class="title-sous-section">
+                    <img class="icon-second-part-profile" src="/static/img/podium.svg"
+                        alt="logo de le section challenges réussis">
+                    &nbsp;Classement
+                </h2>
+
+                <table class="table-classement-profile">
+                    <!-- HEADER TABLE-->
+                    <thead>
+                        <tr>
+                            <th scope="col positionperso">Position</th>
+                            <th scope="col">Avatar</th> <!-- vraiment utile ???????? -->
+                            <th scope="col">Utilisateur</th>
+                            <th scope="col style-score">Score</th>
+                        </tr>
+                    </thead>
+
+                    <!-- BODY TABLE-->
+                    <tbody>
+                        <!-- LIGNE 1 -->
+                        <tr>
+                            <th># 1<!-- variable Xème du site --></th>
+                            <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                            <td>usern@m1<!-- variable username du Xème du site --></td>
+                            <td class="td-score">87<!-- varialbe du score de l'user --></td>
+                        </tr>
+
+                        <!-- LIGNE 2 -->
+                        <tr class="active-row">
+                            <th># 2 <!-- {{current_user.position}} --></th>
+                            <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                            <td>{{current_user.username}}</td>
+                            <td class="td-score">51<!-- varialbe du score de l'user -- current_user.score --></td>
+                        </tr>
+
+                        <!-- LIGNE 3 -->
+                        <tr>
+                            <th># 3</th>
+                            <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                            <td>usern@m3<!-- variable username du Xème du site --></td>
+                            <td class="td-score">34</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</main>
+{% endblock %}

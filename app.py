@@ -29,6 +29,11 @@ def header():
 def header2():
     return render_template("header2test.jinja")
 
+# test header une fois connecté
+@app.route("/profile")
+def profile():
+    return render_template("profile.jinja")
+
 
 # test tout court
 @app.route("/test")

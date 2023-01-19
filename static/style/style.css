@@ -141,7 +141,6 @@ grey = police pour paragraphe
 }
 
 
-
 /* --------------- connexion --------------- */
 
 /* cible l'élément "Identifiants personnels" */
@@ -162,7 +161,168 @@ grey = police pour paragraphe
 } */
 
 
+
+/* --------------- page profile user --------------- */
+
+/* bar de profile avec avatar score, challenges, son rang (dans le classement)  */
+.main-profile-bar {
+  padding: 10px;
+  background-color: var(--night-grey);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+/* aligne horizontalement pdp + pseudo + pays */
+.div-pseudo {
+  display: flex;
+  align-items: center;
+  padding-right: 100px;
+}
+
+/* photo de profil user */
+.avatar-profile {
+  width: 92px;
+  height: 92px;
+  margin-right: 10px;
+  background-color: var(--night-grey);
+  border: solid 2px var(--blue);
+  border-radius: 25%;
+}
+
+/* style du nom d'utilisateur */
+.username-profile {
+  color: var(--blue);
+  font-weight: 400;
+}
+
+/* style du drapeaux à droite de l'username*/
+.country-profile {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+/* englobe les 3 sections statistiques */
+.div-statistiques {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sous-div-stat {
+  display: grid;
+  gap: 0;
+}
+
+/* gère les 3 icons de la section statistique */
+.icon-stat {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+/*  */
+.variable-stat {
+  font-size: 24px;
+  grid-column: 1/2;
+  grid-row: 1;
+  color: var(--blue);
+}
+
+
+/* partie variable (classement, nbr de points, challenges résolus) */
+.title-stat {
+  font-size: 20px;
+  text-align: center;
+  grid-column: 1/2;
+  grid-row: 2;
+}
+
+
+/* --------------- rankings & clasement profil --------------- */
+
+/* cible la div entiere des rooms lancées + classement */
+.second-part-profile {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  background-color: lightgoldenrodyellow;
+}
+
+/* titre rooms lancées + classement (profile) */
+.title-sous-section {
+  color: var(--blue);
+  font-weight: 400;
+}
+
+/* touche aux icon de room et classement */
+.icon-second-part-profile {
+  width: 32px;
+  height: 32px;
+}
+
+
+.rooms {
+  margin-right: 10px;
+  border-radius: 20px;
+  background-color: var(--night-grey);
+}
+
+/* ------ ranking ------ */
+.ranking {
+  margin-left: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: var(--night-grey);
+}
+
+/* img de l'avatar du joueur dans le classement */
+.img-avatar-classement {
+  width: 25px;
+  height: 25px;
+}
+
+
+.table-classement-profile {
+  width: 100%;
+  color: var(--grey);
+}
+
+.table-classement-profile thead {
+  color: var(--white);
+  text-align: center;
+
+}
+
+.table-classement-profile .positionperso {
+  color: var(--red);
+  text-align: start;
+
+}
+
+.table-classement-profile td {
+  color: var(--white);
+  text-align: center;
+}
+
+/* affichage score classement */
+.td-score {
+  text-align: center;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+
+
 /* --------------- footer --------------- */
+
 /* largeur des img des icones twitter linkedin rss et discord */
 footer>ul>li>a>img {
   width: 24px;
@@ -255,16 +415,18 @@ footer>ul>li>a>img {
 }
 
 /*checkbox custom*/
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: green!important;
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+  background-color: green !important;
 }
 
-.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+.custom-checkbox .custom-control-input:checked:focus~.custom-control-label::before {
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25)
 }
-.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+
+.custom-checkbox .custom-control-input:focus~.custom-control-label::before {
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
 }
-.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
-  background-color: #C8FFC8; 
+
+.custom-checkbox .custom-control-input:active~.custom-control-label::before {
+  background-color: #C8FFC8;
 }
