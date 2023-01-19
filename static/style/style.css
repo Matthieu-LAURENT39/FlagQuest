@@ -233,10 +233,10 @@ footer>ul>li>a>img {
 
   background-size: 300% 300%;
   background-image: linear-gradient(-45deg,
-      rgba(59, 173, 227, 1) 0%,
+      rgba(59, 173, 227, 1) 10%,
       rgba(87, 111, 230, 1) 25%,
       rgba(152, 68, 183, 1) 51%,
-      rgba(255, 53, 127, 1) 100%);
+      rgba(255, 53, 127, 1) 90%);
   animation: AnimateBG 20s ease infinite;
 }
 
@@ -255,16 +255,18 @@ footer>ul>li>a>img {
 }
 
 /*checkbox custom*/
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: green!important;
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+  background-color: green !important;
 }
 
-.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+.custom-checkbox .custom-control-input:checked:focus~.custom-control-label::before {
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25)
 }
-.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+
+.custom-checkbox .custom-control-input:focus~.custom-control-label::before {
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
 }
-.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
-  background-color: #C8FFC8; 
+
+.custom-checkbox .custom-control-input:active~.custom-control-label::before {
+  background-color: #C8FFC8;
 }
