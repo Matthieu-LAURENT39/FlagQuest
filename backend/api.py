@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from flask import redirect, jsonify, Blueprint, Response, abort
 from models import User, Room
 import backend
-from models.schemas import user_schema
+from models.schemas import user_schema, room_schema
 import json
 import werkzeug.exceptions
 
@@ -32,8 +32,11 @@ class UserResource(Resource):
 class RoomResource(Resource):
     """Informations lié à une room"""
 
-    def get(self, room_id):
-        return {"room_id": room_id}
+    def get(self, url_name: str):
+        room: Room = Room.query.filter_by(url_name=url_name).first_or_404(
+            description="Cette room n'existe pas."
+        )
+        return room_schema.dump(room)
 
 
 @api.after_request
@@ -64,20 +67,20 @@ def profile():
     return redirect(api_manager.url_for(UserResource, username=current_user.username))
 
 
-@api.route("/join_room/<int:room_id>", methods=["POST"])
+@api.route("/join_room/<room_url_name>", methods=["POST"])
 @login_required
-def join_room(room_id: int):
-    room: Room = Room.query.filter_by(id=room_id).first_or_404(
+def join_room(room_url_name: str):
+    room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
     )
     if current_user in room.users:
-        abort(400, "L'utilisateur est déja dans la room.")
+        abort(400, "L'utilisateur est deja dans la room.")
     room.users.append(current_user)
     backend.db.session.commit()
     return {"success": True}
 
 
 api_manager.add_resource(UserResource, "/user/<username>")
-api_manager.add_resource(RoomResource, "/room/<int:room_id>")
+api_manager.add_resource(RoomResource, "/room/<url_name>")
 
 app.register_blueprint(api)

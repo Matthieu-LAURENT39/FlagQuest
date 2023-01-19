@@ -1,7 +1,6 @@
 from flask import Flask, render_template, abort
 from jinja2 import TemplateNotFound
 
-
 app = Flask(
     __name__,
     static_folder="static",
@@ -41,9 +40,14 @@ def test():
     return render_template("test.jinja")
 
 
-@app.route("/room/<nom_room>")
-def room(nom_room: str):
+@app.route("/room/<room_url_name>")
+def room(room_url_name: str):
+    from models import Room
+
+    room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
+        description="Cette room n'existe pas."
+    )
     try:
-        return render_template(f"room/{nom_room}.jinja")
+        return render_template(f"room/{room.url_name}.jinja", room=room)
     except TemplateNotFound:
         abort(404)

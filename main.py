@@ -23,7 +23,9 @@ with app.app_context():
 
     room = Room.query.filter_by(id="1").first()
     if room is None:
-        room = Room(name="Test room", description="wow wow world!")
+        room = Room(
+            name="Room 1", description="lorem ipsum dolor sit amet", url_name="room1"
+        )
         backend.db.session.add(room)
         backend.db.session.commit()
 
