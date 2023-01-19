@@ -1,11 +1,17 @@
-{% include 'header.jinja' %}
+{% extends 'base.jinja' %}
 {# recup url du site #}
 {# {{ url_for(request.endpoint) }} #}
+{% from 'macros/_acceuil.jinja' import room_widget %}
 
+{% block title %}
+{{ super() }} - Accueil
+{% endblock %}
+
+{% block content %}
 <main class="container bg-black pt-5">
   <div class="container-index row">
     <!-- partie gauche avec logo + texte -->
-    <div class="index-left-part col text-center">
+    <div class="index-left-part col text-center pb-5">
       <img src="./static/img/logo_rootme.svg" alt="logo Root Me" class="logo-rootme-large">
       <h1 class="text-white fs-2 fw-normal">Une plateforme rapide, accessible et réaliste pour tester vos compétences en
         hacking.
@@ -14,6 +20,7 @@
     </div>
 
     <!-- partie droite avec formulaire d'inscription -->
+    {% if not current_user.is_authenticated %}
     <div class="index-right-part modal modal-signin position-static d-block bg-black col " tabindex="-1" role="dialog"
       id="modalSignin">
       <div class="modal-dialog" role="document">
@@ -27,68 +34,53 @@
 
           <div class="modal-body p-5 px-4 pt-0">
 
-            <form class="">
+            <form method="POST" action="{{ url_for('inscription') }}">
+              {# Token CSRF #}
+              {{ signup_form.csrf_token }}
 
               <!-- NOM UTILISATEUR / PSEUDO -->
               <div class="mb-3 col-12">
-                <label for="username" class="form-label text-white fw-semibold ms-1 fs-5">Votre nom ou votre pseudo
-                  *</label>
-                <input type="text"
-                  class="input-login-username form-control text-white bg-black rounded-2 p-1 ps-3 border border-1 border-info-subtle"
-                  id="username" value="" required="">
-                <!-- si champ username vide -->
-                <div class="invalid-feedback">
-                  Veuillez renseigner ce champ.
-                </div>
+                <label for="username"
+                  class="form-label text-white fw-semibold ms-1 fs-5">{{signup_form.username.label}}</label>
+                {{ signup_form.username(class_="input-login-username form-control text-white bg-black rounded-2 p-1 ps-3
+                border border-1 border-info-subtle") }}
               </div>
 
-              <!-- LOGIN -->
+              <!-- Email -->
               <div class="mb-3 col-12">
-                <label for="email" class="form-label text-white fw-semibold ms-1 fs-5">Votre adresse email *</label>
-                <input type="email"
-                  class="input-login-username form-control text-white bg-black rounded-2 p-1 ps-3 border border-1 border-info-subtle"
-                  id="email" value="" required="">
-                <!-- si champ username vide -->
-                <div class="invalid-feedback">
-                  Veuillez renseigner ce champ.
-                </div>
+                <label for="email"
+                  class="form-label text-white fw-semibold ms-1 fs-5">{{signup_form.email.label}}</label>
+                {{ signup_form.email(class_="input-login-username form-control text-white bg-black rounded-2 p-1 ps-3
+                border border-1 border-info-subtle") }}
               </div>
 
               <!-- PASSWORD -->
               <div class="mb-3 col-12">
-                <label for="password" class="form-label text-white fw-semibold ms-1 fs-5">Votre mot de passe *</label>
-                <input type="password"
-                  class="input-login-password form-control text-white bg-black rounded-2 p-1 ps-3 border border-1 border-info-subtle"
-                  id="password" value="" required="">
-                <!-- si champ username vide -->
-                <div class="invalid-feedback">
-                  Veuillez renseigner ce champ.
-                </div>
+                <label for="password"
+                  class="form-label text-white fw-semibold ms-1 fs-5">{{signup_form.password.label}}</label>
+                {{ signup_form.password(class_="input-login-password form-control text-white bg-black rounded-2 p-1 ps-3
+                border border-1 border-info-subtle") }}
               </div>
 
               <!-- PASSWORD CONFIRMATION -->
               <div class="mb-3 col-12">
-                <label for="password" class="form-label text-white fw-semibold ms-1 fs-5">Confirmer ce nouveau mot de
-                  passe *</label>
-                <input type="password"
-                  class="input-login-password form-control text-white bg-black rounded-2 p-1 ps-3 border border-1 border-info-subtle"
-                  id="password" value="" required="">
-                <!-- si champ username vide -->
-                <div class="invalid-feedback">
-                  Veuillez renseigner ce champ.
-                </div>
+                <label for="password"
+                  class="form-label text-white fw-semibold ms-1 fs-5">{{signup_form.password_confirmation.label}}</label>
+                {{ signup_form.password_confirmation(class_="input-login-password form-control text-white bg-black
+                rounded-2 p-1 ps-3 border border-1 border-info-subtle") }}
               </div>
 
               {# bouton valider #}
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn-valider btn rounded-1 border-2 active text-info fs-5 fw-semibold px-4 py-2 mt-5"
-                  type="submit">Valider</button>
+                {{ signup_form.submit(class_="btn-valider btn rounded-1 border-2 active text-info fs-5
+                fw-semibold px-4 py-2 mt-5") }}
               </div>
             </form>
           </div>
         </div>
       </div> <!--- fin formulaire de connexion a cette div -->
     </div>
+    {% endif %}
   </div>
 
   {# <div class="container py-4">
@@ -100,40 +92,30 @@
       </div>
     </div> #}
 
-    <div class="row align-items-md-stretch">
-      <div class="col-md-6 ">
-        <div class="background_effect h-100 p-5 bg-light rounded-3  text-black">
-          <h2>lorem ipsum dolor sit amet</h2>
-          <p>lorem ipsum dolor sit amet</p>
-          <a href="/room/room1" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
-            role="button">
-            ROOM: 1</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="background_effect h-100 p-5 bg-light rounded-3 text-black">
-          <h2>lorem ipsum dolor sit amet<br></h2>
-          <p>lorem ipsum dolor sit amet<br></p>
-          <a href="/room/room2" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5 align"
-            role="button">
-            ROOM: 2</a>
-        </div>
-      </div>
+    <div class="d-flex row align-items-md-stretch">
 
-      {# <div class="col-md-6">
-        <div class="h-100 p-5 bg-light rounded-3">
-          <h2>lorem ipsum dolor sit amet</h2>
-          <p>lorem ipsum dolor sit amet</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="h-100 p-5 bg-light rounded-3">
-          <h2>lorem ipsum dolor sit amet</h2>
-          <p>lorem ipsum dolor sit amet</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
+      {{room_widget("Room 1", "lorem ipsum dolor sit amet", "room1")}}
+      {{room_widget("Room 2", "lorem ipsum dolor sit amet", "room2")}}
+      {{room_widget("Mr Robot", "Une simulation hacker", "mr_robot")}}
+      {{room_widget("Desu wa", "Wow j'adore sylphyn", "desuwa")}}
+      {{room_widget("Mr robot 2", "incroyable", "mr_robot_2")}}
+
+    </div>
+
+    {# <div class="col-md-6">
+      <div class="h-100 p-5 bg-light rounded-3">
+        <h2>lorem ipsum dolor sit amet</h2>
+        <p>lorem ipsum dolor sit amet</p>
+        <button class="btn btn-outline-secondary" type="button">Example button</button>
       </div>
     </div>
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-light rounded-3">
+        <h2>lorem ipsum dolor sit amet</h2>
+        <p>lorem ipsum dolor sit amet</p>
+        <button class="btn btn-outline-secondary" type="button">Example button</button>
+      </div>
+    </div>
+  </div>
   </div> #}
-  {% include 'footer.jinja' %}
+  {% endblock %}

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+
+{% block head %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}RootMe{% endblock %}</title>
+    <!-- logo du lycée-->
+    <link rel="icon" href="/static/img/logo_rootme.svg">
+    <!-- css personnel -->
+    <link rel="stylesheet" href="/static/style/style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    {# script js bootstrap (utilisé pour le dropdown de l'avatar utilisateur) #}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</head>
+{% endblock %}
+
+
+<body class="bg-black">
+    {% block header %}
+    <header class="text-dark bg-black">
+        <div class="container-fluid m-0">
+            <div class="d-flex align-items-center justify-content-between ">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img class="logo-rootme" src="/static/img/logo_rootme.svg" alt="logo root-me.org" itemprop=image>
+                    <span class="site-name" itemprop="name">Root&nbsp;Me</span>
+                </a>
+
+                <div class="text-end d-flex align-items-center">
+                    {% if current_user.is_authenticated %}
+                    <div class="nom-utilisateur">
+                        <h4> {{current_user.username}} </h4>
+                    </div>
+                    {# <a href="{{ url_for('deconnexion') }}" type="button"
+                        class="btn btn-outline-danger rounded-1 border-2 fw-semibold px-2 py-1">Déconnexion</a> #}
+                    <div class="dropdown text-end"> <!-- creation menu / bouton qui permet le défilement -->
+                        <a href="/test" class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/static/img/avatar.png" alt="mdo" width="36" height="36"
+                                class="avatar-user rounded-circle">
+                        </a>
+                        <ul class="dropdown-content dropdown-menu text-small" style="">
+                            <!-- contenu du menu / ce qui défile -->
+                            <li>
+                                <a class="dropdown-item" href="/profil">
+                                    <span>Mon profil</span>
+                                    <img src="./static/img/avatar.png">
+                                </a>
+                            </li>
+                            {# <li><a class="dropdown-item" href="#">Mes paramètre</a></li> #}
+                            {# <li><a class="dropdown-item" href="#">Mes messages</a></li> #}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('deconnexion') }}">
+                                    <span>Se déconnecter</span>
+                                    <img src="/static/img/logout.svg">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <!-- <button type="button" class="btn btn-outline-light me-2"><a href="connexion.html" text-decoration-none>J'ai déjà un compte</a></button> -->
+                    <a href="{{ url_for('connexion') }}"
+                        class="btn rounded-1 border-2 active text-info fw-semibold px-2 py-1" role="button"
+                        aria-pressed="true">J'ai déjà un compte</a>
+                    <a class="a-rootme-pro" href="http://www.lyceebranly.com/">
+                        <img class="logo-rootme-pro" src="/static/img/university.svg" alt="Logo d'une université"
+                            title="Lycée Edouard Branly">
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    {% endblock %}
+
+    {% block content %}<h1>THIS IS DEFAULT TEXT, CHANGE ME</h1>{% endblock %}
+
+</body>
+
+{% block footer %}
+<footer class="bg-black container-fluid pt-3 align-items-start">
+    <div class="d-flex justify-content-center">
+        <img class="logo-rootme" src="../static/img/logo_rootme.svg" alt="logo root-me.org" itemprop=image>
+    </div>
+    <ul class="nav justify-content-center">
+        <li class="nav-item"><a href="#"
+                class="nav-link px-2 text-muted text-secondary-emphasis fs-6">Confidentialité</a></li>
+        <!-- <li class="nav-item ">&nbsp;|</li> -->
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-secondary-emphasis fs-6">Mentions Légales</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-secondary-emphasis fs-6">Conditions Générales
+                d'Utilisation</a></li>
+    </ul>
+    <p class="text-center p-0 m-0 text-white fs-6">Root Me : plateforme d’apprentissage dédiée au Hacking et à la
+        Sécurité de l’Information</p>
+    <p class="text-center border-bottom border-secondary pb-3 mb-3 text-white fs-6">© 2010 - 2023</p>
+
+    <ul class="nav justify-content-center">
+        <li class="nav-item px-3">
+            <a href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fwww.root-me.org%2F&region=follow_link&screen_name=rootme_org&tw_p=followbutton"
+                class="nav-link px-2">
+                <img src="/static/img/social_network/twitter.svg" alt="logo Twitter">
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <a href="https://www.linkedin.com/groups/Root-Me-hacking-and-information-8180601" class="nav-link px-2">
+                <img src="/static/img/social_network/linkedin.svg" alt="logo LinkedIn">
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <a href="https://www.root-me.org/?page=flux_rss&lang=fr" class="nav-link px-2">
+                <img src="/static/img/social_network/rss.svg" alt="logo Flux RSS">
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <a href="https://discord.gg/XejsBJdUch" class="nav-link px-2">
+                <img src="/static/img/social_network/discord.svg" alt="logo Discord">
+            </a>
+        </li>
+    </ul>
+</footer>
+{% endblock %}
+
+</html>

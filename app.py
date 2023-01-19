@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
+from jinja2 import TemplateNotFound
 
 
 app = Flask(
@@ -12,7 +13,10 @@ app.config["SECRET_KEY"] = "ChangeMeIAmNotSecure"
 
 @app.route("/")
 def acceuil():
-    return render_template("acceuil.jinja")
+    from backend import SignupForm
+
+    signup_form = SignupForm()
+    return render_template("acceuil.jinja", signup_form=signup_form)
 
 
 @app.route("/header")
@@ -32,11 +36,9 @@ def test():
     return render_template("test.jinja")
 
 
-@app.route("/inscription")
-def inscription():
-    return render_template("inscription.jinja")
-
-
 @app.route("/room/<nom_room>")
 def room(nom_room: str):
-    return render_template(f"room/{nom_room}.jinja")
+    try:
+        return render_template(f"room/{nom_room}.jinja")
+    except TemplateNotFound:
+        abort(404)
