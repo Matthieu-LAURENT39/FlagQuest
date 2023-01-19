@@ -5,12 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: main.py",
+            "name": "Python: Run flask",
             "type": "python",
             "request": "launch",
-            "program": "main.py",
-            "console": "integratedTerminal",
-            "justMyCode": true
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "main.py",
+                "FLASK_DEBUG": "true",
+            },
+            "args": [
+                "run"
+            ],
+            "jinja": true
         },
         {
             "name": "Python: Current File",
