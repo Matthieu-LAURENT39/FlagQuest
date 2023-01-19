@@ -1,6 +1,7 @@
 {% extends 'base.jinja' %}
 {# recup url du site #}
 {# {{ url_for(request.endpoint) }} #}
+{% from 'parts/_acceuil.jinja' import room_widget %}
 
 {% block title %}
 {{ super() }} - Accueil
@@ -91,40 +92,29 @@
       </div>
     </div> #}
 
-    <div class="row align-items-md-stretch">
-      <div class="col-md-6">
-        <div class="background_effect h-100 p-5 bg-light rounded-3  text-black">
-          <h2>lorem ipsum dolor sit amet</h2>
-          <p>lorem ipsum dolor sit amet</p>
-          <a href="/room/room1" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
-            role="button">
-            ROOM: 1</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="background_effect h-100 p-5 bg-light rounded-3 text-black">
-          <h2>lorem ipsum dolor sit amet<br></h2>
-          <p>lorem ipsum dolor sit amet<br></p>
-          <a href="/room/room2" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5 align"
-            role="button">
-            ROOM: 2</a>
-        </div>
-      </div>
+    <div class="d-flex row align-items-md-stretch">
 
-      {# <div class="col-md-6">
-        <div class="h-100 p-5 bg-light rounded-3">
-          <h2>lorem ipsum dolor sit amet</h2>
-          <p>lorem ipsum dolor sit amet</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="h-100 p-5 bg-light rounded-3">
-          <h2>lorem ipsum dolor sit amet</h2>
-          <p>lorem ipsum dolor sit amet</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
+      {{room_widget("Room 1", "lorem ipsum dolor sit amet", "room1")}}
+      {{room_widget("Room 2", "lorem ipsum dolor sit amet", "room2")}}
+      {{room_widget("Mr Robot", "Une simulation hacker", "mr_robot")}}
+      {{room_widget("Desu wa", "Wow j'adore sylphyn", "desuwa")}}
+
+    </div>
+
+    {# <div class="col-md-6">
+      <div class="h-100 p-5 bg-light rounded-3">
+        <h2>lorem ipsum dolor sit amet</h2>
+        <p>lorem ipsum dolor sit amet</p>
+        <button class="btn btn-outline-secondary" type="button">Example button</button>
       </div>
     </div>
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-light rounded-3">
+        <h2>lorem ipsum dolor sit amet</h2>
+        <p>lorem ipsum dolor sit amet</p>
+        <button class="btn btn-outline-secondary" type="button">Example button</button>
+      </div>
+    </div>
+  </div>
   </div> #}
   {% endblock %}
