@@ -1,0 +1,73 @@
+{% extends 'base.jinja' %}
+
+
+{% block title %}
+Classement - Root Me
+{% endblock %}
+
+{% block content %}
+<main class="container bg-black pt-5">
+    <div class="container-index">
+
+        {# partie gauche / classement #}
+        <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
+        <div class="classement col">
+            <h1 class="title-classement">
+                <img class="img-classement" src="/static/img/podium.svg" alt="logo de le section challenges réussis">
+                <span>&nbsp;Classement</span>
+            </h1>
+
+            <hr>
+
+            {# TABLEAU CLASSEMENT #}
+            <table class="table-classement-profile">
+                <!-- HEADER TABLE-->
+                <thead>
+                    <tr>
+                        <th scope="col">Position</th>
+                        <th scope="col">Avatar</th> <!-- vraiment utile ???????? -->
+                        <th scope="col">Utilisateur</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+
+                <!-- BODY TABLE-->
+                <tbody>
+                    <!-- LIGNE 1 -->
+                    <tr class="lambda-row">
+                        <th># 1<!-- variable Xème du site --></th>
+                        <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                        <td class="username-classement-style">
+                            <a href="#">usern@m1</a><!-- variable username du Xème du site -->
+                        </td>
+                        <td class="td-score">87<!-- varialbe du score de l'user --></td>
+                    </tr>
+
+                    <!-- LIGNE 2 -->
+                    <tr class="active-row">
+                        <th># 2 <!-- {{current_user.position}} --></th>
+                        <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                        <td>{{current_user.username}}</td>
+                        <td class="">51<!-- varialbe du score de l'user {{current_user.score}} --></td>
+                    </tr>
+
+                    <!-- LIGNE 3 -->
+                    <tr class="lambda-row">
+                        <th># 3</th>
+                        <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                        <td class="username-classement-style">
+                            <a href="#">niko_haxor</a><!-- variable username du Xème du site -->
+                        </td>
+                        <td class="td-score">34</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <p></p>
+    </div>
+
+
+
+    {% endblock %}f

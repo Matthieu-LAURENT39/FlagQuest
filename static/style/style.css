@@ -8,22 +8,25 @@ grey = police pour paragraphe
   --dark-grey: #4d4d4d;
   --grey: #767676;
   --night-grey: #191C22;
+  --night-grey-hovered: #2a2f38;
   --black: #000;
   --white: #fff;
+  --off-white-: #a5a5a5;
   --blue: #2ba6cb;
-  --red: ##de2b0f;
+  --red: #de2b0f;
   --green: #0C0;
   --orange: #de770f;
+  --pink: #ec51ec;
+  --yellow: #fff800;
 }
 
 
 /* padding droite 10 px */
 .nom-utilisateur {
   padding-right: 10px;
-  color: white;
+  color: var(--white);
   text-decoration: underline;
 }
-
 
 .errors {
   color: red;
@@ -84,15 +87,15 @@ grey = police pour paragraphe
   border: solid 1px var(--green);
   width: 36px;
   height: 36px;
+  transition-property: all;
+  transition-duration: 700ms;
 }
 
 /* quand icon user est survolé --> agrandir, bg, animation... */
 .avatar-user:hover {
   background-color: var(--night-grey);
-  border: solid 2px var(--green);
   width: 38px;
   height: 38px;
-  transition: all 200ms ease-out 100ms;
 }
 
 /* curseur cliquable pour défilement */
@@ -105,19 +108,21 @@ grey = police pour paragraphe
 }
 
 /* cible/englobe la liste qui défile une fois le curseur cliqué */
-.dropdown-content {
+ul.dropdown-content {
   background-color: var(--night-grey);
   border-radius: 3px;
 }
 
 /* touche à chaque item/element de la liste défilante */
-.dropdown-item {
+li a.dropdown-item {
   color: var(--white);
   width: 100%;
   padding-right: 10px;
   padding-left: 10px;
   display: flex;
   justify-content: space-between;
+  transition: all;
+  transition-duration: 700ms;
 }
 
 /* gere icon du défilement profile user */
@@ -128,11 +133,11 @@ grey = police pour paragraphe
 }
 
 /* quand element dropdown liste est survolé */
-.dropdown-item:hover {
-  color: var(--grey);
-  background-color: var(--night-grey);
-  transition: color 200ms ease-out 100ms
+li a.dropdown-item:hover {
+  color: var(--white);
+  background-color: var(--night-grey-hovered);
 }
+
 
 .dropdown-icon {
   padding-right: 1.5rem;
@@ -145,7 +150,7 @@ grey = police pour paragraphe
 
 /* cible l'élément "Identifiants personnels" */
 .login-description {
-  color: white;
+  color: var(--white);
 }
 
 /* censé changer la couleur arriere plan de l'input quand focus */
@@ -189,8 +194,16 @@ grey = police pour paragraphe
   height: 92px;
   margin-right: 10px;
   background-color: var(--night-grey);
-  border: solid 2px var(--blue);
+  border: solid 1px var(--blue);
   border-radius: 25%;
+  transition-property: all;
+  transition-duration: 500ms;
+}
+
+.avatar-profile:hover {
+  background-color: var(--night-grey-hovered);
+  border-color: var(--green);
+  padding: 2px;
 }
 
 /* style du nom d'utilisateur */
@@ -248,12 +261,12 @@ grey = police pour paragraphe
 
 /* cible la div entiere des rooms lancées + classement */
 .second-part-profile {
-  padding: 10px;
+  padding: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   border-radius: 20px;
-  background-color: lightgoldenrodyellow;
+  background-color: var(--night-grey);
 }
 
 /* titre rooms lancées + classement (profile) */
@@ -268,19 +281,97 @@ grey = police pour paragraphe
   height: 32px;
 }
 
-
-.rooms {
-  margin-right: 10px;
-  border-radius: 20px;
+/* ------------------ sous section ------------------ */
+.sous-section {
+  /* margin-left: 10px; */
+  padding: 10px;
+  border: solid 1px var(--dark-grey);
+  border-radius: 4px;
   background-color: var(--night-grey);
 }
 
-/* ------ ranking ------ */
-.ranking {
-  margin-left: 10px;
-  padding: 10px;
-  border-radius: 20px;
+/* ------------------ rooms partipées ------------------ */
+/* .rooms {} */
+
+.rooms hr {
+  color: var(--yellow);
+  border: solid 1px;
+}
+
+/* div concernat une room (à répéter en html) */
+.room-launched {
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: 265px 265px 70px;
+  border: solid 1px var(--grey);
+  border-radius: 4px;
   background-color: var(--night-grey);
+  padding-left: 10px;
+  margin-bottom: 30px;
+  transition-property: all;
+  transition-duration: 700ms;
+}
+
+.room-launched:hover {
+  background-color: var(--night-grey-hovered);
+  border-color: var(--green);
+}
+
+/* touche au nom/titre de la room lancé */
+.room-title {
+  color: var(--blue);
+  font-weight: 400;
+  font-size: 22px;
+  padding: 5px;
+  padding-right: 0;
+  grid-column: 1 /4;
+  grid-row: 1;
+
+}
+
+/* container icon room lancée */
+.img-room {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+/* img représentant la room lancée */
+.img-room img {
+  text-align: center;
+  width: 64px;
+  height: 64px;
+}
+
+/* affichage points tt room + points actuels du joueurs sur la room */
+.point-progression-room {
+  grid-column: 1;
+  grid-row: 2;
+  padding: 5px;
+  padding-right: 0;
+  color: var(--white);
+}
+
+
+/* ------------------ ranking / classement ------------------ */
+/* catégorie classement */
+.ranking {
+  margin-left: 15px;
+}
+
+/* touche l'entièretée de la table */
+.table-classement-profile {
+  width: 100%;
+  color: var(--white);
+  text-align: center;
+}
+
+/* header de la table */
+.table-classement-profile thead {
+  color: var(--off-white);
 }
 
 /* img de l'avatar du joueur dans le classement */
@@ -289,37 +380,74 @@ grey = police pour paragraphe
   height: 25px;
 }
 
-
-.table-classement-profile {
-  width: 100%;
-  color: var(--grey);
+/* style de username classement */
+.username-classement-style {
+  color: var(--green);
 }
 
-.table-classement-profile thead {
-  color: var(--white);
-  text-align: center;
-
-}
-
-.table-classement-profile .positionperso {
-  color: var(--red);
-  text-align: start;
-
-}
-
-.table-classement-profile td {
-  color: var(--white);
-  text-align: center;
-}
-
-/* affichage score classement */
+/* affichage colonne score du classement en bleu */
 .td-score {
-  text-align: center;
   font-weight: 600;
   color: var(--blue);
 }
 
+/* ligne concernant l'user connecté */
+.active-row {
+  background-color: var(--night-grey-hovered);
+  color: var(--pink);
+  font-weight: 500;
+  transition-property: all;
+  transition-duration: 700ms;
+}
 
+/* ligne tableau username connecté survolé */
+.active-row:hover {
+  background-color: #292c30;
+  font-weight: 600;
+}
+
+/* style des lignes des user concurrents */
+.lambda-row {
+  transition: all;
+  transition-duration: 700ms;
+}
+
+/* pas de soulignemen aux liens des pseudo */
+.lambda-row a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+/* style des lignes des user concurrents survolés*/
+.lambda-row:hover {
+  background-color: #3c414a;
+}
+
+
+/* ----------------------------- classement ------------------------- */
+/* div classement */
+.classement {
+  margin-left: 15px;
+  padding: 15px;
+  border: solid 1px var(--dark-grey);
+  border-radius: 4px;
+  background-color: var(--night-grey);
+
+}
+
+/* titre classement bleu */
+.title-classement {
+  display: flex;
+  align-items: end;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+/* img illustre classement */
+.img-classement {
+  width: 48px;
+  height: 48px;
+}
 
 /* --------------- footer --------------- */
 
@@ -327,6 +455,11 @@ grey = police pour paragraphe
 footer>ul>li>a>img {
   width: 24px;
   height: 24px;
+}
+
+footer>ul>li>a:hover {
+  opacity: 75%;
+  transition: opacity 200ms ease-out 100ms;
 }
 
 
@@ -360,6 +493,80 @@ footer>ul>li>a>img {
     display: none !important;
   }
 }
+
+/* responsive page profile bar user */
+@media only screen and (max-width: 770px) {
+
+  /* partie droite */
+  /* aligne les élements normalement à droite (ici au dessus) */
+  div .main-infos-profil-responsive {
+    display: flex;
+    padding-bottom: 10px;
+  }
+
+  /* re touche a la pdp de l'user connecté */
+  .main-infos-profil-responsive .avatar-profile {
+    width: 64px;
+    height: 64px;
+    margin-right: 15px;
+  }
+
+  /* touche au h1 pour l'username */
+  .main-infos-profil-responsive .username-profile {
+    font-size: 40px;
+  }
+
+  /* drapeaux pays */
+  .main-infos-profil-responsive .country-profile {
+    width: 24px;
+    margin-left: 15px;
+    width: 24px;
+  }
+
+  /* partie gauche */
+  /* re organise l'espace entre les sections */
+  .stats-profile-bar-responsive {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: solid 1px var(--dark-grey);
+
+  }
+
+  /* h3 --> position / points/ challenges */
+  .title-stat {
+    font-size: 18px;
+    /* text-align: start; */
+  }
+}
+
+/* ------------------------------------ jghjk njgn ji---------------------------- */
+@media only screen and (max-width: 580px) {
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .main-profil-bar {
+    background-color: #C8FFC8;
+    /* margin-bottom: 30px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 8px; */
+  }
+}
+
+/* ------------------------------------ jghjk njgn ji---------------------------- */
+
+
+/* responsive page profile classement */
+@media only screen and (max-width: 1024px) {
+  div.ranking {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+}
+
 
 
 

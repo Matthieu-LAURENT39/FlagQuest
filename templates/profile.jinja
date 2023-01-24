@@ -13,7 +13,7 @@ Profile - {{current_user.username}}
         <!-- bar principal profile -->
         <div class="main-profile-bar row">
             {# partie droite #}
-            <div class="col-md-auto">
+            <div class="col-md-auto main-infos-profil-responsive">
                 <div class="div-pseudo">
                     <img src="/static/img/avatar.png" alt="photo de profil de l'utilisateur" class="col avatar-profile">
                     <h1 class="username-profile col">{{current_user.username}}</h1>
@@ -23,7 +23,7 @@ Profile - {{current_user.username}}
 
             {# partie gauche #}
             <div class="col col-lg-5">
-                <div class="div-statistiques">
+                <div class="div-statistiques stats-profile-bar-responsive">
                     <div class="sous-div-stat">
                         <h2 class="variable-stat">
                             <img class="icon-stat" src="/static/img/podium.svg" alt="logo de la catégorie classement">
@@ -51,45 +51,104 @@ Profile - {{current_user.username}}
             </div>
         </div>
 
-        <!-- partie rooms terminées + classement à gauche -->
+        <!-- partie rooms lancées à droite + classement à gauche -->
         <div class="second-part-profile row">
 
             {# partie droite / rooms faites#}
-            <div class="rooms col">
+            <div class="rooms sous-section col">
                 <h2 class="title-sous-section">
                     <img class="icon-second-part-profile" src="/static/img/challenges.svg"
                         alt="logo de le section challenges réussis">
                     &nbsp;Rooms complétées
                 </h2>
+
+                <hr>
+
+                {# liste des rooms lancées #}
+                <div>
+                    {# {{room_launched_widget("Crypto advice", "20", "17", "48")}} #}
+
+                    <a class="room-launched" href="/room1">
+                        <h3 class="room-title m-0">Cryptos<!-- room 1 lancée--></h3>
+                        <div class="img-room">
+                            <img src="/static/img/virtual_env.svg">
+                        </div>
+                        <div class="point-progression-room">
+                            <span class="nbr-points-room">
+                                <b>20</b></b>
+                                &nbsp;Points
+                                <br>
+                                <b>3</b>
+                                &nbsp;/&nbsp;28
+                            </span>
+                        </div>
+                    </a>
+
+                    <a class="room-launched" href="/room1">
+                        <h3 class="room-title m-0">Cryptos<!-- room 1 lancée--></h3>
+                        <div class="img-room">
+                            <img src="/static/img/virtual_env.svg">
+                        </div>
+                        <div class="point-progression-room">
+                            <span class="nbr-points-room">
+                                <b>20</b></b>
+                                &nbsp;Points
+                                <br>
+                                <b>3</b>
+                                &nbsp;/&nbsp;28
+                            </span>
+                        </div>
+                    </a>
+
+                    <a class="room-launched" href="/room1">
+                        <h3 class="room-title m-0">Cryptos<!-- room 1 lancée--></h3>
+                        <div class="img-room">
+                            <img src="/static/img/virtual_env.svg">
+                        </div>
+                        <div class="point-progression-room">
+                            <span class="nbr-points-room">
+                                <b>20</b></b>
+                                &nbsp;Points
+                                <br>
+                                <b>3</b>
+                                &nbsp;/&nbsp;28
+                            </span>
+                        </div>
+                    </a>
+
+                </div>
             </div>
 
             {# partie gauche / classement #}
             <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
-            <div class="ranking col">
+            <div class="ranking sous-section col">
                 <h2 class="title-sous-section">
                     <img class="icon-second-part-profile" src="/static/img/podium.svg"
                         alt="logo de le section challenges réussis">
                     &nbsp;Classement
                 </h2>
 
+                {# TABLEAU CLASSEMENT #}
                 <table class="table-classement-profile">
                     <!-- HEADER TABLE-->
                     <thead>
                         <tr>
-                            <th scope="col positionperso">Position</th>
+                            <th scope="col">Position</th>
                             <th scope="col">Avatar</th> <!-- vraiment utile ???????? -->
                             <th scope="col">Utilisateur</th>
-                            <th scope="col style-score">Score</th>
+                            <th scope="col">Score</th>
                         </tr>
                     </thead>
 
                     <!-- BODY TABLE-->
                     <tbody>
                         <!-- LIGNE 1 -->
-                        <tr>
+                        <tr class="lambda-row">
                             <th># 1<!-- variable Xème du site --></th>
                             <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                            <td>usern@m1<!-- variable username du Xème du site --></td>
+                            <td class="username-classement-style">
+                                <a href="#">usern@m1</a><!-- variable username du Xème du site -->
+                            </td>
                             <td class="td-score">87<!-- varialbe du score de l'user --></td>
                         </tr>
 
@@ -98,14 +157,16 @@ Profile - {{current_user.username}}
                             <th># 2 <!-- {{current_user.position}} --></th>
                             <td><img class="img-avatar-classement"></td> <!-- a voir -->
                             <td>{{current_user.username}}</td>
-                            <td class="td-score">51<!-- varialbe du score de l'user -- current_user.score --></td>
+                            <td class="">51<!-- varialbe du score de l'user {{current_user.score}} --></td>
                         </tr>
 
                         <!-- LIGNE 3 -->
-                        <tr>
+                        <tr class="lambda-row">
                             <th># 3</th>
                             <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                            <td>usern@m3<!-- variable username du Xème du site --></td>
+                            <td class="username-classement-style">
+                                <a href="#">niko_haxor</a><!-- variable username du Xème du site -->
+                            </td>
                             <td class="td-score">34</td>
                         </tr>
                     </tbody>
