@@ -52,7 +52,8 @@ def room(room_url_name: str):
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
     )
-    try:
-        return render_template(f"room/{room.url_name}.jinja", room=room)
-    except TemplateNotFound:
-        abort(404)
+    return render_template(f"room.jinja", room=room)
+    # try:
+    #     return render_template(f"room/{room.url_name}.jinja", room=room)
+    # except TemplateNotFound:
+    #     abort(404)

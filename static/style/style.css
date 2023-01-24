@@ -623,7 +623,7 @@ footer>ul>li>a:hover {
       rgba(87, 111, 230, 1) 25%,
       rgba(152, 68, 183, 1) 51%,
       rgba(255, 53, 127, 1) 90%);
-  animation: AnimateBG 20s ease infinite;
+  animation: AnimateBG 10s ease infinite;
 }
 
 @keyframes AnimateBG {
