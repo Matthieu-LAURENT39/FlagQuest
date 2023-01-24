@@ -1,0 +1,84 @@
+{% extends 'base.jinja' %}
+{% from 'macros/_room.jinja' import question_widget %}
+
+{% block title %}
+{{ super() }} - {{room.name}}
+{% endblock %}
+
+{% block head %}
+{{super()}}
+<script src="{{url_for('static', filename='script/room.js')}}"></script>
+
+<script>
+    function answerQuestion(question_id, answer) {
+        // On récupère la réponse actuelle
+        let answer_field = document.getElementById(`question_answer-${question_id}`)
+        answer = answer_field.value
+
+        fetch('{{ url_for('api.answer_question') }}?' + new URLSearchParams({
+            question_id: question_id,
+            answer: answer,
+        }),
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json())
+            .then(response => alert(JSON.stringify(response)))
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="row" style="max-width:100%">
+        <div class="col-sm-5">
+            <div class="align-item-top">
+                {#
+                <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
+                    la room
+                </a>
+                #}
+                <script>
+                    function joinRoom() {
+                        fetch('{{ url_for('api.join_room', room_url_name = room.url_name) }}', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                        })
+                            .then(response => response.json())
+                            .then(response => alert(JSON.stringify(response)))
+                    }
+                </script>
+
+                <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
+                    la room
+                </button>
+            </div>
+
+            <!-- Questions -->
+            {% for q in room.questions %}
+            {{ question_widget(q.prompt, q.id) }}
+            {% endfor %}
+
+        </div>
+
+
+        <div class="col-sm-7 p-0">
+            <div class="container p-0">
+                <iframe class="responsive-iframe " style="width: 100% height: 100%;"
+                    src="http://raspberrypi:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale"></iframe>
+
+            </div>
+
+        </div>
+    </div>
+
+</main>
+{% endblock %}

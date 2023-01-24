@@ -1,8 +1,8 @@
 from app import app
 from flask_restful import Api, Resource
 from flask_login import login_required, current_user
-from flask import redirect, jsonify, Blueprint, Response, abort
-from models import User, Room
+from flask import redirect, jsonify, Blueprint, Response, abort, request
+from models import User, Room, Question
 import backend
 from models.schemas import user_schema, room_schema
 import json
@@ -77,7 +77,38 @@ def join_room(room_url_name: str):
         abort(400, "L'utilisateur est deja dans la room.")
     room.users.append(current_user)
     backend.db.session.commit()
-    return {"success": True}
+    return {}
+
+
+@api.route("/answer_question", methods=["POST"])
+@login_required
+def answer_question():
+    question_id = request.args.get("question_id")
+    if question_id is None:
+        abort(400, "Il manque l'argument 'question_id'")
+
+    answer = request.args.get("answer")
+    if answer is None:
+        abort(400, "Il manque l'argument 'answer'")
+
+    question: Question = Question.query.filter_by(id=question_id).first_or_404(
+        description="Cette question n'existe pas."
+    )
+    if current_user not in question.room.users:
+        abort(400, "L'utilisateur n'est pas dans la room.")
+
+    # TODO: vérifier si l'utilisateur à déja répondu à la question
+
+    answer = request.args.get("answer")
+    if answer is None:
+        abort(400, "Il manque l'argument 'answer'")
+
+    if answer.casefold() != question.answer.casefold():
+        return {"correct": False}
+
+    # TODO: stoqué que l'utilisateur a solve la question
+
+    return {"correct": True}
 
 
 api_manager.add_resource(UserResource, "/user/<username>")

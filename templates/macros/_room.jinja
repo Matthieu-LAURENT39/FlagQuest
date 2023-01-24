@@ -1,0 +1,55 @@
+{# {% macro question_widget(prompt, question_id) -%}
+<div class="p-2">
+    <div class="p-3 bg-light rounded-3 text-black" id="question_block-{{question_id}}">
+        {{ prompt }}
+        <div class="mb-3">
+            <input class="form-control" type="text" placeholder="Réponse" aria-label="input example"
+                id="question_answer-{{question_id}}">
+            <button type="submit" name="submit_param" value="submit_value" onclick="answerQuestion({{question_id}});"
+                class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button">Valider
+            </button>
+        </div>
+    </div>
+</div>
+{% endmacro %} #}
+
+{% macro question_widget(prompt, question_id) -%}
+<div class="p-2">
+    <div class="p-3 bg-light rounded-3 text-black" id="question_block-{{question_id}}">
+        {{ prompt }}
+        <div class="mb-3">
+            <form action="#" onsubmit="answerQuestion({{question_id}});return false">
+                <input class="form-control" type="text" placeholder="Réponse" aria-label="input example"
+                    id="question_answer-{{question_id}}" required="required" autocomplete="off">
+                {# <div class="align-item-top">
+                    <a href="{{ url_for('api.answer_question', question_id = id) }}"
+                        class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button">Valider</a>
+                </div> #}
+                <button type="submit" name="submit_param" value="submit_value"
+                    class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button">Valider
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{# <div class="text-center">
+    <h1 class="text-black fs-2 fw-normal">QCM :</h1>
+</div>
+Quelle commande permet de vois les information réseau ?
+<div class="myTest custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="customCheck1" />
+    <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+</div>
+<div class="myTest custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="customCheck2" />
+    <label class="custom-control-label" for="customCheck2">Check this custom checkbox</label>
+</div>
+<div class="myTest custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="customCheck3" />
+    <label class="custom-control-label" for="customCheck3">Check this custom checkbox</label>
+</div>
+<div class="align-item-top">
+    <a href="..." class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button">Valider</a>
+</div> #}

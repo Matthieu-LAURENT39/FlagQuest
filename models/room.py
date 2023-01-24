@@ -15,5 +15,8 @@ class Room(db.Model):
     """Le nom utilisé dans les URLs"""
 
     description = Column(String, nullable=False)
+    """La description de la room. Peut contenir du markdown."""
 
     users = db.relationship("User", secondary=room_user)
+
+    questions = db.relationship("Question", back_populates="room")
