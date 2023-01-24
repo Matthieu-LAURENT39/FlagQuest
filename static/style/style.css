@@ -32,7 +32,20 @@ grey = police pour paragraphe
   color: red;
 }
 
-/* --------------- header --------------- */
+
+/* ------------------------------ titres ------------------------------ */
+
+/* icon 48x48 px + titre en bleu (classement, questionnaire) */
+.big-title {
+  display: flex;
+  align-items: end;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+
+
+/* ------------------------------ header ------------------------------ */
 
 /* inverse la couleur du logo rootme normalement noir vers blanc */
 .logo-rootme {
@@ -362,6 +375,11 @@ li a.dropdown-item:hover {
   margin-left: 15px;
 }
 
+/* enleve le soulignement lien */
+.ranking a {
+  text-decoration: none;
+}
+
 /* touche l'entièretée de la table */
 .table-classement-profile {
   width: 100%;
@@ -427,7 +445,7 @@ li a.dropdown-item:hover {
 /* ----------------------------- classement ------------------------- */
 /* div classement */
 .classement {
-  margin-left: 15px;
+  /* margin-left: 15px; */
   padding: 15px;
   border: solid 1px var(--dark-grey);
   border-radius: 4px;
@@ -436,12 +454,12 @@ li a.dropdown-item:hover {
 }
 
 /* titre classement bleu */
-.title-classement {
+/* .title-classement {
   display: flex;
   align-items: end;
   font-weight: 500;
   color: var(--blue);
-}
+} */
 
 /* img illustre classement */
 .img-classement {
@@ -449,7 +467,8 @@ li a.dropdown-item:hover {
   height: 48px;
 }
 
-/* --------------- footer --------------- */
+
+/* ------------------------------ footer ------------------------------ */
 
 /* largeur des img des icones twitter linkedin rss et discord */
 footer>ul>li>a>img {
@@ -540,7 +559,7 @@ footer>ul>li>a:hover {
   }
 }
 
-/* ------------------------------------ jghjk njgn ji---------------------------- */
+/* ------------------------------------ jghjk njgn ji ---------------------------- */
 @media only screen and (max-width: 580px) {
   .container {
     padding-left: 0px;
@@ -556,7 +575,7 @@ footer>ul>li>a:hover {
   }
 }
 
-/* ------------------------------------ jghjk njgn ji---------------------------- */
+/* ------------------------------------ jghjk njgn ji ---------------------------- */
 
 
 /* responsive page profile classement */
