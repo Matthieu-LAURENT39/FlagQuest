@@ -98,15 +98,18 @@ def answer_question():
         abort(400, "L'utilisateur n'est pas dans la room.")
 
     # TODO: vérifier si l'utilisateur à déja répondu à la question
+    if question.is_solved_by(current_user):
+        abort(400, "L'utilisateur a déja répondu à la question.")
 
     answer = request.args.get("answer")
     if answer is None:
         abort(400, "Il manque l'argument 'answer'")
 
-    if answer.casefold() != question.answer.casefold():
+    if answer.casefold().strip() != question.answer.casefold().strip():
         return {"correct": False}
 
     # TODO: stoqué que l'utilisateur a solve la question
+    question.solve(current_user)
 
     return {"correct": True}
 

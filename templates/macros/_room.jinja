@@ -1,33 +1,16 @@
-{# {% macro question_widget(prompt, question_id) -%}
+{% macro question_widget(prompt, question_id, disabled=false, solved=false) -%}
 <div class="p-2">
-    <div class="p-3 bg-light rounded-3 text-black" id="question_block-{{question_id}}">
+    <div class="p-3 bg-light rounded-3 text-black {{'border border-success border-5' if solved else ''}}"
+        id="question_block-{{question_id}}">
         {{ prompt }}
         <div class="mb-3">
-            <input class="form-control" type="text" placeholder="Réponse" aria-label="input example"
-                id="question_answer-{{question_id}}">
-            <button type="submit" name="submit_param" value="submit_value" onclick="answerQuestion({{question_id}});"
-                class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button">Valider
-            </button>
-        </div>
-    </div>
-</div>
-{% endmacro %} #}
-
-{% macro question_widget(prompt, question_id) -%}
-<div class="p-2">
-    <div class="p-3 bg-light rounded-3 text-black" id="question_block-{{question_id}}">
-        {{ prompt }}
-        <div class="mb-3">
-            <form action="#" onsubmit="answerQuestion({{question_id}});return false">
-                <input class="form-control" type="text" placeholder="Réponse" aria-label="input example"
-                    id="question_answer-{{question_id}}" required="required" autocomplete="off">
-                {# <div class="align-item-top">
-                    <a href="{{ url_for('api.answer_question', question_id = id) }}"
-                        class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button">Valider</a>
-                </div> #}
+            <form action="#" onsubmit="answerQuestion({{question_id}});" id="question_form-{{question_id}}">
+                <input class="form-control border-0" type="text" placeholder="Réponse" aria-label="input example"
+                    id="question_answer-{{question_id}}" required="required" autocomplete="off" {{ 'disabled' if
+                    disabled else '' }}>
                 <button type="submit" name="submit_param" value="submit_value"
-                    class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button">Valider
-                </button>
+                    class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button" {{ 'disabled' if
+                    disabled else '' }}>Valider</button>
             </form>
         </div>
     </div>

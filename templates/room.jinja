@@ -10,12 +10,13 @@
 <script src="{{url_for('static', filename='script/room.js')}}"></script>
 
 <script>
-    function answerQuestion(question_id, answer) {
+    function answerQuestion(question_id) {
         // On récupère la réponse actuelle
         let answer_field = document.getElementById(`question_answer-${question_id}`)
         answer = answer_field.value
+        let answer_form = document.getElementById(`question_form-${question_id}`)
 
-        fetch('{{ url_for('api.answer_question') }}?' + new URLSearchParams({
+        const response = fetch('{{ url_for('api.answer_question') }}?' + new URLSearchParams({
             question_id: question_id,
             answer: answer,
         }),
@@ -26,7 +27,13 @@
                     'Content-Type': 'application/json'
                 }
             }).then(response => response.json())
-            .then(response => alert(JSON.stringify(response)))
+            //.then(response => alert(JSON.stringify(response)))
+            .then(response => {
+                if (response.success && response.correct) {
+                    answer_form.submit()
+                }
+            })
+        return false
     }
 </script>
 {% endblock %}
@@ -64,20 +71,19 @@
 
             <!-- Questions -->
             {% for q in room.questions %}
-            {{ question_widget(q.prompt, q.id) }}
+            {{ question_widget(q.prompt, q.id, q.is_solved_by(current_user), q.is_solved_by(current_user))}}
             {% endfor %}
 
         </div>
 
-
+        <!-- VM -->
         <div class="col-sm-7 p-0">
             <div class="container p-0">
                 <iframe class="responsive-iframe " style="width: 100% height: 100%;"
-                    src="http://raspberrypi:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale"></iframe>
-
+                    src="http://172.17.50.249:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale"></iframe>
             </div>
-
         </div>
+
     </div>
 
 </main>

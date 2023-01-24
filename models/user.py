@@ -19,4 +19,4 @@ class User(db.Model, UserMixin):
 
     is_admin = Column(Boolean, nullable=False, default=False)
 
-    score = Column(Integer, nullable=False)
+    score = Column(Integer, nullable=False, default=0)
