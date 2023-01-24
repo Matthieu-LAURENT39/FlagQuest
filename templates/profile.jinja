@@ -122,11 +122,13 @@ Profile - {{current_user.username}}
             {# partie gauche / classement #}
             <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
             <div class="ranking sous-section col">
-                <h2 class="title-sous-section">
-                    <img class="icon-second-part-profile" src="/static/img/podium.svg"
-                        alt="logo de le section challenges réussis">
-                    &nbsp;Classement
-                </h2>
+                <a href="/classement">
+                    <h2 class="title-sous-section">
+                        <img class="icon-second-part-profile" src="/static/img/podium.svg"
+                            alt="logo de le section challenges réussis">
+                        &nbsp;Classement
+                    </h2>
+                </a>
 
                 {# TABLEAU CLASSEMENT #}
                 <table class="table-classement-profile">
