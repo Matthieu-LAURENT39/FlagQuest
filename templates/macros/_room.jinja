@@ -1,12 +1,13 @@
-{% macro question_widget(prompt, question_id, disabled=false, solved=false) -%}
+{% macro question_widget(question, disabled=false, solved=false) -%}
 <div class="p-2">
     <div class="p-3 bg-light rounded-3 text-black {{'border border-success border-5' if solved else ''}}"
-        id="question_block-{{question_id}}">
-        {{ prompt }}
+        id="question_block-{{question.id}}">
+        {{ question.prompt }}
         <div class="mb-3">
-            <form action="#" onsubmit="answerQuestion({{question_id}});" id="question_form-{{question_id}}">
-                <input class="form-control border-0" type="text" placeholder="Réponse" aria-label="input example"
-                    id="question_answer-{{question_id}}" required="required" autocomplete="off" {{ 'disabled' if
+            <form action="#" onsubmit="answerQuestion({{question.id}});" id="question_form-{{question.id}}">
+                <input class="form-control border-0" type="text"
+                    placeholder="{{question.answer if solved else 'Réponse'}}" aria-label="input example"
+                    id="question_answer-{{question.id}}" required="required" autocomplete="off" {{ 'disabled' if
                     disabled else '' }}>
                 <button type="submit" name="submit_param" value="submit_value"
                     class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button" {{ 'disabled' if
