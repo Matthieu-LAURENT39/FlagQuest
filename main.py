@@ -28,7 +28,7 @@ with app.app_context():
             name="Room 1",
             description="Wow what a cool room",
             url_name="room1",
-            instructions="Lorem **ipsum** dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex",
+            instructions="# Header 1\n**Hello**, desu wa. J'adore [youtube](https://youtube.com)",
         )
         room2 = Room(
             name="Room 2",
