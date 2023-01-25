@@ -16,8 +16,18 @@ def acceuil():
     from models import Room
 
     signup_form = SignupForm()
-    rooms = Room.query.limit(6).all()
+    rooms = Room.query.limit(4).all()
     return render_template("acceuil.jinja", signup_form=signup_form, rooms=rooms)
+
+
+@app.route("/liste_rooms")
+def liste_room():
+    from backend import SignupForm
+    from models import Room
+
+    signup_form = SignupForm()
+    rooms = Room.query.all()
+    return render_template("liste_rooms.jinja", signup_form=signup_form, rooms=rooms)
 
 
 @app.route("/header")
@@ -45,6 +55,16 @@ def classement():
 @app.route("/test")
 def test():
     return render_template("test.jinja")
+
+
+@app.route("/cours")
+def cours():
+    return render_template("cours.jinja")
+
+
+@app.route("/liste_rooms")
+def liste_rooms():
+    return render_template("liste_rooms.jinja")
 
 
 @app.route("/room/<room_url_name>")

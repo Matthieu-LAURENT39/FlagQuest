@@ -1,5 +1,5 @@
-{% macro room_widget(name, description, template_name) -%}
-<div class="col-md-6 p-3">
+{% macro room_widget(name, description, template_name, size=6) -%}
+<div class="col-md-{{size}} p-3">
     <div class="background_effect h-100 p-5 bg-light rounded-3  text-black">
         <h2>{{name|e}}</h2>
         <p>{{description|markdown}}</p>

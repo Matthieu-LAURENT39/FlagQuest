@@ -87,9 +87,26 @@
       {% for r in rooms %}
       {{room_widget(r.name, r.description, r.url_name)}}
       {% endfor %}
+      <div class="col-md-6 p-3">
+        <div class="background_effect h-100 p-5 bg-light rounded-3  text-black">
+          <h2>ROOMS</h2>
+          <p>liste de toutes les rooms crées</p>
+          <a href="/liste_rooms" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+            role="button">Lancer</a>
+        </div>
+      </div>
+      <div class="col-md-6 p-3">
+        <div class="background_effect h-100 p-5 bg-light rounded-3  text-black">
+          <h2>COURS</h2>
+          <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
+          <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+            role="button">Lancer</a>
+        </div>
+      </div>
 
     </div>
     {% endif %}
   </div>
+</main>
 
   {% endblock %}

@@ -28,16 +28,45 @@ with app.app_context():
             name="Room 1",
             description="Wow what a cool room **desu wa**",
             url_name="room1",
-            instructions="# Header 1\n**Hello**, desu wa. J'adore [youtube](https://youtube.com)",
+            instructions="QCM",
         )
         room2 = Room(
             name="Room 2",
             description="lorem ipsum dolor sit amet",
             url_name="room2",
-            instructions="a",
+            instructions="QCM",
         )
+        room3 = Room(
+            name="Room 3",
+            description="lorem ipsum dolor sit amet",
+            url_name="room3",
+            instructions="QCM",
+        )
+        room4 = Room(
+            name="Room 4",
+            description="lorem ipsum dolor sit amet",
+            url_name="room4",
+            instructions="QCM",
+        )
+        room5 = Room(
+            name="Room 5",
+            description="lorem ipsum dolor sit amet",
+            url_name="room5",
+            instructions="QCM",
+        )
+        room6 = Room(
+            name="Room 6",
+            description="lorem ipsum dolor sit amet",
+            url_name="room6",
+            instructions="QCM",
+        )
+
         backend.db.session.add(room)
         backend.db.session.add(room2)
+        backend.db.session.add(room3)
+        backend.db.session.add(room4)
+        backend.db.session.add(room5)
+        backend.db.session.add(room6)
 
         backend.db.session.commit()
 
