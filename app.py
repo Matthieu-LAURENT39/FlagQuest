@@ -56,7 +56,10 @@ def room(room_url_name: str):
         description="Cette room n'existe pas."
     )
 
-    nbr_question_solved = sum(q.is_solved_by(current_user) for q in room.questions)
+    if current_user.is_authenticated:
+        nbr_question_solved = sum(q.is_solved_by(current_user) for q in room.questions)
+    else:
+        nbr_question_solved = None
 
     return render_template(
         f"room.jinja", room=room, nbr_question_solved=nbr_question_solved
@@ -65,3 +68,21 @@ def room(room_url_name: str):
     #     return render_template(f"room/{room.url_name}.jinja", room=room)
     # except TemplateNotFound:
     #     abort(404)
+
+
+@app.route("/room/<room_url_name>/edit")
+def edit_room(room_url_name: str):
+    from models import Room
+
+    room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
+        description="Cette room n'existe pas."
+    )
+
+    if current_user.is_authenticated:
+        nbr_question_solved = sum(q.is_solved_by(current_user) for q in room.questions)
+    else:
+        nbr_question_solved = None
+
+    return render_template(
+        f"edit_room.jinja", room=room, nbr_question_solved=nbr_question_solved
+    )

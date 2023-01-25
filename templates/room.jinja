@@ -54,9 +54,11 @@
 {% block content %}
 <main>
     <div class="row" style="max-width:100%">
-        <div class="col-sm-5">
+        {% block sidebar_room %}
+        <div class="col">
+            {% block top_button %}
             {# Si l'utilisateur n'est pas dans la room, on lui propose de la rejoindre #}
-            {% if not user_is_in_room %}
+            {% if current_user.is_authenticated and not user_is_in_room %}
             <div class="align-item-top">
                 {#
                 <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
@@ -85,22 +87,29 @@
                 </button>
             </div>
             {% endif %}
+            {% endblock %}
 
+            {% block room_info %}
             <div class="p-2">
                 <div class="bg-white rounded-3 p-4">
                     {{ room.instructions | markdown }}
                 </div>
             </div>
+            {% endblock %}
 
-            <!-- Questions -->
+            {% block questions %}
             {% for q in room.questions %}
-            {{ question_widget(q, disabled=(q.is_solved_by(current_user) or not user_is_in_room),
-            solved=q.is_solved_by(current_user))}}
+            {{ question_widget(q, disabled=(not current_user.is_authenticated or q.is_solved_by(current_user) or not
+            user_is_in_room),
+            solved=(current_user.is_authenticated and q.is_solved_by(current_user)))}}
             {% endfor %}
-
+            {% endblock %}
         </div>
+        {% endblock %}
 
-        <div class="col-sm-7 p-0 mt-2">
+        {% block sidebar_vm %}
+        {% if current_user.is_authenticated %}
+        <div class="col-7 p-0 mt-2">
             <div class="container p-0" style="position:sticky; top:5%;">
                 <!-- Progression -->
                 <div class="bg-white rounded-3 p-4 mb-4">
@@ -118,6 +127,8 @@
                 </iframe>
             </div>
         </div>
+        {% endif %}
+        {% endblock %}
 
     </div>
 
