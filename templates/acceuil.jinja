@@ -84,10 +84,9 @@
     {% if current_user.is_authenticated %}
     <div class="d-flex row align-items-md-stretch">
 
-      {{room_widget("Room 1", "lorem ipsum dolor sit amet", "room1")}}
-      {{room_widget("Room 2", "lorem ipsum dolor sit amet", "room2")}}
-      {{room_widget("Mr Robot", "Une simulation hacker", "mr_robot")}}
-      {{room_widget("Desu wa", "Wow j'adore sylphyn", "desuwa")}}
+      {% for r in rooms %}
+      {{room_widget(r.name, r.description, r.url_name)}}
+      {% endfor %}
 
     </div>
     {% endif %}

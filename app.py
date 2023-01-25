@@ -13,9 +13,11 @@ app.config["SECRET_KEY"] = "ChangeMeIAmNotSecure"
 @app.route("/")
 def acceuil():
     from backend import SignupForm
+    from models import Room
 
     signup_form = SignupForm()
-    return render_template("acceuil.jinja", signup_form=signup_form)
+    rooms = Room.query.limit(6).all()
+    return render_template("acceuil.jinja", signup_form=signup_form, rooms=rooms)
 
 
 @app.route("/header")
