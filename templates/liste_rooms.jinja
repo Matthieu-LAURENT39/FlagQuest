@@ -1,0 +1,19 @@
+{% extends 'base.jinja' %}
+{# recup url du site #}
+{# {{ url_for(request.endpoint) }} #}
+{% from 'macros/_acceuil.jinja' import room_widget %}
+
+{% block title %}
+{{ super() }} - Accueil
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex row align-items-md-stretch p-3">
+    {% for r in rooms %}
+    {{room_widget(r.name, r.description, r.url_name, 4)}}
+    {% endfor %}
+</div>
+</main>
+
+{% endblock %}

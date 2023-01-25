@@ -1,0 +1,66 @@
+{% extends 'base.jinja' %}
+{# recup url du site #}
+{# {{ url_for(request.endpoint) }} #}
+{% from 'macros/_acceuil.jinja' import room_widget %}
+
+{% block title %}
+{{ super() }} - Accueil
+{% endblock %}
+
+{% block content %}
+<main class="container bg-black pt-5">
+    <div class="container-index row">
+        <div class="d-flex row align-items-md-stretch">
+            <div class="col-md-4 p-3">
+                <div class="background_effect h-100 p-4 px-6 bg-light rounded-3  text-black">
+                    <h2>Sequence: 1</h2>
+                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
+                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+                        role="button">Lancer</a>
+                </div>
+            </div>
+            <div class="col-md-4 p-3">
+                <div class="background_effect h-100 p-4 px-6 bg-light rounded-3  text-black">
+                    <h2>Sequence: 2</h2>
+                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
+                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+                        role="button">Lancer</a>
+                </div>
+            </div>
+            <div class="col-md-4 p-3">
+                <div class="background_effect h-100 p-4 px-6 bg-light rounded-3  text-black">
+                    <h2>Sequence: 3</h2>
+                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
+                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+                        role="button">Lancer</a>
+                </div>
+            </div>
+            <div class="col-md-4 p-3">
+                <div class="background_effect h-100 p-4  px-6bg-light rounded-3  text-black">
+                    <h2>Sequence: 4</h2>
+                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
+                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+                        role="button">Lancer</a>
+                </div>
+            </div>
+            <div class="col-md-4 p-3">
+                <div class="background_effect h-100 p-4 px-6 bg-light rounded-3  text-black">
+                    <h2>Sequence: 5</h2>
+                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
+                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+                        role="button">Lancer</a>
+                </div>
+            </div>
+            <div class="col-md-4 p-3">
+                <div class="background_effect h-100 p-4  px-6bg-light rounded-3  text-black">
+                    <h2>Sequence: 6</h2>
+                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
+                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+                        role="button">Lancer</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}
