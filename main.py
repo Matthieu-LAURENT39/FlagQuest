@@ -26,7 +26,7 @@ with app.app_context():
     if room is None:
         room = Room(
             name="Room 1",
-            description="Wow what a cool room",
+            description="Wow what a cool room **desu wa**",
             url_name="room1",
             instructions="# Header 1\n**Hello**, desu wa. J'adore [youtube](https://youtube.com)",
         )
