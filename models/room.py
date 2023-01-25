@@ -15,7 +15,10 @@ class Room(db.Model):
     """Le nom utilisé dans les URLs"""
 
     description = Column(String, nullable=False)
-    """La description de la room. Peut contenir du markdown."""
+    """Une courte description de la room. Utilisé en dehors de la room afin d'expliquer son sujet."""
+
+    instructions = Column(String, nullable=False)
+    """Les consignes de la room, affiché au dessus des questions. Peut contenir du markdown."""
 
     users = db.relationship("User", secondary=room_user)
 

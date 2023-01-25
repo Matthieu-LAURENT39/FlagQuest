@@ -82,6 +82,12 @@
             </div>
             {% endif %}
 
+            <div class="p-2">
+                <div class="bg-white rounded-3 p-4">
+                    <h5>{{ room.instructions }}</h5>
+                </div>
+            </div>
+
             <!-- Questions -->
             {% for q in room.questions %}
             {{ question_widget(q, disabled=(q.is_solved_by(current_user) or not user_is_in_room),

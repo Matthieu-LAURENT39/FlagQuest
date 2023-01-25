@@ -25,10 +25,16 @@ with app.app_context():
     room = Room.query.filter_by(id="1").first()
     if room is None:
         room = Room(
-            name="Room 1", description="lorem ipsum dolor sit amet", url_name="room1"
+            name="Room 1",
+            description="Wow what a cool room",
+            url_name="room1",
+            instructions="Lorem **ipsum** dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex",
         )
         room2 = Room(
-            name="Room 2", description="lorem ipsum dolor sit amet", url_name="room2"
+            name="Room 2",
+            description="lorem ipsum dolor sit amet",
+            url_name="room2",
+            instructions="a",
         )
         backend.db.session.add(room)
         backend.db.session.add(room2)
