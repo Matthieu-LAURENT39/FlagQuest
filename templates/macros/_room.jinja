@@ -4,15 +4,13 @@
         id="question_block-{{question.id}}">
         {{ question.prompt }}
         <div class="mb-3">
-            <form action="#" onsubmit="answerQuestion({{question.id}});return false;"
-                id="question_form-{{question.id}}">
+            <form action="#" onsubmit="answerQuestion({{question.id}});return true;" id="question_form-{{question.id}}">
                 <input class="form-control border-0" type="text"
                     placeholder="{{question.answer if solved else 'Réponse'}}" aria-label="input example"
                     id="question_answer-{{question.id}}" required="required" autocomplete="off" {{ 'disabled' if
                     disabled else '' }}>
-                <button type="submit" name="submit_param" value="submit_value"
-                    class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button" {{ 'disabled' if
-                    disabled else '' }}>Valider</button>
+                <button type="submit" class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button"
+                    {{ 'disabled' if disabled else '' }}>Valider</button>
             </form>
         </div>
     </div>

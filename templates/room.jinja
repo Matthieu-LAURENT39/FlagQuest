@@ -33,7 +33,8 @@
             .then(response => {
                 if (response.success) {
                     if (response.correct) {
-                        answer_form.submit()
+                        //answer_form.submit()
+                        document.location.reload(false)
                     }
                     else {
                         alert("Réponse incorrecte!")
@@ -98,7 +99,7 @@
 
         <!-- VM -->
         <div class="col-sm-7 p-0">
-            <div class="container p-0">
+            <div class="container p-0" style="position:fixed; top:7%;">
                 <iframe class="responsive-iframe " style="width: 100% height: 100%;"
                     src="http://172.17.50.249:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale"></iframe>
             </div>

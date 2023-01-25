@@ -46,9 +46,10 @@ with app.app_context():
 
     question = Question.query.filter_by(id="1").first()
     if question is None:
-        question = Question(room_id=1, prompt="1+1=?", answer="2")
-        backend.db.session.add(question)
-        backend.db.session.commit()
+        for i in range(15):
+            question = Question(room_id=1, prompt=f"{i}+1=?", answer=str(i + 1))
+            backend.db.session.add(question)
+            backend.db.session.commit()
 
 if __name__ == "__main__":
     app.run("0.0.0.0", 5000, debug=True)
