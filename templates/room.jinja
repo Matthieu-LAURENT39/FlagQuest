@@ -1,6 +1,8 @@
 {% extends 'base.jinja' %}
 {% from 'macros/_room.jinja' import question_widget %}
 
+{% set user_is_in_room = current_user in room.users %}
+
 {% block title %}
 {{ super() }} - {{room.name}}
 {% endblock %}
@@ -29,12 +31,18 @@
             }).then(response => response.json())
             //.then(response => alert(JSON.stringify(response)))
             .then(response => {
-                //TODO: Message d'erreur si on est pas dans la room
-                if (response.success && response.correct) {
-                    answer_form.submit()
+                if (response.success) {
+                    if (response.correct) {
+                        answer_form.submit()
+                    }
+                    else {
+                        alert("Réponse incorrecte!")
+                    }
+                }
+                else {
+                    alert(response.message)
                 }
             })
-        return false
     }
 </script>
 {% endblock %}
@@ -43,6 +51,8 @@
 <main>
     <div class="row" style="max-width:100%">
         <div class="col-sm-5">
+            {# Si l'utilisateur n'est pas dans la room, on lui propose de la rejoindre #}
+            {% if not user_is_in_room %}
             <div class="align-item-top">
                 {#
                 <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
@@ -50,6 +60,7 @@
                     la room
                 </a>
                 #}
+
                 <script>
                     function joinRoom() {
                         fetch('{{ url_for('api.join_room', room_url_name = room.url_name) }}', {
@@ -69,10 +80,12 @@
                     la room
                 </button>
             </div>
+            {% endif %}
 
             <!-- Questions -->
             {% for q in room.questions %}
-            {{ question_widget(q, q.is_solved_by(current_user), q.is_solved_by(current_user))}}
+            {{ question_widget(q, disabled=(q.is_solved_by(current_user) or not user_is_in_room),
+            solved=q.is_solved_by(current_user))}}
             {% endfor %}
 
         </div>
