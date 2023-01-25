@@ -1,5 +1,6 @@
 from flask import Flask, render_template, abort
 from jinja2 import TemplateNotFound
+from flask_login import current_user
 
 app = Flask(
     __name__,
@@ -74,7 +75,12 @@ def room(room_url_name: str):
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
     )
-    return render_template(f"room.jinja", room=room)
+
+    nbr_question_solved = sum(q.is_solved_by(current_user) for q in room.questions)
+
+    return render_template(
+        f"room.jinja", room=room, nbr_question_solved=nbr_question_solved
+    )
     # try:
     #     return render_template(f"room/{room.url_name}.jinja", room=room)
     # except TemplateNotFound:
