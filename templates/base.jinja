@@ -61,6 +61,14 @@
                                     <img src="/static/img/podium.svg">
                                 </a>
                             </li>
+                            {% if current_user.is_admin == true %}
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('dashboard') }}">
+                                    <span>Dashboard</span>
+                                    <img src="/static/img/cadenas.svg">
+                                </a>
+                            </li>
+                            {% endif%}
                             {# <li><a class="dropdown-item" href="#">Mes paramètre</a></li> #}
                             {# <li><a class="dropdown-item" href="#">Mes messages</a></li> #}
                             <li>

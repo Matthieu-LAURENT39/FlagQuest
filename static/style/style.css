@@ -27,6 +27,11 @@ grey = police pour paragraphe
   text-decoration: underline;
 }
 
+/* démarque le nom de l'user co parmis les autres */
+.user-actif {
+  color: var(--pink);
+}
+
 .errors {
   color: red;
 }
@@ -495,6 +500,9 @@ li a.dropdown-item:hover {
   font-weight: 500;
 }
 
+/* ------------------------------ admin dashboard ------------------------------ */
+
+
 
 /* ------------------------------ footer ------------------------------ */
 
@@ -635,9 +643,6 @@ footer>ul>li>a:hover {
   width: 100%;
   height: 670px;
 }
-
-
-
 
 
 .background_effect {

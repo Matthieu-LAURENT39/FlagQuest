@@ -2,17 +2,82 @@
 
 
 {% block title %}
-Profile - {{current_user.username}}
+Admin - Dashboard
 {% endblock %}
 
 {% block content %}
 <main class="container bg-black pt-5">
     <div class="container-index">
 
-        <div class="admin-dashboard">
 
+        <div class="classement col">
+            <div class="classement-header">
+                <h1 class="big-title">
+                    <img class="img-classement" src="/static/img/cadenas.svg"
+                        alt="logo du dashboard administrateur (cadenas)'">
+                    <span>&nbsp;Dashboard</span>
+                </h1>
+                <span class="user-actif">{{current_user.username}}</span>
+            </div>
+            <hr>
+
+            <table class="table-classement-profile">
+                <!-- HEADER TABLE-->
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nom d'utilisateur</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Administrateur</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+
+                <!-- BODY TABLE-->
+                <tbody>
+                    {# lister tout les utilisateurs #}
+                    {% for user in user %}
+
+                    {# si l'utilisateur est connecté, on le démarque des autres (active row) #}
+                    {% if user.id == current_user.id %}
+                    <tr class="active-row">
+                        {# user id #}
+                        <th>{{ current_user.id|e }}</th>
+                        {# username #}
+                        <td class="username-classement-style">
+                            <a href="#">{{user.username|e}}</a>
+                        </td>
+                        {# user email #}
+                        <td class="td-score">{{user.email|e}}
+                            {# est ce que l'user est administrateur ? #}
+                        <td class="td-score">{{user.is_admin|e}}
+
+                            {# user score #}
+                        <td class="td-score">{{user.score|e}}
+                    </tr>
+
+                    {# si l'utilisateur qui regarde n'est pas connecté --> style basique #}
+                    {% else %}
+                    <tr class="lambda-row">
+                        {# user id #}
+                        <th>{{ user.id|e }}</th>
+                        {# username #}
+                        <td class="username-classement-style">
+                            <a href="#">{{user.username|e}}</a>
+                        </td>
+                        {# user email #}
+                        <td class="td-score">{{user.email|e}}
+                            {# est ce que l'user est administrateur ? #}
+                        <td class="td-score">{{user.is_admin|e}}
+
+                            {# user score #}
+                        <td class="td-score">{{user.score|e}}
+                    </tr>
+                    {% endif %}
+                    {% endfor%}
+                </tbody>
+            </table>
         </div>
-
     </div>
 </main>
 {% endblock %}
