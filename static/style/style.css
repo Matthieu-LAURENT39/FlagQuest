@@ -20,7 +20,6 @@ grey = police pour paragraphe
   --yellow: #fff800;
 }
 
-
 /* padding droite 10 px */
 .nom-utilisateur {
   padding-right: 10px;
@@ -424,6 +423,18 @@ li a.dropdown-item:hover {
   font-weight: 600;
 }
 
+/* formate les liens comme on veut dans la ligne d'user co */
+.active-row a {
+  color: var(--pink);
+  text-decoration: none;
+}
+
+/* idem que au dessus mais avec colonne score */
+.active-row .td-score {
+  color: var(--pink);
+}
+
+
 /* style des lignes des user concurrents */
 .lambda-row {
   transition: all;
@@ -461,10 +472,27 @@ li a.dropdown-item:hover {
   color: var(--blue);
 } */
 
+/* lignes différentes 1 fois sur 2 tableau*/
+.classement tr:nth-child(even) {
+  background-color: #222730;
+}
+
+.classement tr:nth-child(even):hover {
+  background-color: #3c414a;
+}
+
 /* img illustre classement */
 .img-classement {
   width: 48px;
   height: 48px;
+}
+
+.classement-header {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  color: var(--off-white-);
+  font-weight: 500;
 }
 
 
@@ -655,8 +683,4 @@ footer>ul>li>a:hover {
 
 .custom-checkbox .custom-control-input:active~.custom-control-label::before {
   background-color: #C8FFC8;
-}
-
-.hide {
-  display: none;
 }

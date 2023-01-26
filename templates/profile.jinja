@@ -35,7 +35,7 @@ Profile - {{current_user.username}}
                         <h2 class="variable-stat">
                             <img class="icon-stat" src="/static/img/points.svg"
                                 alt="logo de la catégorie score (nombre de points)">
-                            2800<!-- variable score -->
+                            {{current_user.score}}
                         </h2>
                         <h3 class="title-stat">Points</h3>
                     </div>
@@ -122,7 +122,7 @@ Profile - {{current_user.username}}
             {# partie gauche / classement #}
             <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
             <div class="ranking sous-section col">
-                <a href="/classement">
+                <a href="{{ url_for('classement') }}">
                     <h2 class="title-sous-section">
                         <img class="icon-second-part-profile" src="/static/img/podium.svg"
                             alt="logo de le section challenges réussis">
@@ -159,7 +159,7 @@ Profile - {{current_user.username}}
                             <th># 2 <!-- {{current_user.position}} --></th>
                             <td><img class="img-avatar-classement"></td> <!-- a voir -->
                             <td>{{current_user.username}}</td>
-                            <td class="">51<!-- varialbe du score de l'user {{current_user.score}} --></td>
+                            <td class="">{{current_user.score}}</td>
                         </tr>
 
                         <!-- LIGNE 3 -->

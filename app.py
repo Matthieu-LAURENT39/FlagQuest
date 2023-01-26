@@ -49,7 +49,14 @@ def profile():
 
 @app.route("/classement")
 def classement():
-    return render_template("classement.jinja")
+    from models import User
+
+    # tri par ordre score : décroissant
+    user = User.query.order_by(User.score.desc()).all()
+
+    # compte nombre total d'user - 1 (compte admin ?)
+    nbr_user = User.query.count()
+    return render_template("classement.jinja", user=user, nbr_user=nbr_user)
 
 
 # test tout court
