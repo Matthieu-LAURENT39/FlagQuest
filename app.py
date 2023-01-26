@@ -36,12 +36,6 @@ def header():
     return render_template("header.jinja")
 
 
-# test header une fois connecté
-@app.route("/header2")
-def header2():
-    return render_template("header2test.jinja")
-
-
 @app.route("/profile")
 def profile():
     return render_template("profile.jinja")
@@ -54,15 +48,9 @@ def classement():
     # tri par ordre score : décroissant
     user = User.query.order_by(User.score.desc()).all()
 
-    # compte nombre total d'user - 1 (compte admin ?)
+    # compte nombre total d'utilisateurs
     nbr_user = User.query.count()
     return render_template("classement.jinja", user=user, nbr_user=nbr_user)
-
-
-# test tout court
-@app.route("/test")
-def test():
-    return render_template("test.jinja")
 
 
 @app.route("/cours")
@@ -113,3 +101,23 @@ def edit_room(room_url_name: str):
     return render_template(
         f"edit_room.jinja", room=room, nbr_question_solved=nbr_question_solved
     )
+
+
+# dashboard administrateur
+@app.route("/dashboard")
+def dashboard():
+    from models import User
+
+    # liste tout les utilisateurs
+    user = User.query.all()
+
+    # compte nombre total d'user - 1 (compte admin ?)
+    nbr_user = User.query.count()
+
+    # si user est co & si user est admin
+    if current_user.is_authenticated and current_user.is_admin == True:
+        # autoriser a accéder au site
+        return render_template("admin_dashboard.jinja", user=user, nbr_user=nbr_user)
+    else:
+        # page erreur
+        return render_template("/errors/404.jinja")
