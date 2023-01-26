@@ -1,7 +1,7 @@
 {% extends 'base.jinja' %}
 {# recup url du site #}
 {# {{ url_for(request.endpoint) }} #}
-{% from 'macros/_acceuil.jinja' import room_widget %}
+{% from 'macros/_cours.jinja' import cours_widget %}
 
 {% block title %}
 {{ super() }} - Accueil
@@ -11,54 +11,18 @@
 <main class="container bg-black pt-5">
     <div class="container-index row">
         <div class="d-flex row align-items-md-stretch">
-            <div class="col-md-4 p-3">
-                <div class="background_effect h-100 p-4 px-6 bg-light rounded-3  text-black">
-                    <h2>Sequence: 1</h2>
-                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
-                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
-                        role="button">Lancer</a>
-                </div>
-            </div>
-            <div class="col-md-4 p-3">
-                <div class="background_effect h-100 p-4 px-6 bg-light rounded-3  text-black">
-                    <h2>Sequence: 2</h2>
-                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
-                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
-                        role="button">Lancer</a>
-                </div>
-            </div>
-            <div class="col-md-4 p-3">
-                <div class="background_effect h-100 p-4 px-6 bg-light rounded-3  text-black">
-                    <h2>Sequence: 3</h2>
-                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
-                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
-                        role="button">Lancer</a>
-                </div>
-            </div>
-            <div class="col-md-4 p-3">
-                <div class="background_effect h-100 p-4  px-6bg-light rounded-3  text-black">
-                    <h2>Sequence: 4</h2>
-                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
-                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
-                        role="button">Lancer</a>
-                </div>
-            </div>
-            <div class="col-md-4 p-3">
-                <div class="background_effect h-100 p-4 px-6 bg-light rounded-3  text-black">
-                    <h2>Sequence: 5</h2>
-                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
-                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
-                        role="button">Lancer</a>
-                </div>
-            </div>
-            <div class="col-md-4 p-3">
-                <div class="background_effect h-100 p-4  px-6bg-light rounded-3  text-black">
-                    <h2>Sequence: 6</h2>
-                    <p>Vous trouverez ici tous les cours utiles avec votre parcours</p>
-                    <a href="/cours" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
-                        role="button">Lancer</a>
-                </div>
-            </div>
+            {{cours_widget("Séquence : 1","Vous trouverez ici tous les cours utiles à votre parcours","Sequence1",
+            4)}}
+            {{cours_widget("Séquence : 2","Vous trouverez ici tous les cours utiles à votre parcours","Sequence2",
+            4)}}
+            {{cours_widget("Séquence : 3","Vous trouverez ici tous les cours utiles à votre parcours","Sequence3",
+            4)}}
+            {{cours_widget("Séquence : 4","Vous trouverez ici tous les cours utiles à votre parcours","Sequence4",
+            4)}}
+            {{cours_widget("Séquence : 5","Vous trouverez ici tous les cours utiles à votre parcours","Sequence5",
+            4)}}
+            {{cours_widget("Séquence : 6","Vous trouverez ici tous les cours utiles à votre parcours","Sequence6",
+            4)}}
 
         </div>
     </div>

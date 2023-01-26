@@ -41,7 +41,8 @@
                     {# <a href="{{ url_for('deconnexion') }}" type="button"
                         class="btn btn-outline-danger rounded-1 border-2 fw-semibold px-2 py-1">Déconnexion</a> #}
                     <div class="dropdown text-end"> <!-- creation menu / bouton qui permet le défilement -->
-                        <a href="/test" class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
+                        <a href="{{ url_for('profile') }}"
+                            class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="/static/img/avatar.png" alt="mdo" width="36" height="36"
                                 class="avatar-user rounded-circle">
@@ -49,9 +50,15 @@
                         <ul class="dropdown-content dropdown-menu text-small" style="">
                             <!-- contenu du menu / ce qui défile -->
                             <li>
-                                <a class="dropdown-item" href="/profile">
+                                <a class="dropdown-item" href="{{ url_for('profile') }}">
                                     <span>Mon profil</span>
-                                    <img src="./static/img/avatar.png">
+                                    <img src="/static/img/avatar.png">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('classement') }}">
+                                    <span>Classement</span>
+                                    <img src="/static/img/podium.svg">
                                 </a>
                             </li>
                             {# <li><a class="dropdown-item" href="#">Mes paramètre</a></li> #}
@@ -126,7 +133,7 @@
                 <img src="/static/img/social_network/discord.svg" alt="logo Discord">
             </a>
         </li>
-    </ul>
+
 </footer>
 {% endblock %}
 

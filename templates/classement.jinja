@@ -12,14 +12,16 @@ Classement - Root Me
         {# partie gauche / classement #}
         <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
         <div class="classement col">
-            <h1 class="big-title">
-                <img class="img-classement" src="/static/img/podium.svg" alt="logo de le section challenges réussis">
-                <span>&nbsp;Classement</span>
-            </h1>
-
+            <div class="classement-header">
+                <h1 class="big-title">
+                    <img class="img-classement" src="/static/img/podium.svg"
+                        alt="logo de le section challenges réussis">
+                    <span>&nbsp;Classement</span>
+                </h1>
+                <span>{{nbr_user}} utilisateurs</span><!-- enlever le comtpe admin du compte ? -->
+            </div>
             <hr>
 
-            {# TABLEAU CLASSEMENT #}
             <table class="table-classement-profile">
                 <!-- HEADER TABLE-->
                 <thead>
@@ -33,39 +35,42 @@ Classement - Root Me
 
                 <!-- BODY TABLE-->
                 <tbody>
-                    <!-- LIGNE 1 -->
-                    <tr class="lambda-row">
-                        <th># 1<!-- variable Xème du site --></th>
-                        <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                        <td class="username-classement-style">
-                            <a href="#">usern@m1</a><!-- variable username du Xème du site -->
-                        </td>
-                        <td class="td-score">87<!-- varialbe du score de l'user --></td>
-                    </tr>
-
-                    <!-- LIGNE 2 -->
+                    {% for user in user %}
+                    {% if user.id == current_user.id %}
                     <tr class="active-row">
-                        <th># 2 <!-- {{current_user.position}} --></th>
-                        <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                        <td>{{current_user.username}}</td>
-                        <td class="">51<!-- varialbe du score de l'user {{current_user.score}} --></td>
-                    </tr>
-
-                    <!-- LIGNE 3 -->
-                    <tr class="lambda-row">
-                        <th># 3</th>
+                        <th># {{ loop.index }}</th>
                         <td><img class="img-avatar-classement"></td> <!-- a voir -->
                         <td class="username-classement-style">
-                            <a href="#">niko_haxor</a><!-- variable username du Xème du site -->
+                            <a href="#">{{user.username|e}}</a>
                         </td>
-                        <td class="td-score">34</td>
+                        <td class="td-score">{{user.score|e}}
                     </tr>
+                    {% else %}
+                    <tr class="lambda-row">
+                        <th># {{ loop.index }}</th>
+                        <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                        <td class="username-classement-style">
+                            <a href="#">{{user.username|e}}</a>
+                        </td>
+                        <td class="td-score">{{user.score|e}}
+                    </tr>
+                    {% endif %}
+                    {% endfor%}
                 </tbody>
             </table>
-
         </div>
 
+        {# test liste user db score ... #}
+        <div class="text-light pt-4">
+            <p>id - username - email - score</p>
+            {% for user in user%}
+            <p>{{user.id}} - {{user.username}} - {{user.email}} - {{user.score}}</p>
 
+            {% endfor%}
+            {# nombre total d'utilisateur #}
+            <p>nbr total d'user : {{nbr_user}}</p>
+        </div>
+        {# fin test #}
     </div>
 
 
