@@ -1,14 +1,16 @@
-from classes.VirtualMachine import VirtualMachine
 from threading import Lock
 from proxmoxer import ProxmoxAPI
 from uuid import uuid4
 import time
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
+from models import VirtualMachine
+from classes import Allocator
+from ipaddress import IPv4Address
 
 
-class ProxomoxManager:
+class VMManager:
     """
-    Gere les interactions avec l'hyperviseur proxmox
+    Gere les interactions avec l'hyperviseur (proxmox) ainsi que la gestion des VMs
     """
 
     def _test_auth(self) -> bool:
@@ -17,12 +19,20 @@ class ProxomoxManager:
         self.api.get()
         return True
 
-    def __init__(self, api: ProxmoxAPI, node_name: str) -> None:
+    def __init__(
+        self,
+        api: ProxmoxAPI,
+        node_name: str,
+        mac_manager: Allocator[str],
+        display_port_manager: Allocator[int],
+    ) -> None:
         """Initialise la classe
 
         Args:
             api: (ProxmoxAPI): le client proxmox à utiliser
             node_name (str): Le nom du node promox sur lequel stocker les VMs.
+            mac_manager (Allocator): Un Allocator gérant l'allocation des adresses MAC (avec des str).
+            display_port_manager (Allocator): Un Allocator gérant l'allocation des display ports (avec des int).
 
         Raises:
             ValueError: api_token n'étais pas valide
@@ -31,6 +41,10 @@ class ProxomoxManager:
         self.node_name = node_name
         self._vm_modification_lock = Lock()
         """Pour éviter les race-conditions lors des opérations sur les VMs"""
+
+        self._mac_manager = mac_manager
+        self._display_port_manager = display_port_manager
+
         self._test_auth()
 
     def _get_free_vm_id(self) -> int:
@@ -41,7 +55,9 @@ class ProxomoxManager:
         """
         return self.api.cluster.get("nextid")
 
-    def clone_vm(self, cloned_vm_id: int, wait_until_done: bool = True) -> int:
+    def _clone_vm(
+        self, cloned_vm_id: int, name: str, *, wait_until_done: bool = True
+    ) -> int:
         """Créer un clone d'une VM.
 
         Args:
@@ -58,7 +74,7 @@ class ProxomoxManager:
             # On obtient la VM à cloner
             to_clone = self.api.nodes(self.node_name).qemu(cloned_vm_id)
             # Puis on la clone
-            upid = to_clone.clone.post(newid=new_vm_id, name=str(uuid4()))
+            upid = to_clone.clone.post(newid=new_vm_id, name=name)
 
             if wait_until_done:
                 # On attend que le clonage soit fini
@@ -89,15 +105,17 @@ class ProxomoxManager:
         raise NotImplementedError()
         # self.api.
 
-    def enable_vnc(self, vm_id: int, port: int, password: Optional[str] = None):
+    def _enable_vnc(
+        self, vm_id: int, display_port: int, password: Optional[str] = None
+    ):
         """Active VNC pour une VM. Si la VM est déja allumé, alors il faudra la redémaré.
 
         Args:
             vm_id (int): L'ID de la VM à laquelle donnée un accès VNC.
-            port (int): Le port qui sera utilisé pour accedé à cette VM en VNC.
+            display_port (int): Le display port. Le port qu'il faudra VNC est display_port + 5900.
             password (Optional[str], optional): Le mot de passe pour accéder au VNC. Si c'est None, aucun mot de passe ne sera demandé. Defaults to None.
         """
-        args = f"-vnc 0.0.0.0:{port}"
+        args = f"-vnc 0.0.0.0:{display_port}"
         if password is not None:
             # Enable password
             args += ",password=on"
@@ -106,7 +124,26 @@ class ProxomoxManager:
 
         self.api.nodes(self.node_name).qemu(vm_id).config.post(args=args)
 
-    def start_vm(self, vm_id: int, wait_until_on: bool = True):
+    def _run_command(self, vm_id: int, command: str) -> str:
+        """Lance une commande sur une machine virtuelle. Il faut que l'agent QEMU soit installer sur la VM.
+
+        Args:
+            vm_id (int): L'ID de la machine virtuelle.
+            command (str): La commande.
+
+        Returns:
+            str: La sortie de la commande.
+        """
+        return (
+            self.api.nodes(self.node_name).qemu(vm_id).agent.exec.post(command=command)
+        )
+
+    def _set_mac(self, vm_id: int, mac_address: str):
+        self.api.nodes(self.node_name).qemu(vm_id).config.post(
+            net0=f"virtio,macaddr={mac_address}"
+        )
+
+    def start_vm(self, vm_id: int, *, wait_until_on: bool = True):
         """Allume une machine virtuelle.
 
         Args:
@@ -123,3 +160,37 @@ class ProxomoxManager:
                 != "running"
             ):
                 time.sleep(1)
+
+    def setup(self, template_id: int, vm_name: str, vnc: bool = False) -> dict:
+        """Met en place une machine virtuelle à partir d'un template, avec une addresse IP,
+        optionellement VNC. Il ne reste plus qu'a stoquer ces informations dans la base de donnée.
+
+        Args:
+            template_id (int): L'ID du template à cloné.
+            vnc (bool, optional): Si True, alors un display port VNC sera alloué à la VM. Defaults to False.
+
+        Returns:
+            VirtualMachine: Les informations de la machine virtuelle.
+        """
+
+        # Première étape, cloner le template
+        new_vm_id = self._clone_vm(template_id, name=vm_name, wait_until_done=True)
+
+        # Deuxième étape, on défini l'adresse MAC de la VM
+        mac_address = self._mac_manager.allocate()
+        self._set_mac(new_vm_id, mac_address)
+
+        # Troisième étape, on active VNC pour la VM
+        if vnc:
+            display_port = self._display_port_manager.allocate()
+            self._enable_vnc(new_vm_id, display_port)
+        else:
+            display_port = None
+
+        # Enfin, on démare la VM.
+        self.start_vm(new_vm_id, wait_until_on=True)
+
+        return {"mac_address": mac_address, "display_port": display_port}
+
+    def delete_vm(self, vm_id: int):
+        print(self.api.nodes(self.node_name).qemu(vm_id).delete())

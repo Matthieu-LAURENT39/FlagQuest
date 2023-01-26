@@ -4,6 +4,7 @@ import backend
 from models import User, Room, Question
 from werkzeug.security import generate_password_hash
 
+
 mimetypes.add_type("application/javascript", ".js")
 
 with app.app_context():
