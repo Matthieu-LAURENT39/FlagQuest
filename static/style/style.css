@@ -656,3 +656,7 @@ footer>ul>li>a:hover {
 .custom-checkbox .custom-control-input:active~.custom-control-label::before {
   background-color: #C8FFC8;
 }
+
+.hide {
+  display: none;
+}
