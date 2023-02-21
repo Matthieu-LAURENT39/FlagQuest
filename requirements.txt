@@ -11,3 +11,5 @@ markdown
 sqlalchemy-utils
 proxmoxer
 requests
+pytest==7.2.1
+pytest-flask==1.2.0
