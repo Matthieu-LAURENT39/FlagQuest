@@ -1,7 +1,7 @@
 proxmoxer
 flask
 flask-restful
-SQLAlchemy
+SQLAlchemy<2
 wtforms[email]
 Flask-SQLAlchemy
 Flask-WTF
