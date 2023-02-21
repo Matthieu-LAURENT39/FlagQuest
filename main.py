@@ -30,6 +30,7 @@ with app.app_context():
             description="Wow what a cool room **desu wa**",
             url_name="room1",
             instructions="QCM",
+            victim_vm_ids=[100],
         )
         room2 = Room(
             name="Room 2",
