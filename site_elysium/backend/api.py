@@ -5,11 +5,10 @@ from flask import Blueprint, Response, abort, jsonify, redirect, request
 from flask_login import current_user, login_required
 from flask_restful import Api, Resource
 
-import backend
-import models
-from app import app
-from models.schemas import room_schema, user_schema
-from models import VirtualMachine
+import site_elysium.models
+from site_elysium.app import app
+from site_elysium.models.schemas import room_schema, user_schema
+from site_elysium.models import VirtualMachine
 
 api = Blueprint(
     "api",
@@ -19,7 +18,7 @@ api = Blueprint(
 api_manager = Api(api)
 
 # Type hinting
-current_user: models.User
+current_user: site_elysium.models.User
 
 
 class UserResource(Resource):

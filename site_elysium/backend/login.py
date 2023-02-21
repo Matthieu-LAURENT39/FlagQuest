@@ -5,9 +5,10 @@ import wtforms
 from flask_login import LoginManager, login_required, login_user, logout_user
 from flask_wtf import FlaskForm
 from werkzeug.security import check_password_hash, generate_password_hash
-from app import app
-from backend import db
-from models.user import User
+
+from site_elysium.app import app
+from site_elysium.backend import db
+from site_elysium.models.user import User
 
 login_manager = LoginManager()
 login_manager.init_app(app)

@@ -1,5 +1,4 @@
 from flask import Flask, render_template, abort
-from jinja2 import TemplateNotFound
 from flask_login import current_user
 
 app = Flask(
@@ -13,8 +12,8 @@ app.config["SECRET_KEY"] = "ChangeMeIAmNotSecure"
 
 @app.route("/")
 def acceuil():
-    from backend import SignupForm
-    from models import Room
+    from site_elysium.backend import SignupForm
+    from site_elysium.models import Room
 
     signup_form = SignupForm()
     rooms = Room.query.limit(4).all()
@@ -23,8 +22,8 @@ def acceuil():
 
 @app.route("/liste_rooms")
 def liste_room():
-    from backend import SignupForm
-    from models import Room
+    from site_elysium.backend import SignupForm
+    from site_elysium.models import Room
 
     signup_form = SignupForm()
     rooms = Room.query.all()
@@ -43,7 +42,7 @@ def profile():
 
 @app.route("/classement")
 def classement():
-    from models import User
+    from site_elysium.models import User
 
     # tri par ordre score : décroissant
     user = User.query.order_by(User.score.desc()).all()
@@ -65,7 +64,7 @@ def liste_rooms():
 
 @app.route("/room/<room_url_name>")
 def room(room_url_name: str):
-    from models import Room
+    from site_elysium.models import Room
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
@@ -87,7 +86,7 @@ def room(room_url_name: str):
 
 @app.route("/room/<room_url_name>/edit")
 def edit_room(room_url_name: str):
-    from models import Room
+    from site_elysium.models import Room
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
@@ -106,7 +105,7 @@ def edit_room(room_url_name: str):
 # dashboard administrateur
 @app.route("/dashboard")
 def dashboard():
-    from models import User
+    from site_elysium.models import User
 
     # liste tout les utilisateurs
     user = User.query.all()

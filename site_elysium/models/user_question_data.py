@@ -1,4 +1,4 @@
-from backend.db import db
+from site_elysium.backend.db import db
 from sqlalchemy import Integer, Column, String, ForeignKey, DateTime
 from datetime import datetime
 

@@ -1,4 +1,4 @@
-from app import app
+from site_elysium.app import app
 from flask import render_template
 import werkzeug.exceptions
 from jinja2 import TemplateNotFound

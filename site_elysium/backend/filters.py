@@ -1,4 +1,4 @@
-from app import app
+from site_elysium.app import app
 from markdown import markdown as md
 
 
