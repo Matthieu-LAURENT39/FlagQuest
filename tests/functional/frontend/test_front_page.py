@@ -8,7 +8,6 @@ def test_front_page_access(client: FlaskClient):
     """
     front_page_request = client.get(url_for("acceuil"))
     assert front_page_request.status_code == 200
-    assert front_page_request
 
     # # On vérifie que la root (/) renvoie bien a la page principale
     root_request = client.get("/", follow_redirects=True)
