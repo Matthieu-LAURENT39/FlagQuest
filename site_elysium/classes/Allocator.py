@@ -29,9 +29,15 @@ class Allocator(Generic[Resource]):
         Returns:
             Resource: La ressource alloué.
         """
+        first_tried = None
         with self._lock:
             while (resource := next(self.source)) in self._allocated:
-                pass
+                if first_tried is None:
+                    first_tried = resource
+                else:
+                    # Cela veut dire que l'on a fait le tour de l'itérateur.
+                    if first_tried == resource:
+                        raise ValueError("Plus de resources à allouer!")
             self._allocated.add(resource)
         return resource
 
@@ -42,4 +48,9 @@ class Allocator(Generic[Resource]):
             resource (Resource): La ressource à libéré.
         """
         with self._lock:
-            self._allocated.remove(resource)
+            try:
+                self._allocated.remove(resource)
+            except KeyError as e:
+                raise ValueError(
+                    "Cette resource n'est pas alloué et ne peut donc pas être libéré."
+                ) from e

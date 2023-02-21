@@ -6,9 +6,9 @@ from flask_login import LoginManager, login_required, login_user, logout_user
 from flask_wtf import FlaskForm
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from app import app
-from backend import db
-from models.user import User
+from site_elysium.app import app
+from site_elysium.backend import db
+from site_elysium.models.user import User
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -40,6 +40,7 @@ def connexion():
         user: User = User.query.filter_by(username=form.login.data).first()
         if user is None:
             form.login.errors.append("Cet utilisateur n'existe pas.")
+            flask.flash("user inexistant", "error")
 
         # Vérification du hash du mot de passe
         elif not check_password_hash(user.password_hash, form.password.data):
@@ -49,7 +50,7 @@ def connexion():
         else:
             login_user(user)
 
-            flask.flash("Logged in successfully.")
+            flask.flash("Logged in successfully.", "success")
 
             next = flask.request.args.get("next")
             # is_safe_url should check if the url is safe for redirects.
@@ -69,5 +70,5 @@ def connexion():
 @login_required
 def deconnexion():
     logout_user()
-    flask.flash("Vous avez été déconnecté.")
+    flask.flash("Vous avez été déconnecté.", "info")
     return flask.redirect(flask.url_for("acceuil"))

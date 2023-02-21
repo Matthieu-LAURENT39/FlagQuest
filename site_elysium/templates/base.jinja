@@ -98,6 +98,36 @@
     </header>
     {% endblock %}
 
+    <!-- ----------------------------------- layout des flash : success, error, ... ----------------------------------- -->
+    <!-- ROUGE alert warning -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {# VERT - success #}
+    {% if category == 'success' %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {# ROUGE - warning #}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {# BLEU - info #}
+    {% if category == 'info' %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     {% block content %}<h1>THIS IS DEFAULT TEXT, CHANGE ME</h1>{% endblock %}
 
 </body>

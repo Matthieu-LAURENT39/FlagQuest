@@ -1,5 +1,5 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, SQLAlchemySchema, auto_field
-from .. import User
+from site_elysium.models import User
 
 
 # class UserSchema(SQLAlchemyAutoSchema):

@@ -1,4 +1,4 @@
-from backend.db import db
+from site_elysium.backend.db import db
 from sqlalchemy import Integer, Column, String, Enum
 import enum
 from sqlalchemy_utils import IPAddressType, UUIDType
@@ -17,7 +17,8 @@ class VirtualMachine(db.Model):
 
     __tablename__ = "virtual_machines"
 
-    id = Column(UUIDType, primary_key=True, default=uuid4)
+    uuid = Column(UUIDType, primary_key=True, default=uuid4)
+    proxmox_id = Column(Integer, unique=True, nullable=False)
 
     user_id = Column(Integer)
     """L'id de l'utilisateur à qui appartient là VM"""

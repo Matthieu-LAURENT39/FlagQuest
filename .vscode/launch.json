@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "main.py",
+                "FLASK_APP": "site_elysium/main.py",
                 "FLASK_DEBUG": "true",
             },
             "args": [

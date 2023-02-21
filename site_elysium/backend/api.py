@@ -5,11 +5,10 @@ from flask import Blueprint, Response, abort, jsonify, redirect, request
 from flask_login import current_user, login_required
 from flask_restful import Api, Resource
 
-import backend
-import models
-from app import app
-from models.schemas import room_schema, user_schema
-from models import VirtualMachine
+import site_elysium.models
+from site_elysium.app import app
+from site_elysium.models.schemas import room_schema, user_schema
+from site_elysium.models import VirtualMachine
 
 api = Blueprint(
     "api",
@@ -19,7 +18,7 @@ api = Blueprint(
 api_manager = Api(api)
 
 # Type hinting
-current_user: models.User
+current_user: site_elysium.models.User
 
 
 class UserResource(Resource):
@@ -117,32 +116,55 @@ def answer_question():
     return {"correct": True}
 
 
-@api.route("/request_vm/<int:vm_id>", methods=["POST"])
+@api.route("/request_victim_vms/<room_url_name>", methods=["POST"])
 @login_required
-def request_vm(vm_id: int):
+def request_victim_vms(room_url_name: str):
     from vm import vm_manager
 
     # TODO: vérifier que l'utilisateur n'utilise pas déja une VM
 
-    new_vm_db = VirtualMachine(user_id=current_user.id, template_vm_id=vm_id)
+    # We find the room
+    room: models.Room = models.Room.query.filter_by(
+        url_name=room_url_name
+    ).first_or_404(description="Cette room n'existe pas.")
 
-    vm_infos = vm_manager.setup(vm_id, new_vm_db.vm_name, vnc=True)
+    vms_data: list[dict[str, str]] = []
+    for vm_id in room.victim_vm_ids:
+        new_vm_db = VirtualMachine(user_id=current_user.id, template_vm_id=vm_id)
 
-    new_vm_db.mac_address = vm_infos["mac_address"]
-    new_vm_db.display_port = vm_infos["display_port"]
+        vm_infos = vm_manager.setup(vm_id, new_vm_db.vm_name, vnc=True)
 
-    backend.db.session.add(new_vm_db)
+        new_vm_db.mac_address = vm_infos["mac_address"]
+        new_vm_db.display_port = vm_infos["display_port"]
+        new_vm_db.proxmox_id = vm_infos["vm_id"]
+
+        vms_data.append(
+            {"ip_address": new_vm_db.ip_address.compressed, "template_vm_id": vm_id}
+        )
+
+        backend.db.session.add(new_vm_db)
+
     backend.db.session.commit()
 
-    return {"ip_address": new_vm_db.ip_address.compressed}
+    return jsonify(vms_data)
+    # return {"ip_address": new_vm_db.ip_address.compressed}
 
 
-@api.route("/delete_vm/<int:vm_id>", methods=["POST"])
+@api.route("/delete_vms/", methods=["POST"])
 @login_required
-def delete_vm(vm_id: int):
+def delete_vms():
+    """Supprime toute les VMs possédé par l'utilisateur."""
     from vm import vm_manager
 
-    vm_manager.delete_vm(vm_id)
+    rooms: list[models.VirtualMachine] = models.VirtualMachine.query.filter_by(
+        user_id=current_user.id
+    ).all()
+
+    for vm in rooms:
+        vm_manager.delete_vm(vm.proxmox_id)
+        backend.db.session.delete(vm)
+
+    backend.db.session.commit()
     return {}
 
 

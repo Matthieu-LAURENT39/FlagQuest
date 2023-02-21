@@ -2,9 +2,9 @@ import ipaddress
 
 from proxmoxer import ProxmoxAPI
 
-from app import app
-from classes import Allocator, VMManager
-from models import VirtualMachine
+from site_elysium.app import app
+from site_elysium.classes import Allocator, VMManager
+import site_elysium.models
 from tools import ip_to_mac
 
 _proxmox_api = ProxmoxAPI(
@@ -15,8 +15,12 @@ _proxmox_api = ProxmoxAPI(
 )
 
 with app.app_context():
-    _allocated_macs: set[str] = {vm.mac_address for vm in VirtualMachine.query.all()}
-    _allocated_ports: set[int] = {vm.display_port for vm in VirtualMachine.query.all()}
+    _allocated_macs: set[str] = {
+        vm.mac_address for vm in site_elysium.models.VirtualMachine.query.all()
+    }
+    _allocated_ports: set[int] = {
+        vm.display_port for vm in site_elysium.models.VirtualMachine.query.all()
+    }
 
 _mac_allocator = Allocator(
     (ip_to_mac(ip) for ip in ipaddress.IPv4Network("192.168.1.0/24").hosts()),
