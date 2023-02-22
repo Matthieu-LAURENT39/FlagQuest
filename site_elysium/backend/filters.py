@@ -1,9 +1,7 @@
-from site_elysium.app import app
 from markdown import markdown as md
 
 
-@app.template_filter()
-def markdown(text: str) -> str:
+def markdown_filter(text: str) -> str:
     """Interprète le markdown vers de l'HTML
 
     Args:

@@ -34,7 +34,7 @@
 
           <div class="modal-body p-5 px-4 pt-0">
 
-            <form method="POST" action="{{ url_for('inscription') }}">
+            <form method="POST" action="{{ url_for('main.inscription') }}">
               {# Token CSRF #}
               {{ signup_form.csrf_token }}
 

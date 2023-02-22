@@ -1,12 +1,14 @@
 import pytest
 from flask import Flask
 
-from site_elysium.main import app as flask_app
+from site_elysium import create_app
 
 
 @pytest.fixture()
 def app():
-    flask_app.config.update(
+    app = create_app() 
+
+    app.config.update(
         {
             "TESTING": True,
         }
@@ -14,7 +16,7 @@ def app():
 
     # other setup can go here
 
-    yield flask_app
+    yield app
 
     # clean up / reset resources here
 

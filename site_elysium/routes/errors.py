@@ -1,8 +1,8 @@
-from site_elysium.app import app
 from flask import render_template
 import werkzeug.exceptions
 from jinja2 import TemplateNotFound
 
+from . import main
 
 # @app.errorhandler(404)
 # def page_not_found(e: werkzeug.exceptions.NotFound):
@@ -11,7 +11,7 @@ from jinja2 import TemplateNotFound
 #     return render_template("errors/404.jinja", status_code=404), 404
 
 
-@app.errorhandler(werkzeug.exceptions.HTTPException)
+@main.errorhandler(werkzeug.exceptions.HTTPException)
 def generic_error(e: werkzeug.exceptions.HTTPException):
     response = e.get_response()
 

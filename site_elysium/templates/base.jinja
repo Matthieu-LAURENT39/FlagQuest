@@ -41,7 +41,7 @@
                     {# <a href="{{ url_for('deconnexion') }}" type="button"
                         class="btn btn-outline-danger rounded-1 border-2 fw-semibold px-2 py-1">Déconnexion</a> #}
                     <div class="dropdown text-end"> <!-- creation menu / bouton qui permet le défilement -->
-                        <a href="{{ url_for('profile') }}"
+                        <a href="{{ url_for('main.profile') }}"
                             class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="/static/img/avatar.png" alt="mdo" width="36" height="36"
@@ -50,20 +50,20 @@
                         <ul class="dropdown-content dropdown-menu text-small" style="">
                             <!-- contenu du menu / ce qui défile -->
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('profile') }}">
+                                <a class="dropdown-item" href="{{ url_for('main.profile') }}">
                                     <span>Mon profil</span>
                                     <img src="/static/img/avatar.png">
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('classement') }}">
+                                <a class="dropdown-item" href="{{ url_for('main.classement') }}">
                                     <span>Classement</span>
                                     <img src="/static/img/podium.svg">
                                 </a>
                             </li>
                             {% if current_user.is_admin == true %}
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('dashboard') }}">
+                                <a class="dropdown-item" href="{{ url_for('main.dashboard') }}">
                                     <span>Dashboard</span>
                                     <img src="/static/img/cadenas.svg">
                                 </a>
@@ -75,7 +75,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('deconnexion') }}">
+                                <a class="dropdown-item" href="{{ url_for('main.deconnexion') }}">
                                     <span>Se déconnecter</span>
                                     <img src="/static/img/logout.svg">
                                 </a>
@@ -84,7 +84,7 @@
                     </div>
                     {% else %}
                     <!-- <button type="button" class="btn btn-outline-light me-2"><a href="connexion.html" text-decoration-none>J'ai déjà un compte</a></button> -->
-                    <a href="{{ url_for('connexion') }}"
+                    <a href="{{ url_for('main.connexion') }}"
                         class="btn rounded-1 border-2 active text-info fw-semibold px-2 py-1" role="button"
                         aria-pressed="true">J'ai déjà un compte</a>
                     <a class="a-rootme-pro" href="http://www.lyceebranly.com/">
