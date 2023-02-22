@@ -1,4 +1,4 @@
-from site_elysium.backend.db import db
+from .. import db
 from sqlalchemy import Integer, Column, String, Boolean
 from flask_login import UserMixin
 

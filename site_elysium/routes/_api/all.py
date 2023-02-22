@@ -5,20 +5,15 @@ from flask import Blueprint, Response, abort, jsonify, redirect, request
 from flask_login import current_user, login_required
 from flask_restful import Api, Resource
 
-import site_elysium.models
-from site_elysium.app import app
-from site_elysium.models.schemas import room_schema, user_schema
+import site_elysium.models as models
 from site_elysium.models import VirtualMachine
+from site_elysium.models.schemas import room_schema, user_schema
 
-api = Blueprint(
-    "api",
-    __name__,
-    url_prefix="/api",
-)
-api_manager = Api(api)
+from ... import db
+from .. import api
 
 # Type hinting
-current_user: site_elysium.models.User
+current_user: models.User
 
 
 class UserResource(Resource):
@@ -78,7 +73,7 @@ def join_room(room_url_name: str):
     if current_user in room.users:
         abort(400, "L'utilisateur est deja dans la room.")
     room.users.append(current_user)
-    backend.db.session.commit()
+    db.session.commit()
     return {}
 
 
@@ -122,7 +117,6 @@ def request_victim_vms(room_url_name: str):
     from vm import vm_manager
 
     # TODO: vérifier que l'utilisateur n'utilise pas déja une VM
-
     # We find the room
     room: models.Room = models.Room.query.filter_by(
         url_name=room_url_name
@@ -142,9 +136,9 @@ def request_victim_vms(room_url_name: str):
             {"ip_address": new_vm_db.ip_address.compressed, "template_vm_id": vm_id}
         )
 
-        backend.db.session.add(new_vm_db)
+        db.session.add(new_vm_db)
 
-    backend.db.session.commit()
+    db.session.commit()
 
     return jsonify(vms_data)
     # return {"ip_address": new_vm_db.ip_address.compressed}
@@ -162,13 +156,7 @@ def delete_vms():
 
     for vm in rooms:
         vm_manager.delete_vm(vm.proxmox_id)
-        backend.db.session.delete(vm)
+        db.session.delete(vm)
 
-    backend.db.session.commit()
+    db.session.commit()
     return {}
-
-
-api_manager.add_resource(UserResource, "/user/<username>")
-api_manager.add_resource(RoomResource, "/room/<url_name>")
-
-app.register_blueprint(api)

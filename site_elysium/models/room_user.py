@@ -1,4 +1,4 @@
-from site_elysium.backend.db import db
+from site_elysium import db
 from sqlalchemy import Integer, Column, ForeignKey
 
 room_user = db.Table(
