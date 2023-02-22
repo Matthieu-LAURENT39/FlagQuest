@@ -52,11 +52,6 @@ def classement():
     return render_template("classement.jinja", user=user, nbr_user=nbr_user)
 
 
-@app.route("/cours")
-def cours():
-    return render_template("cours.jinja")
-
-
 @app.route("/liste_rooms")
 def liste_rooms():
     return render_template("liste_rooms.jinja")

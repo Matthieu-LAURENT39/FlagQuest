@@ -1,0 +1,36 @@
+{% extends 'base.jinja' %}
+{# recup url du site #}
+{# {{ url_for(request.endpoint) }} #}
+{% from 'macros/_cours.jinja' import cours_widget %}
+
+{% block title %}
+{{ super() }} - Accueil
+{% endblock %}
+
+{% block content %}
+<main class="container bg-black pt-5">
+    <div class="container-index row">
+        <div class="d-flex row align-items-md-stretch">
+            {{cours_widget("Séquence : 1","Vous trouverez ici tous les cours utiles à votre parcours","Sequence1",
+            4)}}
+            {{cours_widget("Séquence : 2","Vous trouverez ici tous les cours utiles à votre parcours","Sequence2",
+            4)}}
+            {{cours_widget("Séquence : 3","Vous trouverez ici tous les cours utiles à votre parcours","Sequence3",
+            4)}}
+            {{cours_widget("Séquence : 4","Vous trouverez ici tous les cours utiles à votre parcours","Sequence4",
+            4)}}
+            {{cours_widget("Séquence : 5","Vous trouverez ici tous les cours utiles à votre parcours","Sequence5",
+            4)}}
+            {{cours_widget("Séquence : 6","Vous trouverez ici tous les cours utiles à votre parcours","Sequence6",
+            4)}}
+            {{cours_widget("Séquence : 7","Vous trouverez ici tous les cours utiles à votre parcours","Sequence7",
+            4)}}
+            {{cours_widget("Séquence : 8","Vous trouverez ici tous les cours utiles à votre parcours","Sequence8",
+            4)}}
+            {{cours_widget("Séquence : 9","Vous trouverez ici tous les cours utiles à votre parcours","Sequence9",
+            4)}}
+
+        </div>
+    </div>
+</main>
+{% endblock %}
