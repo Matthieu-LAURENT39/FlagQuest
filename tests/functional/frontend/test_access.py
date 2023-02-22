@@ -1,5 +1,6 @@
 from flask.testing import FlaskClient
 from flask import url_for, Flask
+import pytest
 
 
 def test_front_page_access(client: FlaskClient):
@@ -14,19 +15,19 @@ def test_front_page_access(client: FlaskClient):
     assert root_request.request.path == url_for("main.acceuil")
 
 
-def test_all_routes_access(app: Flask, client: FlaskClient):
+@pytest.mark.parametrize(
+    "endpoint,expected_code",
+    [
+        ("main.acceuil", 200),
+        ("main.liste_room", 200),
+        ("main.connexion", 200),
+        ("main.deconnexion", 401),
+    ],
+)
+def test_route_access(client: FlaskClient, endpoint: str, expected_code: int):
     """
-    On vérifie que toutes les routes soient accessibles sans erreur.
+    On vérifie que toutes les routes soient accessibles et ai le bon code.
     """
-
-    def has_no_empty_params(rule):
-        defaults = rule.defaults if rule.defaults is not None else ()
-        arguments = rule.arguments if rule.arguments is not None else ()
-        return len(defaults) >= len(arguments)
-
-    for rule in app.url_map.iter_rules():
-        # Filter out rules we can't navigate to in a browser
-        # and rules that require parameters
-        if "GET" in rule.methods and has_no_empty_params(rule):
-            url = url_for(rule.endpoint, **(rule.defaults or {}))
-            assert client.get(url).status_code in [200, 401]
+    url = url_for(endpoint)
+    r = client.get(url, follow_redirects=True)
+    assert r.status_code == expected_code
