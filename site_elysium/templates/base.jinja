@@ -6,11 +6,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}RootMe{% endblock %}</title>
-    <!-- logo du lycée-->
-    <link rel="icon" href="/static/img/logo_rootme.svg">
+    <title>{% block title %}{{config.APP_NAME}}{% endblock %}</title>
+    <!-- logo -->
+    <link rel="icon" href="{{config.APP_FAVICO}}">
     <!-- css personnel -->
     <link rel="stylesheet" href="/static/style/style.css">
+    <link rel="stylesheet" href="/static/style/code_style.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -29,8 +30,8 @@
         <div class="container-fluid m-0">
             <div class="d-flex align-items-center justify-content-between ">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <img class="logo-rootme" src="/static/img/logo_rootme.svg" alt="logo root-me.org" itemprop=image>
-                    <span class="site-name" itemprop="name">Root&nbsp;Me</span>
+                    <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
+                    <span class="site-name" itemprop="name">{{config.APP_NAME}}</span>
                 </a>
 
                 <div class="text-end d-flex align-items-center">
@@ -135,7 +136,7 @@
 {% block footer %}
 <footer class=" page-footer bg-black container-fluid pt-3 align-items-center">
     <div class="d-flex justify-content-center">
-        <img class="logo-rootme" src="/static/img/logo_rootme.svg" alt="logo root-me.org" itemprop=image>
+        <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
     </div>
     <ul class="nav justify-content-center">
         <li class="nav-item"><a href="#"
@@ -150,27 +151,38 @@
     <p class="text-center border-bottom border-secondary pb-3 mb-3 text-white fs-6">© 2010 - 2023</p>
 
     <ul class="nav justify-content-center">
+        {# TODO: Faire un test que les logos se cachent bien si l'URL n'existe pas #}
+        {% if config.TWITTER_LINK %}
         <li class="nav-item px-3">
-            <a href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fwww.root-me.org%2F&region=follow_link&screen_name=rootme_org&tw_p=followbutton"
-                class="nav-link px-2">
+            <a href="{{config.TWITTER_LINK}}" class="nav-link px-2">
                 <img src="/static/img/social_network/twitter.svg" alt="logo Twitter">
             </a>
         </li>
+        {% endif %}
+
+        {% if config.LINKEDIN_LINK %}
         <li class="nav-item px-3">
-            <a href="https://www.linkedin.com/groups/Root-Me-hacking-and-information-8180601" class="nav-link px-2">
+            <a href="{{config.LINKEDIN_LINK}}" class="nav-link px-2">
                 <img src="/static/img/social_network/linkedin.svg" alt="logo LinkedIn">
             </a>
         </li>
+        {% endif %}
+
+        {% if config.RSS_FEED_LINK %}
         <li class="nav-item px-3">
-            <a href="https://www.root-me.org/?page=flux_rss&lang=fr" class="nav-link px-2">
+            <a href="{{config.RSS_FEED_LINK}}" class="nav-link px-2">
                 <img src="/static/img/social_network/rss.svg" alt="logo Flux RSS">
             </a>
         </li>
+        {% endif %}
+
+        {% if config.DISCORD_LINK %}
         <li class="nav-item px-3">
-            <a href="https://discord.gg/XejsBJdUch" class="nav-link px-2">
+            <a href="{{config.DISCORD_LINK}}" class="nav-link px-2">
                 <img src="/static/img/social_network/discord.svg" alt="logo Discord">
             </a>
         </li>
+        {% endif %}
 
 </footer>
 {% endblock %}

@@ -46,18 +46,12 @@
 
 /* ------------------------------ header ------------------------------ */
 
-/* inverse la couleur du logo rootme normalement noir vers blanc */
-.logo-rootme {
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
+.logo {
   width: 48px;
   height: 48px;
 }
 
-/* root-me logo plus gros pour accueil par exemple */
-.logo-rootme-large {
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
+.logo-large {
   width: 150px;
   height: 150px;
 }
@@ -498,7 +492,7 @@ footer>ul>li>a:hover {
 
 /* --------------- font --------------- */
 
-/* font logo "Root Me" avec files au-dessus */
+/* font logo avec files au-dessus */
 @font-face {
   font-family: "logo";
   src: local("logo"),
@@ -519,7 +513,7 @@ footer>ul>li>a:hover {
   }
 }
 
-/* affiche plus le nom du site "Root Me" avec la font spécial si trop étroit */
+/* affiche plus le nom du site avec la font spécial si trop étroit */
 @media only screen and (max-width: 40.063em) {
   .site-name {
     color: white;
