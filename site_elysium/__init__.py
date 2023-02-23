@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash
 from flask_login import LoginManager
 from typing import Optional, TYPE_CHECKING
 from .backend.filters import markdown_filter
+from .config import Config
 
 if TYPE_CHECKING:
     from .models import User
@@ -22,17 +22,18 @@ def load_user(user_id: str) -> Optional["User"]:
     return User.query.filter_by(id=user_id).first()
 
 
-def create_app() -> Flask:
+def create_app(config: object = Config) -> Flask:
     app = Flask(
         __name__,
         static_folder="static",
         template_folder="templates",
         static_url_path="/static",
     )
-    app.config["SECRET_KEY"] = "ChangeMeIAmNotSecure"
+
+    # On charge la config
+    app.config.from_object(config)
 
     # SQLalchemy
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
     db.init_app(app)
 
     # flask-login
@@ -62,10 +63,10 @@ def setup_app(app: Flask):
             user = User(
                 username="admin",
                 email="feur@desu.wa",
-                password_hash=generate_password_hash("admin"),
                 is_admin=True,
                 score=12,
             )
+            user.set_password("admin")
             db.session.add(user)
             db.session.commit()
 

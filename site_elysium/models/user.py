@@ -1,6 +1,7 @@
 from .. import db
 from sqlalchemy import Integer, Column, String, Boolean
 from flask_login import UserMixin
+from werkzeug.security import check_password_hash, generate_password_hash
 
 # On hérite UserMixin afin d'avoir les @property par défaut
 class User(db.Model, UserMixin):
@@ -20,3 +21,9 @@ class User(db.Model, UserMixin):
     is_admin = Column(Boolean, nullable=False, default=False)
 
     score = Column(Integer, nullable=False, default=0)
+
+    def set_password(self, password: str) -> None:
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password: str) -> bool:
+        return check_password_hash(self.password_hash, password)

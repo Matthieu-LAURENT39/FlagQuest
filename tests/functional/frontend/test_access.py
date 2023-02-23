@@ -1,5 +1,5 @@
 from flask.testing import FlaskClient
-from flask import url_for, Flask
+from flask import url_for
 import pytest
 
 

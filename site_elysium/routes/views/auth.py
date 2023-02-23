@@ -1,6 +1,5 @@
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
-from werkzeug.security import check_password_hash, generate_password_hash
 
 from site_elysium.forms import LoginForm, SignupForm
 from site_elysium.models import User
@@ -21,7 +20,7 @@ def connexion():
             flash("user inexistant", "error")
 
         # Vérification du hash du mot de passe
-        elif not check_password_hash(user.password_hash, form.password.data):
+        elif not user.verify_password(form.password.data):
             form.password.errors.append("Mot de passe invalide.")
 
         # Pas d'erreur, on connecte l'utilisateur avec Flask-login (ajout des cookies de session)
@@ -61,8 +60,8 @@ def inscription():
         user = User(
             username=form.username.data,
             email=form.email.data,
-            password_hash=generate_password_hash(form.password.data),
         )
+        user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
 
