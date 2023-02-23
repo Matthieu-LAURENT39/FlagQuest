@@ -76,7 +76,8 @@ def create_app(config: object = Config) -> Flask:
     app.register_blueprint(api)
 
     # Enfin, on créer toutes les données
-    setup_app(app)
+    if not app.testing:
+        setup_app(app)
 
     return app
 

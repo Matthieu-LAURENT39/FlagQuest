@@ -62,10 +62,7 @@ def admin_user(database):
 
     from site_elysium.models import User
 
-    user = User(
-        username="admin",
-        email="admin@root.me",
-    )
+    user = User(username="admin", email="admin@root.me", is_admin=True)
     user.set_password("admin")
     database.session.add(user)
     database.session.commit()
