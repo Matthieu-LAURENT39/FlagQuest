@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}RootMe{% endblock %}</title>
+    <title>{% block title %}{{config.APP_NAME}}{% endblock %}</title>
     <!-- logo du lycée-->
     <link rel="icon" href="/static/img/logo_rootme.svg">
     <!-- css personnel -->
@@ -30,7 +30,7 @@
             <div class="d-flex align-items-center justify-content-between ">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                     <img class="logo-rootme" src="/static/img/logo_rootme.svg" alt="logo root-me.org" itemprop=image>
-                    <span class="site-name" itemprop="name">Root&nbsp;Me</span>
+                    <span class="site-name" itemprop="name">{{config.APP_NAME}}</span>
                 </a>
 
                 <div class="text-end d-flex align-items-center">

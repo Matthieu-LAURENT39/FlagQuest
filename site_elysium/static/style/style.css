@@ -520,7 +520,7 @@ footer>ul>li>a:hover {
 
 /* --------------- font --------------- */
 
-/* font logo "Root Me" avec files au-dessus */
+/* font logo avec files au-dessus */
 @font-face {
   font-family: "logo";
   src: local("logo"),
@@ -541,7 +541,7 @@ footer>ul>li>a:hover {
   }
 }
 
-/* affiche plus le nom du site "Root Me" avec la font spécial si trop étroit */
+/* affiche plus le nom du site avec la font spécial si trop étroit */
 @media only screen and (max-width: 40.063em) {
   .site-name {
     color: white;
