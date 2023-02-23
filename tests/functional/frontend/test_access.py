@@ -1,6 +1,8 @@
 from flask.testing import FlaskClient
 from flask import url_for
 import pytest
+from enum import Enum, auto
+from flask_login import login_user
 
 
 def test_front_page_access(client: FlaskClient):
@@ -15,19 +17,39 @@ def test_front_page_access(client: FlaskClient):
     assert root_request.request.path == url_for("main.acceuil")
 
 
+class LoginLevel(Enum):
+    NOT_LOGGED_IN = auto()
+    REGULAR_USER = auto()
+    ADMIN = auto()
+
+
 @pytest.mark.parametrize(
-    "endpoint,expected_code",
+    "endpoint,expected_code,login_level",
     [
-        ("main.acceuil", 200),
-        ("main.liste_room", 200),
-        ("main.connexion", 200),
-        ("main.deconnexion", 401),
+        ("main.acceuil", 200, LoginLevel.NOT_LOGGED_IN),
+        ("main.acceuil", 200, LoginLevel.REGULAR_USER),
+        ("main.liste_room", 200, LoginLevel.NOT_LOGGED_IN),
+        ("main.connexion", 200, LoginLevel.NOT_LOGGED_IN),
+        ("main.deconnexion", 401, LoginLevel.NOT_LOGGED_IN),
+        ("main.deconnexion", 200, LoginLevel.REGULAR_USER),
     ],
 )
-def test_route_access(client: FlaskClient, endpoint: str, expected_code: int):
+def test_route_access(
+    client: FlaskClient,
+    endpoint: str,
+    expected_code: int,
+    login_level: LoginLevel,
+    regular_user,
+    admin_user,
+):
     """
     On vérifie que toutes les routes soient accessibles et ai le bon code.
     """
+    if login_level == LoginLevel.REGULAR_USER:
+        login_user(regular_user)
+    if login_level == LoginLevel.ADMIN:
+        login_user(admin_user)
+
     url = url_for(endpoint)
     r = client.get(url, follow_redirects=True)
     assert r.status_code == expected_code

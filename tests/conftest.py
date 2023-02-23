@@ -22,8 +22,12 @@ def runner(app):
     return app.test_cli_runner()
 
 
-@pytest.fixture()
+@pytest.fixture(autouse=True)
 def database(app: Flask):
+    """
+    Créer une base de donnée de test.
+    Elle n'a pas de donnée, du moins si aucune autres fixtures n'en ajoute.
+    """
     # On créer les tables
     with app.app_context():
         db.create_all()
@@ -36,21 +40,55 @@ def database(app: Flask):
 
 
 @pytest.fixture()
-def full_database(app: Flask, database):
+def regular_user(database):
+    """Un utilisateur qui n'est pas admin."""
+
+    from site_elysium.models import User
+
+    user = User(
+        username="john_doe",
+        email="john_doe@example.com",
+    )
+    user.set_password("password")
+    database.session.add(user)
+    database.session.commit()
+
+    return user
+
+
+@pytest.fixture()
+def admin_user(database):
+    """Un utilisateur qui est admin."""
+
+    from site_elysium.models import User
+
+    user = User(
+        username="admin",
+        email="admin@root.me",
+    )
+    user.set_password("admin")
+    database.session.add(user)
+    database.session.commit()
+
+    return user
+
+
+@pytest.fixture()
+def full_database(app: Flask, database, admin_user):
     """BDD mais avec des données de test."""
 
     from site_elysium.models import User, Room, Question
 
     with app.app_context():
-        user = User.query.filter_by(username="admin").first()
-        user = User(
-            username="admin",
-            email="admin@root.me",
-            is_admin=True,
-            score=12,
-        )
-        user.set_password("admin")
-        database.session.add(user)
+        for i in range(15):
+            user = User(
+                username=f"user_{i}",
+                email=f"user_{i}@example.com",
+                is_admin=False,
+                score=12,
+            )
+            user.set_password("password")
+            database.session.add(user)
 
         for i in range(10):
             room = Room(
