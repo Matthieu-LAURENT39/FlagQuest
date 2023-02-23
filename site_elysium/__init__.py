@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_admin import Admin
 from typing import Optional, TYPE_CHECKING
 from .backend.filters import markdown_filter
-from .config import Config
+from .flask_config import Config
 
 if TYPE_CHECKING:
     from .models import User
@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 
 db = SQLAlchemy()
 login_manager = LoginManager()
-admin = Admin(name="Interface Admin", template_mode="bootstrap3")
 
 
 @login_manager.user_loader
@@ -31,7 +30,10 @@ def create_app(config: object = Config) -> Flask:
         static_url_path="/static",
     )
 
-    # On charge la config
+    # On charge les constantes
+    app.config.from_pyfile("app_config.py")
+
+    # Puis on charge la config flask
     app.config.from_object(config)
 
     # SQLalchemy
@@ -41,6 +43,11 @@ def create_app(config: object = Config) -> Flask:
     login_manager.init_app(app)
 
     # flask-admin
+    # Créer l'instance va a l'encontre des principes de design des app factory, mais
+    # on y est contraint du a au design de flask-admin.
+    # Voir aussi https://github.com/flask-admin/flask-admin/issues/910
+    admin = Admin(name="Interface Admin", template_mode="bootstrap3")
+
     app.config["FLASK_ADMIN_SWATCH"] = "cerulean"
     admin.init_app(app)
 

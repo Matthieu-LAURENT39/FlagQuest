@@ -2,7 +2,7 @@ import pytest
 from flask import Flask
 
 from site_elysium import create_app, db
-from site_elysium.config import TestConfig
+from site_elysium.flask_config import TestConfig
 
 
 @pytest.fixture()
