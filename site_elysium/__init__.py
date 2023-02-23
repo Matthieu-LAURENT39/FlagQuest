@@ -1,9 +1,9 @@
 from __future__ import annotations
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
 from flask_login import LoginManager
+from flask_admin import Admin
 from typing import Optional, TYPE_CHECKING
 from .backend.filters import markdown_filter
 
@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+admin = Admin(name="Interface Admin", template_mode="bootstrap3")
 
 
 @login_manager.user_loader
@@ -37,6 +38,25 @@ def create_app() -> Flask:
 
     # flask-login
     login_manager.init_app(app)
+
+    # flask-admin
+    app.config["FLASK_ADMIN_SWATCH"] = "cerulean"
+    admin.init_app(app)
+
+    from site_elysium.models import (
+        User,
+        Room,
+        VirtualMachine,
+        Question,
+        UserQuestionData,
+    )
+    from .classes import AdminModelView
+
+    admin.add_view(AdminModelView(User, db.session))
+    admin.add_view(AdminModelView(Room, db.session))
+    admin.add_view(AdminModelView(VirtualMachine, db.session))
+    admin.add_view(AdminModelView(Question, db.session))
+    admin.add_view(AdminModelView(UserQuestionData, db.session))
 
     # Register the filters
     app.jinja_env.filters["markdown"] = markdown_filter
