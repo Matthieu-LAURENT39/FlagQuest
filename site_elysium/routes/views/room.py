@@ -15,7 +15,7 @@ def liste_room():
 
 @main.route("/room/<room_url_name>")
 def room(room_url_name: str):
-    from site_elysium.models import Room
+    from site_elysium.models import Room, VirtualMachine
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
@@ -23,11 +23,18 @@ def room(room_url_name: str):
 
     if current_user.is_authenticated:
         nbr_question_solved = sum(q.is_solved_by(current_user) for q in room.questions)
+        user_existing_vms = VirtualMachine.query.filter_by(
+            user_id=current_user.id
+        ).all()
     else:
         nbr_question_solved = None
+        user_existing_vms = None
 
     return render_template(
-        "room.jinja", room=room, nbr_question_solved=nbr_question_solved
+        "room.jinja",
+        room=room,
+        nbr_question_solved=nbr_question_solved,
+        user_existing_vms=user_existing_vms,
     )
     # try:
     #     return render_template(f"room/{room.url_name}.jinja", room=room)

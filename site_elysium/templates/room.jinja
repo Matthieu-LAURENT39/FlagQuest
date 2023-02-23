@@ -115,6 +115,7 @@
             </div>
             {# L'utilisateur est pas dans la room, on lui propose de lancer les VMs victimes #}
             {% else %}
+            {% if user_existing_vms is none %}
             <div id="request-victim-vms" class="align-item-top">
                 <script>
                     function displayVictimVMInfos(response) {
@@ -148,14 +149,17 @@
                     victimes
                 </button>
             </div>
+            {% else %}
+            {# TODO: Afficher les VMs existante et permettre de les supprimer #}
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% endblock %}
             <div id="victim-vm-info-container" class="p-2" style="display:none">
                 <div id="victim-vm-info" class="bg-white rounded-3 p-4">
                     <h2>VMs victimes</h2>
                 </div>
             </div>
-            {% endif %}
-            {% endif %}
-            {% endblock %}
 
             {% block room_info %}
             <div class="p-2">
