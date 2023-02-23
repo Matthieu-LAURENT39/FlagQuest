@@ -1,4 +1,5 @@
 from markdown import markdown as md
+from markdown.extensions.codehilite import CodeHiliteExtension
 
 
 def markdown_filter(text: str) -> str:
@@ -10,4 +11,16 @@ def markdown_filter(text: str) -> str:
     Returns:
         str: HTML de ce texte.
     """
-    return md(text)
+
+    # Extensions utilisé:
+    # - fenced_code: permet l'utilisation de code block avec ```
+    # - nl2br: remplace \n par <br>
+    # - CodeHiliteExtension: permet le synthax highlighting dans les code blocks
+    return md(
+        text,
+        extensions=[
+            "fenced_code",
+            "nl2br",
+            CodeHiliteExtension(guess_lang=True, linenums=None),
+        ],
+    )

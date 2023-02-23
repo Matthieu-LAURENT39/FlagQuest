@@ -75,6 +75,9 @@ def create_app(config: object = Config) -> Flask:
     app.register_blueprint(main)
     app.register_blueprint(api)
 
+    # Enfin, on créer toutes les données
+    setup_app(app)
+
     return app
 
 
@@ -151,6 +154,19 @@ def setup_app(app: Flask):
 
         question = Question.query.filter_by(id="1").first()
         if question is None:
+            question = Question(
+                room_id=1,
+                prompt=f"""**Qui** a écrit *cette* __question__?
+Indice: `matt`
+Et voici un code block
+```py
+import random
+n = random.randint(1,10)
+print(n)
+```""",
+                answer="matt",
+            )
+            db.session.add(question)
             for i in range(6):
                 question = Question(room_id=1, prompt=f"{i}+1=?", answer=str(i + 1))
                 db.session.add(question)
