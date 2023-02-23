@@ -1,9 +1,4 @@
-/* theme couleur root-me */
-/*
-dark-grey = gris formulaire (presque noir)
-grey = police pour paragraphe
- */
-
+/* thème couleurs tiré de root-me + couleurs perso */
 :root {
   --dark-grey: #4d4d4d;
   --grey: #767676;
@@ -163,20 +158,6 @@ li a.dropdown-item:hover {
 .login-description {
   color: var(--white);
 }
-
-/* censé changer la couleur arriere plan de l'input quand focus */
-/* .input-login-username:focus,
-.input-login-password:focus {
-  background: #181818;
-} */
-
-/* test animation hover + input connexion form */
-/* .btn-valider:hover {
-  background-color: #161a1d;
-  transition: background-color 500ms ease-out 100ms
-} */
-
-
 
 /* --------------- page profile user --------------- */
 
@@ -494,9 +475,6 @@ li a.dropdown-item:hover {
   font-weight: 500;
 }
 
-/* ------------------------------ admin dashboard ------------------------------ */
-
-
 
 /* ------------------------------ footer ------------------------------ */
 
@@ -589,7 +567,7 @@ footer>ul>li>a:hover {
   }
 }
 
-/* ------------------------------------ jghjk njgn ji ---------------------------- */
+/* ------------------------------------ reponsive page profil ---------------------------- */
 @media only screen and (max-width: 580px) {
   .container {
     padding-left: 0px;
@@ -605,9 +583,6 @@ footer>ul>li>a:hover {
   }
 }
 
-/* ------------------------------------ jghjk njgn ji ---------------------------- */
-
-
 /* responsive page profile classement */
 @media only screen and (max-width: 1024px) {
   div.ranking {
@@ -617,7 +592,7 @@ footer>ul>li>a:hover {
 }
 
 
-
+/* ------------------------------------ parti Adrien ---------------------------- */
 
 .container {
   position: relative;
