@@ -1,0 +1,13 @@
+/* ------------------------------ footer ------------------------------ */
+
+/* largeur des img des icones twitter linkedin rss et discord */
+footer>ul>li>a>img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  footer>ul>li>a:hover {
+    opacity: 75%;
+    transition: opacity 200ms ease-out 100ms;
+  }
+  

@@ -1,0 +1,302 @@
+/* --------------- page profile user --------------- */
+
+/* bar de profile avec avatar score, challenges, son rang (dans le classement)  */
+.main-profile-bar {
+    padding: 10px;
+    background-color: var(--night-grey);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--white);
+    margin-bottom: 40px;
+}
+
+/* aligne horizontalement pdp + pseudo + pays */
+.div-pseudo {
+    display: flex;
+    align-items: center;
+    padding-right: 100px;
+}
+
+/* photo de profil user */
+.avatar-profile {
+    width: 92px;
+    height: 92px;
+    margin-right: 10px;
+    background-color: var(--night-grey);
+    border: solid 1px var(--blue);
+    border-radius: 25%;
+    transition-property: all;
+    transition-duration: 500ms;
+}
+
+.avatar-profile:hover {
+    background-color: var(--night-grey-hovered);
+    border-color: var(--green);
+    padding: 2px;
+}
+
+/* style du nom d'utilisateur */
+.username-profile {
+    color: var(--blue);
+    font-weight: 400;
+}
+
+/* style du drapeaux à droite de l'username*/
+.country-profile {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+/* englobe les 3 sections statistiques */
+.div-statistiques {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.sous-div-stat {
+    display: grid;
+    gap: 0;
+}
+
+/* gère les 3 icons de la section statistique */
+.icon-stat {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/*  */
+.variable-stat {
+    font-size: 24px;
+    grid-column: 1/2;
+    grid-row: 1;
+    color: var(--blue);
+}
+
+/* partie variable (classement, nbr de points, challenges résolus) */
+.title-stat {
+    font-size: 20px;
+    text-align: center;
+    grid-column: 1/2;
+    grid-row: 2;
+}
+
+/* --------------- rankings & clasement profil --------------- */
+
+/* cible la div entiere des rooms lancées + classement */
+.second-part-profile {
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: var(--night-grey);
+}
+
+/* titre rooms lancées + classement (profile) */
+.title-sous-section {
+    color: var(--blue);
+    font-weight: 400;
+}
+
+/* touche aux icon de room et classement */
+.icon-second-part-profile {
+    width: 32px;
+    height: 32px;
+}
+
+/* ------------------ sous section ------------------ */
+.sous-section {
+    /* margin-left: 10px; */
+    padding: 10px;
+    border: solid 1px var(--dark-grey);
+    border-radius: 4px;
+    background-color: var(--night-grey);
+}
+
+/* ------------------ rooms partipées ------------------ */
+/* .rooms {} */
+
+.rooms hr {
+    color: var(--yellow);
+    border: solid 1px;
+}
+
+/* div concernat une room (à répéter en html) */
+.room-launched {
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 265px 265px 70px;
+    border: solid 1px var(--grey);
+    border-radius: 4px;
+    background-color: var(--night-grey);
+    padding-left: 10px;
+    margin-bottom: 30px;
+    transition-property: all;
+    transition-duration: 700ms;
+}
+
+.room-launched:hover {
+    background-color: var(--night-grey-hovered);
+    border-color: var(--green);
+}
+
+/* touche au nom/titre de la room lancé */
+.room-title {
+    color: var(--blue);
+    font-weight: 400;
+    font-size: 22px;
+    padding: 5px;
+    padding-right: 0;
+    grid-column: 1 /4;
+    grid-row: 1;
+
+}
+
+/* container icon room lancée */
+.img-room {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+/* img représentant la room lancée */
+.img-room img {
+    text-align: center;
+    width: 64px;
+    height: 64px;
+}
+
+/* affichage points tt room + points actuels du joueurs sur la room */
+.point-progression-room {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 5px;
+    padding-right: 0;
+    color: var(--white);
+}
+
+/* ------------------ ranking / classement ------------------ */
+/* catégorie classement */
+.ranking {
+    margin-left: 15px;
+}
+
+/* enleve le soulignement lien */
+.ranking a {
+    text-decoration: none;
+}
+
+/* touche l'entièretée de la table */
+.table-classement-profile {
+    width: 100%;
+    color: var(--white);
+    text-align: center;
+}
+
+/* header de la table */
+.table-classement-profile thead {
+    color: var(--off-white);
+}
+
+/* img de l'avatar du joueur dans le classement */
+.img-avatar-classement {
+    width: 25px;
+    height: 25px;
+}
+
+/* style de username classement */
+.username-classement-style {
+    color: var(--green);
+}
+
+/* affichage colonne score du classement en bleu */
+.td-score {
+    font-weight: 600;
+    color: var(--blue);
+}
+
+/* ligne concernant l'user connecté */
+.active-row {
+    background-color: var(--night-grey-hovered);
+    color: var(--pink);
+    font-weight: 500;
+    transition-property: all;
+    transition-duration: 700ms;
+}
+
+/* ligne tableau username connecté survolé */
+.active-row:hover {
+    background-color: #292c30;
+    font-weight: 600;
+}
+
+/* formate les liens comme on veut dans la ligne d'user co */
+.active-row a {
+    color: var(--pink);
+    text-decoration: none;
+}
+
+/* idem que au dessus mais avec colonne score */
+.active-row .td-score {
+    color: var(--pink);
+}
+
+/* style des lignes des user concurrents */
+.lambda-row {
+    transition: all;
+    transition-duration: 700ms;
+}
+
+/* pas de soulignemen aux liens des pseudo */
+.lambda-row a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+/* style des lignes des user concurrents survolés*/
+.lambda-row:hover {
+    background-color: #3c414a;
+}
+
+/* ----------------------------- classement ------------------------- */
+/* div classement */
+.classement {
+    /* margin-left: 15px; */
+    padding: 15px;
+    border: solid 1px var(--dark-grey);
+    border-radius: 4px;
+    background-color: var(--night-grey);
+
+}
+
+/* lignes différentes 1 fois sur 2 tableau*/
+.classement tr:nth-child(even) {
+    background-color: #222730;
+}
+
+.classement tr:nth-child(even):hover {
+    background-color: #3c414a;
+}
+
+/* img illustre classement */
+.img-classement {
+    width: 48px;
+    height: 48px;
+}
+
+.classement-header {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    color: var(--off-white-);
+    font-weight: 500;
+}
