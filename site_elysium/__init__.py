@@ -157,7 +157,7 @@ def setup_app(app: Flask):
         if question is None:
             question = Question(
                 room_id=1,
-                prompt=f"""**Qui** a écrit *cette* __question__?
+                prompt="""**Qui** a écrit *cette* __question__?
 Indice: `matt`
 Et voici un code block
 ```py

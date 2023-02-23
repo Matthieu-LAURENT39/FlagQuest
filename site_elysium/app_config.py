@@ -13,3 +13,13 @@ LINKEDIN_LINK = (
 )
 RSS_FEED_LINK = "https://www.root-me.org/?page=flux_rss&lang=fr"
 DISCORD_LINK = "https://discord.gg/XejsBJdUch"
+
+
+# ========== ADVANCED ==========
+# ===== Proxmox =====
+PROXMOX_IP = "172.17.50.250:8006"
+PROXMOX_LOGIN = "root@pam"
+PROXMOX_PASSWORD = "passw0rd"
+PROXMOX_VERIFY_SSL = False
+
+VM_NETWORK = "10.0.0.0/16"

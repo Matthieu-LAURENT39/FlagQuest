@@ -13,7 +13,7 @@
 {% block head %}
 {{super()}}
 <script src="{{url_for('static', filename='script/room.js')}}"></script>
-
+{#
 <!-- ---------------------------------------------- test ------------------------------------------------------- -->
 <script>
     const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
@@ -37,7 +37,7 @@
         })
     }
 </script>
-<!-- ---------------------------------------------- test ------------------------------------------------------- -->
+<!-- ---------------------------------------------- test ------------------------------------------------------- --> #}
 
 <script>
     function answerQuestion(question_id) {
@@ -84,7 +84,8 @@
         <div class="col">
             {% block top_button %}
             {# Si l'utilisateur n'est pas dans la room, on lui propose de la rejoindre #}
-            {% if current_user.is_authenticated and not user_is_in_room %}
+            {% if current_user.is_authenticated %}
+            {% if not user_is_in_room %}
             <div class="align-item-top">
                 {#
                 <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
@@ -92,7 +93,6 @@
                     la room
                 </a>
                 #}
-
                 <script>
                     function joinRoom() {
                         fetch('{{ url_for('api.join_room', room_url_name = room.url_name) }}', {
@@ -112,6 +112,47 @@
                     la room
                 </button>
             </div>
+            {# L'utilisateur est pas dans la room, on lui propose de lancer les VMs victimes #}
+            {% else %}
+            <div id="request-victim-vms" class="align-item-top">
+                <script>
+                    function displayVictimVMInfos(response) {
+                        vmInfoDiv = document.getElementById("victim-vm-info")
+                        for (const i in response) {
+                            var para = document.createElement("p");
+                            var node = document.createTextNode(response[i].ip_address);
+                            para.appendChild(node);
+                            vmInfoDiv.appendChild(para)
+                        }
+                    }
+
+                    function requestVictimVMs() {
+                        fetch('{{ url_for('api.request_victim_vms', room_url_name = room.url_name) }}', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                        })
+                            .then(response => response.json())
+                            // .then(response => alert(JSON.stringify(response)))
+                            .then(response => displayVictimVMInfos(response))
+                            .then(document.getElementById("request-victim-vms").style.display = 'none')
+                            .then(document.getElementById("victim-vm-info-container").style.display = 'block')
+                    }
+                </script>
+
+                <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Lancers les VMs
+                    victimes
+                </button>
+            </div>
+            <div id="victim-vm-info-container" class="p-2" style="display:none">
+                <div id="victim-vm-info" class="bg-white rounded-3 p-4">
+                    <h2>VMs victimes</h2>
+                </div>
+            </div>
+            {% endif %}
             {% endif %}
             {% endblock %}
 

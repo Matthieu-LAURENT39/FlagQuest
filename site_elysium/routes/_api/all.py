@@ -114,7 +114,7 @@ def answer_question():
 @api.route("/request_victim_vms/<room_url_name>", methods=["POST"])
 @login_required
 def request_victim_vms(room_url_name: str):
-    from vm import vm_manager
+    from vm import get_vm_manager
 
     # TODO: vérifier que l'utilisateur n'utilise pas déja une VM
     # We find the room
@@ -123,6 +123,13 @@ def request_victim_vms(room_url_name: str):
     ).first_or_404(description="Cette room n'existe pas.")
 
     vms_data: list[dict[str, str]] = []
+    # return jsonify(
+    #     [
+    #         {"ip_address": "192.168.1.1", "template_vm_id": "100"},
+    #         {"ip_address": "192.168.1.2", "template_vm_id": "101"},
+    #     ]
+    # )
+    vm_manager = get_vm_manager()
     for vm_id in room.victim_vm_ids:
         new_vm_db = VirtualMachine(user_id=current_user.id, template_vm_id=vm_id)
 
