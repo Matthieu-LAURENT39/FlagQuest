@@ -51,18 +51,12 @@ grey = police pour paragraphe
 
 /* ------------------------------ header ------------------------------ */
 
-/* inverse la couleur du logo rootme normalement noir vers blanc */
-.logo-rootme {
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
+.logo {
   width: 48px;
   height: 48px;
 }
 
-/* root-me logo plus gros pour accueil par exemple */
-.logo-rootme-large {
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
+.logo-large {
   width: 150px;
   height: 150px;
 }
