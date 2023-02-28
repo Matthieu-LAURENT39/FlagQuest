@@ -54,8 +54,13 @@ def create_app(config: object = Config) -> Flask:
     app.config["FLASK_ADMIN_SWATCH"] = "cerulean"
     admin.init_app(app)
 
-    from site_elysium.models import (Question, Room, User, UserQuestionData,
-                                     VirtualMachine)
+    from site_elysium.models import (
+        Question,
+        Room,
+        User,
+        UserQuestionData,
+        VirtualMachine,
+    )
 
     from .classes import AdminModelView
 

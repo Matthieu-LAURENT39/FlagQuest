@@ -4,6 +4,7 @@ from typing import Generic, Iterator, Optional, TypeVar
 
 Resource = TypeVar("Resource")
 
+
 # TODO: Rewrite using deque (https://docs.python.org/3/library/collections.html#collections.deque)
 class Allocator(Generic[Resource]):
     """Gère l'allocations de ressources a partir d'une source."""
