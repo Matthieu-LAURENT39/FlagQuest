@@ -74,7 +74,7 @@ def admin_user(database):
 def full_database(app: Flask, database, admin_user):
     """BDD mais avec des données de test."""
 
-    from site_elysium.models import User, Room, Question
+    from site_elysium.models import Question, Room, User
 
     with app.app_context():
         for i in range(15):

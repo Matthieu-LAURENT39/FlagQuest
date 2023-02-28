@@ -1,6 +1,8 @@
-from .. import db
-from sqlalchemy import Integer, Column, String, ForeignKey, DateTime
 from datetime import datetime
+
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
+
+from .. import db
 
 
 class UserQuestionData(db.Model):

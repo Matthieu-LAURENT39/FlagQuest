@@ -1,5 +1,5 @@
-from flask import render_template
 import werkzeug.exceptions
+from flask import render_template
 from jinja2 import TemplateNotFound
 
 from . import main

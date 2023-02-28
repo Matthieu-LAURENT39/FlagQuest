@@ -1,4 +1,6 @@
-from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, SQLAlchemySchema, auto_field
+from marshmallow_sqlalchemy import (SQLAlchemyAutoSchema, SQLAlchemySchema,
+                                    auto_field)
+
 from .. import Room
 
 

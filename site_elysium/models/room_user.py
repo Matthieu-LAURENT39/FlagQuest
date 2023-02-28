@@ -1,5 +1,6 @@
+from sqlalchemy import Column, ForeignKey, Integer
+
 from .. import db
-from sqlalchemy import Integer, Column, ForeignKey
 
 room_user = db.Table(
     "room_user",

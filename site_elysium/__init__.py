@@ -1,9 +1,12 @@
 from __future__ import annotations
+
+from typing import TYPE_CHECKING, Optional
+
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
 from flask_admin import Admin
-from typing import Optional, TYPE_CHECKING
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+
 from .backend.filters import markdown_filter
 from .flask_config import Config
 
@@ -51,13 +54,9 @@ def create_app(config: object = Config) -> Flask:
     app.config["FLASK_ADMIN_SWATCH"] = "cerulean"
     admin.init_app(app)
 
-    from site_elysium.models import (
-        User,
-        Room,
-        VirtualMachine,
-        Question,
-        UserQuestionData,
-    )
+    from site_elysium.models import (Question, Room, User, UserQuestionData,
+                                     VirtualMachine)
+
     from .classes import AdminModelView
 
     admin.add_view(AdminModelView(User, db.session))
@@ -70,7 +69,7 @@ def create_app(config: object = Config) -> Flask:
     app.jinja_env.filters["markdown"] = markdown_filter
 
     # Register the blueprints
-    from .routes import main, api
+    from .routes import api, main
 
     app.register_blueprint(main)
     app.register_blueprint(api)

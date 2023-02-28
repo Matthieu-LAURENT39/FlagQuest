@@ -1,5 +1,5 @@
-from ipaddress import IPv4Address, IPv4Network
 import json
+from ipaddress import IPv4Address, IPv4Network
 
 MAC_ADDRESS_LENGHT = 6
 IP_BYTES_LENGHT = 4

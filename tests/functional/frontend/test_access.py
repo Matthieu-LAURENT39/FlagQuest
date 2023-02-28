@@ -1,7 +1,8 @@
-from flask.testing import FlaskClient
-from flask import url_for
-import pytest
 from enum import Enum, auto
+
+import pytest
+from flask import url_for
+from flask.testing import FlaskClient
 from flask_login import login_user
 
 

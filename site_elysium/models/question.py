@@ -1,6 +1,8 @@
+from sqlalchemy import Column, ForeignKey, Integer, String
+
 from site_elysium import db
-from sqlalchemy import Integer, Column, String, ForeignKey
-from . import room_user, Room, User, UserQuestionData
+
+from . import Room, User, UserQuestionData, room_user
 
 
 class Question(db.Model):
