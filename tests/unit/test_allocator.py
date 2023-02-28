@@ -1,8 +1,6 @@
-from ipaddress import IPv4Address, IPv4Network
-
-import pytest
-
 from site_elysium.classes import Allocator
+from ipaddress import IPv4Network, IPv4Address
+import pytest
 
 
 @pytest.fixture

@@ -1,13 +1,11 @@
-import enum
-from ipaddress import IPv4Address
-from uuid import uuid4
-
-from sqlalchemy import Column, Enum, Integer, String
-from sqlalchemy_utils import IPAddressType, UUIDType
-
-from tools import mac_to_ip
-
 from .. import db
+from sqlalchemy import Integer, Column, String, Enum
+import enum
+from sqlalchemy_utils import IPAddressType, UUIDType
+from uuid import uuid4
+from tools import mac_to_ip
+from ipaddress import IPv4Address
+
 
 # class VMType(enum.Enum):
 #     attack = "attack"

@@ -1,6 +1,5 @@
-from sqlalchemy import ARRAY, Boolean, Column, Integer, String
-
 from .. import db
+from sqlalchemy import Integer, Column, String, Boolean, ARRAY
 from . import room_user
 
 

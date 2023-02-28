@@ -1,5 +1,8 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, SQLAlchemySchema, auto_field
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of ae7853a... Tri des imports
 from .. import Room
 
 

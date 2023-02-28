@@ -1,6 +1,6 @@
-from itertools import cycle
+from typing import Iterator, Optional, TypeVar, Generic
 from threading import Lock
-from typing import Generic, Iterator, Optional, TypeVar
+from itertools import cycle
 
 Resource = TypeVar("Resource")
 

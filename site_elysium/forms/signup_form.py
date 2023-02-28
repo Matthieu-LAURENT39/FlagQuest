@@ -1,5 +1,5 @@
-import wtforms
 from flask_wtf import FlaskForm
+import wtforms
 
 
 class SignupForm(FlaskForm):

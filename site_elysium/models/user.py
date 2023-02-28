@@ -1,9 +1,7 @@
-from flask_login import UserMixin
-from sqlalchemy import Boolean, Column, Integer, String
-from werkzeug.security import check_password_hash, generate_password_hash
-
 from .. import db
-
+from sqlalchemy import Integer, Column, String, Boolean
+from flask_login import UserMixin
+from werkzeug.security import check_password_hash, generate_password_hash
 
 # On hérite UserMixin afin d'avoir les @property par défaut
 class User(db.Model, UserMixin):

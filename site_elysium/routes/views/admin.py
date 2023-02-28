@@ -1,8 +1,6 @@
+from . import main
 from flask import render_template
 from flask_login import current_user
-
-from . import main
-
 
 # dashboard administrateur
 @main.route("/dashboard")

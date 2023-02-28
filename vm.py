@@ -1,11 +1,11 @@
 import ipaddress
 
-from flask import current_app
 from proxmoxer import ProxmoxAPI
 
-import site_elysium.models
 from site_elysium.classes import Allocator, VMManager
+import site_elysium.models
 from tools import ip_to_mac
+from flask import current_app
 
 _current_vm_manager = None
 

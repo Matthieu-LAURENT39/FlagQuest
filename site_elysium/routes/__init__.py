@@ -7,4 +7,4 @@ api = Blueprint(
     url_prefix="/api",
 )
 
-from . import _api, views
+from . import views, _api
