@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "njpwerner.autodocstring",
+        "ms-python.isort",
+        "qwtel.sqlite-viewer",
+        "ms-python.python",
+        "samuelcolvin.jinjahtml"
+    ]
+}
