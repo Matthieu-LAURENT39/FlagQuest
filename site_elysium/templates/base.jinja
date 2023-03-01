@@ -11,7 +11,11 @@
     <!-- css personnel -->
     <link rel="stylesheet" href="/static/style/style.css">
     <link rel="stylesheet" href="/static/style/code_style.css">
-    <link rel="stylesheet" href="/static/style/media-responsive.css">
+    <link rel="stylesheet" href="/static/style/media_responsive.css">
+    <link rel="stylesheet" href="/static/style/header.css">
+    <link rel="stylesheet" href="/static/style/user_information.css">
+    <link rel="stylesheet" href="/static/style/room.css">
+    <link rel="stylesheet" href="/static/style/footer.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -22,8 +26,6 @@
         crossorigin="anonymous"></script>
 
     {% endblock %}
-    <link rel="stylesheet" href="/static/style/footer.css">
-    <link rel="stylesheet" href="/static/style/header.css">
 </head>
 
 
@@ -53,30 +55,32 @@
                         </a>
                         <ul class="dropdown-content dropdown-menu text-small" style="">
                             <!-- contenu du menu / ce qui défile -->
+                            {# lien vers profil user #}
                             <li>
                                 <a class="dropdown-item" href="{{ url_for('main.profile') }}">
                                     <span>Mon profil</span>
                                     <img src="/static/img/avatar.png">
                                 </a>
                             </li>
+                            {# lien vers classement #}
                             <li>
                                 <a class="dropdown-item" href="{{ url_for('main.classement') }}">
                                     <span>Classement</span>
                                     <img src="/static/img/podium.svg">
                                 </a>
                             </li>
+                            {# affiche lien panel admin si user est connecté en admin #}
                             {% if current_user.is_admin == true %}
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('main.dashboard') }}">
-                                    <span>Dashboard</span>
+                                <a class="dropdown-item" href="{{ url_for('admin.index') }}">
+                                    <span>Panel admin</span>
                                     <img src="/static/img/cadenas.svg">
                                 </a>
                             </li>
                             {% endif%}
-                            {# <li><a class="dropdown-item" href="#">Mes paramètre</a></li> #}
-                            {# <li><a class="dropdown-item" href="#">Mes messages</a></li> #}
+
                             <li>
-                                <hr class="dropdown-divider">
+                                <hr class="dropdown-divider"> <!-- simple séparation estétique -->
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{ url_for('main.deconnexion') }}">
