@@ -5,6 +5,11 @@
 {% set user_is_in_room = current_user in room.users %}
 {# {% set nbr_question_solved = sum(q.is_solved_by(current_user) for q in room.questions) %} #}
 {% set nbr_question_total = room.questions | length %}
+{% if nbr_question_total == 0 %}
+{% set progress_percentage = 0 %}
+{% else %}
+{% set progress_percentage = (nbr_question_solved / nbr_question_total*100)|round|int %}
+{% endif %}
 
 {% block title %}
 {{ super() }} - {{room.name}}
@@ -189,8 +194,7 @@
                     <div class="progress">
                         <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if nbr_question_solved == nbr_question_total else ''}}"
                             aria-valuenow="{{nbr_question_solved}}" aria-valuemin="0"
-                            aria-valuemax="{{nbr_question_total}}"
-                            style="width: {{ (nbr_question_solved/nbr_question_total*100)|round|int }}%"></div>
+                            aria-valuemax="{{nbr_question_total}}" style="width: {{ progress_percentage }}%"></div>
                     </div>
                 </div>
                 <!-- VM -->
