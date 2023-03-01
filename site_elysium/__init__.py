@@ -3,9 +3,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_admin import Admin
-from typing import Optional, TYPE_CHECKING
 from .backend.filters import markdown_filter
 from .flask_config import Config
+
+from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .models import User
