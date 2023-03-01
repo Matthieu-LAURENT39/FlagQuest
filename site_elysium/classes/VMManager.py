@@ -216,6 +216,11 @@ class VMManager:
         }
 
     def delete_vm(self, vm_id: int):
+        """Supprime une VM sur proxmox.
+
+        Args:
+            vm_id (int): L'ID de la VM à supprimer.
+        """
         # On ne peut pas supprimer une VM qui est allumé
         self.stop_vm(vm_id)
         self.api.nodes(self.node_name).qemu(vm_id).delete()
