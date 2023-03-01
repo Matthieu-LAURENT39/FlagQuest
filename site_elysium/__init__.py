@@ -52,7 +52,6 @@ def create_app(config: object = Config) -> Flask:
     admin.init_app(app)
 
     from site_elysium.models import (
-<<<<<<< HEAD
         Question,
         Room,
         User,
@@ -60,14 +59,6 @@ def create_app(config: object = Config) -> Flask:
         VirtualMachine,
     )
 
-=======
-        User,
-        Room,
-        VirtualMachine,
-        Question,
-        UserQuestionData,
-    )
->>>>>>> parent of ae7853a... Tri des imports
     from .classes import AdminModelView
 
     admin.add_view(AdminModelView(User, db.session))

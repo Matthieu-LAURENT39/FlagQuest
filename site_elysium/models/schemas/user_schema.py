@@ -1,8 +1,4 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, SQLAlchemySchema, auto_field
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of ae7853a... Tri des imports
 from site_elysium.models import User
 
 
