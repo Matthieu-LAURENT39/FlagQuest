@@ -61,4 +61,5 @@
         }
     ],
     "better-comments.multilineComments": true,
+    "python.linting.pylintEnabled": true,
 }

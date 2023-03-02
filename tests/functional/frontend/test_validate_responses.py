@@ -5,7 +5,7 @@ Vérifie que le code HTML généré par les templates est de l'HTML5 valide.
 from flask import Flask, url_for
 from flask.testing import FlaskClient
 
-# TODO: Réécrire
+# TODO: Réécrire ce test
 
 # // def _validate_HTML(html: str) -> bool:
 # //     """Valide que l'HTML est valide.
