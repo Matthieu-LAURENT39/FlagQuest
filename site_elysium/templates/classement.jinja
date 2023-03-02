@@ -64,20 +64,6 @@
                 </tbody>
             </table>
         </div>
-
-        {# test liste user db score ... #}
-        <div class="text-light pt-4">
-            <p>id - username - email - score</p>
-            {% for user in user%}
-            <p>{{user.id}} - {{user.username}} - {{user.email}} - {{user.score}}</p>
-
-            {% endfor%}
-            {# nombre total d'utilisateur #}
-            <p>nbr total d'user : {{nbr_user}}</p>
-        </div>
-        {# fin test #}
     </div>
-
-
 
     {% endblock %}
