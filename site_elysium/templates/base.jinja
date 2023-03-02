@@ -146,16 +146,17 @@
         <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
     </div>
     <ul class="nav justify-content-center">
-        <li class="nav-item"><a href="#"
+        <li class="nav-item"><a href="{{config.CONFIDENTIALITE_LINK}}"
                 class="nav-link px-2 text-muted text-secondary-emphasis fs-6">Confidentialité</a></li>
         <!-- <li class="nav-item ">&nbsp;|</li> -->
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-secondary-emphasis fs-6">Mentions Légales</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-secondary-emphasis fs-6">Conditions Générales
+        <li class="nav-item"><a href="{{config.MENTIONS_LEGALES_LINK}}"
+                class="nav-link px-2 text-secondary-emphasis fs-6">Mentions Légales</a></li>
+        <li class="nav-item"><a href="{{config.CONDITION_GENERALES_D_UTILISATION_LINK}}"
+                class="nav-link px-2 text-secondary-emphasis fs-6">Conditions Générales
                 d'Utilisation</a></li>
     </ul>
-    <p class="text-center p-0 m-0 text-white fs-6">Root Me : plateforme d’apprentissage dédiée au Hacking et à la
-        Sécurité de l’Information</p>
-    <p class="text-center border-bottom border-secondary pb-3 mb-3 text-white fs-6">© 2010 - 2023</p>
+    <p class="text-center p-0 m-0 text-white fs-6">{{config.SENTENCE_FOOTER_END}}</p>
+    <p class="text-center border-bottom border-secondary pb-3 mb-3 text-white fs-6">{{config.COPYRIGHT}}</p>
 
     <ul class="nav justify-content-center">
         {# TODO: Faire un test que les logos se cachent bien si l'URL n'existe pas #}
