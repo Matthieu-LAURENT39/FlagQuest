@@ -1,8 +1,6 @@
 import time
-from ipaddress import IPv4Address
 from threading import Lock
 from typing import TYPE_CHECKING, Optional
-from uuid import uuid4
 
 from proxmoxer import ProxmoxAPI
 
@@ -139,7 +137,7 @@ class VMManager:
         """Défini l'adresse mac d'une machine virtuelle
 
         Args:
-            vm_id (int): L'ID de la machine virtuelle à qui donnée l'addresse.
+            vm_id (int): L'ID de la machine virtuelle à qui donnée l’adresse.
             mac_address (str): L'adresse mac, de la forme 'AA:BB:CC:DD:EE:FF'
         """
         self.api.nodes(self.node_name).qemu(vm_id).config.post(

@@ -16,7 +16,7 @@ class Allocator(Generic[Resource]):
 
         Args:
             source (Iterator[Resource]): L'entiereté des resources allouable.
-            allocated (Optional[set[Resource]], optional): Les resources qui sont déja alloué. Defaults to None.
+            allocated (Optional[set[Resource]], optional): Les resources déja alloué.
         """
         self.source = cycle(source)
         if allocated is None:

@@ -1,7 +1,8 @@
-from .. import db
-from sqlalchemy import Integer, Column, String, Boolean
 from flask_login import UserMixin
+from sqlalchemy import Boolean, Column, Integer, String
 from werkzeug.security import check_password_hash, generate_password_hash
+
+from .. import db
 
 
 # On hérite UserMixin afin d'avoir les @property par défaut
@@ -24,7 +25,7 @@ class User(db.Model, UserMixin):
     score = Column(Integer, nullable=False, default=0)
 
     def set_password(self, password: str) -> None:
-        """Défini le mot de passe d'un utilisateur en stoquant son hash
+        """Défini le mot de passe d'un utilisateur en stockant son hash
 
         Args:
             password (str): Le nouveau mot de passe en clair de l'utilisateur
