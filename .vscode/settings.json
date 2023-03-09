@@ -62,4 +62,5 @@
     ],
     "better-comments.multilineComments": true,
     "python.linting.pylintEnabled": true,
+    "thunder-client.defaultUrl": "http://127.0.0.1:5000/",
 }
