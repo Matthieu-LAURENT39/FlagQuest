@@ -32,8 +32,8 @@ class VMManager:
         Args:
             api: (ProxmoxAPI): le client proxmox à utiliser
             node_name (str): Le nom du node promox sur lequel stocker les VMs.
-            mac_manager (Allocator): Un Allocator gérant l'allocation des adresses MAC (avec des str).
-            display_port_manager (Allocator): Un Allocator gérant l'allocation des display ports (avec des int).
+            mac_manager (Allocator[str]): Un Allocator gérant l'allocation des adresses MAC.
+            display_port_manager (Allocator[int]): Un Allocator gérant l'allocation des display ports.
 
         Raises:
             ValueError: api_token n'étais pas valide
