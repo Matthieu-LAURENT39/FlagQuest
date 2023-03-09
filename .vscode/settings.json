@@ -63,4 +63,8 @@
     "better-comments.multilineComments": true,
     "python.linting.pylintEnabled": true,
     "thunder-client.defaultUrl": "http://127.0.0.1:5000/",
+    "codesnap.shutterAction": "copy",
+    "codesnap.transparentBackground": true,
+    "codesnap.showWindowControls": false,
+    "codesnap.showLineNumbers": true,
 }
