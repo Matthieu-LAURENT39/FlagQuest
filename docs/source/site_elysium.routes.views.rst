@@ -4,14 +4,6 @@ site\_elysium.routes.views package
 Submodules
 ----------
 
-site\_elysium.routes.views.admin module
----------------------------------------
-
-.. automodule:: site_elysium.routes.views.admin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 site\_elysium.routes.views.auth module
 --------------------------------------
 
