@@ -18,12 +18,29 @@ login_manager = LoginManager()
 
 @login_manager.user_loader
 def load_user(user_id: str) -> Optional["User"]:
+    """Chargeur d'utilisateur pour Flask-Login
+
+    Args:
+        user_id (str): L'ID de l'utilisateur à charger.
+
+    Returns:
+        Optional[User]: L'utilisateur, ou None si il n'existe pas.
+    """
+
     from .models import User
 
     return User.query.filter_by(id=user_id).first()
 
 
 def create_app(config: object = Config) -> Flask:
+    """App factory pour Flask
+
+    Args:
+        config (object, optional): L'objet de configuration à charger. Defaults to Config.
+
+    Returns:
+        Flask: l'app Flask
+    """
     app = Flask(
         __name__,
         static_folder="static",
@@ -85,6 +102,11 @@ def create_app(config: object = Config) -> Flask:
 
 
 def setup_app(app: Flask):
+    """Génère des données de base dans l'app
+
+    Args:
+        app (Flask): l'app où généré les données.
+    """
     from site_elysium.models import Question, Room, User
 
     with app.app_context():

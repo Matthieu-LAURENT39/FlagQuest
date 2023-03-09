@@ -102,10 +102,6 @@ class VMManager:
     #     return f"https://172.17.50.250:8006/api2/json/nodes/cooldomain/lxc/101/vncwebsocket?port={port}&vncticket={urllib.parse.quote_plus(ticket)}"
     #     return f"wss://172.17.50.250:8006/api2/json/nodes/{self.node_name}/lxc/{vm_id}/vncwebsocket?port={port}&vncticket={ticket}"
 
-    def _set_vnc_password(self, vm_id: int, password: str):
-        raise NotImplementedError()
-        # self.api.
-
     def _enable_vnc(
         self, vm_id: int, display_port: int, password: Optional[str] = None
     ):
@@ -140,6 +136,12 @@ class VMManager:
         )
 
     def _set_mac(self, vm_id: int, mac_address: str):
+        """Défini l'adresse mac d'une machine virtuelle
+
+        Args:
+            vm_id (int): L'ID de la machine virtuelle à qui donnée l'addresse.
+            mac_address (str): L'adresse mac, de la forme 'AA:BB:CC:DD:EE:FF'
+        """
         self.api.nodes(self.node_name).qemu(vm_id).config.post(
             net0=f"virtio,macaddr={mac_address}"
         )

@@ -3,6 +3,10 @@ from .. import Room
 
 
 class RoomSchema(SQLAlchemyAutoSchema):
+    """
+    Schéma Marshmallow pour sérialisation des rooms
+    """
+
     class Meta:
         model = Room
         include_relationships = True

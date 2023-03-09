@@ -3,3 +3,4 @@ pytest-flask==1.2.0
 pylint
 flake8
 sphinx
+docstr-coverage
