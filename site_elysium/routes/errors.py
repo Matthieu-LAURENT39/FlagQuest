@@ -13,6 +13,11 @@ from . import main
 
 @main.errorhandler(werkzeug.exceptions.HTTPException)
 def generic_error(e: werkzeug.exceptions.HTTPException):
+    """Gère toutes les erreurs HTTPS non géré par une autre gestionaire
+
+    Args:
+        e (werkzeug.exceptions.HTTPException): L'erreur qui a été levé
+    """
     response = e.get_response()
 
     # On essaie d'afficher les erreurs pour lesquelles on a une page particulière

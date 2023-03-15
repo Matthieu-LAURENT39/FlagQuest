@@ -1,4 +1,8 @@
 class Config:
+    """
+    La configuration de production de Flask.
+    """
+
     SECRET_KEY = "ChangeMeIAmNotSecure"
 
     # SQLAlchemy
@@ -6,6 +10,10 @@ class Config:
 
 
 class TestConfig(Config):
+    """
+    La configuration de test de Flask.
+    """
+
     TESTING = True
 
     # SQLAlchemy

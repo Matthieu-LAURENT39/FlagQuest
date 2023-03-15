@@ -15,7 +15,6 @@ SENTENCE_FOOTER_END = "Root Me : plateforme d'apprentissage dédiée au hacking 
 COPYRIGHT = "© 2023"
 
 # ===== Liens Footer =====
-
 # Laissé un lien vide pour le retirer
 TWITTER_LINK = "https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fwww.root-me.org%2F&region=follow_link&screen_name=rootme_org&tw_p=followbutton"
 LINKEDIN_LINK = (

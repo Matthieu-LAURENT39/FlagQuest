@@ -5,6 +5,7 @@
         "ms-python.isort",
         "qwtel.sqlite-viewer",
         "ms-python.python",
-        "samuelcolvin.jinjahtml"
+        "samuelcolvin.jinjahtml",
+        "rangav.vscode-thunder-client"
     ]
 }

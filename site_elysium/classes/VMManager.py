@@ -1,8 +1,6 @@
 import time
-from ipaddress import IPv4Address
 from threading import Lock
 from typing import TYPE_CHECKING, Optional
-from uuid import uuid4
 
 from proxmoxer import ProxmoxAPI
 
@@ -32,8 +30,8 @@ class VMManager:
         Args:
             api: (ProxmoxAPI): le client proxmox à utiliser
             node_name (str): Le nom du node promox sur lequel stocker les VMs.
-            mac_manager (Allocator): Un Allocator gérant l'allocation des adresses MAC (avec des str).
-            display_port_manager (Allocator): Un Allocator gérant l'allocation des display ports (avec des int).
+            mac_manager (Allocator[str]): Un Allocator gérant l'allocation des adresses MAC.
+            display_port_manager (Allocator[int]): Un Allocator gérant l'allocation des display ports.
 
         Raises:
             ValueError: api_token n'étais pas valide
@@ -102,10 +100,6 @@ class VMManager:
     #     return f"https://172.17.50.250:8006/api2/json/nodes/cooldomain/lxc/101/vncwebsocket?port={port}&vncticket={urllib.parse.quote_plus(ticket)}"
     #     return f"wss://172.17.50.250:8006/api2/json/nodes/{self.node_name}/lxc/{vm_id}/vncwebsocket?port={port}&vncticket={ticket}"
 
-    def _set_vnc_password(self, vm_id: int, password: str):
-        raise NotImplementedError()
-        # self.api.
-
     def _enable_vnc(
         self, vm_id: int, display_port: int, password: Optional[str] = None
     ):
@@ -140,6 +134,12 @@ class VMManager:
         )
 
     def _set_mac(self, vm_id: int, mac_address: str):
+        """Défini l'adresse mac d'une machine virtuelle
+
+        Args:
+            vm_id (int): L'ID de la machine virtuelle à qui donnée l’adresse.
+            mac_address (str): L'adresse mac, de la forme 'AA:BB:CC:DD:EE:FF'
+        """
         self.api.nodes(self.node_name).qemu(vm_id).config.post(
             net0=f"virtio,macaddr={mac_address}"
         )

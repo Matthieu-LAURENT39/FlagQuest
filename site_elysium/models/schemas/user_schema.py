@@ -10,6 +10,10 @@ from site_elysium.models import User
 
 
 class UserSchema(SQLAlchemySchema):
+    """
+    Schéma Marshmallow pour sérialisation des utilisateurs
+    """
+
     class Meta:
         model = User
 

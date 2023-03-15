@@ -11,6 +11,7 @@ site\_elysium.classes.Allocator module
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __init__
 
 site\_elysium.classes.VMManager module
 --------------------------------------
@@ -19,6 +20,7 @@ site\_elysium.classes.VMManager module
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __init__
 
 site\_elysium.classes.views module
 ----------------------------------
@@ -35,3 +37,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __init__
