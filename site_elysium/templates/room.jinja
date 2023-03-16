@@ -184,7 +184,7 @@
         </div>
         {% endblock %}
 
-        {% block sidebar_vm %}
+        {% block sidebar %}
         {% if current_user.is_authenticated %}
         <div class="col-7 p-0 mt-2">
             <div class="container p-0" style="position:sticky; top:5%;">
@@ -197,10 +197,15 @@
                             aria-valuemax="{{nbr_question_total}}" style="width: {{ progress_percentage }}%"></div>
                     </div>
                 </div>
-                <!-- VM -->
-                <iframe class="responsive-iframe " style="width: 100% height: 100%;"
+                {# <!-- VM --> #}
+                {# <iframe class="responsive-iframe " style="width: 100% height: 100%;"
                     src="http://172.17.50.249:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale">
-                </iframe>
+                </iframe> #}
+                {# <iframe class="responsive-iframe " sandbox='allow-same-origin allow-scripts allow-modals'
+                    style="width: 100% height: 100%;" src="{{vnc_url}}">
+                </iframe> #}
+                {# <iframe class="responsive-iframe " style="width: 100% height: 100%;" src="{{vnc_url}}">
+                </iframe> #}
             </div>
         </div>
         {% endif %}

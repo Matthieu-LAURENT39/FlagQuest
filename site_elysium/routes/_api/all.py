@@ -155,7 +155,9 @@ def request_victim_vms(room_url_name: str):
 @login_required
 def delete_vms():
     """Supprime toute les VMs possédé par l'utilisateur."""
-    from vm import vm_manager
+    from vm import get_vm_manager
+
+    vm_manager = get_vm_manager()
 
     rooms: list[models.VirtualMachine] = models.VirtualMachine.query.filter_by(
         user_id=current_user.id

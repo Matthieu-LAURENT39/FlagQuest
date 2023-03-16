@@ -1,5 +1,5 @@
 from . import main
-from flask import render_template
+from flask import render_template, make_response
 from flask_login import current_user
 
 
@@ -29,6 +29,17 @@ def room(room_url_name: str):
     else:
         nbr_question_solved = None
         user_existing_vms = None
+
+    # from vm import get_vm_manager
+
+    # vm_manager = get_vm_manager()
+    # # vnc_url = f"https://172.17.50.250:8006/vnc.html?host=172.17.50.250&port=6080&autoconnect=true&resize=scale"
+    # # vnc_url = "https://172.17.50.250:8006/?console=kvm&novnc=1&vmid=103&vmname=test&node=rootme&resize=off&cmd="
+
+    # try:
+    #     vnc_url = vm_manager.get_vnc_token(103)
+    # except Exception:
+    #     vnc_url = ""
 
     return render_template(
         "room.jinja",

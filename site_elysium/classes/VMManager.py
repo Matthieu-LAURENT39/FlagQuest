@@ -1,10 +1,16 @@
+from __future__ import annotations
 import time
 from threading import Lock
 from typing import TYPE_CHECKING, Optional
+from dataclasses import dataclass
+import urllib.parse
 
 from proxmoxer import ProxmoxAPI
 
 from site_elysium.classes import Allocator
+
+if TYPE_CHECKING:
+    from . import WebsockifyManager
 
 
 class VMManager:
@@ -24,6 +30,7 @@ class VMManager:
         node_name: str,
         mac_manager: Allocator[str],
         display_port_manager: Allocator[int],
+        websockify_manager: "WebsockifyManager",
     ) -> None:
         """Initialise la classe
 
@@ -43,6 +50,7 @@ class VMManager:
 
         self._mac_manager = mac_manager
         self._display_port_manager = display_port_manager
+        self._websockify_manager = websockify_manager
 
         self._test_auth()
 
@@ -116,6 +124,9 @@ class VMManager:
             args += ",password=on"
             # Then set it
             self._set_vnc_password(vm_id, password)
+
+        port = 5900 + display_port
+        self._websockify_manager.create_websocket(port, port)
 
         self.api.nodes(self.node_name).qemu(vm_id).config.post(args=args)
 
@@ -224,3 +235,35 @@ class VMManager:
         # On ne peut pas supprimer une VM qui est allumé
         self.stop_vm(vm_id)
         self.api.nodes(self.node_name).qemu(vm_id).delete()
+
+    # def get_vnc_token(self, vm_id: int) -> str:
+    #     proxy_data = (
+    #         self.api.nodes(self.node_name)
+    #         .qemu(vm_id)
+    #         .vncproxy.post(websocket=1)  # , **{"generate-password": 1})
+    #     )
+    #     print(proxy_data)
+
+    #     # websocket_data = (
+    #     #     self.api.nodes(self.node_name)
+    #     #     .qemu(vm_id)
+    #     #     .vncwebsocket.get(
+    #     #         port=proxy_data["port"],
+    #     #         vncticket=proxy_data["ticket"],
+    #     #     )
+    #     # )
+
+    #     ticket = self.api.get_tokens()[0]
+    #     # print(websocket_data)
+    #     # port =  int(websocket_data["port"])
+
+    #     path = urllib.parse.quote(
+    #         f"api2/json/nodes/{self.node_name}/qemu/{vm_id}/vncwebsocket?port={proxy_data['port']}&vncticket={urllib.parse.quote(proxy_data['ticket'], safe='')}",
+    #         safe="",
+    #     )
+    #     # vnc_url = f"https://novnc.com/noVNC/vnc.html?host=172.17.50.250&port=8006&autoconnect=true&resize=scale&encrypt=1&path={path}"
+    #     # vnc_url = f"http://172.17.50.249:5900/vnc.html?password={urllib.parse.quote(proxy_data['password'])}&autoconnect=true&resize=scale&encrypt=1"
+
+    #     vnc_url = f"https://172.17.50.250:8006/?console=kvm&novnc=1&node={self.node_name}&resize=1&vmid={vm_id}&path=api2/json/nodes/{self.node_name}/qemu/{vm_id}/vncwebsocket/port/{proxy_data['port']}/vncticket/{urllib.parse.quote(proxy_data['ticket'], safe='')}"
+    #     print(proxy_data["port"])
+    #     return vnc_url

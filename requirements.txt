@@ -13,3 +13,5 @@ proxmoxer
 requests
 Flask-Admin
 Pygments==2.14.0
+
+websockify
