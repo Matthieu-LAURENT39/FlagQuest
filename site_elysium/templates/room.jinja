@@ -100,7 +100,6 @@
                 </a>
                 #}
                 <script>
-                    // fonction button Rejoindre la room
                     function joinRoom() {
                         fetch('{{ url_for('api.join_room', room_url_name = room.url_name) }}', {
                             method: 'POST',
@@ -111,8 +110,6 @@
                         })
                             .then(response => response.json())
                             .then(response => alert(JSON.stringify(response)))
-                            // refresh la page une fois que la room est rejoint
-                            .then(location.reload())
                     }
                 </script>
 
@@ -161,6 +158,11 @@
             {# TODO: Afficher les VMs existante et permettre de les supprimer #}
             {% endif %}
             {% endif %}
+            {# Info VM attaque #}
+            {% if user_attack_vm %}
+            <p>{{user_attack_vm.ip_address}}</p>
+            <p>{{user_attack_vm.display_port}}</p>
+            {% endif %}
             {% endif %}
             {% endblock %}
             <div id="victim-vm-info-container" class="p-2" style="display:none">
@@ -187,7 +189,7 @@
         </div>
         {% endblock %}
 
-        {% block sidebar %}
+        {% block sidebar_vm %}
         {% if current_user.is_authenticated %}
         <div class="col-7 p-0 mt-2">
             <div class="container p-0" style="position:sticky; top:5%;">
@@ -200,15 +202,15 @@
                             aria-valuemax="{{nbr_question_total}}" style="width: {{ progress_percentage }}%"></div>
                     </div>
                 </div>
-                {# <!-- VM --> #}
+                <!-- VM -->
                 {# <iframe class="responsive-iframe " style="width: 100% height: 100%;"
                     src="http://172.17.50.249:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale">
                 </iframe> #}
                 {# <iframe class="responsive-iframe " sandbox='allow-same-origin allow-scripts allow-modals'
                     style="width: 100% height: 100%;" src="{{vnc_url}}">
                 </iframe> #}
-                {# <iframe class="responsive-iframe " style="width: 100% height: 100%;" src="{{vnc_url}}">
-                </iframe> #}
+                <iframe class="responsive-iframe " style="width: 100% height: 100%;" src="{{vnc_url}}">
+                </iframe>
             </div>
         </div>
         {% endif %}

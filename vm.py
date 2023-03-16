@@ -2,7 +2,7 @@ import ipaddress
 
 from proxmoxer import ProxmoxAPI
 
-from site_elysium.classes import Allocator, VMManager, WebsockifyManager
+from site_elysium.classes import Allocator, VMManager
 import site_elysium.models
 from tools import ip_to_mac
 from flask import current_app

@@ -9,9 +9,6 @@ from proxmoxer import ProxmoxAPI
 
 from site_elysium.classes import Allocator
 
-if TYPE_CHECKING:
-    from . import WebsockifyManager
-
 
 class VMManager:
     """
@@ -49,7 +46,6 @@ class VMManager:
 
         self._mac_manager = mac_manager
         self._display_port_manager = display_port_manager
-        self._websockify_manager = websockify_manager
 
         self._test_auth()
 
@@ -119,14 +115,13 @@ class VMManager:
         """
         args = f"-vnc 0.0.0.0:{display_port}"
         if password is not None:
+            raise NotImplementedError()
             # Enable password
             args += ",password=on"
             # Then set it
             self._set_vnc_password(vm_id, password)
 
         port = 5900 + display_port
-        self._websockify_manager.create_websocket(port, port)
-
         self.api.nodes(self.node_name).qemu(vm_id).config.post(args=args)
 
     def _run_command(self, vm_id: int, command: str) -> str:

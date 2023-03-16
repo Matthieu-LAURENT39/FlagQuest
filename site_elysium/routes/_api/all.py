@@ -1,7 +1,7 @@
 import json
 
 import werkzeug.exceptions
-from flask import Blueprint, Response, abort, jsonify, redirect, request
+from flask import Blueprint, Response, abort, jsonify, redirect, request, current_app
 from flask_login import current_user, login_required
 from flask_restful import Api, Resource
 
@@ -133,7 +133,7 @@ def request_victim_vms(room_url_name: str):
     for vm_id in room.victim_vm_ids:
         new_vm_db = VirtualMachine(user_id=current_user.id, template_vm_id=vm_id)
 
-        vm_infos = vm_manager.setup(vm_id, new_vm_db.vm_name, vnc=True)
+        vm_infos = vm_manager.setup(vm_id, new_vm_db.vm_name, vnc=False)
 
         new_vm_db.mac_address = vm_infos["mac_address"]
         new_vm_db.display_port = vm_infos["display_port"]
@@ -151,6 +151,43 @@ def request_victim_vms(room_url_name: str):
     # return {"ip_address": new_vm_db.ip_address.compressed}
 
 
+@api.route("/request_attack_vm", methods=["POST"])
+@login_required
+def request_attack_vm():
+    from vm import get_vm_manager
+
+    user_attack_vm: VirtualMachine | None = (
+        VirtualMachine.query.filter_by(user_id=current_user.id)
+        .filter(VirtualMachine.display_port.isnot(None))
+        .first()
+    )
+
+    if user_attack_vm is None:
+        vm_manager = get_vm_manager()
+        attack_vm_id = current_app.config["ATTACK_VM_TEMPLATE_ID"]
+        user_attack_vm = VirtualMachine(
+            user_id=current_user.id, template_vm_id=attack_vm_id
+        )
+
+        vm_infos = vm_manager.setup(attack_vm_id, user_attack_vm.vm_name, vnc=True)
+
+        user_attack_vm.mac_address = vm_infos["mac_address"]
+        user_attack_vm.display_port = vm_infos["display_port"]
+        user_attack_vm.proxmox_id = vm_infos["vm_id"]
+
+        db.session.add(user_attack_vm)
+
+    vm_data = {
+        "ip_address": current_app.config["PROXMOX_HOST"],
+        "vnc_port": user_attack_vm.vnc_port,
+    }
+
+    db.session.commit()
+
+    return jsonify(vm_data)
+    # return {"ip_address": new_vm_db.ip_address.compressed}
+
+
 @api.route("/delete_vms/", methods=["POST"])
 @login_required
 def delete_vms():
@@ -159,11 +196,11 @@ def delete_vms():
 
     vm_manager = get_vm_manager()
 
-    rooms: list[models.VirtualMachine] = models.VirtualMachine.query.filter_by(
+    vms: list[models.VirtualMachine] = models.VirtualMachine.query.filter_by(
         user_id=current_user.id
     ).all()
 
-    for vm in rooms:
+    for vm in vms:
         vm_manager.delete_vm(vm.proxmox_id)
         db.session.delete(vm)
 

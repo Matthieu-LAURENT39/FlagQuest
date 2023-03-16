@@ -27,8 +27,12 @@ DISCORD_LINK = "https://discord.gg/XejsBJdUch"
 # ========== ADVANCED ==========
 # ===== Proxmox =====
 PROXMOX_IP = "172.17.50.250:8006"
+PROXMOX_HOST = "172.17.50.250"
 PROXMOX_LOGIN = "root@pam"
 PROXMOX_PASSWORD = "passw0rd"
 PROXMOX_VERIFY_SSL = False
 
 VM_NETWORK = "10.0.0.0/16"
+
+ATTACK_VM_TEMPLATE_ID = "100"
+VICTIM_VM_PREFIX = "automatic"
