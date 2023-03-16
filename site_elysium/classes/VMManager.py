@@ -30,7 +30,6 @@ class VMManager:
         node_name: str,
         mac_manager: Allocator[str],
         display_port_manager: Allocator[int],
-        websockify_manager: "WebsockifyManager",
     ) -> None:
         """Initialise la classe
 

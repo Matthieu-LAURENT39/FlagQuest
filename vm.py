@@ -47,7 +47,6 @@ def get_vm_manager() -> VMManager:
             "rootme",
             _mac_allocator,
             _display_port_allocator,
-            WebsockifyManager("172.17.50.250"),
         )
 
     return _current_vm_manager
