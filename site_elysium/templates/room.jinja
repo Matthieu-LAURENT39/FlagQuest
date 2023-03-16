@@ -100,6 +100,7 @@
                 </a>
                 #}
                 <script>
+                    // fonction button Rejoindre la room
                     function joinRoom() {
                         fetch('{{ url_for('api.join_room', room_url_name = room.url_name) }}', {
                             method: 'POST',
@@ -110,6 +111,8 @@
                         })
                             .then(response => response.json())
                             .then(response => alert(JSON.stringify(response)))
+                            // refresh la page une fois que la room est rejoint
+                            .then(location.reload())
                     }
                 </script>
 
