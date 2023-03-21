@@ -1,4 +1,4 @@
-from site_elysium import db
+from .. import db
 from sqlalchemy import Integer, Column, String, ForeignKey
 from . import room_user, Room, User, UserQuestionData
 

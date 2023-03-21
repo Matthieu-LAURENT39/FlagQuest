@@ -69,7 +69,7 @@ def create_app(config: object = Config) -> Flask:
     app.config["FLASK_ADMIN_SWATCH"] = "cerulean"
     admin.init_app(app)
 
-    from site_elysium.models import (
+    from .models import (
         Question,
         Room,
         User,
@@ -107,7 +107,7 @@ def setup_app(app: Flask):
     Args:
         app (Flask): l'app où généré les données.
     """
-    from site_elysium.models import Question, Room, User
+    from .models import Question, Room, User
 
     with app.app_context():
         db.create_all()
@@ -132,7 +132,7 @@ def setup_app(app: Flask):
                 description="Wow what a cool room **desu wa**",
                 url_name="room1",
                 instructions="QCM",
-                victim_vm_ids=[100],
+                victim_vm_ids=[105],
             )
             room2 = Room(
                 name="Room 2",

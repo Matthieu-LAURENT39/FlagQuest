@@ -2,7 +2,7 @@ import ipaddress
 
 from proxmoxer import ProxmoxAPI
 
-from site_elysium.classes import Allocator, VMManager, WebsockifyManager
+from site_elysium.classes import Allocator, VMManager
 import site_elysium.models
 from tools import ip_to_mac
 from flask import current_app
@@ -47,7 +47,6 @@ def get_vm_manager() -> VMManager:
             "rootme",
             _mac_allocator,
             _display_port_allocator,
-            WebsockifyManager("172.17.50.250"),
         )
 
     return _current_vm_manager

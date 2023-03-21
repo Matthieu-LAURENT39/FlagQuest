@@ -4,8 +4,8 @@ from flask import render_template
 
 @main.route("/")
 def acceuil():
-    from site_elysium.forms import SignupForm
-    from site_elysium.models import Room
+    from ...forms import SignupForm
+    from ...models import Room
 
     signup_form = SignupForm()
     rooms = Room.query.limit(4).all()
@@ -20,6 +20,7 @@ def confidentalite():
 @main.route("/mention_legales")
 def mention_legales():
     return render_template("mention_legales.jinja")
+
 
 @main.route("/Conditions_generales_d_utilisation")
 def Conditions_generales_d_utilisation():

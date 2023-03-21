@@ -15,7 +15,7 @@ def liste_room():
 
 @main.route("/room/<room_url_name>")
 def room(room_url_name: str):
-    from site_elysium.models import Room, VirtualMachine
+    from ...models import Room, VirtualMachine
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
@@ -26,9 +26,15 @@ def room(room_url_name: str):
         user_existing_vms = VirtualMachine.query.filter_by(
             user_id=current_user.id
         ).all()
+        user_attack_vm: VirtualMachine | None = (
+            VirtualMachine.query.filter_by(user_id=current_user.id)
+            .filter(VirtualMachine.display_port.isnot(None))
+            .first()
+        )
     else:
         nbr_question_solved = None
         user_existing_vms = None
+        user_attack_vm = None
 
     # from vm import get_vm_manager
 
@@ -46,6 +52,7 @@ def room(room_url_name: str):
         room=room,
         nbr_question_solved=nbr_question_solved,
         user_existing_vms=user_existing_vms,
+        user_attack_vm=user_attack_vm,
     )
     # try:
     #     return render_template(f"room/{room.url_name}.jinja", room=room)
@@ -55,7 +62,7 @@ def room(room_url_name: str):
 
 @main.route("/room/<room_url_name>/edit")
 def edit_room(room_url_name: str):
-    from site_elysium.models import Room
+    from ...models import Room
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."

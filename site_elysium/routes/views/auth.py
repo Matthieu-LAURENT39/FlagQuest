@@ -1,8 +1,8 @@
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
 
-from site_elysium.forms import LoginForm, SignupForm
-from site_elysium.models import User
+from ...forms import LoginForm, SignupForm
+from ...models import User
 
 from ... import db
 from . import main
