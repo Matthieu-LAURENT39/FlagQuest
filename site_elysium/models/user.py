@@ -12,8 +12,9 @@ class User(db.Model, UserMixin):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    username = Column(String, unique=True, nullable=False)
-    email = Column(String, unique=True, nullable=False)
+    # collation="NOCASE" signifie que les vérification ne sont pas sensible à la case
+    username = Column(String(collation="NOCASE"), unique=True, nullable=False)
+    email = Column(String(collation="NOCASE"), unique=True, nullable=False)
     password_hash = Column(String, unique=True, nullable=False)
     """
     Hash du mot de passe, de la forme 'method$salt$hash'
