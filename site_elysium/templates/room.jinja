@@ -60,7 +60,6 @@
 
 {% block content %}
 <main>
-<<<<<<< HEAD
     <!-- partie consigne - progression - questions -->
     <div>
         {% block top_button %}
@@ -90,35 +89,6 @@
                         .then(location.reload())
                 }
             </script>
-=======
-    <div class="row" style="max-width:100%">
-        {% block sidebar_room %}
-        <div class="col">
-            {% block top_button %}
-            {# Si l'utilisateur n'est pas dans la room, on lui propose de la rejoindre #}
-            {% if current_user.is_authenticated %}
-            {% if not user_is_in_room %}
-            <div class="align-item-top">
-                {#
-                <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
-                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
-                    la room
-                </a>
-                #}
-                <script>
-                    function joinRoom() {
-                        fetch('{{ url_for('api.join_room', room_url_name = room.url_name) }}', {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                        })
-                            .then(response => response.json())
-                            .then(response => alert(JSON.stringify(response)))
-                    }
-                </script>
->>>>>>> ba931d32d65c27440b65be1d1b5b61be8a2c6680
 
             <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
                 class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
@@ -157,7 +127,6 @@
                 }
             </script>
 
-<<<<<<< HEAD
             <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
                 class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Lancers les VMs
                 victimes
@@ -172,28 +141,6 @@
         <div id="victim-vm-info-container" class="p-2" style="display:none">
             <div id="victim-vm-info" class="bg-white rounded-3 p-4">
                 <h2>VMs victimes</h2>
-=======
-                <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
-                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Lancers les VMs
-                    victimes
-                </button>
-            </div>
-            {% else %}
-            {# TODO: Afficher les VMs existante et permettre de les supprimer #}
-            {% endif %}
-            {% endif %}
-            {# Info VM attaque #}
-            {% if user_attack_vm %}
-            <p>{{user_attack_vm.ip_address}}</p>
-            <p>{{user_attack_vm.display_port}}</p>
-            {% endif %}
-            {% endif %}
-            {% endblock %}
-            <div id="victim-vm-info-container" class="p-2" style="display:none">
-                <div id="victim-vm-info" class="bg-white rounded-3 p-4">
-                    <h2>VMs victimes</h2>
-                </div>
->>>>>>> ba931d32d65c27440b65be1d1b5b61be8a2c6680
             </div>
         </div>
 
@@ -205,13 +152,9 @@
         </div>
         {% endblock %}
 
-<<<<<<< HEAD
 
         <!-- partie progression -->
         {% block progession %}
-=======
-        {% block sidebar_vm %}
->>>>>>> ba931d32d65c27440b65be1d1b5b61be8a2c6680
         {% if current_user.is_authenticated %}
         {% if user_is_in_room %}
         <div class="mx-2 sticky-top pt-1">
@@ -223,18 +166,6 @@
                         aria-valuenow="{{nbr_question_solved}}" aria-valuemin="0" aria-valuemax="{{nbr_question_total}}"
                         style="width: {{ progress_percentage }}%"></div>
                 </div>
-<<<<<<< HEAD
-=======
-                <!-- VM -->
-                {# <iframe class="responsive-iframe " style="width: 100% height: 100%;"
-                    src="http://172.17.50.249:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale">
-                </iframe> #}
-                {# <iframe class="responsive-iframe " sandbox='allow-same-origin allow-scripts allow-modals'
-                    style="width: 100% height: 100%;" src="{{vnc_url}}">
-                </iframe> #}
-                <iframe class="responsive-iframe " style="width: 100% height: 100%;" src="{{vnc_url}}">
-                </iframe>
->>>>>>> ba931d32d65c27440b65be1d1b5b61be8a2c6680
             </div>
             {# <!-- VM --> #}
             {# <iframe class="responsive-iframe " style="width: 100% height: 100%;"
