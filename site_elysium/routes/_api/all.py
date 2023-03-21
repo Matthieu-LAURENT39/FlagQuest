@@ -5,9 +5,9 @@ from flask import Blueprint, Response, abort, jsonify, redirect, request, curren
 from flask_login import current_user, login_required
 from flask_restful import Api, Resource
 
-import site_elysium.models as models
-from site_elysium.models import VirtualMachine
-from site_elysium.models.schemas import room_schema, user_schema
+from ... import models as models
+from ...models import VirtualMachine
+from ...models.schemas import room_schema, user_schema
 
 from ... import db
 from .. import api
@@ -180,6 +180,8 @@ def request_attack_vm():
     vm_data = {
         "ip_address": current_app.config["PROXMOX_HOST"],
         "vnc_port": user_attack_vm.vnc_port,
+        "username": current_app.config["ATTACK_VM_USERNAME"],
+        "password": current_app.config["ATTACK_VM_PASSWORD"],
     }
 
     db.session.commit()

@@ -9,7 +9,7 @@ def profile():
 
 @main.route("/classement")
 def classement():
-    from site_elysium.models import User
+    from ...models import User
 
     # tri par ordre score : décroissant
     user = User.query.order_by(User.score.desc()).all()

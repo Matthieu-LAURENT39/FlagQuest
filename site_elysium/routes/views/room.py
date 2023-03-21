@@ -15,7 +15,7 @@ def liste_room():
 
 @main.route("/room/<room_url_name>")
 def room(room_url_name: str):
-    from site_elysium.models import Room, VirtualMachine
+    from ...models import Room, VirtualMachine
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
@@ -62,7 +62,7 @@ def room(room_url_name: str):
 
 @main.route("/room/<room_url_name>/edit")
 def edit_room(room_url_name: str):
-    from site_elysium.models import Room
+    from ...models import Room
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."

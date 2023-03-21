@@ -7,7 +7,7 @@ import urllib.parse
 
 from proxmoxer import ProxmoxAPI
 
-from site_elysium.classes import Allocator
+from ..classes import Allocator
 
 
 class VMManager:
