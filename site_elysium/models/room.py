@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from .. import db
-from sqlalchemy import Integer, Column, String
 from sqlalchemy.orm import Mapped, mapped_column
 from . import room_user
 from typing import Optional, TYPE_CHECKING

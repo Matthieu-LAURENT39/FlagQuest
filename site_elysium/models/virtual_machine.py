@@ -1,5 +1,4 @@
 from .. import db
-from sqlalchemy import Integer, Column, String, Enum
 from sqlalchemy.orm import Mapped, mapped_column
 import enum
 from sqlalchemy_utils import IPAddressType, UUIDType
