@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from .. import db
@@ -11,19 +12,19 @@ class User(db.Model, UserMixin):
 
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
     # collation="NOCASE" signifie que les vérification ne sont pas sensible à la case
-    username = Column(String(collation="NOCASE"), unique=True, nullable=False)
-    email = Column(String(collation="NOCASE"), unique=True, nullable=False)
-    password_hash = Column(String, unique=True, nullable=False)
+    username: Mapped[str] = mapped_column(String(collation="NOCASE"), unique=True)
+    email: Mapped[str] = mapped_column(String(collation="NOCASE"), unique=True)
+    password_hash: Mapped[str]
     """
     Hash du mot de passe, de la forme 'method$salt$hash'
     Voir également https://werkzeug.palletsprojects.com/en/1.0.x/utils/#werkzeug.security.generate_password_hash
     """
 
-    is_admin = Column(Boolean, nullable=False, default=False)
+    is_admin: Mapped[bool] = mapped_column(default=False)
 
-    score = Column(Integer, nullable=False, default=0)
+    score: Mapped[int] = mapped_column(default=0)
 
     def set_password(self, password: str) -> None:
         """Défini le mot de passe d'un utilisateur en stockant son hash

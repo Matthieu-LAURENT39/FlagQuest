@@ -1,5 +1,6 @@
 from .. import db
 from sqlalchemy import Integer, Column, String, ForeignKey, DateTime
+from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
 
 
@@ -12,7 +13,9 @@ class UserQuestionData(db.Model):
 
     __tablename__ = "user_question_data"
 
-    user_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
-    question_id = Column(Integer, ForeignKey("questions.id"), primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), primary_key=True)
+    question_id: Mapped[int] = mapped_column(
+        ForeignKey("questions.id"), primary_key=True
+    )
 
-    solved_at = Column(DateTime, default=datetime.now)
+    solved_at: Mapped[datetime] = mapped_column(default=datetime.now)
