@@ -26,7 +26,9 @@ class Room(db.Model):
     instructions: Mapped[str]
     """Les consignes de la room, affiché au dessus des questions. Peut contenir du markdown."""
 
-    users: Mapped[list["User"]] = db.relationship(secondary=room_user)
+    users: Mapped[list["User"]] = db.relationship(
+        secondary=room_user, back_populates="joined_rooms"
+    )
 
     questions: Mapped[list["Question"]] = db.relationship(back_populates="room")
 

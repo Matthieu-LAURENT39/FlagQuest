@@ -1,9 +1,17 @@
+from __future__ import annotations
+
 from flask_login import UserMixin
 from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import check_password_hash, generate_password_hash
+import datetime
+from typing import TYPE_CHECKING
 
+from . import room_user, SolvedQuestionData
 from .. import db
+
+if TYPE_CHECKING:
+    from . import Room, Question
 
 
 # On hérite UserMixin afin d'avoir les @property par défaut
@@ -26,6 +34,13 @@ class User(db.Model, UserMixin):
 
     score: Mapped[int] = mapped_column(default=0)
 
+    joined_rooms: Mapped[list["Room"]] = relationship(
+        secondary=room_user, back_populates="users"
+    )
+    solved_questions_data: Mapped[list["SolvedQuestionData"]] = relationship(
+        back_populates="user"
+    )
+
     def set_password(self, password: str) -> None:
         """Défini le mot de passe d'un utilisateur en stockant son hash
 
@@ -44,3 +59,12 @@ class User(db.Model, UserMixin):
             bool: True si le mot de passe est correct, sinon False
         """
         return check_password_hash(self.password_hash, password)
+
+    def points_at_date(self, date: datetime.date) -> int:
+        if datetime.date.today() < date:
+            # The date is strictly into the future
+            raise ValueError("Date is into the future.")
+
+        return sum(
+            q.question.points for q in self.solved_question_data if q.solved_at <= date
+        )
