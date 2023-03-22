@@ -52,6 +52,7 @@ class VirtualMachine(db.Model):
 
     @property
     def vnc_port(self) -> int | None:
+        """Le port VNC de la machine virtuelle."""
         if self.display_port is None:
             return None
         return self.display_port + 5900

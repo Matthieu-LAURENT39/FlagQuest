@@ -10,6 +10,7 @@ from . import main
 
 @main.route("/connexion", methods=["GET", "POST"])
 def connexion():
+    """Formulaire permettant la connexion."""
     form = LoginForm()
     # Si le formulaire a été correctement rempli
     if form.validate_on_submit():
@@ -46,6 +47,7 @@ def connexion():
 @main.route("/deconnexion")
 @login_required
 def deconnexion():
+    """Déconnecte automatiquement les utilisateurs."""
     logout_user()
     flash("Vous avez été déconnecté.", "info")
     return redirect(url_for("main.acceuil"))
@@ -54,6 +56,7 @@ def deconnexion():
 # TODO: Support pour la méthode GET
 @main.route("/inscription", methods=["POST"])
 def inscription():
+    """Formulaire permettant l'inscription"""
     form = SignupForm()
     # Si le formulaire a été correctement rempli
     if form.validate_on_submit():

@@ -20,6 +20,7 @@ class UserResource(Resource):
     """Informations lié à un utilisateur"""
 
     def get(self, username):
+        """Récupère les informations lié a un utilisateur."""
         user: models.User = models.User.query.filter_by(username=username).first_or_404(
             description="Cet utilisateur n'existe pas."
         )
@@ -30,6 +31,7 @@ class RoomResource(Resource):
     """Informations lié à une room"""
 
     def get(self, url_name: str):
+        """Récupère les informations lié a une room."""
         room: models.Room = models.Room.query.filter_by(url_name=url_name).first_or_404(
             description="Cette room n'existe pas."
         )
@@ -67,6 +69,7 @@ def profile():
 @api.route("/join_room/<room_url_name>", methods=["POST"])
 @login_required
 def join_room(room_url_name: str):
+    """Permet a un utilisateur de rejoindre une room."""
     room: models.Room = models.Room.query.filter_by(
         url_name=room_url_name
     ).first_or_404(description="Cette room n'existe pas.")
@@ -80,6 +83,10 @@ def join_room(room_url_name: str):
 @api.route("/answer_question", methods=["POST"])
 @login_required
 def answer_question():
+    """
+    Permet a l'utilisateur de répondre a une question et
+    de savoir si il a juste.
+    """
     question_id = request.args.get("question_id")
     if question_id is None:
         abort(400, "Il manque l'argument 'question_id'")
@@ -114,6 +121,7 @@ def answer_question():
 @api.route("/request_victim_vms/<room_url_name>", methods=["POST"])
 @login_required
 def request_victim_vms(room_url_name: str):
+    """Créer les VMs victimes pour une room."""
     from vm import get_vm_manager
 
     # TODO: vérifier que l'utilisateur n'utilise pas déja une VM
@@ -154,6 +162,10 @@ def request_victim_vms(room_url_name: str):
 @api.route("/request_attack_vm", methods=["POST"])
 @login_required
 def request_attack_vm():
+    """
+    Créer une VM d'attaque, ou réutilisé une VM existante si l'utilisateur
+    en a déja une.
+    """
     from vm import get_vm_manager
 
     user_attack_vm: VirtualMachine | None = (

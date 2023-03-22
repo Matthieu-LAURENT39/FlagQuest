@@ -15,6 +15,8 @@ class UserSchema(SQLAlchemySchema):
     """
 
     class Meta:
+        """Paramètres de configuration du schéma"""
+
         model = User
 
     id = auto_field()

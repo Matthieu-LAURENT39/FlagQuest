@@ -5,7 +5,13 @@ from flask import redirect, url_for, flash, render_template, abort
 
 
 class AdminModelView(ModelView):
+    """
+    Une vue de modèle pour Flask-Admin.
+    Accessible uniquement par les admins.
+    """
+
     def is_accessible(self):
+        """Vérifie que l'utilisateur a le droit d'accéder à la page"""
         return current_user.is_authenticated and current_user.is_admin == True
 
 
