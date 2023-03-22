@@ -6,6 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 from typing import TYPE_CHECKING
+from functools import lru_cache
 
 from . import room_user, SolvedQuestionData
 from .. import db
@@ -31,8 +32,6 @@ class User(db.Model, UserMixin):
     """
 
     is_admin: Mapped[bool] = mapped_column(default=False)
-
-    score: Mapped[int] = mapped_column(default=0)
 
     joined_rooms: Mapped[list["Room"]] = relationship(
         secondary=room_user, back_populates="users"
@@ -60,11 +59,23 @@ class User(db.Model, UserMixin):
         """
         return check_password_hash(self.password_hash, password)
 
+    # On n'affiche jamais plus d'un ans de données, donc
+    # on limite le cache à 366 jours
+    @lru_cache(maxsize=366)
     def points_at_date(self, date: datetime.date) -> int:
         if datetime.date.today() < date:
             # The date is strictly into the future
             raise ValueError("Date is into the future.")
 
+        # Pour chaque question résolu par l'utilisateur, on
+        # ajoute la valeur en point si et seulement si
+        # la question a été résolu avant la date spécifié.
         return sum(
-            q.question.points for q in self.solved_question_data if q.solved_at <= date
+            q.question.points
+            for q in self.solved_questions_data
+            if q.solved_at.date() <= date
         )
+
+    @property
+    def score(self) -> int:
+        return self.points_at_date(datetime.date.today())
