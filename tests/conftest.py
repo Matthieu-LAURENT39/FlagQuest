@@ -55,7 +55,7 @@ def make_test_data(app: Flask, database: SQLAlchemy):
                 description="Wow what a cool room **desu wa**",
                 url_name=f"room{i}",
                 instructions=f"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                victim_vm_ids=[100],
+                victim_vm_ids=[101],
             )
             database.session.add(room)
 
