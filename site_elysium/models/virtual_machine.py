@@ -43,7 +43,7 @@ class VirtualMachine(db.Model):
     @property
     def vm_name(self) -> str:
         """Le nom de la VM dans proxmox."""
-        return f"{current_app.config['VICTIM_VM_PREFIX']}-{self.user_id}-{self.template_vm_id}"
+        return f"{current_app.config['VICTIM_VM_PREFIX']}-{self.uuid}"
 
     @property
     def ip_address(self) -> IPv4Address:
