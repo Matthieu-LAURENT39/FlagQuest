@@ -34,7 +34,7 @@ def room(room_url_name: str):
             .first()
         )
     else:
-        nbr_question_solved = None
+        nbr_question_solved = 0
         user_existing_vms = None
         user_attack_vm = None
 
