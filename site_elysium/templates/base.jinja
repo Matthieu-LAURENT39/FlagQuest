@@ -25,6 +25,8 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
         </script>
 
+    <!-- Chart.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
     {% endblock %}
 </head>
 
@@ -50,8 +52,8 @@
                         <a href="{{ url_for('main.profile') }}"
                             class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/static/img/avatar.png" alt="mdo" width="36" height="36"
-                                class="avatar-user rounded-circle">
+                            <img src="{{url_for('main.profile_picture', username=current_user.username)}}" alt="mdo"
+                                width="36" height="36" class="avatar-user rounded-3">
                         </a>
                         <ul class="dropdown-content dropdown-menu text-small" style="">
                             <!-- contenu du menu / ce qui défile -->

@@ -1,6 +1,10 @@
 from .. import db
-from . import room_user, Room, User, UserQuestionData
-from sqlalchemy.orm import Mapped, mapped_column
+from . import room_user, Room, User, SolvedQuestionData
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from . import Question
 
 
 class Question(db.Model):
@@ -19,6 +23,16 @@ class Question(db.Model):
     answer: Mapped[str]
     """La réponse attendu à la question. Non-sensible à la case."""
 
+    points: Mapped[int]
+    """
+    Le nombre de points que vaut la question. 
+    Utilisé pour calculer le score des utilisateurs.
+    """
+
+    solved_questions_data: Mapped[list["SolvedQuestionData"]] = relationship(
+        back_populates="question"
+    )
+
     def is_solved_by(self, user: User) -> bool:
         """Vérifie si cette question a été résolu par un utilisateur.
 
@@ -28,7 +42,7 @@ class Question(db.Model):
         Returns:
             bool: True si la question a été résolue, sinon False.
         """
-        user_question_data = UserQuestionData.query.filter_by(
+        user_question_data = SolvedQuestionData.query.filter_by(
             user_id=user.id, question_id=self.id
         ).first()
 
@@ -41,6 +55,8 @@ class Question(db.Model):
             user (User): L'utilisateur qui a résolu la question.
         """
         if not self.is_solved_by(user):
-            user_question_data = UserQuestionData(user_id=user.id, question_id=self.id)
+            user_question_data = SolvedQuestionData(
+                user_id=user.id, question_id=self.id
+            )
             db.session.add(user_question_data)
             db.session.commit()

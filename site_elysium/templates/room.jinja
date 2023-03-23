@@ -56,12 +56,12 @@
             })
     }
 </script>
-{% endblock %}
+{% endblock head %}
 
 {% block content %}
 <main>
     <!-- partie consigne - progression - questions -->
-    <div>
+    <div class="container">
         {% block top_button %}
         {# Si l'utilisateur n'est pas dans la room, on lui propose de la rejoindre #}
         {% if current_user.is_authenticated %}
@@ -180,7 +180,7 @@
         {% block progession %}
         {% if current_user.is_authenticated %}
         {% if user_is_in_room %}
-        <div class="mx-2 sticky-top pt-1">
+        <div class="mx-2 sticky-top pb-1">
             <!-- Progression -->
             <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary">
                 <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>

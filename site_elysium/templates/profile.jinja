@@ -2,21 +2,20 @@
 
 
 {% block title %}
-Profile - {{current_user.username}}
+Profile - {{user.username}}
 {% endblock %}
 
 {% block content %}
 <main class="container bg-black pt-5">
     <div class="container-index">
-
-
         <!-- bar principal profile -->
         <div class="main-profile-bar row">
             {# partie droite #}
             <div class="col-md-auto main-infos-profil-responsive">
                 <div class="div-pseudo">
-                    <img src="/static/img/avatar.png" alt="photo de profil de l'utilisateur" class="col avatar-profile">
-                    <h1 class="username-profile col">{{current_user.username}}</h1>
+                    <img src="{{url_for('main.profile_picture', username=user.username)}}"
+                        alt="photo de profil de l'utilisateur" class="col avatar-profile rounded-4">
+                    <h1 class="username-profile col">{{user.username}}</h1>
                     <img src="/static/img/france.svg" alt="logo" class="country-profile col">
                 </div>
             </div>
@@ -27,7 +26,7 @@ Profile - {{current_user.username}}
                     <div class="sous-div-stat">
                         <h2 class="variable-stat">
                             <img class="icon-stat" src="/static/img/podium.svg" alt="logo de la catégorie classement">
-                            122<!-- variable classement -->
+                            #{{user_position}}
                         </h2>
                         <h3 class="title-stat">Position</h3>
                     </div>
@@ -35,7 +34,7 @@ Profile - {{current_user.username}}
                         <h2 class="variable-stat">
                             <img class="icon-stat" src="/static/img/points.svg"
                                 alt="logo de la catégorie score (nombre de points)">
-                            {{current_user.score}}
+                            {{user.score}}
                         </h2>
                         <h3 class="title-stat">Points</h3>
                     </div>
@@ -52,10 +51,10 @@ Profile - {{current_user.username}}
         </div>
 
         <!-- partie rooms lancées à droite + classement à gauche -->
-        <div class="second-part-profile row">
+        <div class="second-part-profile row h-100">
 
             {# partie droite / rooms faites#}
-            <div class="rooms sous-section col">
+            <div class="rooms sous-section col h-100">
                 <h2 class="title-sous-section">
                     <img class="icon-second-part-profile" src="/static/img/challenges.svg"
                         alt="logo de le section challenges réussis">
@@ -121,59 +120,56 @@ Profile - {{current_user.username}}
 
             {# partie gauche / classement #}
             <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
-            <div class="ranking sous-section col">
-                <a href="{{ url_for('main.classement') }}">
-                    <h2 class="title-sous-section">
-                        <img class="icon-second-part-profile" src="/static/img/podium.svg"
-                            alt="logo de le section challenges réussis">
-                        &nbsp;Classement
-                    </h2>
-                </a>
+            <div class="col ranking h-100">
+                <div class="row sous-section mb-3">
+                    <a href="{{ url_for('main.classement') }}">
+                        <h2 class="title-sous-section">
+                            <img class="icon-second-part-profile" src="/static/img/podium.svg"
+                                alt="logo de le section challenges réussis">
+                            &nbsp;Classement
+                        </h2>
+                    </a>
 
-                {# TABLEAU CLASSEMENT #}
-                <table class="table-classement-profile">
-                    <!-- HEADER TABLE-->
-                    <thead>
-                        <tr>
-                            <th scope="col">Position</th>
-                            <th scope="col">Avatar</th> <!-- vraiment utile ???????? -->
-                            <th scope="col">Utilisateur</th>
-                            <th scope="col">Score</th>
-                        </tr>
-                    </thead>
+                    {# TABLEAU CLASSEMENT #}
+                    <table class="table-classement-profile">
+                        <!-- HEADER TABLE-->
+                        <thead>
+                            <tr>
+                                <th scope="col">Position</th>
+                                <th scope="col">Avatar</th> <!-- vraiment utile ???????? -->
+                                <th scope="col">Utilisateur</th>
+                                <th scope="col">Score</th>
+                            </tr>
+                        </thead>
 
-                    <!-- BODY TABLE-->
-                    <tbody>
-                        <!-- LIGNE 1 -->
-                        <tr class="lambda-row">
-                            <th># 1<!-- variable Xème du site --></th>
-                            <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                            <td class="username-classement-style">
-                                <a href="#">usern@m1</a><!-- variable username du Xème du site -->
-                            </td>
-                            <td class="td-score">87<!-- varialbe du score de l'user --></td>
-                        </tr>
+                        <!-- BODY TABLE-->
+                        <tbody>
+                            {% for position, u in ranking_users %}
+                            <tr class="{{'active-row' if u == user else 'lambda-row'}}">
+                                <th>#{{position}}</th>
+                                <td><img class="img-avatar-classement rounded-1"
+                                        src="{{url_for('main.profile_picture', username=u.username)}}"></td>
+                                <!-- a voir -->
+                                <td class="username-classement-style">
+                                    <a href="{{url_for('main.profile', username=u.username)}}">{{u.username}}</a>
+                                </td>
+                                <td class="td-score">{{u.score}}
+                                <td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
-                        <!-- LIGNE 2 -->
-                        <tr class="active-row">
-                            <th># 2 <!-- {{current_user.position}} --></th>
-                            <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                            <td>{{current_user.username}}</td>
-                            <td class="">{{current_user.score}}</td>
-                        </tr>
+                <div class="row sous-section h-100">
+                    <canvas id="myChart"></canvas>
 
-                        <!-- LIGNE 3 -->
-                        <tr class="lambda-row">
-                            <th># 3</th>
-                            <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                            <td class="username-classement-style">
-                                <a href="#">niko_haxor</a><!-- variable username du Xème du site -->
-                            </td>
-                            <td class="td-score">34</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                    <script>
+                        var data = {{ chart_json | safe }}
+                        var ctx = document.getElementById("myChart").getContext('2d');
+                        var myChart = new Chart(ctx, data);
+                    </script>
+                </div>
             </div>
         </div>
 

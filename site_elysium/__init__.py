@@ -73,7 +73,7 @@ def create_app(config: object = Config) -> Flask:
         Question,
         Room,
         User,
-        UserQuestionData,
+        SolvedQuestionData,
         VirtualMachine,
     )
 
@@ -83,7 +83,7 @@ def create_app(config: object = Config) -> Flask:
     admin.add_view(AdminModelView(Room, db.session))
     admin.add_view(AdminModelView(VirtualMachine, db.session))
     admin.add_view(AdminModelView(Question, db.session))
-    admin.add_view(AdminModelView(UserQuestionData, db.session))
+    admin.add_view(AdminModelView(SolvedQuestionData, db.session))
 
     # Register the filters
     app.jinja_env.filters["markdown"] = markdown_filter
@@ -119,7 +119,6 @@ def setup_app(app: Flask):
                 username="admin",
                 email="feur@desu.wa",
                 is_admin=True,
-                score=12,
             )
             user.set_password("admin")
             db.session.add(user)
@@ -190,9 +189,12 @@ n = random.randint(1,10)
 print(n)
 ```""",
                 answer="matt",
+                points=15,
             )
             db.session.add(question)
             for i in range(6):
-                question = Question(room_id=1, prompt=f"{i}+1=?", answer=str(i + 1))
+                question = Question(
+                    room_id=1, prompt=f"{i}+1=?", answer=str(i + 1), points=2
+                )
                 db.session.add(question)
                 db.session.commit()

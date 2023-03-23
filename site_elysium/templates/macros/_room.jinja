@@ -2,7 +2,7 @@
 <div class="p-2">
     <div class="p-3 bg-light rounded-3 text-black {{'border border-success border-5' if solved else ''}}"
         id="question_block-{{question.id}}">
-        {{ question.prompt | markdown }}
+        {{ question.prompt | markdown }} ({{ question.points }} points)
         <div class="mb-3">
             <form action="#" onsubmit="answerQuestion({{question.id}});return true;" id="question_form-{{question.id}}">
                 <input class="form-control border-0" type="text"

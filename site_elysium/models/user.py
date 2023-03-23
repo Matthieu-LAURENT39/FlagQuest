@@ -1,9 +1,20 @@
+from __future__ import annotations
+
 from flask_login import UserMixin
 from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import check_password_hash, generate_password_hash
+import datetime
+from typing import TYPE_CHECKING
+from functools import lru_cache
+import customidenticon
 
+
+from . import room_user, SolvedQuestionData
 from .. import db
+
+if TYPE_CHECKING:
+    from . import Room, Question
 
 
 # On hérite UserMixin afin d'avoir les @property par défaut
@@ -24,7 +35,12 @@ class User(db.Model, UserMixin):
 
     is_admin: Mapped[bool] = mapped_column(default=False)
 
-    score: Mapped[int] = mapped_column(default=0)
+    joined_rooms: Mapped[list["Room"]] = relationship(
+        secondary=room_user, back_populates="users"
+    )
+    solved_questions_data: Mapped[list["SolvedQuestionData"]] = relationship(
+        back_populates="user"
+    )
 
     def set_password(self, password: str) -> None:
         """Défini le mot de passe d'un utilisateur en stockant son hash
@@ -44,3 +60,41 @@ class User(db.Model, UserMixin):
             bool: True si le mot de passe est correct, sinon False
         """
         return check_password_hash(self.password_hash, password)
+
+    # On n'affiche jamais plus d'un ans de données, donc
+    # on limite le cache à 366 jours
+    @lru_cache(maxsize=366)
+    def points_at_date(self, date: datetime.date) -> int:
+        if datetime.date.today() < date:
+            # The date is strictly into the future
+            raise ValueError("Date is into the future.")
+
+        # Pour chaque question résolu par l'utilisateur, on
+        # ajoute la valeur en point si et seulement si
+        # la question a été résolu avant la date spécifié.
+        return sum(
+            q.question.points
+            for q in self.solved_questions_data
+            if q.solved_at.date() <= date
+        )
+
+    @property
+    def score(self) -> int:
+        return self.points_at_date(datetime.date.today())
+
+    @lru_cache(maxsize=5)
+    def get_profile_picture(self, size: int = 250) -> bytes:
+        # return generator.generate(
+        #     self.username.casefold(), size, size, output_format="png"
+        # )
+        identicon = customidenticon.create(
+            self.username.casefold(),  # Data used to generate identicon
+            type="pixels",
+            format="png",
+            background="#f0f0f0",
+            block_visibility=255,
+            block_size=size // 10,  # size of elements (px)
+            border=25,  # border (px)
+            size=10,  # number of elements
+        )
+        return identicon

@@ -1,13 +1,19 @@
+from __future__ import annotations
+
 from .. import db
 from sqlalchemy import Integer, Column, String, ForeignKey, DateTime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from . import User, Question
 
 
-class UserQuestionData(db.Model):
+class SolvedQuestionData(db.Model):
     """
     Stocke des informations sur la complétion d'une question par un utilisateur.
-    Si une UserQuestionData existe pour une combinaison utilisateur-question, alors cet
+    Si une SolvedQuestionData existe pour une combinaison utilisateur-question, alors cet
     utilisateur à résolut cette question.
     """
 
@@ -17,5 +23,8 @@ class UserQuestionData(db.Model):
     question_id: Mapped[int] = mapped_column(
         ForeignKey("questions.id"), primary_key=True
     )
+
+    user: Mapped["User"] = relationship(back_populates="solved_questions_data")
+    question: Mapped["Question"] = relationship(back_populates="solved_questions_data")
 
     solved_at: Mapped[datetime] = mapped_column(default=datetime.now)
