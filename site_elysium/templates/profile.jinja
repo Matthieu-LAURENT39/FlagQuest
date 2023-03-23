@@ -2,7 +2,7 @@
 
 
 {% block title %}
-Profile - {{current_user.username}}
+Profile - {{user.username}}
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@ Profile - {{current_user.username}}
             <div class="col-md-auto main-infos-profil-responsive">
                 <div class="div-pseudo">
                     <img src="/static/img/avatar.png" alt="photo de profil de l'utilisateur" class="col avatar-profile">
-                    <h1 class="username-profile col">{{current_user.username}}</h1>
+                    <h1 class="username-profile col">{{user.username}}</h1>
                     <img src="/static/img/france.svg" alt="logo" class="country-profile col">
                 </div>
             </div>
@@ -33,7 +33,7 @@ Profile - {{current_user.username}}
                         <h2 class="variable-stat">
                             <img class="icon-stat" src="/static/img/points.svg"
                                 alt="logo de la catégorie score (nombre de points)">
-                            {{current_user.score}}
+                            {{user.score}}
                         </h2>
                         <h3 class="title-stat">Points</h3>
                     </div>
@@ -155,10 +155,10 @@ Profile - {{current_user.username}}
 
                             <!-- LIGNE 2 -->
                             <tr class="active-row">
-                                <th># 2 <!-- {{current_user.position}} --></th>
+                                <th># 2 <!-- {{user.position}} --></th>
                                 <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                                <td>{{current_user.username}}</td>
-                                <td class="">{{current_user.score}}</td>
+                                <td>{{user.username}}</td>
+                                <td class="">{{user.score}}</td>
                             </tr>
 
                             <!-- LIGNE 3 -->

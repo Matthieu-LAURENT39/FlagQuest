@@ -1,7 +1,8 @@
 from . import main
-from flask import render_template
+from flask import render_template, abort, redirect, url_for
 from datetime import date, timedelta
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, user_logged_in
+from ...models import User
 
 from pychartjs import BaseChart, ChartType, Color
 
@@ -19,12 +20,20 @@ class UserWeekPoints(BaseChart):
         backgroundColor = Color.Green
 
 
-@main.route("/profile")
-@login_required
-def profile():
+@main.route("/profile", defaults={"username": None})
+@main.route("/profile/<username>")
+def profile(username):
     """La page de profil de l'utilisateur"""
 
-    user = current_user
+    if username is None:
+        if current_user.is_authenticated:
+            return redirect(url_for("main.profile", username=current_user.username))
+        else:
+            abort(401)
+    else:
+        user = User.query.filter_by(username=username).first_or_404(
+            description="Cet utilisateur n'existe pas."
+        )
 
     chart = UserWeekPoints()
 
@@ -38,7 +47,7 @@ def profile():
     chart.labels.grouped = list(day_to_points.keys())
     chart.data.data = list(day_to_points.values())
 
-    return render_template("profile.jinja", chart_json=chart.get())
+    return render_template("profile.jinja", user=user, chart_json=chart.get())
 
 
 @main.route("/classement")
