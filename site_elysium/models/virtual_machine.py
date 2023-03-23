@@ -32,6 +32,9 @@ class VirtualMachine(db.Model):
     template_vm_id: Mapped[int]
     """L'ID de la VM template sur laquel est basé cette VM"""
 
+    room_id: Mapped[Optional[int]]
+    """L'ID de la room qui correspond a cette VM. None pour les VMs d'attaques."""
+
     # type: VMType = Column(Enum(VMType))
     # """Le type de machine virtuelle"""
 

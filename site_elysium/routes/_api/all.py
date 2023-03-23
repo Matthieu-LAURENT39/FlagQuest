@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 from flask_restful import Api, Resource
 
 from ... import models as models
-from ...models import VirtualMachine
+from ...models import VirtualMachine, Room
 from ...models.schemas import room_schema, user_schema
 
 from ... import db
@@ -57,13 +57,6 @@ def api_after_request(r: Response) -> Response:
 def api_error_handler(error: werkzeug.exceptions.HTTPException):
     """Formatte toutes les erreurs d'API en json"""
     return {"message": error.description}, error.code
-
-
-@api.route("/profile", methods=["GET"])
-@login_required
-def profile():
-    """Redirige vers l'endpoint de l'utilisateur connecté"""
-    return redirect(api_manager.url_for(UserResource, username=current_user.username))
 
 
 @api.route("/join_room/<room_url_name>", methods=["POST"])
@@ -139,7 +132,9 @@ def request_victim_vms(room_url_name: str):
     # )
     vm_manager = get_vm_manager()
     for vm_id in room.victim_vm_ids:
-        new_vm_db = VirtualMachine(user_id=current_user.id, template_vm_id=vm_id)
+        new_vm_db = VirtualMachine(
+            user_id=current_user.id, template_vm_id=vm_id, room_id=room.id
+        )
 
         vm_infos = vm_manager.setup(vm_id, new_vm_db.vm_name, vnc=False)
 
@@ -157,6 +152,62 @@ def request_victim_vms(room_url_name: str):
 
     return jsonify(vms_data)
     # return {"ip_address": new_vm_db.ip_address.compressed}
+
+
+@api.route("/get_existing_attack_vm", methods=["GET"])
+@login_required
+def get_existing_attack_vm():
+    user_attack_vm: VirtualMachine | None = (
+        VirtualMachine.query.filter_by(user_id=current_user.id)
+        .filter(VirtualMachine.display_port.isnot(None))
+        .first()
+    )
+    if user_attack_vm is None:
+        return {"exists": False}
+
+    vm_data = {
+        "exists": True,
+        "ip_address": current_app.config["PROXMOX_HOST"],
+        "vnc_port": user_attack_vm.vnc_port,
+        "username": current_app.config["ATTACK_VM_USERNAME"],
+        "password": current_app.config["ATTACK_VM_PASSWORD"],
+    }
+    return vm_data
+
+
+@api.route("/get_existing_victim_vm/<room_url_name>", methods=["GET"])
+@login_required
+def get_existing_victim_vm(room_url_name):
+    room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
+        description="Cette room n'existe pas."
+    )
+
+    user_victim_vms: list[VirtualMachine] = (
+        VirtualMachine.query.filter_by(user_id=current_user.id, room_id=room.id)
+        .filter(VirtualMachine.display_port.is_(None))
+        .all()
+    )
+
+    vm_data = [
+        {
+            "ip_address": vm.ip_address.compressed,
+        }
+        for vm in user_victim_vms
+    ]
+    return vm_data
+
+
+@api.route("/can_create_victim_vm", methods=["GET"])
+@login_required
+def can_create_victim_vm():
+    """Permet a l'utilisateur de savoir si il peut créer une VM victime"""
+    user_victim_vms: list[VirtualMachine] = (
+        VirtualMachine.query.filter_by(user_id=current_user.id)
+        .filter(VirtualMachine.display_port.is_(None))
+        .first()
+    )
+
+    return {"can_create_victim_vm": user_victim_vms is None}
 
 
 @api.route("/request_attack_vm", methods=["POST"])
@@ -189,6 +240,7 @@ def request_attack_vm():
 
         db.session.add(user_attack_vm)
 
+    # TODO: Utiliser un schéma marshmallow
     vm_data = {
         "ip_address": current_app.config["PROXMOX_HOST"],
         "vnc_port": user_attack_vm.vnc_port,

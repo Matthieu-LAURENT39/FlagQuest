@@ -62,7 +62,6 @@
 <main>
     <!-- partie consigne - progression - questions -->
     <div class="container">
-        {% block top_button %}
         {# Si l'utilisateur n'est pas dans la room, on lui propose de la rejoindre #}
         {% if current_user.is_authenticated %}
         {% if not user_is_in_room %}
@@ -95,89 +94,166 @@
                 la room
             </button>
         </div>
-        {# l'utilisateur est dans la room, on lui propose de lancer les VMs victimes #}
         {% else %}
-        {% if not user_existing_vms %}
-        <div id="request-victim-vms" class="align-item-top">
-
-            <script>
-                function displayVictimVMInfos(response) {
-                    vmInfoDiv = document.getElementById("victim-vm-info")
-                    for (const i in response) {
-                        var para = document.createElement("p");
-                        var node = document.createTextNode(response[i].ip_address);
-                        para.appendChild(node);
-                        vmInfoDiv.appendChild(para)
-                    }
+        {# * l'utilisateur est dans la room, on lui propose de lancer les VMs #}
+        <script>
+            function existingVictimVMInfos() {
+                vmInfoDiv = document.getElementById("victim-vm-info")
+                for (const i in response) {
+                    var para = document.createElement("p");
+                    var node = document.createTextNode(response[i].ip_address);
+                    para.appendChild(node);
+                    vmInfoDiv.appendChild(para)
                 }
+            }
 
-                function request_vms() {
-                    requestVictimVMs();
-                    //requestAttackVMs();
+            function displayVictimVMInfos(data) {
+                vmInfoDiv = document.getElementById("victim-vm-info-data")
+                vmInfoDiv.innerHTML = ""
+                document.getElementById("delete-vms-button-container").style.display = ''
+
+                for (const i in data) {
+                    var para = document.createElement("p");
+                    var node = document.createTextNode(data[i].ip_address);
+                    para.appendChild(node);
+                    vmInfoDiv.appendChild(para)
                 }
+            }
 
-                function requestVictimVMs() {
-                    fetch('{{ url_for('api.request_victim_vms', room_url_name = room.url_name) }}', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
+            function requestVictimVMs() {
+                document.getElementById("victim-vm-info-data").style.display = ''
+                document.getElementById("request-victim-vms-button").style.display = 'none'
+                fetch("{{ url_for('api.request_victim_vms', room_url_name = room.url_name) }}", {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => response.json())
+                    // .then(response => alert(JSON.stringify(response)))
+                    .then(data => displayVictimVMInfos(data))
+                    .then(document.getElementById("request-victim-vms").style.display = 'none')
+                    .then(document.getElementById("victim-vm-info-container").style.display = 'block')
+            }
+
+            function displayAttackVMInfos(data) {
+                vmInfoDiv = document.getElementById("attack-vm-info-data");
+                vmInfoDiv.innerHTML = ""
+                document.getElementById("delete-vms-button-container").style.display = ''
+
+                let label_data = { "IP Address": data.ip_address, "VNC Port": data.vnc_port, "Login": data.username, "Mot de passe": data.password };
+                for (let [key, value] of Object.entries(label_data)) {
+                    var para = document.createElement("p");
+                    var node = document.createTextNode(key + ": " + value);
+                    para.appendChild(node);
+                    vmInfoDiv.appendChild(para)
+                }
+                console.log(data);
+            }
+
+            function requestAttackVMs() {
+                document.getElementById("attack-vm-info-data").style.display = ''
+                document.getElementById("request-attack-vm-button").style.display = 'none'
+                fetch('{{ url_for("api.request_attack_vm") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => response.json())
+                    //.then(response => alert(JSON.stringify(response)))
+                    .then(response => displayAttackVMInfos(response))
+                    .then(document.getElementById("request-attack-vm").style.display = 'none')
+            }
+
+            function setupVMInfos() {
+                // On met en place les VMs victimes
+                fetch("{{url_for('api.get_existing_victim_vm', room_url_name=room.url_name)}}")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length == 0) {
+                            // We don't have any VMs, show the "request VM" button
+                            document.getElementById("victim-vm-info-data").style.display = 'none'
+                            document.getElementById("request-victim-vms-button").style.display = ''
+                        } else {
+                            // Show the info of the existing VMs
+                            displayVictimVMInfos(data)
+                        }
                     })
-                        .then(response => response.json())
-                        // .then(response => alert(JSON.stringify(response)))
-                        .then(response => displayVictimVMInfos(response))
-                        .then(document.getElementById("request-victim-vms").style.display = 'none')
-                        .then(document.getElementById("victim-vm-info-container").style.display = 'block')
+                    .catch(error => console.error(error));
 
-                }
-
-            </script>
-
-            <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
-                class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Lancers les VMs
-                victimes
-            </button>
-
-        </div>
-
-
-        <div id="request-attaque-vm" class="align-item-top">
-            <script>
-                function requestAttackVMs() {
-                    fetch('{{ url_for('api.request_attack_vm', room_url_name = room.url_name) }}', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
+                // On met en place la VM d'attaque
+                fetch("{{url_for('api.get_existing_attack_vm')}}")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.exists) {
+                            // Show the info of the existing VMs
+                            displayAttackVMInfos(data)
+                        } else {
+                            // We don't have any VMs, show the "request VM" button
+                            document.getElementById("attack-vm-info-data").style.display = 'none'
+                            document.getElementById("request-attack-vm-button").style.display = ''
+                        }
                     })
-                        .then(response => response.json())
-                        //.then(response => alert(JSON.stringify(response)))
-                        .then(response => displayAttackVMInfos(response))
-                        .then(document.getElementById("request-attack-vm").style.display = 'none')
-                        .then(document.getElementById("attack-vm-info-container").style.display = 'block')
+                    .catch(error => console.error(error));
+            }
 
-                }
-            </script>
+            function deleteVms() {
+                fetch('{{ url_for('api.delete_vms') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => response.json())
+                    // .then(response => alert(JSON.stringify(response)))
+                    // refresh la page une fois que les VMs sont supprimé
+                    .then(location.reload())
+            }
 
+            $(document).ready(function () {
+                setupVMInfos();
+            });
+        </script>
 
-            <button type="submit" name="submit_param" value="submit_value" onclick="requestAttackVMs();"
-                class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Lancers la VM d'attaque
-            </button>
-        </div>
-        {% else %}
-        {# TODO: Afficher les VMs existante et permettre de les supprimer #}
-        {% endif %}
-        {% endif %}
-        {% endif %}
-        {% endblock %}
-        <div id="victim-vm-info-container" class="p-2" style="display:none">
-            <div id="victim-vm-info" class="bg-white rounded-3 p-4">
-                <h2>VMs:</h2>
+        <div id="vm-info-container" class="row p-2">
+            <div id="attack-vm-info-container" class="bg-white rounded-3 m-3 p-4 col">
+                <h2>VM attaque:</h2>
+                <div id="attack-vm-info-data">
+                    <p class="placeholder-wave"><span class="placeholder col-6"></span></p>
+                    <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
+                    <p class="placeholder-wave"><span class="placeholder col-5"></span></p>
+                    <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
+                </div>
+                <button type="submit" name="submit_param" value="submit_value" onclick="requestAttackVMs();"
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button"
+                    style="display: none;" id="request-attack-vm-button">Lancers la VM d'attaque
+                </button>
+            </div>
+
+            <div id="victim-vm-info-container" class="bg-white rounded-3 m-3 p-4 col">
+                <h2>VMs victimes:</h2>
+                <div id="victim-vm-info-data">
+                    <p class="placeholder-wave"><span class="placeholder col-6"></span></p>
+                    <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
+                    <p class="placeholder-wave"><span class="placeholder col-5"></span></p>
+                    <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
+                </div>
+                <div id="request-victim-vms" class="">
+                    <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
+                        class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
+                        style="display: none;" id="request-victim-vms-button">Lancers les VMs victimes
+                    </button>
+                </div>
             </div>
         </div>
 
+
+        {% endif %}
+        {% endif %}
         {% block room_info %}
         <div class="p-2">
             <div class="bg-white rounded-3 p-4">
@@ -194,11 +270,21 @@
         <div class="mx-2 sticky-top pb-1">
             <!-- Progression -->
             <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary">
-                <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>
-                <div class="progress">
-                    <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if nbr_question_solved == nbr_question_total else ''}}"
-                        aria-valuenow="{{nbr_question_solved}}" aria-valuemin="0" aria-valuemax="{{nbr_question_total}}"
-                        style="width: {{ progress_percentage }}%"></div>
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>
+                        <div class="progress">
+                            <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if nbr_question_solved == nbr_question_total else ''}}"
+                                aria-valuenow="{{nbr_question_solved}}" aria-valuemin="0"
+                                aria-valuemax="{{nbr_question_total}}" style="width: {{ progress_percentage }}%"></div>
+                        </div>
+                    </div>
+                    <div class="col-2" id="delete-vms-button-container" style="display: none;">
+                        <button type="submit" name="submit_param" value="submit_value" onclick="deleteVms();"
+                            class="btn text-danger rounded-1 border-2 active fw-semibold m-2 align-self-end"
+                            role="button" id="delete-vms-button">Supprimer les VMs
+                        </button>
+                    </div>
                 </div>
             </div>
             {# <!-- VM --> #}
