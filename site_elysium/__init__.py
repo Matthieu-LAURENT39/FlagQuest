@@ -132,7 +132,7 @@ def setup_app(app: Flask):
                 description="Wow what a cool room **desu wa**",
                 url_name="room1",
                 instructions="QCM",
-                victim_vm_ids=[105],
+                victim_vm_ids=[101],
             )
             room2 = Room(
                 name="Room 2",
