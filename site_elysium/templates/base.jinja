@@ -52,8 +52,8 @@
                         <a href="{{ url_for('main.profile') }}"
                             class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/static/img/avatar.png" alt="mdo" width="36" height="36"
-                                class="avatar-user rounded-circle">
+                            <img src="{{url_for('main.profile_picture', username=current_user.username)}}" alt="mdo"
+                                width="36" height="36" class="avatar-user rounded-circle">
                         </a>
                         <ul class="dropdown-content dropdown-menu text-small" style="">
                             <!-- contenu du menu / ce qui défile -->

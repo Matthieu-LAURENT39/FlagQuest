@@ -13,7 +13,8 @@ Profile - {{user.username}}
             {# partie droite #}
             <div class="col-md-auto main-infos-profil-responsive">
                 <div class="div-pseudo">
-                    <img src="/static/img/avatar.png" alt="photo de profil de l'utilisateur" class="col avatar-profile">
+                    <img src="{{url_for('main.profile_picture', username=user.username)}}"
+                        alt="photo de profil de l'utilisateur" class="col avatar-profile">
                     <h1 class="username-profile col">{{user.username}}</h1>
                     <img src="/static/img/france.svg" alt="logo" class="country-profile col">
                 </div>
@@ -146,7 +147,9 @@ Profile - {{user.username}}
                             {% for position, u in ranking_users %}
                             <tr class="{{'active-row' if u == user else 'lambda-row'}}">
                                 <th>#{{position}}</th>
-                                <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                                <td><img class="img-avatar-classement"
+                                        src="{{url_for('main.profile_picture', username=u.username)}}"></td>
+                                <!-- a voir -->
                                 <td class="username-classement-style">
                                     <a href="{{url_for('main.profile', username=u.username)}}">{{u.username}}</a>
                                 </td>

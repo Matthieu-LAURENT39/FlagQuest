@@ -7,6 +7,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
 from typing import TYPE_CHECKING
 from functools import lru_cache
+import customidenticon
+
 
 from . import room_user, SolvedQuestionData
 from .. import db
@@ -79,3 +81,20 @@ class User(db.Model, UserMixin):
     @property
     def score(self) -> int:
         return self.points_at_date(datetime.date.today())
+
+    @lru_cache(maxsize=5)
+    def get_profile_picture(self, size: int = 250) -> bytes:
+        # return generator.generate(
+        #     self.username.casefold(), size, size, output_format="png"
+        # )
+        identicon = customidenticon.create(
+            self.username.casefold(),  # Data used to generate identicon
+            type="pixels",
+            format="png",
+            background="#f0f0f0",
+            block_visibility=255,
+            block_size=size // 10,  # size of elements (px)
+            border=25,  # border (px)
+            size=10,  # number of elements
+        )
+        return identicon
