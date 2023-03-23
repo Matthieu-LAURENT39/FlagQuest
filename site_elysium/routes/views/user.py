@@ -51,8 +51,6 @@ def profile(username):
     user_index = all_users.index(user)
 
     def get_index_or_none(lst: list, index: int):
-        if index < 0:
-            return None
         try:
             return (index + 1, lst[index])
         except IndexError:
@@ -61,7 +59,7 @@ def profile(username):
     # We find the 2 users on each side around the user
     ranking_users = []
     # User is first
-    if user_index == 1:
+    if user_index == 0:
         ranking_users = [
             get_index_or_none(all_users, user_index),
             get_index_or_none(all_users, user_index + 1),
