@@ -19,7 +19,11 @@ class VirtualMachine(db.Model):
 
     __tablename__ = "virtual_machines"
 
-    uuid: Mapped[UUID] = mapped_column(UUIDType, primary_key=True, default=uuid4)
+    def __init__(self, *args, **kwargs) -> None:
+        self.uuid = uuid4()
+        super().__init__(*args, **kwargs)
+
+    uuid: Mapped[UUID] = mapped_column(UUIDType, primary_key=True)
     proxmox_id: Mapped[int] = mapped_column(unique=True)
 
     user_id: Mapped[int]
