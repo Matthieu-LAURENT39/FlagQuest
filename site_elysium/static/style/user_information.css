@@ -26,7 +26,6 @@
     margin-right: 10px;
     background-color: var(--night-grey);
     border: solid 1px var(--blue);
-    border-radius: 25%;
     transition-property: all;
     transition-duration: 500ms;
 }
