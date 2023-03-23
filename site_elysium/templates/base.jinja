@@ -71,12 +71,27 @@
                                     <img src="/static/img/podium.svg">
                                 </a>
                             </li>
-                            {# affiche lien panel admin si user est connecté en admin #}
+                            {# lien vers liste des rooms #}
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('main.liste_room') }}">
+                                    <span>Rooms</span>
+                                    <img src="/static/img/icon_room.svg">
+                                </a>
+                            </li>
+                            {# si user connecté en admin --> liens vers panel admin + edit room#}
                             {% if current_user.is_admin == true %}
+                            {# lien vers panel administrateur #}
                             <li>
                                 <a class="dropdown-item" href="{{ url_for('admin.index') }}">
                                     <span>Panel admin</span>
                                     <img src="/static/img/cadenas.svg">
+                                </a>
+                            </li>
+                            {# lien vers editeur de rooms #}
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('main.edite_room') }}">
+                                    <span>Editer rooms</span>
+                                    <img src="/static/img/icon_edit_room.svg">
                                 </a>
                             </li>
                             {% endif%}
