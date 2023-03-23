@@ -46,7 +46,7 @@
                         <th># {{ loop.index }}</th>
                         <td><img class="img-avatar-classement"></td> <!-- a voir -->
                         <td class="username-classement-style">
-                            <a href="#">{{user.username|e}}</a>
+                            <a href="{{url_for('main.profile', username=user.username)}}">{{user.username|e}}</a>
                         </td>
                         <td class="td-score">{{user.score|e}}
                     </tr>
@@ -55,7 +55,7 @@
                         <th># {{ loop.index }}</th>
                         <td><img class="img-avatar-classement"></td> <!-- a voir -->
                         <td class="username-classement-style">
-                            <a href="#">{{user.username|e}}</a>
+                            <a href="{{url_for('main.profile', username=user.username)}}">{{user.username|e}}</a>
                         </td>
                         <td class="td-score">{{user.score|e}}
                     </tr>
