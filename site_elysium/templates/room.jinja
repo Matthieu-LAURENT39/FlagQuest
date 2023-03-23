@@ -99,6 +99,7 @@
         {% else %}
         {% if not user_existing_vms %}
         <div id="request-victim-vms" class="align-item-top">
+
             <script>
                 function displayVictimVMInfos(response) {
                     vmInfoDiv = document.getElementById("victim-vm-info")
@@ -131,6 +132,18 @@
 
                 }
 
+            </script>
+
+            <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
+                class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Lancers les VMs
+                victimes
+            </button>
+
+        </div>
+
+
+        <div id="request-attaque-vm" class="align-item-top">
+            <script>
                 function requestAttackVMs() {
                     fetch('{{ url_for('api.request_attack_vm', room_url_name = room.url_name) }}', {
                         method: 'POST',
@@ -146,14 +159,12 @@
                         .then(document.getElementById("attack-vm-info-container").style.display = 'block')
 
                 }
-
             </script>
 
-            <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
-                class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Lancers les VMs
+
+            <button type="submit" name="submit_param" value="submit_value" onclick="requestAttackVMs();"
+                class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Lancers la VM d'attaque
             </button>
-
-
         </div>
         {% else %}
         {# TODO: Afficher les VMs existante et permettre de les supprimer #}
