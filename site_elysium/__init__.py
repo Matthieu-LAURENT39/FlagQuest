@@ -119,7 +119,6 @@ def setup_app(app: Flask):
                 username="admin",
                 email="feur@desu.wa",
                 is_admin=True,
-                score=12,
             )
             user.set_password("admin")
             db.session.add(user)

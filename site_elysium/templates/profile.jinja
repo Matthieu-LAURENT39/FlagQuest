@@ -143,33 +143,17 @@ Profile - {{user.username}}
 
                         <!-- BODY TABLE-->
                         <tbody>
-                            <!-- LIGNE 1 -->
-                            <tr class="lambda-row">
-                                <th># 1<!-- variable Xème du site --></th>
+                            {% for position, u in ranking_users %}
+                            <tr class="{{'active-row' if u == current_user else 'lambda-row'}}">
+                                <th>#{{position}}</th>
                                 <td><img class="img-avatar-classement"></td> <!-- a voir -->
                                 <td class="username-classement-style">
-                                    <a href="#">usern@m1</a><!-- variable username du Xème du site -->
+                                    <a href="#">{{u.username}}</a>
                                 </td>
-                                <td class="td-score">87<!-- varialbe du score de l'user --></td>
+                                <td class="td-score">{{u.score}}
+                                <td>
                             </tr>
-
-                            <!-- LIGNE 2 -->
-                            <tr class="active-row">
-                                <th># 2 <!-- {{user.position}} --></th>
-                                <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                                <td>{{user.username}}</td>
-                                <td class="">{{user.score}}</td>
-                            </tr>
-
-                            <!-- LIGNE 3 -->
-                            <tr class="lambda-row">
-                                <th># 3</th>
-                                <td><img class="img-avatar-classement"></td> <!-- a voir -->
-                                <td class="username-classement-style">
-                                    <a href="#">niko_haxor</a><!-- variable username du Xème du site -->
-                                </td>
-                                <td class="td-score">34</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

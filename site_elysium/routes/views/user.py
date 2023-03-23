@@ -47,7 +47,45 @@ def profile(username):
     chart.labels.grouped = list(day_to_points.keys())
     chart.data.data = list(day_to_points.values())
 
-    return render_template("profile.jinja", user=user, chart_json=chart.get())
+    all_users = list(sorted(User.query.all(), key=lambda u: u.score, reverse=True))
+    user_index = all_users.index(user)
+
+    def get_index_or_none(lst: list, index: int):
+        if index < 0:
+            return None
+        try:
+            return (index + 1, lst[index])
+        except IndexError:
+            return None
+
+    # We find the 2 users on each side around the user
+    ranking_users = []
+    # User is first
+    if user_index == 1:
+        ranking_users = [
+            get_index_or_none(all_users, user_index),
+            get_index_or_none(all_users, user_index + 1),
+            get_index_or_none(all_users, user_index + 2),
+        ]
+    # User is last
+    elif user_index == len(all_users) - 1:
+        ranking_users = [
+            get_index_or_none(all_users, user_index - 2),
+            get_index_or_none(all_users, user_index - 1),
+            get_index_or_none(all_users, user_index),
+        ]
+    else:
+        ranking_users = [
+            get_index_or_none(all_users, user_index - 1),
+            get_index_or_none(all_users, user_index),
+            get_index_or_none(all_users, user_index + 1),
+        ]
+    # We remove the Nones
+    ranking_users = [u for u in ranking_users if u is not None]
+
+    return render_template(
+        "profile.jinja", user=user, chart_json=chart.get(), ranking_users=ranking_users
+    )
 
 
 @main.route("/classement")
