@@ -25,7 +25,7 @@ Profile - {{user.username}}
                     <div class="sous-div-stat">
                         <h2 class="variable-stat">
                             <img class="icon-stat" src="/static/img/podium.svg" alt="logo de la catégorie classement">
-                            122<!-- variable classement -->
+                            #{{user_position}}
                         </h2>
                         <h3 class="title-stat">Position</h3>
                     </div>
@@ -144,11 +144,11 @@ Profile - {{user.username}}
                         <!-- BODY TABLE-->
                         <tbody>
                             {% for position, u in ranking_users %}
-                            <tr class="{{'active-row' if u == current_user else 'lambda-row'}}">
+                            <tr class="{{'active-row' if u == user else 'lambda-row'}}">
                                 <th>#{{position}}</th>
                                 <td><img class="img-avatar-classement"></td> <!-- a voir -->
                                 <td class="username-classement-style">
-                                    <a href="#">{{u.username}}</a>
+                                    <a href="{{url_for('main.profile', username=u.username)}}">{{u.username}}</a>
                                 </td>
                                 <td class="td-score">{{u.score}}
                                 <td>

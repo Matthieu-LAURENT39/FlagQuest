@@ -14,7 +14,7 @@ class UserWeekPoints(BaseChart):
         grouped = []
 
     class data:
-        label = "Points over time"
+        label = "Points"
         labels = []
         data = []
         backgroundColor = Color.Green
@@ -82,7 +82,11 @@ def profile(username):
     ranking_users = [u for u in ranking_users if u is not None]
 
     return render_template(
-        "profile.jinja", user=user, chart_json=chart.get(), ranking_users=ranking_users
+        "profile.jinja",
+        user=user,
+        chart_json=chart.get(),
+        ranking_users=ranking_users,
+        user_position=user_index + 1,
     )
 
 
