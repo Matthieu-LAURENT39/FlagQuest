@@ -197,4 +197,71 @@ print(n)
                     room_id=1, prompt=f"{i}+1=?", answer=str(i + 1), points=2
                 )
                 db.session.add(question)
-                db.session.commit()
+
+            # question room2
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt="Quel est l'argument permettant d'identifier l'OS et la versio?n",
+                    answer="-A",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt="Quels sont les machines qui ont un serveur FTP appartenant au réseau 10.10.12.128/25?",
+                    answer="",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt="""Quels sont les machines qui ont un serveur FTP appartenant au réseau 10.10.12.128/25?
+reponce attendu sous la forme 000.000.000.000/00""",
+                    answer="10.10.12.128/25",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt="Combien de service sont disponibles sur ce serveur?",
+                    answer="3",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt="Quel est la version du serveur Web?",
+                    answer="Apache/2.4.18",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt="Que trouvons-nous sur le port 21?",
+                    answer="ProFTPD 1.3.3c",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt="Quel est le titre de la page web?",
+                    answer="it works",
+                    points=2,
+                )
+            )
+
+            db.session.commit()

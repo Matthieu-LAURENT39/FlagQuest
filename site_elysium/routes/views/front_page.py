@@ -29,3 +29,9 @@ def mention_legales():
 def conditions_generales_d_utilisation():
     "Les conditions générales d'utilisation du site web."
     return render_template("Conditions_generales_d_utilisation.jinja")
+
+
+@main.route("/utilisation")
+def utilisation_générale():
+    "présentation de l'utilisation de l'outil proposé"
+    return render_template("utilisation.jinja")
