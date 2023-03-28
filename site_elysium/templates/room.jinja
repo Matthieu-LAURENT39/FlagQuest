@@ -133,8 +133,14 @@
                     .then(response => response.json())
                     // .then(response => alert(JSON.stringify(response)))
                     .then(data => displayVictimVMInfos(data))
-                    .then(document.getElementById("request-victim-vms").style.display = 'none')
+                    .then(document.getElementById("request-victim-vms-button").style.display = 'none')
                     .then(document.getElementById("victim-vm-info-container").style.display = 'block')
+                    .catch(error => {
+                        console.error("Error creating the victim VMs: ", error)
+                        showErrorToast("Error lors de la création des VMs victimes!")
+                        document.getElementById("victim-vm-info-data").style.display = 'none'
+                        document.getElementById("request-victim-vms-button").style.display = ''
+                    });
             }
 
             function displayAttackVMInfos(data) {
@@ -165,7 +171,13 @@
                     .then(response => response.json())
                     //.then(response => alert(JSON.stringify(response)))
                     .then(response => displayAttackVMInfos(response))
-                    .then(document.getElementById("request-attack-vm").style.display = 'none')
+                    .then(document.getElementById("request-attack-vm-button").style.display = 'none')
+                    .catch(error => {
+                        console.error("Error creating the attack VM: ", error)
+                        showErrorToast("Error lors de la création de la VM d'attaque!")
+                        document.getElementById("attack-vm-info-data").style.display = 'none'
+                        document.getElementById("request-attack-vm-button").style.display = ''
+                    });
             }
 
             function setupVMInfos() {
