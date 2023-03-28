@@ -155,7 +155,12 @@
                     para.appendChild(node);
                     vmInfoDiv.appendChild(para)
                 }
-                console.log(data);
+                // Direct connection button
+                var link = document.createElement("a");
+                link.setAttribute("href", `com.realvnc.vncviewer.connect://${data.ip_address}:${data.vnc_port}`);
+                link.setAttribute("class", "btn btn-primary")
+                link.textContent = "Ouvrir avec RealVNC Viewer";
+                vmInfoDiv.appendChild(link)
             }
 
             function requestAttackVMs() {
@@ -223,7 +228,7 @@
                     .then(response => response.json())
                     // .then(response => alert(JSON.stringify(response)))
                     // refresh la page une fois que les VMs sont supprimé
-                    .then(location.reload())
+                    .then(location.reload(true))
             }
 
             $(document).ready(function () {
@@ -246,6 +251,7 @@
                 </button>
             </div>
 
+            {% if room.victim_vm_ids %}
             <div id="victim-vm-info-container" class="bg-white rounded-3 m-3 p-4 col">
                 <h2>VMs victimes:</h2>
                 <div id="victim-vm-info-data">
@@ -261,6 +267,7 @@
                     </button>
                 </div>
             </div>
+            {% endif %}
         </div>
 
 

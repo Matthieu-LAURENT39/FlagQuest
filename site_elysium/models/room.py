@@ -32,13 +32,13 @@ class Room(db.Model):
 
     questions: Mapped[list["Question"]] = db.relationship(back_populates="room")
 
-    _victim_vm_ids: Mapped[Optional[str]] = mapped_column("victim_vm_ids", default="")
+    _victim_vm_ids: Mapped[str] = mapped_column("victim_vm_ids", default="")
     """Les IDs des templates des machines victimes de la room, séparé par des points virgule ';'."""
 
     @property
     def victim_vm_ids(self) -> Optional[list[int]]:
         """Les IDs des templates des machines victimes de la room"""
-        if self._victim_vm_ids is None:
+        if not self._victim_vm_ids:
             return None
         return [int(v) for v in self._victim_vm_ids.split(";")]
 
