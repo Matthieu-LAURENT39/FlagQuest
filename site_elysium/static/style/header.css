@@ -1,123 +1,121 @@
-/* padding droite 10 px */
-.nom-utilisateur {
-    padding-right: 10px;
-    color: var(--white);
-    text-decoration: underline;
-  }
-  /* padding droite 10 px */
-  .nom-utilisateur {
-    padding-right: 10px;
-    color: var(--white);
-    text-decoration: underline;
-  }
+/* ------------------------------ header ------------------------------ */
 
-  
-  /* ------------------------------ header ------------------------------ */
-  
-  .logo {
-    width: 48px;
-    height: 48px;
-  }
-  
-  .logo-large {
-    width: 150px;
-    height: 150px;
-  }
-  
-  /* nom de site avec font spéciale */
-  .site-name {
-    /* min-width: 45px;
+/* padding droite 10 px */
+/* gère les username trop long */
+.nom-utilisateur {
+  padding-right: 10px;
+  color: var(--white);
+  text-decoration: underline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+}
+
+.logo-large {
+  width: 150px;
+  height: 150px;
+}
+
+/* nom de site avec font spéciale */
+.site-name {
+  /* min-width: 45px;
     width: 62px;
     height: 100%;  */
-    line-height: 62px;
-    padding-left: 7px;
-    font-family: 'logo';
-    font-size: 40px;
-  }
-  
-  /* boutton en forme d'ecole, accès root me PRO/lycée branly */
-  .a-rootme-pro {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .logo-rootme-pro {
-    -webkit-filter: invert(100%);
-    filter: invert(100%);
-    width: 32px;
-    height: 32px;
-  }
-  
-  /* --------------- header user connecté --------------- */
-  
-  /* gère background de l'avatar utilisateur (par défaut transparent) */
-  .avatar-user {
-    background-color: var(--dark-grey);
-    border: solid 1px var(--green);
-    width: 36px;
-    height: 36px;
-    transition-property: all;
-    transition-duration: 700ms;
-  }
-  
-  /* quand icon user est survolé --> agrandir, bg, animation... */
-  .avatar-user:hover {
-    background-color: var(--night-grey);
-    width: 38px;
-    height: 38px;
-  }
-  
-  /* curseur cliquable pour défilement */
-  .curseur-avatar::after {
-    color: var(--dark-grey);
-    border-top: 0.35em solid;
-    border-right: 0.35em solid transparent;
-    border-bottom: 0;
-    border-left: 0.35em solid transparent;
-  }
-  
-  /* cible/englobe la liste qui défile une fois le curseur cliqué */
-  ul.dropdown-content {
-    background-color: var(--night-grey);
-    border-radius: 3px;
-  }
-  
-  /* touche à chaque item/element de la liste défilante */
-  li a.dropdown-item {
-    color: var(--white);
-    width: 100%;
-    padding-right: 10px;
-    padding-left: 10px;
-    display: flex;
-    justify-content: space-between;
-    transition: all;
-    transition-duration: 700ms;
-  }
-  
-  /* gere icon du défilement profile user */
-  .dropdown-item>img {
-    width: 28px;
-    height: 28px;
-    margin-left: 20px;
-  }
-  
-  /* quand element dropdown liste est survolé */
-  li a.dropdown-item:hover {
-    color: var(--white);
-    background-color: var(--night-grey-hovered);
-  }
-  
-  .dropdown-icon {
-    padding-right: 1.5rem;
-    background: url('./static/img/avatar.png') right center no-repeat;
-    background-size: contain;
-  }
-  /* --------------- font --------------- */
-  
-  /* font logo avec files au-dessus */
-  @font-face {
-    font-family: "logo";
-    src: local("logo"),
-      url("../font/HangingLetters.woff") format("woff");
-  }
-  
+  line-height: 62px;
+  padding-left: 7px;
+  font-family: 'logo';
+  font-size: 40px;
+}
+
+/* boutton en forme d'ecole, accès root me PRO/lycée branly */
+.a-rootme-pro {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.logo-rootme-pro {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  width: 32px;
+  height: 32px;
+}
+
+/* --------------- header user connecté --------------- */
+
+/* gère background de l'avatar utilisateur (par défaut transparent) */
+.avatar-user {
+  background-color: var(--dark-grey);
+  border: solid 1px var(--green);
+  width: 36px;
+  height: 36px;
+  transition-property: all;
+  transition-duration: 700ms;
+  margin-left: 10px;
+}
+
+/* quand icon user est survolé --> agrandir, bg, animation... */
+.avatar-user:hover {
+  background-color: var(--night-grey);
+  width: 38px;
+  height: 38px;
+}
+
+/* curseur cliquable pour défilement */
+.curseur-avatar::after {
+  color: var(--dark-grey);
+  border-top: 0.35em solid;
+  border-right: 0.35em solid transparent;
+  border-bottom: 0;
+  border-left: 0.35em solid transparent;
+}
+
+/* cible/englobe la liste qui défile une fois le curseur cliqué */
+ul.dropdown-content {
+  background-color: var(--night-grey);
+  border-radius: 3px;
+}
+
+/* touche à chaque item/element de la liste défilante */
+li a.dropdown-item {
+  color: var(--white);
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  transition: all;
+  transition-duration: 700ms;
+}
+
+/* gere icon du défilement profile user */
+.dropdown-item>img {
+  width: 28px;
+  height: 28px;
+  margin-left: 20px;
+}
+
+/* quand element dropdown liste est survolé */
+li a.dropdown-item:hover {
+  color: var(--white);
+  background-color: var(--night-grey-hovered);
+}
+
+.dropdown-icon {
+  padding-right: 1.5rem;
+  background: url('./static/img/avatar.png') right center no-repeat;
+  background-size: contain;
+}
+
+/* --------------- font --------------- */
+
+/* font logo avec files au-dessus */
+@font-face {
+  font-family: "logo";
+  src: local("logo"),
+    url("../font/HangingLetters.woff") format("woff");
+}
