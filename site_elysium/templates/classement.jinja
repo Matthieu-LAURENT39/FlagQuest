@@ -44,7 +44,8 @@
                     {% if user.id == current_user.id %}
                     <tr class="active-row">
                         <th># {{ loop.index }}</th>
-                        <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                        <td><img class="img-avatar-classement"
+                                src="{{url_for('main.profile_picture', username=user.username)}}"></td>
                         <td class="username-classement-style">
                             <a href="{{url_for('main.profile', username=user.username)}}">{{user.username|e}}</a>
                         </td>
@@ -53,7 +54,10 @@
                     {% else %}
                     <tr class="lambda-row">
                         <th># {{ loop.index }}</th>
-                        <td><img class="img-avatar-classement"></td> <!-- a voir -->
+                        <td>
+                            <img class="img-avatar-classement"
+                                src="{{url_for('main.profile_picture', username=user.username)}}">
+                        </td>
                         <td class="username-classement-style">
                             <a href="{{url_for('main.profile', username=user.username)}}">{{user.username|e}}</a>
                         </td>

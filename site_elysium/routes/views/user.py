@@ -93,7 +93,6 @@ def profile(username):
 @main.route("/classement")
 def classement():
     """Un classement de tout les utilisateurs"""
-    from ...models import User
 
     # tri par ordre score : décroissant
     user = sorted(User.query.all(), key=lambda u: u.score, reverse=True)
