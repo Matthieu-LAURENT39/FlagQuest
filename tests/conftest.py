@@ -6,7 +6,7 @@ from site_elysium import create_app, db
 from site_elysium.flask_config import TestConfig
 
 
-@pytest.fixture()
+@pytest.fixture(scope="session")
 def app():
     app = create_app(config=TestConfig)
 
@@ -44,7 +44,6 @@ def make_test_data(app: Flask, database: SQLAlchemy):
                 username=f"user_{i}",
                 email=f"user_{i}@example.com",
                 is_admin=False,
-                score=12,
             )
             user.set_password("password")
             database.session.add(user)
@@ -60,15 +59,16 @@ def make_test_data(app: Flask, database: SQLAlchemy):
             database.session.add(room)
 
         for i in range(6):
-            question = Question(room_id=1, prompt=f"{i}+1=?", answer=str(i + 1))
+            question = Question(
+                room_id=1, prompt=f"{i}+1=?", answer=str(i + 1), points=5
+            )
             database.session.add(question)
 
         # On ajoute le tout a la base de donnée
         database.session.commit()
 
 
-@pytest.fixture(scope="session")
-@pytest.fixture(autouse=True)
+@pytest.fixture(autouse=True, scope="session")
 def database(app: Flask):
     """BDD mais avec des données de test."""
 
@@ -91,7 +91,7 @@ def regular_user(database):
 
     from site_elysium.models import User
 
-    user = User.query(username="john_doe").first()
+    user = User.query.filter_by(is_admin=False).first()
 
     return user
 
@@ -102,6 +102,6 @@ def admin_user(database):
 
     from site_elysium.models import User
 
-    user = User.query(username="admin").first()
+    user = User.query.filter_by(is_admin=True).first()
 
     return user
