@@ -1,5 +1,6 @@
 {% macro question_widget(question, disabled=false, solved=false) -%}
 <div class="p-2">
+    <!-- si la question est résolu, ajouter une bordure verte -->
     <div class="p-3 bg-light rounded-3 text-black {{'border border-success border-5' if solved else ''}}"
         id="question_block-{{question.id}}">
         {{ question.prompt | markdown }} ({{ question.points }} points)
@@ -16,23 +17,3 @@
     </div>
 </div>
 {% endmacro %}
-
-{# <div class="text-center">
-    <h1 class="text-black fs-2 fw-normal">QCM :</h1>
-</div>
-Quelle commande permet de vois les information réseau ?
-<div class="myTest custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" id="customCheck1" />
-    <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-</div>
-<div class="myTest custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" id="customCheck2" />
-    <label class="custom-control-label" for="customCheck2">Check this custom checkbox</label>
-</div>
-<div class="myTest custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" id="customCheck3" />
-    <label class="custom-control-label" for="customCheck3">Check this custom checkbox</label>
-</div>
-<div class="align-item-top">
-    <a href="..." class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button">Valider</a>
-</div> #}
