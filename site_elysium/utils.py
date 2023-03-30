@@ -1,4 +1,5 @@
 from itertools import count
+from collections import deque
 from typing import Iterator, TypeVar
 
 
@@ -27,8 +28,8 @@ def get_n_around(lst: list[T], index: int, amount: int) -> list[T]:
     if not 0 <= index < len(lst):
         raise ValueError("Index not in list")
 
-    # The list doesn't have enough elements, so we return it directly
-    # since it's the max amount we'll be able to return
+    # * The list doesn't have enough elements, so we return it directly
+    # * since it's the max amount we'll be able to return
     if len(lst) <= amount:
         return lst
 
@@ -44,13 +45,19 @@ def get_n_around(lst: list[T], index: int, amount: int) -> list[T]:
             yield -i
             yield i
 
-    output_lst = []
+    # We use a deque since we'll add both to the start and the end
+    output = deque()
     index_iterator = neg_pos_count()
-    while len(output_lst) < amount:
+    while len(output) < amount:
         target_index = index + next(index_iterator)
         # We don't want indexes outside the list
-        if target_index < 0 or target_index <= len(output_lst):
+        if not 0 <= target_index < len(lst):
             continue
-        output_lst.append(lst[target_index])
 
-    return output_lst
+        # * We add to the start or the end, keeping the original list's order
+        if target_index < index:
+            output.appendleft(lst[target_index])
+        else:
+            output.append(lst[target_index])
+
+    return list(output)
