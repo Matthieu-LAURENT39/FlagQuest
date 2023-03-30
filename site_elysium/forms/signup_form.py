@@ -6,7 +6,14 @@ class SignupForm(FlaskForm):
     """Formulaire de connexion"""
 
     username = wtforms.StringField(
-        "Votre pseudo", validators=[wtforms.validators.DataRequired()]
+        "Votre pseudo",
+        validators=[
+            wtforms.validators.DataRequired(),
+            wtforms.validators.Length(
+                max=30,
+                message="Le nom d'utilisateur doit faire moins de 30 charactères.",
+            ),
+        ],
     )
     email = wtforms.EmailField(
         "Votre adresse email", validators=[wtforms.validators.DataRequired()]
