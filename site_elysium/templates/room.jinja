@@ -240,7 +240,7 @@
         </script>
 
         <div id="vm-info-container" class="row p-2">
-            <div id="attack-vm-info-container" class="bg-white rounded-3 m-3 p-4 col">
+            <div id="attack-vm-info-container" class="bg-white rounded-3 m-3 mb-0 p-4 col">
                 <h2>VM attaque:</h2>
                 <div id="attack-vm-info-data">
                     <p class="placeholder-wave"><span class="placeholder col-6"></span></p>
@@ -255,7 +255,7 @@
             </div>
 
             {% if room.victim_vm_ids %}
-            <div id="victim-vm-info-container" class="bg-white rounded-3 m-3 p-4 col">
+            <div id="victim-vm-info-container" class="bg-white rounded-3 m-3 mb-0 p-4 col">
                 <h2>VMs victimes:</h2>
                 <div id="victim-vm-info-data">
                     <p class="placeholder-wave"><span class="placeholder col-6"></span></p>
@@ -286,12 +286,27 @@
 
 
         <!-- partie progression -->
+
+        <script>
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    document.getElementById("progress-bar-scroll").removeAttribute('class');
+                    document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 px-4 py-2 pb-3 justify-content-center border border-2 border-primary progress-bar-vertical-transition")
+                } else {
+                    document.getElementById("progress-bar-scroll").removeAttribute('class');
+                    document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 p-4 justify-content-center border border-2 border-primary progress-bar-vertical-transition")
+                }
+            }
+        </script>
         {% block progession %}
         {% if current_user.is_authenticated %}
         {% if user_is_in_room %}
         <div class="mx-2 sticky-top pb-1">
             <!-- Progression -->
-            <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary">
+            <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
+                id="progress-bar-scroll">
                 <div class="row">
                     <div class="col">
                         <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>
