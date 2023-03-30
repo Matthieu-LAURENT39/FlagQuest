@@ -1,0 +1,30 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="/static/style/auth.css">
+{% endblock %}
+
+
+{% block title %}
+{{super()}} - Classement
+{% endblock %}
+
+{% block body %}
+<div class="warning-container">
+    <div class="warning-infos">
+        <h2 class="warning-title">AVERTISSEMENT</h2>
+        <h3 class="warning-title">Accès autorisé uniquement !</h3>
+        <p></p>
+        <h4 class="warning-content">Toutes les connexions sont enregistrées et surveillées.</h4>
+        <h4 class="warning-content">Toute utilisation non autorisée fera l'objet de poursuites judiciaires.</h4>
+        <h4 class="warning-content">Si vous n'acceptez pas ces conditions, déconnectez-vous immédiatement.</h4>
+    </div>
+</div>
+
+<div class="button-container">
+    <a href="/" class="button-retour">Retour</a>
+</div>
+
+
+{% endblock %}

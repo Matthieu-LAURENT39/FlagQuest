@@ -1,0 +1,63 @@
+/* ------------------------------ interface admin ------------------------------ */
+
+
+.warning-container {
+    background: repeating-linear-gradient(45deg,
+            #943232,
+            #943232 5%,
+            #7A0000 5%,
+            #7A0000 10%);
+    background-size: 100px 100px;
+    animation: move-it 2.5s linear infinite;
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-radius: 10px;
+}
+
+/* animation avertissement */
+@keyframes move-it {
+    0% {
+        background-position: initial;
+    }
+
+    100% {
+        background-position: 100px 0px;
+    }
+}
+
+/* container textuel de l'avertissement */
+.warning-infos {
+    padding: 16px;
+    width: 100%;
+    background-color: #824F4F;
+    text-align: center;
+}
+
+/* titres avertissement */
+.warning-title {
+    font-weight: 900;
+    font-size: 42px;
+}
+
+/* phrases avertissement */
+.warning-content {
+    font-weight: 400;
+    font-size: 28px;
+}
+
+/* sert à l'espacement entre titres et phrases*/
+p {
+    margin-bottom: 40px;
+}
+
+.button-container {
+    margin-top: 60px;
+}
+
+.button-retour {
+    margin-top: 30px;
+    padding: 16px;
+    background-color: green;
+    color: #FFF;
+}
