@@ -3,6 +3,7 @@ from flask import render_template, abort, redirect, url_for
 from datetime import date, timedelta
 from flask_login import login_required, current_user, user_logged_in
 from ...models import User
+from ...utils import get_n_around
 
 from pychartjs import BaseChart, ChartType, Color
 
@@ -50,36 +51,7 @@ def profile(username):
     all_users = list(sorted(User.query.all(), key=lambda u: u.score, reverse=True))
     user_index = all_users.index(user)
 
-    def get_index_or_none(lst: list, index: int):
-        try:
-            return (index + 1, lst[index])
-        except IndexError:
-            return None
-
-    # We find the 2 users on each side around the user
-    ranking_users = []
-    # User is first
-    if user_index == 0:
-        ranking_users = [
-            get_index_or_none(all_users, user_index),
-            get_index_or_none(all_users, user_index + 1),
-            get_index_or_none(all_users, user_index + 2),
-        ]
-    # User is last
-    elif user_index == len(all_users) - 1:
-        ranking_users = [
-            get_index_or_none(all_users, user_index - 2),
-            get_index_or_none(all_users, user_index - 1),
-            get_index_or_none(all_users, user_index),
-        ]
-    else:
-        ranking_users = [
-            get_index_or_none(all_users, user_index - 1),
-            get_index_or_none(all_users, user_index),
-            get_index_or_none(all_users, user_index + 1),
-        ]
-    # We remove the Nones
-    ranking_users = [u for u in ranking_users if u is not None]
+    ranking_users = get_n_around(lst=all_users, index=user_index, amount=5)
 
     return render_template(
         "profile.jinja",

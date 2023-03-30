@@ -9,8 +9,8 @@ import pytest
         ([1, 2, 3, 4, 5], 4, 3, [3, 4, 5]),
         ([5, 4, 3, 2, 1], 2, 3, [4, 3, 2]),
         ([1, 2, 3], 1, 500, [1, 2, 3]),
-        ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1, 5, [0, 1, 2, 3, 4, 5]),
-        ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 2, 5, [0, 1, 2, 3, 4, 5]),
+        ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1, 5, [0, 1, 2, 3, 4]),
+        ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 2, 5, [0, 1, 2, 3, 4]),
         ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 6, 5, [4, 5, 6, 7, 8]),
     ],
 )
@@ -18,6 +18,7 @@ def test_get_n_around(lst, index, amount, expected):
     """
     Teste que get_n_around renvois bien les bonnes valeurs
     """
+    assert get_n_around(lst=lst, index=index, amount=amount) == expected
 
 
 def test_get_n_around_errors():
