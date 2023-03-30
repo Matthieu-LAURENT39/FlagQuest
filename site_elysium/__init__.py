@@ -134,10 +134,42 @@ def setup_app(app: Flask):
                 victim_vm_ids=[101],
             )
             room2 = Room(
-                name="Room 2",
-                description="lorem ipsum dolor sit amet",
-                url_name="room2",
-                instructions="QCM",
+                name="Introduction à Nmap",
+                description="Apprenez les bases de **Nmap**, un outil d'exploration réseau.",
+                url_name="introduction_nmap",
+                instructions="""Après avoir dressé et borné la prestation de tests d'intrusion, vous devez commencer par la première étape de votre mission : Enumération
+Pour mener à bien cette phase, nous allons apprendre à utiliser l'application nmap.
+
+# NMAP
+Nmap (« Network Mapper ») est un outil open source d'exploration réseau et d'audit de sécurité.
+Les commandes principales sont :
+`nmap -v <ip>`
+
+Cette option scanne tous les ports réservés TCP sur la machine <ip> . L'option -v active le mode verbeux.
+`nmap -sS -O <ip>/<CIDR>`
+
+Lance un scan furtif (SYN scan) contre chaque machine active. Il essaie aussi de déterminer le système d'exploitation sur chaque hôte actif. Cette démarche nécessite les privilèges de root puisqu'on utilise un SYN scan et une détection d'OS
+exemple : `nmap -sS -O 192.168.1.0/24` scanne les 255 machines du NetID 192.168.1
+`nmap -sV -p 22,53,110,143,4564 198.116.0-255.1-127`
+
+Lance une recherche des hôtes et un scan TCP dans la première moitié de chacun des 255 sous-réseaux à 8 bits dans l'espace d'adressage de classe B 198.116 Cela permet de déterminer si les systèmes font tourner sshd (22), DNS (53), pop3d(110), imapd(143) ou le port 4564. Pour chacun de ces ports qui sont ouverts, la détection de version est utilisée pour déterminer quelle application est actuellement lancée.
+
+### Flags intéréssant
+##### Détection d'un système d'exploitation:
+`-O`: Active la détection d'OS
+##### Détection de services/versions:
+`-sV`: Teste les ports ouverts pour déterminer le service en écoute et sa version
+##### Spécification des ports et ordre de scan:
+`-p` <plage de ports>: Ne scanne que les ports spécifiés
+##### Méthode de scan:
+`-sS` / `-sT` / `-sA` / `-sW`/ `-sM`: Scans TCP SYN/Connect()/ACK/Window/Maimon 
+`-sN`/`-sF`/`-sX`: Scans TCP Null, FIN et Xmas
+`-sU`: Scan UDP
+
+##### Divers:
+`-6`: Active le scan IPv6
+`-A`: Active la détection du système d'exploitation, des versions et génère un tracert (traceroute)
+""",
             )
             room3 = Room(
                 name="Room 3",
@@ -203,7 +235,7 @@ print(n)
             db.session.add(
                 Question(
                     room_id=2,
-                    prompt="Quel est l'argument permettant d'identifier l'OS et la versio?n",
+                    prompt="Quel est l'argument permettant d'identifier l'OS et la version?",
                     answer="-A",
                     points=2,
                 )
@@ -212,17 +244,8 @@ print(n)
             db.session.add(
                 Question(
                     room_id=2,
-                    prompt="Quels sont les machines qui ont un serveur FTP appartenant au réseau 10.10.12.128/25?",
-                    answer="",
-                    points=2,
-                )
-            )
-
-            db.session.add(
-                Question(
-                    room_id=2,
-                    prompt="""Quels sont les machines qui ont un serveur FTP appartenant au réseau 10.10.12.128/25?
-reponce attendu sous la forme 000.000.000.000/00""",
+                    prompt="""Quels sont les machines qui ont un serveur FTP appartenant au réseau **10.10.12.128/25**?
+Réponse attendu sous la forme `X.X.X.X/X`""",
                     answer="10.10.12.128/25",
                     points=2,
                 )
@@ -231,7 +254,7 @@ reponce attendu sous la forme 000.000.000.000/00""",
             db.session.add(
                 Question(
                     room_id=2,
-                    prompt="Combien de service sont disponibles sur ce serveur?",
+                    prompt="Combien de services sont disponibles sur ce serveur?",
                     answer="3",
                     points=2,
                 )

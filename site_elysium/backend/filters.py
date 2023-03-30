@@ -22,5 +22,6 @@ def markdown_filter(text: str) -> str:
             "fenced_code",
             "nl2br",
             CodeHiliteExtension(guess_lang=True, linenums=None),
+            "tables",
         ],
     )
