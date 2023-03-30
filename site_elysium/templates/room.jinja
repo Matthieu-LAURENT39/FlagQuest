@@ -45,9 +45,12 @@
                         //answer_form.submit()
                         document.location.reload(false)
                     }
+                    // si l'user répond & que sa réponse est fausse
+                    // pop-up erreur
+                    // effacer la réponse entrée
                     else {
-                        alert("Réponse incorrecte!")
-
+                        showErrorToast("Réponse incorrect !")
+                        answer_form.reset()
                     }
                 }
                 else {
@@ -321,7 +324,9 @@
         {% endblock %}
 
         {% block questions %}
+        {# pour chaque question #}
         {% for q in room.questions %}
+        {# disabled - la question est bloqué si l'user n'est pas co OU s'il a résolu la question #}
         {{ question_widget(q, disabled=(not current_user.is_authenticated or q.is_solved_by(current_user) or not
         user_is_in_room),
         solved=(current_user.is_authenticated and q.is_solved_by(current_user)))}}
