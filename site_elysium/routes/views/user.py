@@ -51,7 +51,10 @@ def profile(username):
     all_users = list(sorted(User.query.all(), key=lambda u: u.score, reverse=True))
     user_index = all_users.index(user)
 
-    ranking_users = get_n_around(lst=all_users, index=user_index, amount=5)
+    ranking_users = [
+        (all_users.index(u) + 1, u)
+        for u in get_n_around(lst=all_users, index=user_index, amount=5)
+    ]
 
     return render_template(
         "profile.jinja",
