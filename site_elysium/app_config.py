@@ -6,7 +6,7 @@ APP_LOGO = "/static/img/logo_rootme_inverted.png"
 APP_FAVICO = "/static/img/logo_rootme.svg"
 
 # ========== Apparence ==========
-ENABLE_FALLING_LETTERS_BACKGROUND = True
+ENABLE_ANIMATED_BACKGROUND = True
 
 
 # ========== footer ==========

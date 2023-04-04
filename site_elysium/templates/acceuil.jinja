@@ -9,11 +9,20 @@
 
 {% block content %}
 
-{% if config.ENABLE_FALLING_LETTERS_BACKGROUND %}
-<canvas id="matrix-background" width="600" height="600" style="position:absolute; top:0; left:0; z-index:-1;"></canvas>
+{% if config.ENABLE_ANIMATED_BACKGROUND %}
+<ul class="background">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
 {% endif %}
 
-<main class=" container pt-5">
+
+<main class="container pt-5">
   <div class="container-index row">
     <!-- partie gauche avec logo + texte -->
     <div class="index-left-part col text-center pb-5">
