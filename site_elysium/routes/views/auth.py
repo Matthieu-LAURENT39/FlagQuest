@@ -81,5 +81,5 @@ def inscription():
 
         return redirect(next or url_for("main.acceuil"))
     else:
-        return "Erreur"
+        return redirect(request.url)
         # return flask.render_template("inscription.jinja", signup_form=form)
