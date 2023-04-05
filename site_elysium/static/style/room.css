@@ -18,3 +18,20 @@
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
+/* div qui gère les questions + button toggle edit mode */
+.top-question {
+  width: 100%;
+}
+
+/* partie question */
+.top-question .question-prompt {
+  width: 95%;
+}
+
+
+/* partie bouton */
+.button-toggle-edit-mode {
+  max-height: 34px;
+  width: 108px;
+}
