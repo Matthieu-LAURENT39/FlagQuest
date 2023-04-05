@@ -27,17 +27,6 @@ class UserResource(Resource):
         return user_schema.dump(user)
 
 
-class RoomResource(Resource):
-    """Informations lié à une room"""
-
-    def get(self, url_name: str):
-        """Récupère les informations lié a une room."""
-        room: models.Room = models.Room.query.filter_by(url_name=url_name).first_or_404(
-            description="Cette room n'existe pas."
-        )
-        return room_schema.dump(room)
-
-
 @api.after_request
 def api_after_request(r: Response) -> Response:
     """Edite toute les réponse de l'API"""
