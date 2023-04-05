@@ -11,8 +11,8 @@
                 <textarea class="w-100" rows="{{question.prompt.split('\n') | count}}">{{ question.prompt }}</textarea>
             </div>
             {# button toggle edition mode #}
-            <button type="button" class="button-toggle-edit-mode btn btn-outline-dark"
-                onclick="fonction dans static-scripts">Edit Mode</button>
+            <button type="button" class="button-toggle-edit-mode btn btn-outline-dark" role="button"
+                onclick="toggleEditMode({{question.id}}, true)">Edit Mode</button>
         </div>
         {% endif %}
         <div class="mb-3">

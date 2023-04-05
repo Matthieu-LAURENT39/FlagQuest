@@ -25,6 +25,7 @@
 }
 
 /* partie question */
+.top-question .question-prompt-edit,
 .top-question .question-prompt {
   width: 95%;
 }

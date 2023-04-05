@@ -1,4 +1,5 @@
 function toggleEditMode(question_id, edit_mode_enabled) {
+
     // Edit mode elements
     document.querySelectorAll(`#question_block-${question_id} .question-prompt-edit`)[0].style.display = edit_mode_enabled ? "" : "none"
     document.querySelectorAll(`#question-form-edit-${question_id}`)[0].style.display = edit_mode_enabled ? "" : "none"
