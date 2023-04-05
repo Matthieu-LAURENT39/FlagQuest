@@ -248,6 +248,7 @@
                     <p class="placeholder-wave"><span class="placeholder col-5"></span></p>
                     <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
                 </div>
+                {# button lancer VM attaque -> call : requestAttackVMs() #}
                 <button type="submit" name="submit_param" value="submit_value" onclick="requestAttackVMs();"
                     class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button"
                     style="display: none;" id="request-attack-vm-button">Lancers la VM d'attaque
@@ -264,6 +265,7 @@
                     <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
                 </div>
                 <div id="request-victim-vms" class="">
+                    {# button lancer VM victime -> call : requestVictimVMs() #}
                     <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
                         class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
                         style="display: none;" id="request-victim-vms-button">Lancers les VMs victimes
@@ -288,6 +290,7 @@
         <!-- partie progression -->
 
         <script>
+            // légère animation de la progression lorsque l'on scroll vers le bas
             window.onscroll = function () { scrollFunction() };
 
             function scrollFunction() {
@@ -300,7 +303,9 @@
                 }
             }
         </script>
+
         {% block progession %}
+        {# si l'user est CONNECTE et est DANS LA ROOM ---> afficher progression #}
         {% if current_user.is_authenticated %}
         {% if user_is_in_room %}
         <div class="mx-2 sticky-top pb-1">
@@ -316,6 +321,7 @@
                                 aria-valuemax="{{nbr_question_total}}" style="width: {{ progress_percentage }}%"></div>
                         </div>
                     </div>
+                    <!-- button SUPPRIMER VM ----- call :  deleteVms() -->
                     <div class="col-2" id="delete-vms-button-container" style="display: none;">
                         <button type="submit" name="submit_param" value="submit_value" onclick="deleteVms();"
                             class="btn text-danger rounded-1 border-2 active fw-semibold m-2 align-self-end"

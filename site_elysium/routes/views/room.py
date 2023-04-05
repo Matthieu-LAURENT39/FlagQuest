@@ -19,15 +19,22 @@ def room(room_url_name: str):
     """Une room, avec affichage des questions"""
     from ...models import Room, VirtualMachine
 
+    # cherche le nom la room entré dans l'url dans toute le bdd
+    # si pas trouvé --> abandonne avec 404
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
     )
 
+    # si l'user est co
     if current_user.is_authenticated:
+        # calculer sa progression
         nbr_question_solved = sum(q.is_solved_by(current_user) for q in room.questions)
+
+        # liste les vm attribué à l'user si c'est le cas
         user_existing_vms = VirtualMachine.query.filter_by(
             user_id=current_user.id
         ).all()
+
         user_attack_vm: VirtualMachine | None = (
             VirtualMachine.query.filter_by(user_id=current_user.id)
             .filter(VirtualMachine.display_port.isnot(None))

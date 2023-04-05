@@ -90,6 +90,13 @@
                                     <img src="/static/img/icon_room.svg">
                                 </a>
                             </li>
+                            {# lien vers liste des cours #}
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('main.cours') }}">
+                                    <span>Cours</span>
+                                    <img src="/static/img/icon_cours.svg">
+                                </a>
+                            </li>
                             {# si user connecté en admin --> liens vers panel admin + edit room#}
                             {% if current_user.is_admin == true %}
                             {# lien vers panel administrateur #}
