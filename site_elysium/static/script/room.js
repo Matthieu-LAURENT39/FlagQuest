@@ -1,4 +1,7 @@
 function toggleEditMode(question_id, edit_mode_enabled) {
+    // Switch the button to trigger the other mode
+    document.querySelectorAll(`#question_block-${question_id} button`)[0].onclick = function () { toggleEditMode(question_id, !edit_mode_enabled) }
+
     // Edit mode elements
     document.querySelectorAll(`#question_block-${question_id} .question-prompt-edit`)[0].style.display = edit_mode_enabled ? "" : "none"
     document.querySelectorAll(`#question-form-edit-${question_id}`)[0].style.display = edit_mode_enabled ? "" : "none"
@@ -27,7 +30,7 @@ function saveQuestion(question_id) {
         body: body,
     };
 
-    fetch("http://127.0.0.1:5000/api/question/1", requestOptions)
+    fetch(`http://127.0.0.1:5000/api/question/${question_id}`, requestOptions)
         .then(window.location.reload(true))
     //.then(response => response.text())
     //.then(result => console.log(result))

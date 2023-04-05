@@ -1,9 +1,11 @@
 import json
+import time
 
 import werkzeug.exceptions
 from flask import Blueprint, Response, abort, jsonify, redirect, request, current_app
 from flask_login import current_user, login_required
 from flask_restful import Api, Resource
+
 
 from ... import models as models
 from ...models import VirtualMachine, Room
@@ -260,4 +262,6 @@ def delete_vms():
         db.session.delete(vm)
 
     db.session.commit()
+    # Wait a bit to avoid race conditions
+    time.sleep(0.1)
     return {}
