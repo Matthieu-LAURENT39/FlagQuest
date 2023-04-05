@@ -2,6 +2,11 @@ function toggleEditMode(question_id, edit_mode_enabled) {
     // Switch the button to trigger the other mode
     document.querySelectorAll(`#question_block-${question_id} button`)[0].onclick = function () { toggleEditMode(question_id, !edit_mode_enabled) }
 
+    // Switch the styling of the question
+    let question_div = document.getElementById(`question_block-${question_id}`);
+    question_div.classList.remove(edit_mode_enabled ? "bg-light" : "bg-dark-subtle")
+    question_div.classList.add(edit_mode_enabled ? "bg-dark-subtle" : "bg-light");
+
     // Edit mode elements
     document.querySelectorAll(`#question_block-${question_id} .question-prompt-edit`)[0].style.display = edit_mode_enabled ? "" : "none"
     document.querySelectorAll(`#question-form-edit-${question_id}`)[0].style.display = edit_mode_enabled ? "" : "none"
