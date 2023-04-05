@@ -5,8 +5,11 @@ APP_NAME = "ROOT ME"
 APP_LOGO = "/static/img/logo_rootme_inverted.png"
 APP_FAVICO = "/static/img/logo_rootme.svg"
 
+# ========== Apparence ==========
+ENABLE_ANIMATED_BACKGROUND = True
 
-# ====== footer =========
+
+# ========== footer ==========
 CONFIDENTIALITE_LINK = "/confidentalite"
 MENTIONS_LEGALES_LINK = "/mention_legales"
 CONDITION_GENERALES_D_UTILISATION_LINK = "/Conditions_generales_d_utilisation"
@@ -14,7 +17,7 @@ CONDITION_GENERALES_D_UTILISATION_LINK = "/Conditions_generales_d_utilisation"
 SENTENCE_FOOTER_END = "Root Me : plateforme d'apprentissage dédiée au hacking et à la sécurité de l'information"
 COPYRIGHT = "© 2023"
 
-# ===== Liens Footer =====
+# ========== Liens Footer ==========
 # Laissé un lien vide pour le retirer
 TWITTER_LINK = "https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fwww.root-me.org%2F&region=follow_link&screen_name=rootme_org&tw_p=followbutton"
 LINKEDIN_LINK = (

@@ -8,7 +8,21 @@
 {% endblock %}
 
 {% block content %}
-<main class="container bg-black pt-5">
+
+{% if config.ENABLE_ANIMATED_BACKGROUND %}
+<ul class="background">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+{% endif %}
+
+
+<main class="container pt-5">
   <div class="container-index row">
     <!-- partie gauche avec logo + texte -->
     <div class="index-left-part col text-center pb-5">
@@ -21,7 +35,7 @@
 
     <!-- partie droite avec formulaire d'inscription -->
     {% if not current_user.is_authenticated %}
-    <div class="index-right-part modal modal-signin position-static d-block bg-black col " tabindex="-1" role="dialog"
+    <div class="index-right-part modal modal-signin position-static d-block col " tabindex="-1" role="dialog"
       id="modalSignin">
       <div class="modal-dialog" role="document">
         <div class="modal-content rounded-2 bg-dark">
@@ -89,7 +103,7 @@
       {% endfor %}
 
       <div class="col-md-6 p-3">
-        <div class="room-widget h-100 p-5 bg-light rounded-3  text-black">
+        <div class="room-widget h-100 p-5 bg-light rounded-3 text-black">
           <h2>Liste Rooms</h2>
           <p>liste de toutes les rooms</p>
           <a href="/room/" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
@@ -98,7 +112,7 @@
       </div>
 
       <div class="col-md-6 p-3">
-        <div class="room-widget h-100 p-5 bg-light rounded-3  text-black">
+        <div class="room-widget h-100 p-5 bg-light rounded-3 text-black">
           <h2>Utilisation Générale</h2>
           <p>utilisation des rooms et des machines virtuelles</p>
           <a href="/utilisation" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
