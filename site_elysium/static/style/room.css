@@ -28,10 +28,3 @@
 .top-question .question-prompt {
   width: 95%;
 }
-
-
-/* partie bouton */
-.button-toggle-edit-mode {
-  max-height: 34px;
-  width: 108px;
-}

@@ -293,17 +293,19 @@
             function scrollFunction() {
                 if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                     document.getElementById("progress-bar-scroll").removeAttribute('class');
-                    document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 px-4 py-2 pb-3 justify-content-center border border-2 border-primary progress-bar-vertical-transition")
+                    document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 px-4 py-2 pb-3 justify-content-center border border-2 border-primary progress-bar-vertical-transition mt-2")
+                    document.getElementById("progress-bar-scroll").setAttribute("style", "width: 80%;")
                 } else {
                     document.getElementById("progress-bar-scroll").removeAttribute('class');
                     document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 p-4 justify-content-center border border-2 border-primary progress-bar-vertical-transition")
+                    document.getElementById("progress-bar-scroll").setAttribute("style", "width: 100%;")
                 }
             }
         </script>
         {% block progession %}
         {% if current_user.is_authenticated %}
         {% if user_is_in_room %}
-        <div class="mx-2 sticky-top pb-1">
+        <div class="mx-2 sticky-top pb-1 d-flex justify-content-center">
             <!-- Progression -->
             <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
                 id="progress-bar-scroll">
