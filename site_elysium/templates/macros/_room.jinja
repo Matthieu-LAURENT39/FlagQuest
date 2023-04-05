@@ -3,9 +3,14 @@
     <!-- si la question est résolu, ajouter une bordure verte -->
     <div class="p-3 bg-light rounded-3 text-black {{'border border-success border-5' if solved else ''}}"
         id="question_block-{{question.id}}">
-        {{ question.prompt | markdown }} ({{ question.points }} points)
+        <div class="question-prompt">{{ question.prompt | markdown }} ({{ question.points }} points)</div>
+        {% if current_user.is_authenticated and current_user.is_admin %}
+        <div class="question-prompt-edit" style="display: none;">
+            <textarea class="w-100" rows="{{question.prompt.split('\n') | count}}">{{ question.prompt }}</textarea>
+        </div>
+        {% endif %}
         <div class="mb-3">
-            <form action="#" onsubmit="answerQuestion({{question.id}});return true;" id="question_form-{{question.id}}">
+            <form action="" onsubmit="answerQuestion({{question.id}});return true;" id="question_form-{{question.id}}">
                 <input class="form-control border-0" type="text"
                     placeholder="{{question.answer if solved else 'Réponse'}}" aria-label="input example"
                     id="question_answer-{{question.id}}" required="required" autocomplete="off" {{ 'disabled' if
@@ -13,6 +18,14 @@
                 <button type="submit" class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button"
                     {{ 'disabled' if disabled else '' }}>Valider</button>
             </form>
+            {% if current_user.is_authenticated and current_user.is_admin %}
+            <div id="question-form-edit-{{question.id}}" style="display: none;">
+                <input class="form-control border-0 question-answer-edit" type="text" placeholder="Réponse"
+                    aria-label="input example" required="required" autocomplete="off" value="{{question.answer}}">
+                <input type="button" class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button"
+                    onclick="saveQuestion({{question.id}})" value="Enregistrer les modifications">
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 {% extends 'base.jinja' %}
-{% from 'macros/_room.jinja' import question_widget %}
+{% from 'macros/_room.jinja' import question_widget with context %}
 
 {# Variables pour plus tard #}
 {% set user_is_in_room = current_user in room.users %}
