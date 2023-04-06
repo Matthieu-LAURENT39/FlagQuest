@@ -1,2 +1,2 @@
 from .. import main
-from . import front_page, room, user, auth, static, cours
+from . import front_page, room, user, auth, static
