@@ -65,7 +65,10 @@ def inscription():
             email=form.email.data,
         )
         user.set_password(form.password.data)
+
+        # ajouter l'utilisateur
         db.session.add(user)
+        # enregistrer la modification
         db.session.commit()
 
         # On connecte l'utilisateur avec Flask-login (ajout des cookies de session)

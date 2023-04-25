@@ -4,6 +4,7 @@
     <div class="position-relative p-3 bg-light rounded-3 text-black {{'border border-success border-5' if solved else ''}}"
         id="question_block-{{question.id}}">
         {% if current_user.is_authenticated and current_user.is_admin %}
+        {# button edit #}
         <button type="button" class="btn btn-outline-secondary position-absolute bottom-0 end-0 m-3"
             onclick="toggleEditMode({{question.id}}, true);">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen"
