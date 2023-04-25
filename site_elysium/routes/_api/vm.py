@@ -1,17 +1,12 @@
-import json
 import time
 
-import werkzeug.exceptions
 from flask import Blueprint, Response, abort, current_app, jsonify, redirect, request
 from flask_login import current_user, login_required
-from flask_restx import Api, Namespace, Resource
+from flask_restx import Namespace, Resource, fields
 
 from ... import db
 from ... import models as models
 from ...models import Room, VirtualMachine
-from ...models.schemas import question_schema, room_schema, user_schema
-from .. import api
-from . import api_manager
 
 # Type hinting
 current_user: models.User
@@ -20,12 +15,29 @@ vm_namespace = Namespace(
     "VM", description="Opérations liés aux machines virtuelles.", path="/"
 )
 
+attack_vm_model = vm_namespace.model(
+    "AttackVM",
+    {
+        "ip_address": fields.String,
+        "password": fields.String,
+        "username": fields.String,
+        "vnc_port": fields.Integer,
+    },
+)
+
+victim_vm_model = vm_namespace.model("VictimVM", {"ip_address": fields.String})
+
 
 @vm_namespace.route("/can_create_victim_vm")
 @vm_namespace.response(200, "Succès")
 class CanCreateVictimVmResource(Resource):
     method_decorators = [login_required]
 
+    @vm_namespace.marshal_with(
+        vm_namespace.model(
+            "CanCreateVictimVM", {"can_create_victim_vm": fields.Boolean}
+        )
+    )
     def get(self):
         """Permet a l'utilisateur de savoir si il peut créer une VM victime"""
         user_victim_vms: list[VirtualMachine] = (
@@ -42,6 +54,7 @@ class CanCreateVictimVmResource(Resource):
 class GetExistingAttackVmResource(Resource):
     method_decorators = [login_required]
 
+    @vm_namespace.marshal_with(attack_vm_model, as_list=False)
     def get(self):
         """Obtient des informations sur la VM d'attaque existante"""
 
@@ -69,6 +82,7 @@ class GetExistingAttackVmResource(Resource):
 class GetExistingVictimVmResource(Resource):
     method_decorators = [login_required]
 
+    @vm_namespace.marshal_with(victim_vm_model, as_list=True)
     def get(self, room_url_name: str):
         """Obtient des informations sur les VM victime existante"""
         room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
@@ -95,6 +109,7 @@ class GetExistingVictimVmResource(Resource):
 class RequestAttackVmResource(Resource):
     method_decorators = [login_required]
 
+    @vm_namespace.marshal_with(attack_vm_model, as_list=False)
     def post(self):
         """
         Créer une VM d'attaque, ou réutilise une VM existante si l'utilisateur en a déja une.
@@ -142,6 +157,7 @@ class RequestAttackVmResource(Resource):
 class RequestVictimVmsResource(Resource):
     method_decorators = [login_required]
 
+    @vm_namespace.marshal_with(victim_vm_model, as_list=True)
     def post(self, room_url_name: str):
         """Créer les VMs victimes pour une room."""
         from vm import get_vm_manager
