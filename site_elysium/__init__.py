@@ -99,6 +99,8 @@ def create_app(config: object = Config) -> Flask:
     if not app.testing:
         setup_app(app)
 
+    print(app.url_map)
+
     return app
 
 
