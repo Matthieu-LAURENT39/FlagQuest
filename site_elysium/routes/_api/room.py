@@ -6,7 +6,6 @@ from ... import models as models
 from ...models.schemas import room_schema, question_schema
 
 from ... import db
-from .. import api
 
 # Type hinting
 current_user: models.User
@@ -100,6 +99,7 @@ class QuestionResource(Resource):
 @room_namespace.response(200, "Succès")
 @room_namespace.response(400, "L'utilisateur est déja dans la room")
 @room_namespace.response(404, "La room n'existe pas")
+@room_namespace.doc(security="http")
 class RoomJoinResource(Resource):
     method_decorators = [login_required]
 
@@ -121,6 +121,7 @@ class RoomJoinResource(Resource):
     400,
     "Il manque un argument / L'utilisateur n'est pas dans la room / L'utilisateur a déja répondu à la question",
 )
+@room_namespace.doc(security="http")
 class AnswerQuestionResource(Resource):
     method_decorators = [login_required]
 

@@ -30,6 +30,7 @@ victim_vm_model = vm_namespace.model("VictimVM", {"ip_address": fields.String})
 
 @vm_namespace.route("/can_create_victim_vm")
 @vm_namespace.response(200, "Succès")
+@vm_namespace.doc(security="http")
 class CanCreateVictimVmResource(Resource):
     method_decorators = [login_required]
 
@@ -51,6 +52,7 @@ class CanCreateVictimVmResource(Resource):
 
 @vm_namespace.route("/get_existing_attack_vm")
 @vm_namespace.response(200, "Succès")
+@vm_namespace.doc(security="http")
 class GetExistingAttackVmResource(Resource):
     method_decorators = [login_required]
 
@@ -79,6 +81,7 @@ class GetExistingAttackVmResource(Resource):
 @vm_namespace.route("/get_existing_victim_vm/<room_url_name>")
 @vm_namespace.response(200, "Succès")
 @vm_namespace.response(404, "La room n'existe pas")
+@vm_namespace.doc(security="http")
 class GetExistingVictimVmResource(Resource):
     method_decorators = [login_required]
 
@@ -106,6 +109,7 @@ class GetExistingVictimVmResource(Resource):
 
 @vm_namespace.route("/request_attack_vm")
 @vm_namespace.response(200, "Succès")
+@vm_namespace.doc(security="http")
 class RequestAttackVmResource(Resource):
     method_decorators = [login_required]
 
@@ -154,6 +158,7 @@ class RequestAttackVmResource(Resource):
 @vm_namespace.route("/request_victim_vms/<room_url_name>")
 @vm_namespace.response(200, "Succès")
 @vm_namespace.response(404, "La room n'existe pas")
+@vm_namespace.doc(security="http")
 class RequestVictimVmsResource(Resource):
     method_decorators = [login_required]
 
@@ -201,6 +206,7 @@ class RequestVictimVmsResource(Resource):
 
 @vm_namespace.route("/delete_vms/")
 @vm_namespace.response(200, "Succès")
+@vm_namespace.doc(security="http")
 class DeleteVmsResource(Resource):
     method_decorators = [login_required]
 
