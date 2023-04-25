@@ -41,6 +41,8 @@ class GetExistingAttackVmResource(Resource):
     method_decorators = [login_required]
 
     def get(self):
+        """Obtient des informations sur la VM d'attaque existante"""
+
         user_attack_vm: VirtualMachine | None = (
             VirtualMachine.query.filter_by(user_id=current_user.id)
             .filter(VirtualMachine.display_port.isnot(None))
@@ -64,6 +66,7 @@ class GetExistingVictimVmResource(Resource):
     method_decorators = [login_required]
 
     def get(self, room_url_name: str):
+        """Obtient des informations sur les VM victime existante"""
         room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
             description="Cette room n'existe pas."
         )
@@ -178,6 +181,7 @@ class DeleteVmsResource(Resource):
     method_decorators = [login_required]
 
     def post(self):
+        """Supprime toutes les VMs de l'utilisateur"""
         from vm import get_vm_manager
 
         vm_manager = get_vm_manager()
