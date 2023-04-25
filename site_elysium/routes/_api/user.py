@@ -15,6 +15,8 @@ user_namespace = Namespace(
 
 
 @user_namespace.route("/user/<username>")
+@user_namespace.response(200, "Succès")
+@user_namespace.response(404, "L'utilisateur n'existe pas")
 class UserResource(Resource):
     """Informations lié à un utilisateur"""
 

@@ -15,7 +15,9 @@ room_namespace = Namespace("Room", description="Opérations liés aux rooms", pa
 
 
 @room_namespace.route("/room/<url_name>")
-@room_namespace.param("url_name", "The room's url name")
+@room_namespace.param("url_name", "L'url name de la room")
+@room_namespace.response(200, "Succès")
+@room_namespace.response(404, "La room n'existe pas")
 class RoomResource(Resource):
     """Informations lié à une room"""
 
@@ -28,6 +30,8 @@ class RoomResource(Resource):
 
 
 @room_namespace.route("/question/<id>")
+@room_namespace.response(200, "Succès")
+@room_namespace.response(404, "La question n'existe pas")
 class QuestionResource(Resource):
     """Informations lié à une question"""
 
@@ -57,6 +61,9 @@ class QuestionResource(Resource):
 
 @room_namespace.route("/join_room/<room_url_name>")
 @room_namespace.param("room_url_name", "The room's url name")
+@room_namespace.response(200, "Succès")
+@room_namespace.response(400, "L'utilisateur est déja dans la room")
+@room_namespace.response(404, "La room n'existe pas")
 class RoomJoinResource(Resource):
     method_decorators = [login_required]
 
@@ -73,6 +80,11 @@ class RoomJoinResource(Resource):
 
 
 @room_namespace.route("/answer_question")
+@room_namespace.response(200, "Succès")
+@room_namespace.response(
+    400,
+    "Il manque un argument / L'utilisateur n'est pas dans la room / L'utilisateur a déja répondu à la question",
+)
 class AnswerQuestionResource(Resource):
     method_decorators = [login_required]
 
@@ -95,7 +107,6 @@ class AnswerQuestionResource(Resource):
         if current_user not in question.room.users:
             abort(400, "L'utilisateur n'est pas dans la room.")
 
-        # TODO: vérifier si l'utilisateur à déja répondu à la question
         if question.is_solved_by(current_user):
             abort(400, "L'utilisateur a déja répondu à la question.")
 
@@ -106,7 +117,6 @@ class AnswerQuestionResource(Resource):
         if answer.casefold().strip() != question.answer.casefold().strip():
             return {"correct": False}
 
-        # TODO: stoqué que l'utilisateur a solve la question
         question.solve(current_user)
 
         return {"correct": True}
