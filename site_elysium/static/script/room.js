@@ -24,6 +24,7 @@ function toggleEditMode(question_id, edit_mode_enabled) {
     // comme c'est true - on met display: "none"; (donc plus affiché)
     document.querySelectorAll(`#question_block-${question_id} .question-prompt`)[0].style.display = edit_mode_enabled ? "none" : ""
     document.querySelectorAll(`#question_form-${question_id}`)[0].style.display = edit_mode_enabled ? "none" : ""
+    document.querySelectorAll(`#question_block-${question_id} .question-widget-points`)[0].style.display = edit_mode_enabled ? "none" : ""
 }
 
 /**

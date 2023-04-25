@@ -17,7 +17,10 @@
         </button>
         {% endif %}
 
-        <div class="question-prompt">{{ question.prompt | markdown }} ({{ question.points }} points)</div>
+        <div class="position-absolute top-0 end-0 m-3 question-widget-points">
+            <p class="fst-italic fw-normal">{{ question.points }} points</p>
+        </div>
+        <div class="question-prompt">{{ question.prompt | markdown }}</div>
         {% if current_user.is_authenticated and current_user.is_admin %}
         <div class="question-prompt-edit mb-2" style="display: none;">
             <textarea class="w-100 form-control border-0"
