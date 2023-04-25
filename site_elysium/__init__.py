@@ -175,8 +175,7 @@ Lance une recherche des hôtes et un scan TCP dans la première moitié de chacu
                 name="John The Ripper",
                 description="Apprenez à casser des mots de passe !",
                 url_name="john",
-                instructions="""tatatata
-
+                instructions="""
 # John the Ripper
 [John the Ripper](https://www.openwall.com/john/) (JTR ou John) est un logiciel libre permettant de tester la sécurité d'un mot de passe.
 
@@ -200,7 +199,7 @@ Les commandes principales sont :
 
 ## Les 3 différents modes
 ### Mode simple (Single crack)
-En mode simple, john se génère des variations de chaînes de caractères en fonction du nom d'utilisateur présent dans le fichier. Si le nom d'utilisateur est "RATIO", le mode simple va tester les mots de passe suivants : "Ratio", "RATIO2000", "ratio", ...
+En mode simple, john se génère des variations de chaînes de caractères en fonction du nom d'utilisateur présent dans le fichier. Si le nom d'utilisateur est "voiture", le mode simple va tester les mots de passe suivants : "Voiture", "VOIRTURE2000", "voiTure", ...
 
 Le contenu du fichier doit être sous la forme `username:hash`.
 Exemple :
@@ -222,7 +221,10 @@ Wordlist : `https://github.com/danielmiessler/SecLists`
 ### Mode incrémental (Incremental)
 Dans ce mode, John essaie tout les combinaisons de caractères possible pour trouver le mot de passe.
 
-
+Spécifier que l'on veut utiliser que des chiffres :
+`john -i=<MODE> --format=<hash-format> <filename>`
+Exemple :
+`john --incremental=digits --format=raw-md5 pass.txt`
 
 """,
             )
@@ -337,3 +339,32 @@ Réponse attendu sous la forme `X.X.X.X/X`""",
             )
 
             db.session.commit()
+
+            # question room3 - john the ripper
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt="Quel est le mot de passe correspondant au hash suivant (sha256): *4cffb4ed84e2986f067c9e373ef87bf6d5eddc7866fb2cdd41eb48429743f50d*. Utilisez le mode simple.",
+                    answer="ludovic4000",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt="Quel est le mot de passe correspondant au hash suivant (sha1): *26e2440a5730bccb5cf325e8856ac3c38fae9273*. Utilisez la méthode incremental en mode **digits**",
+                    answer="52821071",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt="Quel est le mot de passe correspondant au hash suivant (md5): *66218f113c52f7e270f051170eb10607*. Utilisez l'attaque via la wordlist **rockyou**",
+                    answer="mangeCEr@ti0!",
+                    points=2,
+                )
+            )
