@@ -1,9 +1,11 @@
 import json
+import time
 
 import werkzeug.exceptions
 from flask import Blueprint, Response, abort, jsonify, redirect, request, current_app
 from flask_login import current_user, login_required
 from flask_restful import Api, Resource
+
 
 from ... import models as models
 from ...models import VirtualMachine, Room
@@ -25,17 +27,6 @@ class UserResource(Resource):
             description="Cet utilisateur n'existe pas."
         )
         return user_schema.dump(user)
-
-
-class RoomResource(Resource):
-    """Informations lié à une room"""
-
-    def get(self, url_name: str):
-        """Récupère les informations lié a une room."""
-        room: models.Room = models.Room.query.filter_by(url_name=url_name).first_or_404(
-            description="Cette room n'existe pas."
-        )
-        return room_schema.dump(room)
 
 
 @api.after_request
@@ -271,4 +262,6 @@ def delete_vms():
         db.session.delete(vm)
 
     db.session.commit()
+    # Wait a bit to avoid race conditions
+    time.sleep(0.1)
     return {}

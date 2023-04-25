@@ -173,10 +173,59 @@ Lance une recherche des hôtes et un scan TCP dans la première moitié de chacu
 """,
             )
             room3 = Room(
-                name="Room 3",
-                description="lorem ipsum dolor sit amet",
-                url_name="room3",
-                instructions="QCM",
+                name="John The Ripper",
+                description="Apprenez à casser des mots de passe !",
+                url_name="john",
+                instructions="""tatatata
+
+# John the Ripper
+[John the Ripper](https://www.openwall.com/john/) (JTR ou John) est un logiciel libre permettant de tester la sécurité d'un mot de passe.
+
+## Installation
+*Cet outils est déjà installé sur la VM d'attaque, cette explication est simplement à but éducatif.*
+
+### Sous Linux
+On peut l'installer via **apt-get** ou **snap** :
+```
+$ sudo apt-get update
+$ sudo apt-get install john -y
+```
+
+### Sous Windows
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d'émuler un système Linux sous différentes versions de Windows.
+Voici un petit guide : `https://miloserdov.org/?p=4961#15`
+
+
+Les commandes principales sont :
+`john --wordlist=</path/to/wordlist/wordlists.txt>`
+
+## Les 3 différents modes
+### Mode simple (Single crack)
+En mode simple, john se génère des variations de chaînes de caractères en fonction du nom d'utilisateur présent dans le fichier. Si le nom d'utilisateur est "RATIO", le mode simple va tester les mots de passe suivants : "Ratio", "RATIO2000", "ratio", ...
+
+Le contenu du fichier doit être sous la forme `username:hash`.
+Exemple :
+    `jardinier:a69c316fbc7ec7da1305e72f95c164a8`
+
+La commande doit spécifier le paramètre `--single` ainsi que le format du hash :
+`john --single --format=<hash-format> <filename>`
+
+
+### Attaque par dictionnaire (Wordlist)
+L'attaque par dictionnaire test le hash avec tout les mots de passe présents dans une liste de mots (de passe) aussi appelée **wordlist**.
+
+Une des plus célèbre est RockYou, elle est issue d'une fuite de donnée du réseau social californien Rockyou en 2009.
+
+Wordlist : `https://github.com/danielmiessler/SecLists`
+
+`john --wordlist=</path/to/wordlist>` --format=<hash-format> <filename>`
+
+### Mode incrémental (Incremental)
+Dans ce mode, John essaie tout les combinaisons de caractères possible pour trouver le mot de passe.
+
+
+
+""",
             )
             room4 = Room(
                 name="Room 4",

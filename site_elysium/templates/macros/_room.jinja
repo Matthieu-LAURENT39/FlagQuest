@@ -1,11 +1,34 @@
 {% macro question_widget(question, disabled=false, solved=false) -%}
 <div class="p-2">
     <!-- si la question est résolu, ajouter une bordure verte -->
-    <div class="p-3 bg-light rounded-3 text-black {{'border border-success border-5' if solved else ''}}"
+    <div class="position-relative p-3 bg-light rounded-3 text-black {{'border border-success border-5' if solved else ''}}"
         id="question_block-{{question.id}}">
-        {{ question.prompt | markdown }} ({{ question.points }} points)
-        <div class="mb-3">
-            <form action="#" onsubmit="answerQuestion({{question.id}});return true;" id="question_form-{{question.id}}">
+        {% if current_user.is_authenticated and current_user.is_admin %}
+        {# button edit #}
+        <button type="button" class="btn btn-outline-secondary position-absolute bottom-0 end-0 m-3"
+            onclick="toggleEditMode({{question.id}}, true);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen"
+                viewBox="0 0 16 16">
+                <path
+                    d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z">
+                </path>
+            </svg>
+            Edit
+        </button>
+        {% endif %}
+
+        <div class="position-absolute top-0 end-0 m-3 question-widget-points">
+            <p class="fst-italic fw-normal">{{ question.points }} points</p>
+        </div>
+        <div class="question-prompt">{{ question.prompt | markdown }}</div>
+        {% if current_user.is_authenticated and current_user.is_admin %}
+        <div class="question-prompt-edit mb-2" style="display: none;">
+            <textarea class="w-100 form-control border-0"
+                rows="{{question.prompt.split('\n') | count}}">{{ question.prompt }}</textarea>
+        </div>
+        {% endif %}
+        <div>
+            <form action="" onsubmit="answerQuestion({{question.id}});return true;" id="question_form-{{question.id}}">
                 <input class="form-control border-0" type="text"
                     placeholder="{{question.answer if solved else 'Réponse'}}" aria-label="input example"
                     id="question_answer-{{question.id}}" required="required" autocomplete="off" {{ 'disabled' if
@@ -13,6 +36,14 @@
                 <button type="submit" class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button"
                     {{ 'disabled' if disabled else '' }}>Valider</button>
             </form>
+            {% if current_user.is_authenticated and current_user.is_admin %}
+            <div id="question-form-edit-{{question.id}}" style="display: none;">
+                <input class="form-control border-0 question-answer-edit" type="text" placeholder="Réponse"
+                    aria-label="input example" required="required" autocomplete="off" value="{{question.answer}}">
+                <input type="button" class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button"
+                    onclick="saveQuestion({{question.id}})" value="Enregistrer les modifications">
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
