@@ -1,5 +1,5 @@
 from flask import request, abort
-from flask_restx import Resource, Namespace
+from flask_restx import Resource, Namespace, fields
 from flask_login import login_required, current_user
 
 from ... import models as models
@@ -13,6 +13,20 @@ current_user: models.User
 
 room_namespace = Namespace("Room", description="Opérations liés aux rooms", path="/")
 
+room_model = room_namespace.model(
+    "Room",
+    {
+        "users": fields.List(fields.Integer),
+        "instructions": fields.String,
+        "description": fields.String,
+        "id": fields.Integer,
+        "url_name": fields.String,
+        "_victim_vm_ids": fields.String,
+        "name": fields.String,
+        "questions": fields.List(fields.Integer),
+    },
+)
+
 
 @room_namespace.route("/room/<url_name>")
 @room_namespace.param("url_name", "L'url name de la room")
@@ -21,6 +35,7 @@ room_namespace = Namespace("Room", description="Opérations liés aux rooms", pa
 class RoomResource(Resource):
     """Informations lié à une room"""
 
+    @room_namespace.marshal_with(room_model, as_list=False)
     def get(self, url_name: str):
         """Récupère les informations lié a une room."""
         room: models.Room = models.Room.query.filter_by(url_name=url_name).first_or_404(
@@ -29,12 +44,32 @@ class RoomResource(Resource):
         return room_schema.dump(room)
 
 
+question_model = room_namespace.model(
+    "Question",
+    {
+        "room": fields.Integer,
+        "id": fields.Integer,
+        "solved_questions_data": fields.List(
+            fields.Nested(
+                room_namespace.model(
+                    "SolvedQuestionData",
+                    {"user_id": fields.Integer, "question_id": fields.Integer},
+                )
+            )
+        ),
+        "points": fields.Integer,
+        "prompt": fields.String,
+    },
+)
+
+
 @room_namespace.route("/question/<id>")
 @room_namespace.response(200, "Succès")
 @room_namespace.response(404, "La question n'existe pas")
 class QuestionResource(Resource):
     """Informations lié à une question"""
 
+    @room_namespace.marshal_with(question_model, as_list=False)
     def get(self, id):
         """Récupère les informations lié a une Room."""
         question: models.User = models.Question.query.filter_by(id=id).first_or_404(
@@ -42,6 +77,7 @@ class QuestionResource(Resource):
         )
         return question_schema.dump(question)
 
+    @room_namespace.marshal_with(question_model, as_list=False)
     def post(self, id):
         """Récupère les informations lié a une Room."""
         question: models.User = models.Question.query.filter_by(id=id).first_or_404(
@@ -88,10 +124,12 @@ class RoomJoinResource(Resource):
 class AnswerQuestionResource(Resource):
     method_decorators = [login_required]
 
+    @room_namespace.marshal_with(
+        room_namespace.model("AnswerQuestion", {"correct": fields.Boolean})
+    )
     def post(self):
         """
-        Permet a l'utilisateur de répondre a une question et
-        de savoir si il a juste.
+        Permet a l'utilisateur de répondre a une question et de savoir si il a juste
         """
         question_id = request.args.get("question_id")
         if question_id is None:
