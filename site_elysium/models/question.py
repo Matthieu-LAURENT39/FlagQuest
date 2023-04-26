@@ -1,5 +1,5 @@
 from .. import db
-from . import room_user, Room, User, SolvedQuestionData
+from . import Room, User, SolvedQuestionData
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 
@@ -21,7 +21,7 @@ class Question(db.Model):
 
     points: Mapped[int]
     """
-    Le nombre de points que vaut la question. 
+    Le nombre de points que vaut la question.
     Utilisé pour calculer le score des utilisateurs.
     """
 

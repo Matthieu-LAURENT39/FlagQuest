@@ -1,7 +1,6 @@
 from .. import db
 from sqlalchemy.orm import Mapped, mapped_column
-import enum
-from sqlalchemy_utils import IPAddressType, UUIDType
+from sqlalchemy_utils import UUIDType
 from flask import current_app
 from uuid import uuid4, UUID
 from tools import mac_to_ip
@@ -35,7 +34,7 @@ class VirtualMachine(db.Model):
     room_id: Mapped[Optional[int]]
     """L'ID de la room qui correspond a cette VM. None pour les VMs d'attaques."""
 
-    # type: VMType = Column(Enum(VMType))
+    # type: VMType = Column(Enum(VMType)) # noqa: F723
     # """Le type de machine virtuelle"""
 
     # ip_address = Column(IPAddressType, unique=True, nullable=False)

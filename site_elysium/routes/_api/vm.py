@@ -68,14 +68,13 @@ class GetExistingAttackVmResource(Resource):
         if user_attack_vm is None:
             return {"exists": False}
 
-        vm_data = {
+        return {
             "exists": True,
             "ip_address": current_app.config["PROXMOX_HOST"],
             "vnc_port": user_attack_vm.vnc_port,
             "username": current_app.config["ATTACK_VM_USERNAME"],
             "password": current_app.config["ATTACK_VM_PASSWORD"],
         }
-        return vm_data
 
 
 @vm_namespace.route("/get_existing_victim_vm/<room_url_name>")
@@ -98,13 +97,12 @@ class GetExistingVictimVmResource(Resource):
             .all()
         )
 
-        vm_data = [
+        return [
             {
                 "ip_address": vm.ip_address.compressed,
             }
             for vm in user_victim_vms
         ]
-        return vm_data
 
 
 @vm_namespace.route("/request_attack_vm")

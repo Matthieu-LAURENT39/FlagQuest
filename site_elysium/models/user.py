@@ -14,7 +14,7 @@ from . import room_user, SolvedQuestionData
 from .. import db
 
 if TYPE_CHECKING:
-    from . import Room, Question
+    from . import Room
 
 
 # On hérite UserMixin afin d'avoir les @property par défaut
@@ -84,10 +84,15 @@ class User(db.Model, UserMixin):
 
     @lru_cache(maxsize=5)
     def get_profile_picture(self, size: int = 250) -> bytes:
-        # return generator.generate(
-        #     self.username.casefold(), size, size, output_format="png"
-        # )
-        identicon = customidenticon.create(
+        """Gets the profile picture of a user as an image.
+
+        Args:
+            size (int, optional): The size of the square, in pixels. Defaults to 250.
+
+        Returns:
+            bytes: A PNG image.
+        """
+        return customidenticon.create(
             self.username.casefold(),  # Data used to generate identicon
             type="pixels",
             format="png",
@@ -97,4 +102,3 @@ class User(db.Model, UserMixin):
             border=25,  # border (px)
             size=10,  # number of elements
         )
-        return identicon

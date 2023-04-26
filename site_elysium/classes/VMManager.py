@@ -1,9 +1,8 @@
 from __future__ import annotations
+
 import time
 from threading import Lock
-from typing import TYPE_CHECKING, Optional
-from dataclasses import dataclass
-import urllib.parse
+from typing import Optional
 
 from proxmoxer import ProxmoxAPI
 
@@ -80,7 +79,9 @@ class VMManager:
 
             if wait_until_done:
                 # On attend que le clonage soit fini
-                task_info = self.api.nodes(self.node_name).tasks(upid).status.get()
+                task_info: dict = (
+                    self.api.nodes(self.node_name).tasks(upid).status.get()
+                )
                 while task_info["status"] == "running":
                     task_info = self.api.nodes(self.node_name).tasks(upid).status.get()
                     time.sleep(1)
@@ -113,15 +114,11 @@ class VMManager:
             display_port (int): Le display port. Le port qu'il faudra VNC est display_port + 5900.
             password (Optional[str], optional): Le mot de passe pour accéder au VNC. Si c'est None, aucun mot de passe ne sera demandé. Defaults to None.
         """
-        args = f"-vnc 0.0.0.0:{display_port}"
         if password is not None:
             raise NotImplementedError()
-            # Enable password
-            args += ",password=on"
-            # Then set it
-            self._set_vnc_password(vm_id, password)
 
-        port = 5900 + display_port
+        args = f"-vnc 0.0.0.0:{display_port}"
+        # port = 5900 + display_port
         self.api.nodes(self.node_name).qemu(vm_id).config.post(args=args)
 
     def _run_command(self, vm_id: int, command: str) -> str:

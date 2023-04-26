@@ -1,7 +1,5 @@
 from flask_login import current_user
-from flask_admin import AdminIndexView, expose
 from flask_admin.contrib.sqla import ModelView
-from flask import redirect, url_for, flash, render_template, abort
 
 
 class AdminModelView(ModelView):
@@ -12,7 +10,7 @@ class AdminModelView(ModelView):
 
     def is_accessible(self):
         """Vérifie que l'utilisateur a le droit d'accéder à la page"""
-        return current_user.is_authenticated and current_user.is_admin == True
+        return current_user.is_authenticated and current_user.is_admin
 
 
 # class MyAdminIndexView(AdminIndexView):

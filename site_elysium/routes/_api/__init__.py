@@ -10,6 +10,7 @@ api_manager = Api(
 )
 
 
+# flake8: noqa: E402
 from . import all
 from .room import room_namespace
 from .user import user_namespace
