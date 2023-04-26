@@ -1,17 +1,23 @@
-proxmoxer==2.0.1
+# Flask
 flask==2.2.3
 flask-restx==1.1.0
-SQLAlchemy>2
-wtforms[email]==3.0.1
 Flask-SQLAlchemy==3.0.3
 Flask-WTF==1.1.1
 flask-Login==0.6.2
-marshmallow-sqlalchemy==0.29.0
-markdown==3.4.1
-sqlalchemy-utils==0.40.0
-proxmoxer==2.0.1
-requests==2.28.2
 flask-Admin==1.6.1
+
+# Database
+SQLAlchemy>2
+sqlalchemy-utils==0.40.0
+marshmallow-sqlalchemy==0.29.0
+
+# Front-end
+wtforms[email]==3.0.1
+markdown==3.4.1
 Pygments==2.14.0
 pyChart.JS==0.3.0
 customidenticon==0.1.5
+
+# Proxmox
+proxmoxer==2.0.1
+requests==2.28.2
