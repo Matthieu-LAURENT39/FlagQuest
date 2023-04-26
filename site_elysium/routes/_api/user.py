@@ -1,10 +1,8 @@
 from flask import request
-from flask_restx import Resource, Namespace, fields
+from flask_restx import Namespace, Resource, fields
 
 from ... import models as models
 from ...models.schemas import user_schema
-
-from ... import db
 
 # Type hinting
 current_user: models.User

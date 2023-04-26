@@ -1,11 +1,10 @@
-from flask import request, abort
-from flask_restx import Resource, Namespace, fields
-from flask_login import login_required, current_user
-
-from ... import models as models
-from ...models.schemas import room_schema, question_schema
+from flask import abort, request
+from flask_login import current_user, login_required
+from flask_restx import Namespace, Resource, fields
 
 from ... import db
+from ... import models as models
+from ...models.schemas import question_schema, room_schema
 
 # Type hinting
 current_user: models.User

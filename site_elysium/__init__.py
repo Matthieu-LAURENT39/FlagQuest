@@ -276,6 +276,16 @@ print(n)
                 points=15,
             )
             db.session.add(question)
+
+            db.session.add(
+                Question(
+                    room_id=1,
+                    prompt="Quel est le nombre associé à la célèbre chanteuse virtuelle, **Hatsune Miku**?",
+                    answer="39",
+                    points=39,
+                )
+            )
+
             for i in range(6):
                 question = Question(
                     room_id=1, prompt=f"{i}+1=?", answer=str(i + 1), points=2
