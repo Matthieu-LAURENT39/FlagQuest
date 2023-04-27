@@ -67,14 +67,3 @@ def room(room_url_name: str):
     #     return render_template(f"room/{room.url_name}.jinja", room=room)
     # except TemplateNotFound:
     #     abort(404)
-
-
-@main.route("/edite_room")
-def edite_room():
-    """Page de création / editions des rooms, questions, ..."""
-    # si l'user n'est NI authentifié NI admin --> renvoie error 401
-    if not (current_user.is_authenticated and current_user.is_admin):
-        abort(401)
-    # sinon, user peut accéder à l'editeur de rooms
-    else:
-        return render_template("edit_room.jinja")

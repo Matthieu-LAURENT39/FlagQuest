@@ -1,10 +1,6 @@
 from .. import db
 from . import room_user, Room, User, SolvedQuestionData
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from . import Question
 
 
 class Question(db.Model):
