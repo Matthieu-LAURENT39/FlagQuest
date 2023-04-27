@@ -404,25 +404,3 @@ dire comment on se co a un serv ftp une fois le mdp trouvé
                     points=2,
                 )
             )
-
-            # question room4 - hydra
-
-            db.session.add(
-                Question(
-                    room_id=4,
-                    prompt="Quel est le mot de passe du server FTP",
-                    answer="hannah",
-                    points=2,
-                )
-            )
-
-            db.session.add(
-                Question(
-                    room_id=4,
-                    prompt="Quel est le flag présent dans un des fichiers du FTP",
-                    answer="afaire",
-                    points=2,
-                )
-            )
-
-            db.session.commit()

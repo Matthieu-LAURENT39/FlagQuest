@@ -1,7 +1,7 @@
 {% extends 'base.jinja' %}
 {# recup url du site #}
 {# {{ url_for(request.endpoint) }} #}
-{% from 'macros/_acceuil.jinja' import room_widget %}
+{% from 'macros/_acceuil.jinja' import room_widget with context %}
 
 {% block title %}
 {{ super() }} - Accueil
@@ -106,7 +106,7 @@
         <div class="room-widget h-100 p-5 bg-light rounded-3 text-black">
           <h2>Liste Rooms</h2>
           <p>liste de toutes les rooms</p>
-          <a href="/room/" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
+          <a href="/liste_rooms" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
             role="button">Lancer</a>
         </div>
       </div>
