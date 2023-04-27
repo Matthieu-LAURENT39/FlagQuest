@@ -249,9 +249,13 @@ $ sudo apt-get install hydra -y
 ### Sous Windows
 Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d'émuler un système Linux sous différentes versions de Windows.
 
-# Utilisation
+## Utilisation
+dire comment on use hydra
 
-                """,
+## Connection à un serveur FTP
+dire comment on se co a un serv ftp une fois le mdp trouvé
+
+""",
             )
             room5 = Room(
                 name="Room 5",
@@ -367,8 +371,6 @@ Réponse attendu sous la forme `X.X.X.X/X`""",
                 )
             )
 
-            db.session.commit()
-
             # question room3 - john the ripper
 
             db.session.add(
@@ -397,3 +399,25 @@ Réponse attendu sous la forme `X.X.X.X/X`""",
                     points=2,
                 )
             )
+
+            # question room4 - hydra
+
+            db.session.add(
+                Question(
+                    room_id=4,
+                    prompt="Quel est le mot de passe du server FTP",
+                    answer="hannah",
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=4,
+                    prompt="Quel est le flag présent dans un des fichiers du FTP",
+                    answer="afaire",
+                    points=2,
+                )
+            )
+
+            db.session.commit()
