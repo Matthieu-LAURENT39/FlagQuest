@@ -50,7 +50,7 @@ function saveQuestion(question_id) {
         body: body,
     };
 
-    fetch(`http://127.0.0.1:5000/api/question/${question_id}`, requestOptions)
+    fetch(`/api/question/${question_id}`, requestOptions)
         .then(window.location.reload(true))
     //.then(response => response.text())
     //.then(result => console.log(result))

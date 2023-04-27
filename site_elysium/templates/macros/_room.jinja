@@ -28,7 +28,7 @@
         </div>
         {% endif %}
         <div>
-            <form action="" onsubmit="answerQuestion({{question.id}});return true;" id="question_form-{{question.id}}">
+            <form action="" onsubmit="answerQuestion({{question.id}});return false;" id="question_form-{{question.id}}">
                 <input class="form-control border-0" type="text"
                     placeholder="{{question.answer if solved else 'Réponse'}}" aria-label="input example"
                     id="question_answer-{{question.id}}" required="required" autocomplete="off" {{ 'disabled' if

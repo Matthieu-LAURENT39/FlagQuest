@@ -27,7 +27,7 @@
         answer = answer_field.value
         let answer_form = document.getElementById(`question_form-${question_id}`)
 
-        const response = fetch('{{ url_for('api.answer_question') }}?' + new URLSearchParams({
+        const response = fetch('{{ url_for('api.Room_answer_question_resource') }}?' + new URLSearchParams({
             question_id: question_id,
             answer: answer,
         }),
@@ -37,24 +37,25 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
-            }).then(response => response.json())
+            }).then(function (response) {
+                if (!response.ok) {
+                    alert(response.message)
+                    throw new Error("Couldn't answer question.")
+                }
+                return response.json()
+            })
             //.then(response => alert(JSON.stringify(response)))
             .then(response => {
-                if (response.success) {
-                    if (response.correct) {
-                        //answer_form.submit()
-                        document.location.reload(false)
-                    }
-                    // si l'user répond & que sa réponse est fausse
-                    // pop-up erreur
-                    // effacer la réponse entrée
-                    else {
-                        showErrorToast("Réponse incorrect !")
-                        answer_form.reset()
-                    }
+                if (response.correct) {
+                    //answer_form.submit()
+                    document.location.reload(false)
                 }
+                // si l'user répond & que sa réponse est fausse
+                // pop-up erreur
+                // effacer la réponse entrée
                 else {
-                    alert(response.message)
+                    showErrorToast("Réponse incorrect !")
+                    answer_form.reset()
                 }
             })
     }
@@ -78,7 +79,7 @@
             <script>
                 // fonction button Rejoindre la room
                 function joinRoom() {
-                    fetch('{{ url_for('api.join_room', room_url_name = room.url_name) }}', {
+                    fetch('{{ url_for('api.Room_room_join_resource', room_url_name = room.url_name) }}', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -126,7 +127,7 @@
             function requestVictimVMs() {
                 document.getElementById("victim-vm-info-data").style.display = ''
                 document.getElementById("request-victim-vms-button").style.display = 'none'
-                fetch("{{ url_for('api.request_victim_vms', room_url_name = room.url_name) }}", {
+                fetch("{{ url_for('api.VM_request_victim_vms_resource', room_url_name = room.url_name) }}", {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -169,7 +170,7 @@
             function requestAttackVMs() {
                 document.getElementById("attack-vm-info-data").style.display = ''
                 document.getElementById("request-attack-vm-button").style.display = 'none'
-                fetch('{{ url_for("api.request_attack_vm") }}', {
+                fetch('{{ url_for("api.VM_request_attack_vm_resource") }}', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -190,7 +191,7 @@
 
             function setupVMInfos() {
                 // On met en place les VMs victimes
-                fetch("{{url_for('api.get_existing_victim_vm', room_url_name=room.url_name)}}")
+                fetch("{{url_for('api.VM_get_existing_victim_vm_resource', room_url_name=room.url_name)}}")
                     .then(response => response.json())
                     .then(data => {
                         if (data.length == 0) {
@@ -205,7 +206,7 @@
                     .catch(error => console.error(error));
 
                 // On met en place la VM d'attaque
-                fetch("{{url_for('api.get_existing_attack_vm')}}")
+                fetch("{{url_for('api.VM_get_existing_attack_vm_resource')}}")
                     .then(response => response.json())
                     .then(data => {
                         if (data.exists) {
@@ -221,7 +222,7 @@
             }
 
             function deleteVms() {
-                fetch('{{ url_for('api.delete_vms') }}', {
+                fetch('{{ url_for('api.VM_delete_vms_resource') }}', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -292,9 +293,10 @@
         <script>
             // légère animation de la progression lorsque l'on scroll vers le bas
             window.onscroll = function () { scrollFunction() };
-
             function scrollFunction() {
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                var progressBar = document.getElementById("progress-bar-scroll")
+                // Si la progress bar est "pinned"
+                if (progressBar.getBoundingClientRect().top <= 50) {
                     document.getElementById("progress-bar-scroll").removeAttribute('class');
                     document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 px-4 py-2 pb-3 justify-content-center border border-2 border-primary progress-bar-vertical-transition mt-2")
                     document.getElementById("progress-bar-scroll").setAttribute("style", "width: 80%;")
@@ -313,7 +315,7 @@
         <div class="mx-2 sticky-top pb-1 d-flex justify-content-center">
             <!-- Progression -->
             <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
-                id="progress-bar-scroll" style="width: 100%;">
+                id="progress-bar-scroll" style="width: 100%">
                 <div class="row">
                     <div class="col">
                         <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>
