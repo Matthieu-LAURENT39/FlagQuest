@@ -1,0 +1,27 @@
+name = "Introduction à Hydra"
+description = "Trouvez le mot de passe du serveur FTP !"
+url_name = "hydra"
+instructions = """
+# Hydra
+[Hydra](https://github.com/vanhauser-thc/thc-hydra) est un logiciel libre permettant de craquer un mot de passe en ligne par **bruteforce**.
+
+## Installation
+*Cet outils est déjà installé sur la VM d'attaque, cette explication est simplement à but éducatif.*
+
+### Sous Linux
+On peut l'installer via **apt-get** ou **snap** :
+```
+$ sudo apt-get update
+$ sudo apt-get install hydra -y
+```
+
+### Sous Windows
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d'émuler un système Linux sous différentes versions de Windows.
+
+## Utilisation
+dire comment on use hydra
+
+## Connection à un serveur FTP
+dire comment on se co a un serv ftp une fois le mdp trouvé
+"""
+victim_vm_ids = [ ]

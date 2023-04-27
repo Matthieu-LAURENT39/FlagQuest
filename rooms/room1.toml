@@ -18,6 +18,6 @@ answer = "matt"
 points = 15
 
 [[question]]
-prompt = """Quel est le nombre associé à la célèbre chanteuse virtuelle, **Hatsune Miku**?"""
+prompt = "Quel est le nombre associé à la célèbre chanteuse virtuelle, **Hatsune Miku**?"
 answer = "39"
 points = 39
