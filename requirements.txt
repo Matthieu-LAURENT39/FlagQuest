@@ -20,3 +20,6 @@ customidenticon==0.1.5
 
 # Proxmox
 proxmoxer==2.0.1
+
+# Other
+toml==0.10.2

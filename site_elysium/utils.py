@@ -1,7 +1,9 @@
 from itertools import count
 from collections import deque
 from typing import Iterator, TypeVar
-
+from dataclasses import dataclass
+import toml
+from flask import current_app
 
 T = TypeVar("T")
 
@@ -61,3 +63,33 @@ def get_n_around(lst: list[T], index: int, amount: int) -> list[T]:
             output.append(lst[target_index])
 
     return list(output)
+
+
+def question_from_toml(toml_txt: str) -> None:
+    from . import db
+    from .models import Room, Question
+
+    data = toml.loads(toml_txt)
+
+    r = Room(
+        name=data["name"],
+        description=data["description"],
+        url_name=data["url_name"],
+        instructions=data["instructions"],
+        victim_vm_ids=data["victim_vm_ids"],
+    )
+    db.session.add(r)
+    # Pour que r obtienne un id
+    db.session.flush()
+
+    for q in data["question"]:
+        db.session.add(
+            Question(
+                prompt=q["prompt"],
+                answer=q["answer"],
+                points=q["points"],
+                room_id=r.id,
+            )
+        )
+
+    db.session.commit()

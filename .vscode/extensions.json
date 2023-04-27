@@ -6,6 +6,7 @@
         "qwtel.sqlite-viewer",
         "ms-python.python",
         "samuelcolvin.jinjahtml",
-        "rangav.vscode-thunder-client"
+        "rangav.vscode-thunder-client",
+        "bungcip.better-toml"
     ]
 }

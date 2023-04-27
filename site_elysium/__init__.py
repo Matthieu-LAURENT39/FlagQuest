@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from .backend.filters import markdown_filter
 from .flask_config import Config
+from .utils import question_from_toml
 
 if TYPE_CHECKING:
     from .models import User
@@ -126,51 +127,55 @@ def setup_app(app: Flask):
 
         room = Room.query.filter_by(id="1").first()
         if room is None:
-            room = Room(
-                name="Room 1",
-                description="Wow what a cool room **desu wa**",
-                url_name="room1",
-                instructions="QCM",
-                victim_vm_ids=[101],
-            )
-            room2 = Room(
-                name="Introduction à Nmap",
-                description="Apprenez les bases de **Nmap**, un outil d'exploration réseau.",
-                url_name="introduction_nmap",
-                instructions="""Après avoir dressé et borné la prestation de tests d'intrusion, vous devez commencer par la première étape de votre mission : Enumération
-Pour mener à bien cette phase, nous allons apprendre à utiliser l'application nmap.
+            with open("./rooms/room1.toml", "r", encoding="utf-8") as f:
+                question_from_toml(f.read())
+            with open("./rooms/introduction_nmap.toml", "r", encoding="utf-8") as f:
+                question_from_toml(f.read())
+            # room = Room(
+            #     name="Room 1",
+            #     description="Wow what a cool room **desu wa**",
+            #     url_name="room1",
+            #     instructions="QCM",
+            #     victim_vm_ids=[101],
+            # )
+            #             room2 = Room(
+            #                 name="Introduction à Nmap",
+            #                 description="Apprenez les bases de **Nmap**, un outil d'exploration réseau.",
+            #                 url_name="introduction_nmap",
+            #                 instructions="""Après avoir dressé et borné la prestation de tests d'intrusion, vous devez commencer par la première étape de votre mission : Enumération
+            # Pour mener à bien cette phase, nous allons apprendre à utiliser l'application nmap.
 
-# NMAP
-Nmap (« Network Mapper ») est un outil open source d'exploration réseau et d'audit de sécurité.
-Les commandes principales sont :
-`nmap -v <ip>`
+            # # NMAP
+            # Nmap (« Network Mapper ») est un outil open source d'exploration réseau et d'audit de sécurité.
+            # Les commandes principales sont :
+            # `nmap -v <ip>`
 
-Cette option scanne tous les ports réservés TCP sur la machine <ip> . L'option -v active le mode verbeux.
-`nmap -sS -O <ip>/<CIDR>`
+            # Cette option scanne tous les ports réservés TCP sur la machine <ip> . L'option -v active le mode verbeux.
+            # `nmap -sS -O <ip>/<CIDR>`
 
-Lance un scan furtif (SYN scan) contre chaque machine active. Il essaie aussi de déterminer le système d'exploitation sur chaque hôte actif. Cette démarche nécessite les privilèges de root puisqu'on utilise un SYN scan et une détection d'OS
-exemple : `nmap -sS -O 192.168.1.0/24` scanne les 255 machines du NetID 192.168.1
-`nmap -sV -p 22,53,110,143,4564 198.116.0-255.1-127`
+            # Lance un scan furtif (SYN scan) contre chaque machine active. Il essaie aussi de déterminer le système d'exploitation sur chaque hôte actif. Cette démarche nécessite les privilèges de root puisqu'on utilise un SYN scan et une détection d'OS
+            # exemple : `nmap -sS -O 192.168.1.0/24` scanne les 255 machines du NetID 192.168.1
+            # `nmap -sV -p 22,53,110,143,4564 198.116.0-255.1-127`
 
-Lance une recherche des hôtes et un scan TCP dans la première moitié de chacun des 255 sous-réseaux à 8 bits dans l'espace d'adressage de classe B 198.116 Cela permet de déterminer si les systèmes font tourner sshd (22), DNS (53), pop3d(110), imapd(143) ou le port 4564. Pour chacun de ces ports qui sont ouverts, la détection de version est utilisée pour déterminer quelle application est actuellement lancée.
+            # Lance une recherche des hôtes et un scan TCP dans la première moitié de chacun des 255 sous-réseaux à 8 bits dans l'espace d'adressage de classe B 198.116 Cela permet de déterminer si les systèmes font tourner sshd (22), DNS (53), pop3d(110), imapd(143) ou le port 4564. Pour chacun de ces ports qui sont ouverts, la détection de version est utilisée pour déterminer quelle application est actuellement lancée.
 
-### Flags intéréssant
-##### Détection d'un système d'exploitation:
-`-O`: Active la détection d'OS
-##### Détection de services/versions:
-`-sV`: Teste les ports ouverts pour déterminer le service en écoute et sa version
-##### Spécification des ports et ordre de scan:
-`-p` <plage de ports>: Ne scanne que les ports spécifiés
-##### Méthode de scan:
-`-sS` / `-sT` / `-sA` / `-sW`/ `-sM`: Scans TCP SYN/Connect()/ACK/Window/Maimon 
-`-sN`/`-sF`/`-sX`: Scans TCP Null, FIN et Xmas
-`-sU`: Scan UDP
+            # ### Flags intéréssant
+            # ##### Détection d'un système d'exploitation:
+            # `-O`: Active la détection d'OS
+            # ##### Détection de services/versions:
+            # `-sV`: Teste les ports ouverts pour déterminer le service en écoute et sa version
+            # ##### Spécification des ports et ordre de scan:
+            # `-p` <plage de ports>: Ne scanne que les ports spécifiés
+            # ##### Méthode de scan:
+            # `-sS` / `-sT` / `-sA` / `-sW`/ `-sM`: Scans TCP SYN/Connect()/ACK/Window/Maimon
+            # `-sN`/`-sF`/`-sX`: Scans TCP Null, FIN et Xmas
+            # `-sU`: Scan UDP
 
-##### Divers:
-`-6`: Active le scan IPv6
-`-A`: Active la détection du système d'exploitation, des versions et génère un tracert (traceroute)
-""",
-            )
+            # ##### Divers:
+            # `-6`: Active le scan IPv6
+            # `-A`: Active la détection du système d'exploitation, des versions et génère un tracert (traceroute)
+            # """,
+            #             )
             room3 = Room(
                 name="John The Ripper",
                 description="Apprenez à casser des mots de passe !",
@@ -270,8 +275,8 @@ dire comment on se co a un serv ftp une fois le mdp trouvé
                 instructions="QCM",
             )
 
-            db.session.add(room)
-            db.session.add(room2)
+            # db.session.add(room)
+            # db.session.add(room2)
             db.session.add(room3)
             db.session.add(room4)
             db.session.add(room5)
@@ -282,94 +287,94 @@ dire comment on se co a un serv ftp une fois le mdp trouvé
             # room.users.append(user)
             # backend.db.session.commit()
 
-        question = Question.query.filter_by(id="1").first()
-        if question is None:
-            question = Question(
-                room_id=1,
-                prompt="""**Qui** a écrit *cette* __question__?
-Indice: `matt`
-Et voici un code block
-```py
-import random
-n = random.randint(1,10)
-print(n)
-```""",
-                answer="matt",
-                points=15,
-            )
-            db.session.add(question)
+            #         question = Question.query.filter_by(id="1").first()
+            #         if question is None:
+            #             question = Question(
+            #                 room_id=1,
+            #                 prompt="""**Qui** a écrit *cette* __question__?
+            # Indice: `matt`
+            # Et voici un code block
+            # ```py
+            # import random
+            # n = random.randint(1,10)
+            # print(n)
+            # ```""",
+            #                 answer="matt",
+            #                 points=15,
+            #             )
+            #             db.session.add(question)
 
-            db.session.add(
-                Question(
-                    room_id=1,
-                    prompt="Quel est le nombre associé à la célèbre chanteuse virtuelle, **Hatsune Miku**?",
-                    answer="39",
-                    points=39,
-                )
-            )
+            #             db.session.add(
+            #                 Question(
+            #                     room_id=1,
+            #                     prompt="Quel est le nombre associé à la célèbre chanteuse virtuelle, **Hatsune Miku**?",
+            #                     answer="39",
+            #                     points=39,
+            #                 )
+            #             )
 
-            for i in range(6):
-                question = Question(
-                    room_id=1, prompt=f"{i}+1=?", answer=str(i + 1), points=2
-                )
-                db.session.add(question)
+            #             for i in range(6):
+            #                 question = Question(
+            #                     room_id=1, prompt=f"{i}+1=?", answer=str(i + 1), points=2
+            #                 )
+            #                 db.session.add(question)
 
-            # question room2
+            #             # question room2
 
-            db.session.add(
-                Question(
-                    room_id=2,
-                    prompt="Quel est l'argument permettant d'identifier l'OS et la version?",
-                    answer="-A",
-                    points=2,
-                )
-            )
+            #             db.session.add(
+            #                 Question(
+            #                     room_id=2,
+            #                     prompt="Quel est l'argument permettant d'identifier l'OS et la version?",
+            #                     answer="-A",
+            #                     points=2,
+            #                 )
+            #             )
 
-            db.session.add(
-                Question(
-                    room_id=2,
-                    prompt="""Quels sont les machines qui ont un serveur FTP appartenant au réseau **10.10.12.128/25**?
-Réponse attendu sous la forme `X.X.X.X/X`""",
-                    answer="10.10.12.128/25",
-                    points=2,
-                )
-            )
+            #             db.session.add(
+            #                 Question(
+            #                     room_id=2,
+            #                     prompt="""Quels sont les machines qui ont un serveur FTP appartenant au réseau **10.10.12.128/25**?
+            # Réponse attendu sous la forme `X.X.X.X/X`""",
+            #                     answer="10.10.12.128/25",
+            #                     points=2,
+            #                 )
+            #             )
 
-            db.session.add(
-                Question(
-                    room_id=2,
-                    prompt="Combien de services sont disponibles sur ce serveur?",
-                    answer="3",
-                    points=2,
-                )
-            )
+            #             db.session.add(
+            #                 Question(
+            #                     room_id=2,
+            #                     prompt="Combien de services sont disponibles sur ce serveur?",
+            #                     answer="3",
+            #                     points=2,
+            #                 )
+            #             )
 
-            db.session.add(
-                Question(
-                    room_id=2,
-                    prompt="Quel est la version du serveur Web?",
-                    answer="Apache/2.4.18",
-                    points=2,
-                )
-            )
+            #             db.session.add(
+            #                 Question(
+            #                     room_id=2,
+            #                     prompt="Quel est la version du serveur Web?",
+            #                     answer="Apache/2.4.18",
+            #                     points=2,
+            #                 )
+            #             )
 
-            db.session.add(
-                Question(
-                    room_id=2,
-                    prompt="Que trouvons-nous sur le port 21?",
-                    answer="ProFTPD 1.3.3c",
-                    points=2,
-                )
-            )
+            #             db.session.add(
+            #                 Question(
+            #                     room_id=2,
+            #                     prompt="Que trouvons-nous sur le port 21?",
+            #                     answer="ProFTPD 1.3.3c",
+            #                     points=2,
+            #                 )
+            #             )
 
-            db.session.add(
-                Question(
-                    room_id=2,
-                    prompt="Quel est le titre de la page web?",
-                    answer="it works",
-                    points=2,
-                )
-            )
+            #             db.session.add(
+            #                 Question(
+            #                     room_id=2,
+            #                     prompt="Quel est le titre de la page web?",
+            #                     answer="it works",
+            #                     points=2,
+            #                 )
+            #             )
 
             # question room3 - john the ripper
 

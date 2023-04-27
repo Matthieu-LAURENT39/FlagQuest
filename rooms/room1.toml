@@ -1,0 +1,23 @@
+name = "Room 1"
+description = "Wow what a cool room **desu wa**"
+url_name = "room1"
+instructions = "QCM"
+victim_vm_ids = [ 101 ]
+
+[[question]]
+prompt = """
+**Qui** a écrit *cette* __question__?
+Indice: `matt`
+Et voici un code block
+```py
+import random
+n = random.randint(1,10)
+print(n)
+```"""
+answer = "matt"
+points = 15
+
+[[question]]
+prompt = """Quel est le nombre associé à la célèbre chanteuse virtuelle, **Hatsune Miku**?"""
+answer = "39"
+points = 39
