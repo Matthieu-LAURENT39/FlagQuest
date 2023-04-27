@@ -32,6 +32,8 @@ victim_vm_model = vm_namespace.model("VictimVM", {"ip_address": fields.String})
 @vm_namespace.response(200, "Succès")
 @vm_namespace.doc(security="http")
 class CanCreateVictimVmResource(Resource):
+    """Permet a l'utilisateur de savoir si il peut créer une VM victime"""
+
     method_decorators = [login_required]
 
     @vm_namespace.marshal_with(
@@ -54,6 +56,8 @@ class CanCreateVictimVmResource(Resource):
 @vm_namespace.response(200, "Succès")
 @vm_namespace.doc(security="http")
 class GetExistingAttackVmResource(Resource):
+    """Obtient des informations sur la VM d'attaque existante"""
+
     method_decorators = [login_required]
 
     @vm_namespace.marshal_with(attack_vm_model, as_list=False)
@@ -82,6 +86,8 @@ class GetExistingAttackVmResource(Resource):
 @vm_namespace.response(404, "La room n'existe pas")
 @vm_namespace.doc(security="http")
 class GetExistingVictimVmResource(Resource):
+    """Obtient des informations sur les VM victime existante"""
+
     method_decorators = [login_required]
 
     @vm_namespace.marshal_with(victim_vm_model, as_list=True)
@@ -109,13 +115,13 @@ class GetExistingVictimVmResource(Resource):
 @vm_namespace.response(200, "Succès")
 @vm_namespace.doc(security="http")
 class RequestAttackVmResource(Resource):
+    """Créer une VM d'attaque, ou réutilise une VM existante si l'utilisateur en a déja une."""
+
     method_decorators = [login_required]
 
     @vm_namespace.marshal_with(attack_vm_model, as_list=False)
     def post(self):
-        """
-        Créer une VM d'attaque, ou réutilise une VM existante si l'utilisateur en a déja une.
-        """
+        """Créer une VM d'attaque, ou réutilise une VM existante si l'utilisateur en a déja une."""
         from vm import get_vm_manager
 
         user_attack_vm: VirtualMachine | None = (
@@ -139,17 +145,15 @@ class RequestAttackVmResource(Resource):
 
             db.session.add(user_attack_vm)
 
-        # TODO: Utiliser un schéma marshmallow
         vm_data = {
             "ip_address": current_app.config["PROXMOX_HOST"],
             "vnc_port": user_attack_vm.vnc_port,
             "username": current_app.config["ATTACK_VM_USERNAME"],
             "password": current_app.config["ATTACK_VM_PASSWORD"],
         }
-
         db.session.commit()
 
-        return jsonify(vm_data)
+        return vm_data
         # return {"ip_address": new_vm_db.ip_address.compressed}
 
 
@@ -158,6 +162,8 @@ class RequestAttackVmResource(Resource):
 @vm_namespace.response(404, "La room n'existe pas")
 @vm_namespace.doc(security="http")
 class RequestVictimVmsResource(Resource):
+    """Créer les VMs victimes pour une room."""
+
     method_decorators = [login_required]
 
     @vm_namespace.marshal_with(victim_vm_model, as_list=True)
@@ -206,6 +212,8 @@ class RequestVictimVmsResource(Resource):
 @vm_namespace.response(200, "Succès")
 @vm_namespace.doc(security="http")
 class DeleteVmsResource(Resource):
+    """Permet de supprimer des VMs."""
+
     method_decorators = [login_required]
 
     def post(self):
