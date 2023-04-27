@@ -94,7 +94,22 @@ def room(room_url_name: str):
     # try:
     #     return render_template(f&#34;room/{room.url_name}.jinja&#34;, room=room)
     # except TemplateNotFound:
-    #     abort(404)</code></pre>
+    #     abort(404)
+
+
+@main.route(&#34;/room/supervision/&lt;room_url_name&gt;&#34;)
+def supervision(room_url_name: str):
+    &#34;&#34;&#34;Supervision du site.&#34;&#34;&#34;
+    from ...models import Room, VirtualMachine
+
+    room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
+        description=&#34;Cette room n&#39;existe pas.&#34;
+    )
+
+    return render_template(
+        &#34;supervision.jinja&#34;,
+        room=room,
+    )</code></pre>
 </details>
 </section>
 <section>
@@ -188,6 +203,30 @@ def room(room_url_name: str):
     #     abort(404)</code></pre>
 </details>
 </dd>
+<dt id="site_elysium.routes.views.room.supervision"><code class="name flex">
+<span>def <span class="ident">supervision</span></span>(<span>room_url_name: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Supervision du site.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@main.route(&#34;/room/supervision/&lt;room_url_name&gt;&#34;)
+def supervision(room_url_name: str):
+    &#34;&#34;&#34;Supervision du site.&#34;&#34;&#34;
+    from ...models import Room, VirtualMachine
+
+    room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
+        description=&#34;Cette room n&#39;existe pas.&#34;
+    )
+
+    return render_template(
+        &#34;supervision.jinja&#34;,
+        room=room,
+    )</code></pre>
+</details>
+</dd>
 </dl>
 </section>
 <section>
@@ -208,6 +247,7 @@ def room(room_url_name: str):
 <ul class="">
 <li><code><a title="site_elysium.routes.views.room.liste_room" href="#site_elysium.routes.views.room.liste_room">liste_room</a></code></li>
 <li><code><a title="site_elysium.routes.views.room.room" href="#site_elysium.routes.views.room.room">room</a></code></li>
+<li><code><a title="site_elysium.routes.views.room.supervision" href="#site_elysium.routes.views.room.supervision">supervision</a></code></li>
 </ul>
 </li>
 </ul>
