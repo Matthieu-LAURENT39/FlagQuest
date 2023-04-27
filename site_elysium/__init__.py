@@ -131,7 +131,7 @@ def setup_app(app: Flask):
         if room is None:
             room = Room(
                 name="Room 1",
-                description="Wow what a cool room **desu wa**",
+                description="lorem ipsum dolor sit amet",
                 url_name="room1",
                 instructions="QCM",
                 victim_vm_ids=[101],
@@ -370,8 +370,6 @@ Réponse attendu sous la forme `X.X.X.X/X`""",
                 )
             )
 
-            db.session.commit()
-
             # question room3 - john the ripper
 
             db.session.add(
@@ -400,3 +398,5 @@ Réponse attendu sous la forme `X.X.X.X/X`""",
                     points=2,
                 )
             )
+
+            db.session.commit()

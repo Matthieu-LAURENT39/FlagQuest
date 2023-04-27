@@ -67,3 +67,18 @@ def room(room_url_name: str):
     #     return render_template(f"room/{room.url_name}.jinja", room=room)
     # except TemplateNotFound:
     #     abort(404)
+
+
+@main.route("/room/supervision/<room_url_name>")
+def supervision(room_url_name: str):
+    """Supervision du site."""
+    from ...models import Room, VirtualMachine
+
+    room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
+        description="Cette room n'existe pas."
+    )
+
+    return render_template(
+        "supervision.jinja",
+        room=room,
+    )
