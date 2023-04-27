@@ -193,7 +193,7 @@ $ sudo apt-get install john -y
 Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d'émuler un système Linux sous différentes versions de Windows.
 Voici un petit guide : `https://miloserdov.org/?p=4961#15`
 
-
+# Utilisation
 Les commandes principales sont :
 `john --wordlist=</path/to/wordlist/wordlists.txt>`
 
@@ -229,10 +229,29 @@ Exemple :
 """,
             )
             room4 = Room(
-                name="Room 4",
-                description="lorem ipsum dolor sit amet",
-                url_name="room4",
-                instructions="QCM",
+                name="Introduction à Hydra",
+                description="Trouvez le mot de passe du  serveur FTP !",
+                url_name="hydra",
+                instructions="""
+# Hydra
+[Hydra](https://github.com/vanhauser-thc/thc-hydra) est un logiciel libre permettant de craquer un mot de passe en ligne par **bruteforce**.
+
+## Installation
+*Cet outils est déjà installé sur la VM d'attaque, cette explication est simplement à but éducatif.*
+
+### Sous Linux
+On peut l'installer via **apt-get** ou **snap** :
+```
+$ sudo apt-get update
+$ sudo apt-get install hydra -y
+```
+
+### Sous Windows
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d'émuler un système Linux sous différentes versions de Windows.
+
+# Utilisation
+
+                """,
             )
             room5 = Room(
                 name="Room 5",
@@ -363,8 +382,8 @@ Réponse attendu sous la forme `X.X.X.X/X`""",
             db.session.add(
                 Question(
                     room_id=3,
-                    prompt="Quel est le mot de passe correspondant au hash suivant (md5): *66218f113c52f7e270f051170eb10607*. Utilisez l'attaque via la wordlist **rockyou**",
-                    answer="mangeCEr@ti0!",
+                    prompt="Quel est le mot de passe correspondant au hash suivant (md5): *117735823fadae51db091c7d63e60eb0*. Utilisez l'attaque via la wordlist **rockyou**",
+                    answer="francisco",
                     points=2,
                 )
             )
