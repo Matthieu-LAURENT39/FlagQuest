@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from .. import db
+from . import _current_base
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from . import User, Question
 
 
-class SolvedQuestionData(db.Model):
+class SolvedQuestionData(_current_base):
     """
     Stocke des informations sur la complétion d'une question par un utilisateur.
     Si une SolvedQuestionData existe pour une combinaison utilisateur-question, alors cet

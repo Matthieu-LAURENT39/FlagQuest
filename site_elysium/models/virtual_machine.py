@@ -1,11 +1,14 @@
-from .. import db
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy_utils import UUIDType
-from flask import current_app
-from uuid import uuid4, UUID
-from tools import mac_to_ip
 from ipaddress import IPv4Address
 from typing import Optional
+from uuid import UUID, uuid4
+
+from flask import current_app
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy_utils import UUIDType
+
+from tools import mac_to_ip
+
+from . import _current_base
 
 
 # class VMType(enum.Enum):
@@ -13,12 +16,13 @@ from typing import Optional
 #     victim = "victim"
 
 
-class VirtualMachine(db.Model):
+class VirtualMachine(_current_base):
     """Une room regroupant des questions et des consignes"""
 
     __tablename__ = "virtual_machines"
 
     def __init__(self, *args, **kwargs) -> None:
+        """Initialise la classe"""
         self.uuid = uuid4()
         super().__init__(*args, **kwargs)
 

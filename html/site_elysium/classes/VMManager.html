@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>site_elysium.classes.VMManager API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>site_elysium.classes.VMManager</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import annotations
+
+import time
+from threading import Lock
+from typing import Optional
+
+from proxmoxer import ProxmoxAPI
+
+from ..classes import Allocator
+
+
+class VMManager:
+    &#34;&#34;&#34;
+    Gere les interactions avec l&#39;hyperviseur (proxmox) ainsi que la gestion des VMs
+    &#34;&#34;&#34;
+
+    def _test_auth(self) -&gt; bool:
+        &#34;&#34;&#34;Renvois True si notre api token est valide, sinon raise un erreur&#34;&#34;&#34;
+        # Va faire un erreur 401 si l&#39;auth n&#39;est pas valide
+        self.api.get()
+        return True
+
+    def __init__(
+        self,
+        api: ProxmoxAPI,
+        node_name: str,
+        mac_manager: Allocator[str],
+        display_port_manager: Allocator[int],
+    ) -&gt; None:
+        &#34;&#34;&#34;Initialise la classe
+
+        Args:
+            api: (ProxmoxAPI): le client proxmox à utiliser
+            node_name (str): Le nom du node promox sur lequel stocker les VMs.
+            mac_manager (Allocator[str]): Un Allocator gérant l&#39;allocation des adresses MAC.
+            display_port_manager (Allocator[int]): Un Allocator gérant l&#39;allocation des display ports.
+
+        Raises:
+            ValueError: api_token n&#39;étais pas valide
+        &#34;&#34;&#34;
+        self.api = api
+        self.node_name = node_name
+        self._vm_modification_lock = Lock()
+        &#34;&#34;&#34;Pour éviter les race-conditions lors des opérations sur les VMs&#34;&#34;&#34;
+
+        self._mac_manager = mac_manager
+        self._display_port_manager = display_port_manager
+
+        self._test_auth()
+
+    def _get_free_vm_id(self) -&gt; int:
+        &#34;&#34;&#34;Obtient un id disponible pour une VM.
+
+        Returns:
+            int: Un ID disponible
+        &#34;&#34;&#34;
+        return self.api.cluster.get(&#34;nextid&#34;)
+
+    def _clone_vm(
+        self, cloned_vm_id: int, name: str, *, wait_until_done: bool = True
+    ) -&gt; int:
+        &#34;&#34;&#34;Créer un clone d&#39;une VM.
+
+        Args:
+            cloned_vm_id (int): L&#39;id de la machine à cloner.
+            wait_until_done (bool): Attent que la machine soit cloné.
+
+        Returns:
+            int: L&#39;id de la nouvelle VM.
+        &#34;&#34;&#34;
+        # On utilise un lock afin d&#39;éviter les race conditions avec les IDs
+        with self._vm_modification_lock:
+            new_vm_id = self._get_free_vm_id()
+
+            # On obtient la VM à cloner
+            to_clone = self.api.nodes(self.node_name).qemu(cloned_vm_id)
+            # Puis on la clone
+            upid = to_clone.clone.post(newid=new_vm_id, name=name)
+
+            if wait_until_done:
+                # On attend que le clonage soit fini
+                task_info: dict = (
+                    self.api.nodes(self.node_name).tasks(upid).status.get()
+                )
+                while task_info[&#34;status&#34;] == &#34;running&#34;:
+                    task_info = self.api.nodes(self.node_name).tasks(upid).status.get()
+                    time.sleep(1)
+
+                assert task_info[&#34;exitstatus&#34;] == &#34;OK&#34;
+
+        return new_vm_id
+
+    # def get_vnc_url(self, vm_id: int) -&gt; str:
+    #     # First we get the ticket for auth
+    #     vnc_data = self.api.nodes(self.node_name).qemu(vm_id).vncproxy.post()
+    #     print(vnc_data)
+    #     ticket = vnc_data[&#34;ticket&#34;]
+    #     port = vnc_data[&#34;port&#34;]
+    #     # print(urllib.parse.quote_plus(ticket))
+
+    #     return f&#34;https://172.17.50.250:8006/?console=shell&amp;xtermjs=1&amp;vmid={vm_id}&amp;vmname=&amp;node=cooldomain&amp;cmd=&#34;
+
+    #     return f&#34;wss://172.17.50.250:8006/api2/json/nodes/cooldomain/lxc/101/vncwebsocket?port={port}&amp;vncticket={urllib.parse.quote_plus(ticket)}&#34;
+    #     return f&#34;https://172.17.50.250:8006/api2/json/nodes/cooldomain/lxc/101/vncwebsocket?port={port}&amp;vncticket={urllib.parse.quote_plus(ticket)}&#34;
+    #     return f&#34;wss://172.17.50.250:8006/api2/json/nodes/{self.node_name}/lxc/{vm_id}/vncwebsocket?port={port}&amp;vncticket={ticket}&#34;
+
+    def _enable_vnc(
+        self, vm_id: int, display_port: int, password: Optional[str] = None
+    ):
+        &#34;&#34;&#34;Active VNC pour une VM. Si la VM est déja allumé, alors il faudra la redémaré.
+
+        Args:
+            vm_id (int): L&#39;ID de la VM à laquelle donnée un accès VNC.
+            display_port (int): Le display port. Le port qu&#39;il faudra VNC est display_port + 5900.
+            password (Optional[str], optional): Le mot de passe pour accéder au VNC. Si c&#39;est None, aucun mot de passe ne sera demandé. Defaults to None.
+        &#34;&#34;&#34;
+        if password is not None:
+            raise NotImplementedError()
+
+        args = f&#34;-vnc 0.0.0.0:{display_port}&#34;
+        # port = 5900 + display_port
+        self.api.nodes(self.node_name).qemu(vm_id).config.post(args=args)
+
+    def _run_command(self, vm_id: int, command: str) -&gt; str:
+        &#34;&#34;&#34;Lance une commande sur une machine virtuelle. Il faut que l&#39;agent QEMU soit installer sur la VM.
+
+        Args:
+            vm_id (int): L&#39;ID de la machine virtuelle.
+            command (str): La commande.
+
+        Returns:
+            str: La sortie de la commande.
+        &#34;&#34;&#34;
+        return (
+            self.api.nodes(self.node_name).qemu(vm_id).agent.exec.post(command=command)
+        )
+
+    def _set_mac(self, vm_id: int, mac_address: str):
+        &#34;&#34;&#34;Défini l&#39;adresse mac d&#39;une machine virtuelle
+
+        Args:
+            vm_id (int): L&#39;ID de la machine virtuelle à qui donnée l’adresse.
+            mac_address (str): L&#39;adresse mac, de la forme &#39;AA:BB:CC:DD:EE:FF&#39;
+        &#34;&#34;&#34;
+        self.api.nodes(self.node_name).qemu(vm_id).config.post(
+            net0=f&#34;virtio,macaddr={mac_address}&#34;
+        )
+
+    def start_vm(self, vm_id: int, *, wait_until_on: bool = True):
+        &#34;&#34;&#34;Allume une machine virtuelle.
+
+        Args:
+            vm_id (int): L&#39;id de la machine virtuelle.
+            wait_until_on (bool): Bloque jusque à ce que la VM soit en ligne.
+        &#34;&#34;&#34;
+        self.api.nodes(self.node_name).qemu(vm_id).status.start.post()
+        if wait_until_on:
+            # Tant que le status de la VM n&#39;est pas &#34;running&#34;
+            while (
+                self.api.nodes(self.node_name)
+                .qemu(vm_id)
+                .status.current.get()[&#34;status&#34;]
+                != &#34;running&#34;
+            ):
+                time.sleep(1)
+
+    def stop_vm(self, vm_id: int, *, wait_until_off: bool = True):
+        &#34;&#34;&#34;Eteind une machine virtuelle.
+
+        Args:
+            vm_id (int): L&#39;id de la machine virtuelle.
+            wait_until_off (bool): Bloque jusque à ce que la VM soit hors ligne.
+        &#34;&#34;&#34;
+        self.api.nodes(self.node_name).qemu(vm_id).status.stop.post()
+        if wait_until_off:
+            # Tant que le status de la VM n&#39;est pas &#34;running&#34;
+            while (
+                self.api.nodes(self.node_name)
+                .qemu(vm_id)
+                .status.current.get()[&#34;status&#34;]
+                != &#34;stopped&#34;
+            ):
+                time.sleep(1)
+
+    def setup(self, template_id: int, vm_name: str, vnc: bool = False) -&gt; dict:
+        &#34;&#34;&#34;Met en place une machine virtuelle à partir d&#39;un template, avec une addresse IP,
+        optionellement VNC. Il ne reste plus qu&#39;a stoquer ces informations dans la base de donnée.
+
+        Args:
+            template_id (int): L&#39;ID du template à cloné.
+            vnc (bool, optional): Si True, alors un display port VNC sera alloué à la VM. Defaults to False.
+
+        Returns:
+            VirtualMachine: Les informations de la machine virtuelle.
+        &#34;&#34;&#34;
+
+        # Première étape, cloner le template
+        new_vm_id = self._clone_vm(template_id, name=vm_name, wait_until_done=True)
+
+        # Deuxième étape, on défini l&#39;adresse MAC de la VM
+        mac_address = self._mac_manager.allocate()
+        self._set_mac(new_vm_id, mac_address)
+
+        # Troisième étape, on active VNC pour la VM
+        if vnc:
+            display_port = self._display_port_manager.allocate()
+            self._enable_vnc(new_vm_id, display_port)
+        else:
+            display_port = None
+
+        # Enfin, on démare la VM.
+        self.start_vm(new_vm_id, wait_until_on=True)
+
+        return {
+            &#34;mac_address&#34;: mac_address,
+            &#34;display_port&#34;: display_port,
+            &#34;vm_id&#34;: new_vm_id,
+        }
+
+    def delete_vm(self, vm_id: int):
+        &#34;&#34;&#34;Supprime une VM sur proxmox.
+
+        Args:
+            vm_id (int): L&#39;ID de la VM à supprimer.
+        &#34;&#34;&#34;
+        # On ne peut pas supprimer une VM qui est allumé
+        self.stop_vm(vm_id)
+        self.api.nodes(self.node_name).qemu(vm_id).delete()
+
+    # def get_vnc_token(self, vm_id: int) -&gt; str:
+    #     proxy_data = (
+    #         self.api.nodes(self.node_name)
+    #         .qemu(vm_id)
+    #         .vncproxy.post(websocket=1)  # , **{&#34;generate-password&#34;: 1})
+    #     )
+    #     print(proxy_data)
+
+    #     # websocket_data = (
+    #     #     self.api.nodes(self.node_name)
+    #     #     .qemu(vm_id)
+    #     #     .vncwebsocket.get(
+    #     #         port=proxy_data[&#34;port&#34;],
+    #     #         vncticket=proxy_data[&#34;ticket&#34;],
+    #     #     )
+    #     # )
+
+    #     ticket = self.api.get_tokens()[0]
+    #     # print(websocket_data)
+    #     # port =  int(websocket_data[&#34;port&#34;])
+
+    #     path = urllib.parse.quote(
+    #         f&#34;api2/json/nodes/{self.node_name}/qemu/{vm_id}/vncwebsocket?port={proxy_data[&#39;port&#39;]}&amp;vncticket={urllib.parse.quote(proxy_data[&#39;ticket&#39;], safe=&#39;&#39;)}&#34;,
+    #         safe=&#34;&#34;,
+    #     )
+    #     # vnc_url = f&#34;https://novnc.com/noVNC/vnc.html?host=172.17.50.250&amp;port=8006&amp;autoconnect=true&amp;resize=scale&amp;encrypt=1&amp;path={path}&#34;
+    #     # vnc_url = f&#34;http://172.17.50.249:5900/vnc.html?password={urllib.parse.quote(proxy_data[&#39;password&#39;])}&amp;autoconnect=true&amp;resize=scale&amp;encrypt=1&#34;
+
+    #     vnc_url = f&#34;https://172.17.50.250:8006/?console=kvm&amp;novnc=1&amp;node={self.node_name}&amp;resize=1&amp;vmid={vm_id}&amp;path=api2/json/nodes/{self.node_name}/qemu/{vm_id}/vncwebsocket/port/{proxy_data[&#39;port&#39;]}/vncticket/{urllib.parse.quote(proxy_data[&#39;ticket&#39;], safe=&#39;&#39;)}&#34;
+    #     print(proxy_data[&#34;port&#34;])
+    #     return vnc_url</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="site_elysium.classes.VMManager.VMManager"><code class="flex name class">
+<span>class <span class="ident">VMManager</span></span>
+<span>(</span><span>api: ProxmoxAPI, node_name: str, mac_manager: Allocator[str], display_port_manager: Allocator[int])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gere les interactions avec l'hyperviseur (proxmox) ainsi que la gestion des VMs</p>
+<p>Initialise la classe</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>api</code></strong></dt>
+<dd>(ProxmoxAPI): le client proxmox à utiliser</dd>
+<dt><strong><code>node_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Le nom du node promox sur lequel stocker les VMs.</dd>
+<dt><strong><code>mac_manager</code></strong> :&ensp;<code>Allocator[str]</code></dt>
+<dd>Un Allocator gérant l'allocation des adresses MAC.</dd>
+<dt><strong><code>display_port_manager</code></strong> :&ensp;<code>Allocator[int]</code></dt>
+<dd>Un Allocator gérant l'allocation des display ports.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>api_token n'étais pas valide</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VMManager:
+    &#34;&#34;&#34;
+    Gere les interactions avec l&#39;hyperviseur (proxmox) ainsi que la gestion des VMs
+    &#34;&#34;&#34;
+
+    def _test_auth(self) -&gt; bool:
+        &#34;&#34;&#34;Renvois True si notre api token est valide, sinon raise un erreur&#34;&#34;&#34;
+        # Va faire un erreur 401 si l&#39;auth n&#39;est pas valide
+        self.api.get()
+        return True
+
+    def __init__(
+        self,
+        api: ProxmoxAPI,
+        node_name: str,
+        mac_manager: Allocator[str],
+        display_port_manager: Allocator[int],
+    ) -&gt; None:
+        &#34;&#34;&#34;Initialise la classe
+
+        Args:
+            api: (ProxmoxAPI): le client proxmox à utiliser
+            node_name (str): Le nom du node promox sur lequel stocker les VMs.
+            mac_manager (Allocator[str]): Un Allocator gérant l&#39;allocation des adresses MAC.
+            display_port_manager (Allocator[int]): Un Allocator gérant l&#39;allocation des display ports.
+
+        Raises:
+            ValueError: api_token n&#39;étais pas valide
+        &#34;&#34;&#34;
+        self.api = api
+        self.node_name = node_name
+        self._vm_modification_lock = Lock()
+        &#34;&#34;&#34;Pour éviter les race-conditions lors des opérations sur les VMs&#34;&#34;&#34;
+
+        self._mac_manager = mac_manager
+        self._display_port_manager = display_port_manager
+
+        self._test_auth()
+
+    def _get_free_vm_id(self) -&gt; int:
+        &#34;&#34;&#34;Obtient un id disponible pour une VM.
+
+        Returns:
+            int: Un ID disponible
+        &#34;&#34;&#34;
+        return self.api.cluster.get(&#34;nextid&#34;)
+
+    def _clone_vm(
+        self, cloned_vm_id: int, name: str, *, wait_until_done: bool = True
+    ) -&gt; int:
+        &#34;&#34;&#34;Créer un clone d&#39;une VM.
+
+        Args:
+            cloned_vm_id (int): L&#39;id de la machine à cloner.
+            wait_until_done (bool): Attent que la machine soit cloné.
+
+        Returns:
+            int: L&#39;id de la nouvelle VM.
+        &#34;&#34;&#34;
+        # On utilise un lock afin d&#39;éviter les race conditions avec les IDs
+        with self._vm_modification_lock:
+            new_vm_id = self._get_free_vm_id()
+
+            # On obtient la VM à cloner
+            to_clone = self.api.nodes(self.node_name).qemu(cloned_vm_id)
+            # Puis on la clone
+            upid = to_clone.clone.post(newid=new_vm_id, name=name)
+
+            if wait_until_done:
+                # On attend que le clonage soit fini
+                task_info: dict = (
+                    self.api.nodes(self.node_name).tasks(upid).status.get()
+                )
+                while task_info[&#34;status&#34;] == &#34;running&#34;:
+                    task_info = self.api.nodes(self.node_name).tasks(upid).status.get()
+                    time.sleep(1)
+
+                assert task_info[&#34;exitstatus&#34;] == &#34;OK&#34;
+
+        return new_vm_id
+
+    # def get_vnc_url(self, vm_id: int) -&gt; str:
+    #     # First we get the ticket for auth
+    #     vnc_data = self.api.nodes(self.node_name).qemu(vm_id).vncproxy.post()
+    #     print(vnc_data)
+    #     ticket = vnc_data[&#34;ticket&#34;]
+    #     port = vnc_data[&#34;port&#34;]
+    #     # print(urllib.parse.quote_plus(ticket))
+
+    #     return f&#34;https://172.17.50.250:8006/?console=shell&amp;xtermjs=1&amp;vmid={vm_id}&amp;vmname=&amp;node=cooldomain&amp;cmd=&#34;
+
+    #     return f&#34;wss://172.17.50.250:8006/api2/json/nodes/cooldomain/lxc/101/vncwebsocket?port={port}&amp;vncticket={urllib.parse.quote_plus(ticket)}&#34;
+    #     return f&#34;https://172.17.50.250:8006/api2/json/nodes/cooldomain/lxc/101/vncwebsocket?port={port}&amp;vncticket={urllib.parse.quote_plus(ticket)}&#34;
+    #     return f&#34;wss://172.17.50.250:8006/api2/json/nodes/{self.node_name}/lxc/{vm_id}/vncwebsocket?port={port}&amp;vncticket={ticket}&#34;
+
+    def _enable_vnc(
+        self, vm_id: int, display_port: int, password: Optional[str] = None
+    ):
+        &#34;&#34;&#34;Active VNC pour une VM. Si la VM est déja allumé, alors il faudra la redémaré.
+
+        Args:
+            vm_id (int): L&#39;ID de la VM à laquelle donnée un accès VNC.
+            display_port (int): Le display port. Le port qu&#39;il faudra VNC est display_port + 5900.
+            password (Optional[str], optional): Le mot de passe pour accéder au VNC. Si c&#39;est None, aucun mot de passe ne sera demandé. Defaults to None.
+        &#34;&#34;&#34;
+        if password is not None:
+            raise NotImplementedError()
+
+        args = f&#34;-vnc 0.0.0.0:{display_port}&#34;
+        # port = 5900 + display_port
+        self.api.nodes(self.node_name).qemu(vm_id).config.post(args=args)
+
+    def _run_command(self, vm_id: int, command: str) -&gt; str:
+        &#34;&#34;&#34;Lance une commande sur une machine virtuelle. Il faut que l&#39;agent QEMU soit installer sur la VM.
+
+        Args:
+            vm_id (int): L&#39;ID de la machine virtuelle.
+            command (str): La commande.
+
+        Returns:
+            str: La sortie de la commande.
+        &#34;&#34;&#34;
+        return (
+            self.api.nodes(self.node_name).qemu(vm_id).agent.exec.post(command=command)
+        )
+
+    def _set_mac(self, vm_id: int, mac_address: str):
+        &#34;&#34;&#34;Défini l&#39;adresse mac d&#39;une machine virtuelle
+
+        Args:
+            vm_id (int): L&#39;ID de la machine virtuelle à qui donnée l’adresse.
+            mac_address (str): L&#39;adresse mac, de la forme &#39;AA:BB:CC:DD:EE:FF&#39;
+        &#34;&#34;&#34;
+        self.api.nodes(self.node_name).qemu(vm_id).config.post(
+            net0=f&#34;virtio,macaddr={mac_address}&#34;
+        )
+
+    def start_vm(self, vm_id: int, *, wait_until_on: bool = True):
+        &#34;&#34;&#34;Allume une machine virtuelle.
+
+        Args:
+            vm_id (int): L&#39;id de la machine virtuelle.
+            wait_until_on (bool): Bloque jusque à ce que la VM soit en ligne.
+        &#34;&#34;&#34;
+        self.api.nodes(self.node_name).qemu(vm_id).status.start.post()
+        if wait_until_on:
+            # Tant que le status de la VM n&#39;est pas &#34;running&#34;
+            while (
+                self.api.nodes(self.node_name)
+                .qemu(vm_id)
+                .status.current.get()[&#34;status&#34;]
+                != &#34;running&#34;
+            ):
+                time.sleep(1)
+
+    def stop_vm(self, vm_id: int, *, wait_until_off: bool = True):
+        &#34;&#34;&#34;Eteind une machine virtuelle.
+
+        Args:
+            vm_id (int): L&#39;id de la machine virtuelle.
+            wait_until_off (bool): Bloque jusque à ce que la VM soit hors ligne.
+        &#34;&#34;&#34;
+        self.api.nodes(self.node_name).qemu(vm_id).status.stop.post()
+        if wait_until_off:
+            # Tant que le status de la VM n&#39;est pas &#34;running&#34;
+            while (
+                self.api.nodes(self.node_name)
+                .qemu(vm_id)
+                .status.current.get()[&#34;status&#34;]
+                != &#34;stopped&#34;
+            ):
+                time.sleep(1)
+
+    def setup(self, template_id: int, vm_name: str, vnc: bool = False) -&gt; dict:
+        &#34;&#34;&#34;Met en place une machine virtuelle à partir d&#39;un template, avec une addresse IP,
+        optionellement VNC. Il ne reste plus qu&#39;a stoquer ces informations dans la base de donnée.
+
+        Args:
+            template_id (int): L&#39;ID du template à cloné.
+            vnc (bool, optional): Si True, alors un display port VNC sera alloué à la VM. Defaults to False.
+
+        Returns:
+            VirtualMachine: Les informations de la machine virtuelle.
+        &#34;&#34;&#34;
+
+        # Première étape, cloner le template
+        new_vm_id = self._clone_vm(template_id, name=vm_name, wait_until_done=True)
+
+        # Deuxième étape, on défini l&#39;adresse MAC de la VM
+        mac_address = self._mac_manager.allocate()
+        self._set_mac(new_vm_id, mac_address)
+
+        # Troisième étape, on active VNC pour la VM
+        if vnc:
+            display_port = self._display_port_manager.allocate()
+            self._enable_vnc(new_vm_id, display_port)
+        else:
+            display_port = None
+
+        # Enfin, on démare la VM.
+        self.start_vm(new_vm_id, wait_until_on=True)
+
+        return {
+            &#34;mac_address&#34;: mac_address,
+            &#34;display_port&#34;: display_port,
+            &#34;vm_id&#34;: new_vm_id,
+        }
+
+    def delete_vm(self, vm_id: int):
+        &#34;&#34;&#34;Supprime une VM sur proxmox.
+
+        Args:
+            vm_id (int): L&#39;ID de la VM à supprimer.
+        &#34;&#34;&#34;
+        # On ne peut pas supprimer une VM qui est allumé
+        self.stop_vm(vm_id)
+        self.api.nodes(self.node_name).qemu(vm_id).delete()
+
+    # def get_vnc_token(self, vm_id: int) -&gt; str:
+    #     proxy_data = (
+    #         self.api.nodes(self.node_name)
+    #         .qemu(vm_id)
+    #         .vncproxy.post(websocket=1)  # , **{&#34;generate-password&#34;: 1})
+    #     )
+    #     print(proxy_data)
+
+    #     # websocket_data = (
+    #     #     self.api.nodes(self.node_name)
+    #     #     .qemu(vm_id)
+    #     #     .vncwebsocket.get(
+    #     #         port=proxy_data[&#34;port&#34;],
+    #     #         vncticket=proxy_data[&#34;ticket&#34;],
+    #     #     )
+    #     # )
+
+    #     ticket = self.api.get_tokens()[0]
+    #     # print(websocket_data)
+    #     # port =  int(websocket_data[&#34;port&#34;])
+
+    #     path = urllib.parse.quote(
+    #         f&#34;api2/json/nodes/{self.node_name}/qemu/{vm_id}/vncwebsocket?port={proxy_data[&#39;port&#39;]}&amp;vncticket={urllib.parse.quote(proxy_data[&#39;ticket&#39;], safe=&#39;&#39;)}&#34;,
+    #         safe=&#34;&#34;,
+    #     )
+    #     # vnc_url = f&#34;https://novnc.com/noVNC/vnc.html?host=172.17.50.250&amp;port=8006&amp;autoconnect=true&amp;resize=scale&amp;encrypt=1&amp;path={path}&#34;
+    #     # vnc_url = f&#34;http://172.17.50.249:5900/vnc.html?password={urllib.parse.quote(proxy_data[&#39;password&#39;])}&amp;autoconnect=true&amp;resize=scale&amp;encrypt=1&#34;
+
+    #     vnc_url = f&#34;https://172.17.50.250:8006/?console=kvm&amp;novnc=1&amp;node={self.node_name}&amp;resize=1&amp;vmid={vm_id}&amp;path=api2/json/nodes/{self.node_name}/qemu/{vm_id}/vncwebsocket/port/{proxy_data[&#39;port&#39;]}/vncticket/{urllib.parse.quote(proxy_data[&#39;ticket&#39;], safe=&#39;&#39;)}&#34;
+    #     print(proxy_data[&#34;port&#34;])
+    #     return vnc_url</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="site_elysium.classes.VMManager.VMManager.delete_vm"><code class="name flex">
+<span>def <span class="ident">delete_vm</span></span>(<span>self, vm_id: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Supprime une VM sur proxmox.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>vm_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>L'ID de la VM à supprimer.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_vm(self, vm_id: int):
+    &#34;&#34;&#34;Supprime une VM sur proxmox.
+
+    Args:
+        vm_id (int): L&#39;ID de la VM à supprimer.
+    &#34;&#34;&#34;
+    # On ne peut pas supprimer une VM qui est allumé
+    self.stop_vm(vm_id)
+    self.api.nodes(self.node_name).qemu(vm_id).delete()</code></pre>
+</details>
+</dd>
+<dt id="site_elysium.classes.VMManager.VMManager.setup"><code class="name flex">
+<span>def <span class="ident">setup</span></span>(<span>self, template_id: int, vm_name: str, vnc: bool = False) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Met en place une machine virtuelle à partir d'un template, avec une addresse IP,
+optionellement VNC. Il ne reste plus qu'a stoquer ces informations dans la base de donnée.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>template_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>L'ID du template à cloné.</dd>
+<dt><strong><code>vnc</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Si True, alors un display port VNC sera alloué à la VM. Defaults to False.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>VirtualMachine</code></dt>
+<dd>Les informations de la machine virtuelle.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup(self, template_id: int, vm_name: str, vnc: bool = False) -&gt; dict:
+    &#34;&#34;&#34;Met en place une machine virtuelle à partir d&#39;un template, avec une addresse IP,
+    optionellement VNC. Il ne reste plus qu&#39;a stoquer ces informations dans la base de donnée.
+
+    Args:
+        template_id (int): L&#39;ID du template à cloné.
+        vnc (bool, optional): Si True, alors un display port VNC sera alloué à la VM. Defaults to False.
+
+    Returns:
+        VirtualMachine: Les informations de la machine virtuelle.
+    &#34;&#34;&#34;
+
+    # Première étape, cloner le template
+    new_vm_id = self._clone_vm(template_id, name=vm_name, wait_until_done=True)
+
+    # Deuxième étape, on défini l&#39;adresse MAC de la VM
+    mac_address = self._mac_manager.allocate()
+    self._set_mac(new_vm_id, mac_address)
+
+    # Troisième étape, on active VNC pour la VM
+    if vnc:
+        display_port = self._display_port_manager.allocate()
+        self._enable_vnc(new_vm_id, display_port)
+    else:
+        display_port = None
+
+    # Enfin, on démare la VM.
+    self.start_vm(new_vm_id, wait_until_on=True)
+
+    return {
+        &#34;mac_address&#34;: mac_address,
+        &#34;display_port&#34;: display_port,
+        &#34;vm_id&#34;: new_vm_id,
+    }</code></pre>
+</details>
+</dd>
+<dt id="site_elysium.classes.VMManager.VMManager.start_vm"><code class="name flex">
+<span>def <span class="ident">start_vm</span></span>(<span>self, vm_id: int, *, wait_until_on: bool = True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Allume une machine virtuelle.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>vm_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>L'id de la machine virtuelle.</dd>
+<dt><strong><code>wait_until_on</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Bloque jusque à ce que la VM soit en ligne.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def start_vm(self, vm_id: int, *, wait_until_on: bool = True):
+    &#34;&#34;&#34;Allume une machine virtuelle.
+
+    Args:
+        vm_id (int): L&#39;id de la machine virtuelle.
+        wait_until_on (bool): Bloque jusque à ce que la VM soit en ligne.
+    &#34;&#34;&#34;
+    self.api.nodes(self.node_name).qemu(vm_id).status.start.post()
+    if wait_until_on:
+        # Tant que le status de la VM n&#39;est pas &#34;running&#34;
+        while (
+            self.api.nodes(self.node_name)
+            .qemu(vm_id)
+            .status.current.get()[&#34;status&#34;]
+            != &#34;running&#34;
+        ):
+            time.sleep(1)</code></pre>
+</details>
+</dd>
+<dt id="site_elysium.classes.VMManager.VMManager.stop_vm"><code class="name flex">
+<span>def <span class="ident">stop_vm</span></span>(<span>self, vm_id: int, *, wait_until_off: bool = True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Eteind une machine virtuelle.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>vm_id</code></strong> :&ensp;<code>int</code></dt>
+<dd>L'id de la machine virtuelle.</dd>
+<dt><strong><code>wait_until_off</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Bloque jusque à ce que la VM soit hors ligne.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def stop_vm(self, vm_id: int, *, wait_until_off: bool = True):
+    &#34;&#34;&#34;Eteind une machine virtuelle.
+
+    Args:
+        vm_id (int): L&#39;id de la machine virtuelle.
+        wait_until_off (bool): Bloque jusque à ce que la VM soit hors ligne.
+    &#34;&#34;&#34;
+    self.api.nodes(self.node_name).qemu(vm_id).status.stop.post()
+    if wait_until_off:
+        # Tant que le status de la VM n&#39;est pas &#34;running&#34;
+        while (
+            self.api.nodes(self.node_name)
+            .qemu(vm_id)
+            .status.current.get()[&#34;status&#34;]
+            != &#34;stopped&#34;
+        ):
+            time.sleep(1)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="site_elysium.classes" href="index.html">site_elysium.classes</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="site_elysium.classes.VMManager.VMManager" href="#site_elysium.classes.VMManager.VMManager">VMManager</a></code></h4>
+<ul class="">
+<li><code><a title="site_elysium.classes.VMManager.VMManager.delete_vm" href="#site_elysium.classes.VMManager.VMManager.delete_vm">delete_vm</a></code></li>
+<li><code><a title="site_elysium.classes.VMManager.VMManager.setup" href="#site_elysium.classes.VMManager.VMManager.setup">setup</a></code></li>
+<li><code><a title="site_elysium.classes.VMManager.VMManager.start_vm" href="#site_elysium.classes.VMManager.VMManager.start_vm">start_vm</a></code></li>
+<li><code><a title="site_elysium.classes.VMManager.VMManager.stop_vm" href="#site_elysium.classes.VMManager.VMManager.stop_vm">stop_vm</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

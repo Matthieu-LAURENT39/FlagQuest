@@ -166,7 +166,7 @@ class RequestVictimVmsResource(Resource):
 
     method_decorators = [login_required]
 
-    @vm_namespace.marshal_with(victim_vm_model, as_list=True)
+    # @vm_namespace.marshal_with(victim_vm_model, as_list=True)
     def post(self, room_url_name: str):
         """Créer les VMs victimes pour une room."""
         from vm import get_vm_manager

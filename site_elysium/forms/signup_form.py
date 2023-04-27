@@ -15,12 +15,15 @@ class SignupForm(FlaskForm):
             ),
         ],
     )
+    """Le nom d'utilisateur"""
     email = wtforms.EmailField(
         "Votre adresse email", validators=[wtforms.validators.DataRequired()]
     )
+    """L'adresse email"""
     password = wtforms.PasswordField(
         "Votre mot de passe", validators=[wtforms.validators.DataRequired()]
     )
+    """Le mot de passe"""
     password_confirmation = wtforms.PasswordField(
         label="Password confirm",
         validators=[
@@ -30,4 +33,6 @@ class SignupForm(FlaskForm):
             ),
         ],
     )
+    """La confirmation du mot de passe"""
     submit = wtforms.SubmitField("Valider")
+    """Le bouton pour envoyer le formulaire"""

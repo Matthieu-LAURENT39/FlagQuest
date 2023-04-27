@@ -100,6 +100,8 @@ class QuestionResource(Resource):
 @room_namespace.response(404, "La room n'existe pas")
 @room_namespace.doc(security="http")
 class RoomJoinResource(Resource):
+    """Permet a un utilisateur de rejoindre une room."""
+
     method_decorators = [login_required]
 
     def post(self, room_url_name: str):
@@ -122,15 +124,15 @@ class RoomJoinResource(Resource):
 )
 @room_namespace.doc(security="http")
 class AnswerQuestionResource(Resource):
+    """Permet a l'utilisateur de répondre a une question et de savoir si il a juste"""
+
     method_decorators = [login_required]
 
     @room_namespace.marshal_with(
         room_namespace.model("AnswerQuestion", {"correct": fields.Boolean})
     )
     def post(self):
-        """
-        Permet a l'utilisateur de répondre a une question et de savoir si il a juste
-        """
+        """Permet a l'utilisateur de répondre a une question et de savoir si il a juste"""
         question_id = request.args.get("question_id")
         if question_id is None:
             abort(400, "Il manque l'argument 'question_id'")

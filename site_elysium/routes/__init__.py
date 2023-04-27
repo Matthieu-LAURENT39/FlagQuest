@@ -7,4 +7,5 @@ api = Blueprint(
     url_prefix="/api",
 )
 
+# flake8: noqa: E402
 from . import views, _api

@@ -8,7 +8,7 @@ T = TypeVar("T")
 
 def get_n_around(lst: list[T], index: int, amount: int) -> list[T]:
     """Renvois les n éléments les plus proches de l'index "index", incluant
-    l'élémént à index.
+    l'élémént à la position index.
 
     Args:
         lst (list[T]): La liste contenant les éléments
@@ -16,10 +16,10 @@ def get_n_around(lst: list[T], index: int, amount: int) -> list[T]:
         amount (int): Combient d'objets récupéré
 
     Raises:
-        ValueError: amount étais négatif, ou index n'étais pas dans la liste
+        ValueError: amount est négatif, ou index n'est pas dans la liste
 
     Returns:
-        list[T]: Une liste de "amount" éléments, ou de la len(lst) si len(lst) < amount
+        list[T]: Une liste de "amount" éléments, ou de len(lst) si len(lst) < amount
     """
 
     # Sanity checks

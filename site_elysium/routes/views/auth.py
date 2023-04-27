@@ -30,14 +30,14 @@ def connexion():
 
             flash("Logged in successfully.", "success")
 
-            next = request.args.get("next")
+            next_url = request.args.get("next")
             # is_safe_url should check if the url is safe for redirects.
             # See http://flask.pocoo.org/snippets/62/ for an example.
             # if not is_safe_url(next):
             #     return flask.abort(400)
 
             # On redirige vers la page d'acceuil
-            return redirect(next or url_for("main.acceuil"))
+            return redirect(next_url or url_for("main.acceuil"))
 
     # Si on a pas submit une form valide, ou alors que l'on avais
     # un MDP invalide ou un login qui n'existait pas
@@ -76,13 +76,13 @@ def inscription():
 
         flash("Logged in successfully.")
 
-        next = request.args.get("next")
+        next_url = request.args.get("next")
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
         # if not is_safe_url(next):
         #     return flask.abort(400)
 
-        return redirect(next or url_for("main.acceuil"))
+        return redirect(next_url or url_for("main.acceuil"))
     else:
         return redirect(request.url)
         # return flask.render_template("inscription.jinja", signup_form=form)

@@ -1,12 +1,14 @@
 from __future__ import annotations
+
+from typing import TYPE_CHECKING, Optional
+
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
 from flask_admin import Admin
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+
 from .backend.filters import markdown_filter
 from .flask_config import Config
-
-from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .models import User
@@ -70,15 +72,10 @@ def create_app(config: object = Config) -> Flask:
     app.config["FLASK_ADMIN_SWATCH"] = "superhero"
     admin.init_app(app)
 
-    from .models import (
-        Question,
-        Room,
-        User,
-        SolvedQuestionData,
-        VirtualMachine,
-    )
-
     from .classes import AdminModelView
+
+    with app.app_context():
+        from .models import Question, Room, SolvedQuestionData, User, VirtualMachine
 
     admin.add_view(AdminModelView(User, db.session))
     admin.add_view(AdminModelView(Room, db.session))
@@ -90,7 +87,7 @@ def create_app(config: object = Config) -> Flask:
     app.jinja_env.filters["markdown"] = markdown_filter
 
     # Register the blueprints
-    from .routes import main, api
+    from .routes import api, main
 
     app.register_blueprint(main)
     app.register_blueprint(api)
@@ -252,9 +249,13 @@ $ sudo apt-get install hydra -y
 ### Sous Windows
 Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d'émuler un système Linux sous différentes versions de Windows.
 
-# Utilisation
+## Utilisation
+dire comment on use hydra
 
-                """,
+## Connection à un serveur FTP
+dire comment on se co a un serv ftp une fois le mdp trouvé
+
+""",
             )
             room5 = Room(
                 name="Room 5",
@@ -370,6 +371,8 @@ Réponse attendu sous la forme `X.X.X.X/X`""",
                 )
             )
 
+            db.session.commit()
+
             # question room3 - john the ripper
 
             db.session.add(
@@ -398,5 +401,3 @@ Réponse attendu sous la forme `X.X.X.X/X`""",
                     points=2,
                 )
             )
-
-            db.session.commit()
