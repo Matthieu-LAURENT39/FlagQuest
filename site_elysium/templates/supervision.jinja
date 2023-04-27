@@ -2,7 +2,7 @@
 
 
 {% set nbr_question_total = room.questions | length %}
-{% set progress_percentage = ( nbr_question_total/ nbr_question_total*100)|round|int %}
+
 
 {% block content %}
 
@@ -16,6 +16,7 @@
         </div>
     </div>
     {%for user, user_score in user_dico.items()%}
+    {% set progress_percentage = ( user_score/ nbr_question_total*100)|round|int %}
     <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary" id="progress-bar-scroll"
         style="width: 100%">
         <div class="row">
