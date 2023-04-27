@@ -66,5 +66,12 @@
     "codesnap.shutterAction": "copy",
     "codesnap.transparentBackground": true,
     "codesnap.showWindowControls": false,
-    "codesnap.showLineNumbers": true,
+    "codesnap.showLineNumbers": false,
+    "codesnap.backgroundColor": "#abb8c3",
+    "codesnap.boxShadow": "rgba(0, 0, 0, 0.55) 0px 20px 68px",
+    "codesnap.containerPadding": "1em",
+    "codesnap.roundedCorners": true,
+    "codesnap.showWindowTitle": false,
+    "codesnap.target": "container",
+    "codesnap.realLineNumbers": false,
 }
