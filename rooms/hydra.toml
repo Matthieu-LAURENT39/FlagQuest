@@ -1,5 +1,5 @@
 name = "Introduction à Hydra"
-description = "Trouvez le mot de passe du serveur FTP !"
+description = "Trouvez le mot de passe du serveur FTP!"
 url_name = "hydra"
 instructions = """
 # Hydra
@@ -16,12 +16,30 @@ $ sudo apt-get install hydra -y
 ```
 
 ### Sous Windows
-Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d'émuler un système Linux sous différentes versions de Windows.
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
 
-## Utilisation
-dire comment on use hydra
-
-## Connection à un serveur FTP
-dire comment on se co a un serv ftp une fois le mdp trouvé
+# Utilisation
 """
-victim_vm_ids = [ ]
+victim_vm_ids = []
+
+[[question]]
+prompt = """Quel était le mot de passe du server FTP"""
+answer = "hannah"
+points = 2
+
+[[question]]
+prompt = """Quel était le mot de passe du server FTP"""
+answer = "hannah"
+points = 5
+
+[[question]]
+prompt = """Avec quel outils graphique (très populaire) peut-on se connecter au serveur FTP 
+?"""
+answer = "filezilla"
+points = 3
+
+[[question]]
+prompt = """Donnez le flag caché dans l'un des fichiers du server"""
+answer = "trouverunephrase"
+points = 3
+
