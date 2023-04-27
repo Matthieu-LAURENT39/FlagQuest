@@ -65,11 +65,22 @@ def get_n_around(lst: list[T], index: int, amount: int) -> list[T]:
     return list(output)
 
 
-def question_from_toml(toml_txt: str) -> None:
+def add_room_from_toml(toml_txt: str) -> None:
+    """Ajoute des questions a la base de donnée a partir de texte TOML
+
+    Args:
+        toml_txt (str): Le texte TOML a parse
+
+    Raises:
+        ValueError: La room est déja dans la base de données
+    """
     from . import db
     from .models import Room, Question
 
     data = toml.loads(toml_txt)
+
+    if Room.query.filter_by(url_name=data["url_name"]).first() is not None:
+        raise ValueError("La room est déja dans la base de données")
 
     r = Room(
         name=data["name"],
@@ -82,7 +93,7 @@ def question_from_toml(toml_txt: str) -> None:
     # Pour que r obtienne un id
     db.session.flush()
 
-    for q in data["question"]:
+    for q in data.get("question", []):
         db.session.add(
             Question(
                 prompt=q["prompt"],

@@ -1,11 +1,37 @@
 {% extends 'base.jinja' %}
+
+
+{% set nbr_question_total = room.questions | length %}
+{% set progress_percentage = ( nbr_question_total/ nbr_question_total*100)|round|int %}
+
 {% block content %}
 
-{% block title %}
+<main class="container pt-5">
+    <div class="container-index row">
+        <!-- partie gauche avec logo + texte -->
+        <div class="index-left-part col text-center pb-5">
+            <img src="{{config.APP_LOGO}}" alt="logo" class="logo-large">
+            <h1 class="text-white fs-2 fw-normal">Supervision de la {{room.name}}
+            </h1>
+        </div>
+    </div>
+    {%for user, user_score in user_dico.items()%}
+    <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary" id="progress-bar-scroll"
+        style="width: 100%">
+        <div class="row">
+            <div class="col">
+                <p><strong>Progression:</strong> {{user_score}}/{{nbr_question_total}}</p>
+                <div class="progress">
+                    <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if user_score == nbr_question_total else ''}}"
+                        aria-valuenow="{{user_score}}" aria-valuemin="0" aria-valuemax="{{nbr_question_total}}"
+                        style="width: {{ progress_percentage }}%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% endblock %}
+    {% endfor %}
 
-<h1 class="text-white fs-2 fw-normal">
-    Supervision de la {{room.name}}
-</h1>
-{% endblock %}
+
+    {% endblock %}

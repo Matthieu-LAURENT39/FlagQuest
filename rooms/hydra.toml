@@ -6,10 +6,10 @@ instructions = """
 [Hydra](https://github.com/vanhauser-thc/thc-hydra) est un logiciel libre permettant de craquer un mot de passe en ligne par **bruteforce**.
 
 ## Installation
-*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
+*Cet outils est déjà installé sur la VM d'attaque, cette explication est simplement à but éducatif.*
 
 ### Sous Linux
-On peut l&#39;installer via **apt-get** ou **snap** :
+On peut l'installer via **apt-get** ou **snap** :
 ```
 $ sudo apt-get update
 $ sudo apt-get install hydra -y

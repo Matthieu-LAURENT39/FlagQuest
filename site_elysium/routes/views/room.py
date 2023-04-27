@@ -72,13 +72,21 @@ def room(room_url_name: str):
 @main.route("/room/supervision/<room_url_name>")
 def supervision(room_url_name: str):
     """Supervision du site."""
-    from ...models import Room, VirtualMachine
+    from ...models import Room
+    from ...models import User
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description="Cette room n'existe pas."
     )
 
+    user_list = User.query.all()
+    user_dico = {}
+    for user in user_list:
+        user_score = sum(q.is_solved_by(user) for q in room.questions)
+        user_dico[user] = user_score
+
     return render_template(
         "supervision.jinja",
         room=room,
+        user_dico=user_dico,
     )
