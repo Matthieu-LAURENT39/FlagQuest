@@ -57,14 +57,14 @@ VM_NETWORK: str = "10.0.0.0/16"
 VICTIM_VM_PREFIX: str = "automatic"
 """Le préfix à ajouté aux nom des VMs victimes"""
 
-ATTACK_VM_TEMPLATE_ID: str = "104"
+ATTACK_VM_TEMPLATE_ID: str = "100"
 """L'ID de la template pour les VMs d'attaques"""
-ATTACK_VM_USERNAME: str = "ubuntu"
+ATTACK_VM_USERNAME: str = "hacker"
 """
 Le login pour la VM d'attaque qui sera affiché à l'utilisateur.
 Changer cette valeur ne change pas automatiquement le nom d'utilisateur sur la VM!
 """
-ATTACK_VM_PASSWORD: str = "ubuntu"
+ATTACK_VM_PASSWORD: str = "kali"
 """
 Le mot de passe pour la VM d'attaque.
 Changer cette valeur ne change pas automatiquement le mot de passe sur la VM!
