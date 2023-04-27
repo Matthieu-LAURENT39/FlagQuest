@@ -8,14 +8,15 @@ from sqlalchemy_utils import UUIDType
 
 from tools import mac_to_ip
 
-from .. import db
+from . import _current_base
+
 
 # class VMType(enum.Enum):
 #     attack = "attack"
 #     victim = "victim"
 
 
-class VirtualMachine(db.Model):
+class VirtualMachine(_current_base):
     """Une room regroupant des questions et des consignes"""
 
     __tablename__ = "virtual_machines"

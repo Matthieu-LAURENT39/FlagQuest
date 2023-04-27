@@ -1,12 +1,14 @@
 from __future__ import annotations
+
+from typing import TYPE_CHECKING, Optional
+
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
 from flask_admin import Admin
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+
 from .backend.filters import markdown_filter
 from .flask_config import Config
-
-from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .models import User
@@ -70,15 +72,10 @@ def create_app(config: object = Config) -> Flask:
     app.config["FLASK_ADMIN_SWATCH"] = "superhero"
     admin.init_app(app)
 
-    from .models import (
-        Question,
-        Room,
-        User,
-        SolvedQuestionData,
-        VirtualMachine,
-    )
-
     from .classes import AdminModelView
+
+    with app.app_context():
+        from .models import Question, Room, SolvedQuestionData, User, VirtualMachine
 
     admin.add_view(AdminModelView(User, db.session))
     admin.add_view(AdminModelView(Room, db.session))
@@ -90,7 +87,7 @@ def create_app(config: object = Config) -> Flask:
     app.jinja_env.filters["markdown"] = markdown_filter
 
     # Register the blueprints
-    from .routes import main, api
+    from .routes import api, main
 
     app.register_blueprint(main)
     app.register_blueprint(api)

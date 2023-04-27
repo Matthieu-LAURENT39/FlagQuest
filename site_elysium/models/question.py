@@ -1,9 +1,11 @@
-from .. import db
 from . import Room, User, SolvedQuestionData
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from . import _current_base, _current_relationship, _current_foreign_key
+from .. import db
 
-class Question(db.Model):
+
+class Question(_current_base):
     """Une question appartenant à une room"""
 
     __tablename__ = "questions"
@@ -11,8 +13,8 @@ class Question(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     """Identifiant unique de la question. N'est pas montré à l'utilisateur."""
 
-    room_id: Mapped[int] = mapped_column(db.ForeignKey("rooms.id"))
-    room: Mapped[Room] = db.relationship(back_populates="questions")
+    room_id: Mapped[int] = mapped_column(_current_foreign_key("rooms.id"))
+    room: Mapped[Room] = _current_relationship(back_populates="questions")
 
     prompt: Mapped[str]
     """L'énoncé de la question affiché à l'utilisateur. Peut contenir du markdown."""

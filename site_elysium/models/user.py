@@ -11,14 +11,15 @@ import customidenticon
 
 
 from . import room_user, SolvedQuestionData
-from .. import db
+from . import _current_base
+
 
 if TYPE_CHECKING:
     from . import Room
 
 
 # On hérite UserMixin afin d'avoir les @property par défaut
-class User(db.Model, UserMixin):
+class User(_current_base, UserMixin):
     """Un utilisateur du site web"""
 
     __tablename__ = "users"

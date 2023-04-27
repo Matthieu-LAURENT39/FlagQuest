@@ -1,15 +1,16 @@
 from __future__ import annotations
 
-from .. import db
+from . import _current_base, _current_relationship
 from sqlalchemy.orm import Mapped, mapped_column
 from . import room_user
 from typing import Optional, TYPE_CHECKING
+
 
 if TYPE_CHECKING:
     from . import User, Question
 
 
-class Room(db.Model):
+class Room(_current_base):
     """Une room regroupant des questions et des consignes"""
 
     __tablename__ = "rooms"
@@ -26,11 +27,11 @@ class Room(db.Model):
     instructions: Mapped[str]
     """Les consignes de la room, affiché au dessus des questions. Peut contenir du markdown."""
 
-    users: Mapped[list["User"]] = db.relationship(
+    users: Mapped[list["User"]] = _current_relationship(
         secondary=room_user, back_populates="joined_rooms"
     )
 
-    questions: Mapped[list["Question"]] = db.relationship(back_populates="room")
+    questions: Mapped[list["Question"]] = _current_relationship(back_populates="room")
 
     _victim_vm_ids: Mapped[str] = mapped_column("victim_vm_ids", default="")
     """Les IDs des templates des machines victimes de la room, séparé par des points virgule ';'."""
