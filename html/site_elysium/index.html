@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>site_elysium API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>site_elysium</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import annotations
+
+from typing import TYPE_CHECKING, Optional
+
+from flask import Flask
+from flask_admin import Admin
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+
+from .backend.filters import markdown_filter
+from .flask_config import Config
+
+if TYPE_CHECKING:
+    from .models import User
+
+
+db = SQLAlchemy()
+login_manager = LoginManager()
+
+
+@login_manager.user_loader
+def load_user(user_id: str) -&gt; Optional[&#34;User&#34;]:
+    &#34;&#34;&#34;Chargeur d&#39;utilisateur pour Flask-Login
+
+    Args:
+        user_id (str): L&#39;ID de l&#39;utilisateur à charger.
+
+    Returns:
+        Optional[User]: L&#39;utilisateur, ou None si il n&#39;existe pas.
+    &#34;&#34;&#34;
+
+    from .models import User
+
+    return User.query.filter_by(id=user_id).first()
+
+
+def create_app(config: object = Config) -&gt; Flask:
+    &#34;&#34;&#34;App factory pour Flask
+
+    Args:
+        config (object, optional): L&#39;objet de configuration à charger. Defaults to Config.
+
+    Returns:
+        Flask: l&#39;app Flask
+    &#34;&#34;&#34;
+    app = Flask(
+        __name__,
+        static_folder=&#34;static&#34;,
+        template_folder=&#34;templates&#34;,
+        static_url_path=&#34;/static&#34;,
+    )
+
+    # On charge les constantes
+    app.config.from_pyfile(&#34;app_config.py&#34;)
+
+    # Puis on charge la config flask
+    app.config.from_object(config)
+
+    # SQLalchemy
+    db.init_app(app)
+
+    # flask-login
+    login_manager.init_app(app)
+
+    # flask-admin
+    # Créer l&#39;instance va a l&#39;encontre des principes de design des app factory, mais
+    # on y est contraint du a au design de flask-admin.
+    # Voir aussi https://github.com/flask-admin/flask-admin/issues/910
+    admin = Admin(name=&#34;Interface Admin&#34;, template_mode=&#34;bootstrap3&#34;)
+
+    # remplacer superhero par cerulean pour screens
+    app.config[&#34;FLASK_ADMIN_SWATCH&#34;] = &#34;superhero&#34;
+    admin.init_app(app)
+
+    from .classes import AdminModelView
+
+    with app.app_context():
+        from .models import Question, Room, SolvedQuestionData, User, VirtualMachine
+
+    admin.add_view(AdminModelView(User, db.session))
+    admin.add_view(AdminModelView(Room, db.session))
+    admin.add_view(AdminModelView(VirtualMachine, db.session))
+    admin.add_view(AdminModelView(Question, db.session))
+    admin.add_view(AdminModelView(SolvedQuestionData, db.session))
+
+    # Register the filters
+    app.jinja_env.filters[&#34;markdown&#34;] = markdown_filter
+
+    # Register the blueprints
+    from .routes import api, main
+
+    app.register_blueprint(main)
+    app.register_blueprint(api)
+
+    # Enfin, on créer toutes les données
+    if not app.testing:
+        setup_app(app)
+
+    # print(app.url_map)
+
+    return app
+
+
+def setup_app(app: Flask):
+    &#34;&#34;&#34;Génère des données de base dans l&#39;app
+
+    Args:
+        app (Flask): l&#39;app où généré les données.
+    &#34;&#34;&#34;
+    from .models import Question, Room, User
+
+    with app.app_context():
+        db.create_all()
+
+    with app.app_context():
+        user = User.query.filter_by(username=&#34;admin&#34;).first()
+        if user is None:
+            user = User(
+                username=&#34;admin&#34;,
+                email=&#34;feur@desu.wa&#34;,
+                is_admin=True,
+            )
+            user.set_password(&#34;admin&#34;)
+            db.session.add(user)
+            db.session.commit()
+
+        room = Room.query.filter_by(id=&#34;1&#34;).first()
+        if room is None:
+            room = Room(
+                name=&#34;Room 1&#34;,
+                description=&#34;Wow what a cool room **desu wa**&#34;,
+                url_name=&#34;room1&#34;,
+                instructions=&#34;QCM&#34;,
+                victim_vm_ids=[101],
+            )
+            room2 = Room(
+                name=&#34;Introduction à Nmap&#34;,
+                description=&#34;Apprenez les bases de **Nmap**, un outil d&#39;exploration réseau.&#34;,
+                url_name=&#34;introduction_nmap&#34;,
+                instructions=&#34;&#34;&#34;Après avoir dressé et borné la prestation de tests d&#39;intrusion, vous devez commencer par la première étape de votre mission : Enumération
+Pour mener à bien cette phase, nous allons apprendre à utiliser l&#39;application nmap.
+
+# NMAP
+Nmap (« Network Mapper ») est un outil open source d&#39;exploration réseau et d&#39;audit de sécurité.
+Les commandes principales sont :
+`nmap -v &lt;ip&gt;`
+
+Cette option scanne tous les ports réservés TCP sur la machine &lt;ip&gt; . L&#39;option -v active le mode verbeux.
+`nmap -sS -O &lt;ip&gt;/&lt;CIDR&gt;`
+
+Lance un scan furtif (SYN scan) contre chaque machine active. Il essaie aussi de déterminer le système d&#39;exploitation sur chaque hôte actif. Cette démarche nécessite les privilèges de root puisqu&#39;on utilise un SYN scan et une détection d&#39;OS
+exemple : `nmap -sS -O 192.168.1.0/24` scanne les 255 machines du NetID 192.168.1
+`nmap -sV -p 22,53,110,143,4564 198.116.0-255.1-127`
+
+Lance une recherche des hôtes et un scan TCP dans la première moitié de chacun des 255 sous-réseaux à 8 bits dans l&#39;espace d&#39;adressage de classe B 198.116 Cela permet de déterminer si les systèmes font tourner sshd (22), DNS (53), pop3d(110), imapd(143) ou le port 4564. Pour chacun de ces ports qui sont ouverts, la détection de version est utilisée pour déterminer quelle application est actuellement lancée.
+
+### Flags intéréssant
+##### Détection d&#39;un système d&#39;exploitation:
+`-O`: Active la détection d&#39;OS
+##### Détection de services/versions:
+`-sV`: Teste les ports ouverts pour déterminer le service en écoute et sa version
+##### Spécification des ports et ordre de scan:
+`-p` &lt;plage de ports&gt;: Ne scanne que les ports spécifiés
+##### Méthode de scan:
+`-sS` / `-sT` / `-sA` / `-sW`/ `-sM`: Scans TCP SYN/Connect()/ACK/Window/Maimon 
+`-sN`/`-sF`/`-sX`: Scans TCP Null, FIN et Xmas
+`-sU`: Scan UDP
+
+##### Divers:
+`-6`: Active le scan IPv6
+`-A`: Active la détection du système d&#39;exploitation, des versions et génère un tracert (traceroute)
+&#34;&#34;&#34;,
+            )
+            room3 = Room(
+                name=&#34;John The Ripper&#34;,
+                description=&#34;Apprenez à casser des mots de passe !&#34;,
+                url_name=&#34;john&#34;,
+                instructions=&#34;&#34;&#34;
+# John the Ripper
+[John the Ripper](https://www.openwall.com/john/) (JTR ou John) est un logiciel libre permettant de tester la sécurité d&#39;un mot de passe.
+
+## Installation
+*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
+
+### Sous Linux
+On peut l&#39;installer via **apt-get** ou **snap** :
+```
+$ sudo apt-get update
+$ sudo apt-get install john -y
+```
+
+### Sous Windows
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
+Voici un petit guide : `https://miloserdov.org/?p=4961#15`
+
+# Utilisation
+Les commandes principales sont :
+`john --wordlist=&lt;/path/to/wordlist/wordlists.txt&gt;`
+
+## Les 3 différents modes
+### Mode simple (Single crack)
+En mode simple, john se génère des variations de chaînes de caractères en fonction du nom d&#39;utilisateur présent dans le fichier. Si le nom d&#39;utilisateur est &#34;voiture&#34;, le mode simple va tester les mots de passe suivants : &#34;Voiture&#34;, &#34;VOIRTURE2000&#34;, &#34;voiTure&#34;, ...
+
+Le contenu du fichier doit être sous la forme `username:hash`.
+Exemple :
+    `jardinier:a69c316fbc7ec7da1305e72f95c164a8`
+
+La commande doit spécifier le paramètre `--single` ainsi que le format du hash :
+`john --single --format=&lt;hash-format&gt; &lt;filename&gt;`
+
+
+### Attaque par dictionnaire (Wordlist)
+L&#39;attaque par dictionnaire test le hash avec tout les mots de passe présents dans une liste de mots (de passe) aussi appelée **wordlist**.
+
+Une des plus célèbre est RockYou, elle est issue d&#39;une fuite de donnée du réseau social californien Rockyou en 2009.
+
+Wordlist : `https://github.com/danielmiessler/SecLists`
+
+`john --wordlist=&lt;/path/to/wordlist&gt;` --format=&lt;hash-format&gt; &lt;filename&gt;`
+
+### Mode incrémental (Incremental)
+Dans ce mode, John essaie tout les combinaisons de caractères possible pour trouver le mot de passe.
+
+Spécifier que l&#39;on veut utiliser que des chiffres :
+`john -i=&lt;MODE&gt; --format=&lt;hash-format&gt; &lt;filename&gt;`
+Exemple :
+`john --incremental=digits --format=raw-md5 pass.txt`
+
+&#34;&#34;&#34;,
+            )
+            room4 = Room(
+                name=&#34;Introduction à Hydra&#34;,
+                description=&#34;Trouvez le mot de passe du  serveur FTP !&#34;,
+                url_name=&#34;hydra&#34;,
+                instructions=&#34;&#34;&#34;
+# Hydra
+[Hydra](https://github.com/vanhauser-thc/thc-hydra) est un logiciel libre permettant de craquer un mot de passe en ligne par **bruteforce**.
+
+## Installation
+*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
+
+### Sous Linux
+On peut l&#39;installer via **apt-get** ou **snap** :
+```
+$ sudo apt-get update
+$ sudo apt-get install hydra -y
+```
+
+### Sous Windows
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
+
+# Utilisation
+
+                &#34;&#34;&#34;,
+            )
+            room5 = Room(
+                name=&#34;Room 5&#34;,
+                description=&#34;lorem ipsum dolor sit amet&#34;,
+                url_name=&#34;room5&#34;,
+                instructions=&#34;QCM&#34;,
+            )
+            room6 = Room(
+                name=&#34;Room 6&#34;,
+                description=&#34;lorem ipsum dolor sit amet&#34;,
+                url_name=&#34;room6&#34;,
+                instructions=&#34;QCM&#34;,
+            )
+
+            db.session.add(room)
+            db.session.add(room2)
+            db.session.add(room3)
+            db.session.add(room4)
+            db.session.add(room5)
+            db.session.add(room6)
+
+            db.session.commit()
+
+            # room.users.append(user)
+            # backend.db.session.commit()
+
+        question = Question.query.filter_by(id=&#34;1&#34;).first()
+        if question is None:
+            question = Question(
+                room_id=1,
+                prompt=&#34;&#34;&#34;**Qui** a écrit *cette* __question__?
+Indice: `matt`
+Et voici un code block
+```py
+import random
+n = random.randint(1,10)
+print(n)
+```&#34;&#34;&#34;,
+                answer=&#34;matt&#34;,
+                points=15,
+            )
+            db.session.add(question)
+
+            db.session.add(
+                Question(
+                    room_id=1,
+                    prompt=&#34;Quel est le nombre associé à la célèbre chanteuse virtuelle, **Hatsune Miku**?&#34;,
+                    answer=&#34;39&#34;,
+                    points=39,
+                )
+            )
+
+            for i in range(6):
+                question = Question(
+                    room_id=1, prompt=f&#34;{i}+1=?&#34;, answer=str(i + 1), points=2
+                )
+                db.session.add(question)
+
+            # question room2
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Quel est l&#39;argument permettant d&#39;identifier l&#39;OS et la version?&#34;,
+                    answer=&#34;-A&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;&#34;&#34;Quels sont les machines qui ont un serveur FTP appartenant au réseau **10.10.12.128/25**?
+Réponse attendu sous la forme `X.X.X.X/X`&#34;&#34;&#34;,
+                    answer=&#34;10.10.12.128/25&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Combien de services sont disponibles sur ce serveur?&#34;,
+                    answer=&#34;3&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Quel est la version du serveur Web?&#34;,
+                    answer=&#34;Apache/2.4.18&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Que trouvons-nous sur le port 21?&#34;,
+                    answer=&#34;ProFTPD 1.3.3c&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Quel est le titre de la page web?&#34;,
+                    answer=&#34;it works&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.commit()
+
+            # question room3 - john the ripper
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (sha256): *4cffb4ed84e2986f067c9e373ef87bf6d5eddc7866fb2cdd41eb48429743f50d*. Utilisez le mode simple.&#34;,
+                    answer=&#34;ludovic4000&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (sha1): *26e2440a5730bccb5cf325e8856ac3c38fae9273*. Utilisez la méthode incremental en mode **digits**&#34;,
+                    answer=&#34;52821071&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (md5): *117735823fadae51db091c7d63e60eb0*. Utilisez l&#39;attaque via la wordlist **rockyou**&#34;,
+                    answer=&#34;francisco&#34;,
+                    points=2,
+                )
+            )</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="site_elysium.app_config" href="app_config.html">site_elysium.app_config</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="site_elysium.backend" href="backend/index.html">site_elysium.backend</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="site_elysium.classes" href="classes/index.html">site_elysium.classes</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="site_elysium.flask_config" href="flask_config.html">site_elysium.flask_config</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="site_elysium.forms" href="forms/index.html">site_elysium.forms</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="site_elysium.models" href="models/index.html">site_elysium.models</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="site_elysium.routes" href="routes/index.html">site_elysium.routes</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="site_elysium.utils" href="utils.html">site_elysium.utils</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="site_elysium.create_app"><code class="name flex">
+<span>def <span class="ident">create_app</span></span>(<span>config: object = site_elysium.flask_config.Config) ‑> flask.app.Flask</span>
+</code></dt>
+<dd>
+<div class="desc"><p>App factory pour Flask</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>config</code></strong> :&ensp;<code>object</code>, optional</dt>
+<dd>L'objet de configuration à charger. Defaults to Config.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Flask</code></dt>
+<dd>l'app Flask</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_app(config: object = Config) -&gt; Flask:
+    &#34;&#34;&#34;App factory pour Flask
+
+    Args:
+        config (object, optional): L&#39;objet de configuration à charger. Defaults to Config.
+
+    Returns:
+        Flask: l&#39;app Flask
+    &#34;&#34;&#34;
+    app = Flask(
+        __name__,
+        static_folder=&#34;static&#34;,
+        template_folder=&#34;templates&#34;,
+        static_url_path=&#34;/static&#34;,
+    )
+
+    # On charge les constantes
+    app.config.from_pyfile(&#34;app_config.py&#34;)
+
+    # Puis on charge la config flask
+    app.config.from_object(config)
+
+    # SQLalchemy
+    db.init_app(app)
+
+    # flask-login
+    login_manager.init_app(app)
+
+    # flask-admin
+    # Créer l&#39;instance va a l&#39;encontre des principes de design des app factory, mais
+    # on y est contraint du a au design de flask-admin.
+    # Voir aussi https://github.com/flask-admin/flask-admin/issues/910
+    admin = Admin(name=&#34;Interface Admin&#34;, template_mode=&#34;bootstrap3&#34;)
+
+    # remplacer superhero par cerulean pour screens
+    app.config[&#34;FLASK_ADMIN_SWATCH&#34;] = &#34;superhero&#34;
+    admin.init_app(app)
+
+    from .classes import AdminModelView
+
+    with app.app_context():
+        from .models import Question, Room, SolvedQuestionData, User, VirtualMachine
+
+    admin.add_view(AdminModelView(User, db.session))
+    admin.add_view(AdminModelView(Room, db.session))
+    admin.add_view(AdminModelView(VirtualMachine, db.session))
+    admin.add_view(AdminModelView(Question, db.session))
+    admin.add_view(AdminModelView(SolvedQuestionData, db.session))
+
+    # Register the filters
+    app.jinja_env.filters[&#34;markdown&#34;] = markdown_filter
+
+    # Register the blueprints
+    from .routes import api, main
+
+    app.register_blueprint(main)
+    app.register_blueprint(api)
+
+    # Enfin, on créer toutes les données
+    if not app.testing:
+        setup_app(app)
+
+    # print(app.url_map)
+
+    return app</code></pre>
+</details>
+</dd>
+<dt id="site_elysium.load_user"><code class="name flex">
+<span>def <span class="ident">load_user</span></span>(<span>user_id: str) ‑> Optional['User']</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Chargeur d'utilisateur pour Flask-Login</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>user_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>L'ID de l'utilisateur à charger.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[User]</code></dt>
+<dd>L'utilisateur, ou None si il n'existe pas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@login_manager.user_loader
+def load_user(user_id: str) -&gt; Optional[&#34;User&#34;]:
+    &#34;&#34;&#34;Chargeur d&#39;utilisateur pour Flask-Login
+
+    Args:
+        user_id (str): L&#39;ID de l&#39;utilisateur à charger.
+
+    Returns:
+        Optional[User]: L&#39;utilisateur, ou None si il n&#39;existe pas.
+    &#34;&#34;&#34;
+
+    from .models import User
+
+    return User.query.filter_by(id=user_id).first()</code></pre>
+</details>
+</dd>
+<dt id="site_elysium.setup_app"><code class="name flex">
+<span>def <span class="ident">setup_app</span></span>(<span>app: Flask)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Génère des données de base dans l'app</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>app</code></strong> :&ensp;<code>Flask</code></dt>
+<dd>l'app où généré les données.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_app(app: Flask):
+    &#34;&#34;&#34;Génère des données de base dans l&#39;app
+
+    Args:
+        app (Flask): l&#39;app où généré les données.
+    &#34;&#34;&#34;
+    from .models import Question, Room, User
+
+    with app.app_context():
+        db.create_all()
+
+    with app.app_context():
+        user = User.query.filter_by(username=&#34;admin&#34;).first()
+        if user is None:
+            user = User(
+                username=&#34;admin&#34;,
+                email=&#34;feur@desu.wa&#34;,
+                is_admin=True,
+            )
+            user.set_password(&#34;admin&#34;)
+            db.session.add(user)
+            db.session.commit()
+
+        room = Room.query.filter_by(id=&#34;1&#34;).first()
+        if room is None:
+            room = Room(
+                name=&#34;Room 1&#34;,
+                description=&#34;Wow what a cool room **desu wa**&#34;,
+                url_name=&#34;room1&#34;,
+                instructions=&#34;QCM&#34;,
+                victim_vm_ids=[101],
+            )
+            room2 = Room(
+                name=&#34;Introduction à Nmap&#34;,
+                description=&#34;Apprenez les bases de **Nmap**, un outil d&#39;exploration réseau.&#34;,
+                url_name=&#34;introduction_nmap&#34;,
+                instructions=&#34;&#34;&#34;Après avoir dressé et borné la prestation de tests d&#39;intrusion, vous devez commencer par la première étape de votre mission : Enumération
+Pour mener à bien cette phase, nous allons apprendre à utiliser l&#39;application nmap.
+
+# NMAP
+Nmap (« Network Mapper ») est un outil open source d&#39;exploration réseau et d&#39;audit de sécurité.
+Les commandes principales sont :
+`nmap -v &lt;ip&gt;`
+
+Cette option scanne tous les ports réservés TCP sur la machine &lt;ip&gt; . L&#39;option -v active le mode verbeux.
+`nmap -sS -O &lt;ip&gt;/&lt;CIDR&gt;`
+
+Lance un scan furtif (SYN scan) contre chaque machine active. Il essaie aussi de déterminer le système d&#39;exploitation sur chaque hôte actif. Cette démarche nécessite les privilèges de root puisqu&#39;on utilise un SYN scan et une détection d&#39;OS
+exemple : `nmap -sS -O 192.168.1.0/24` scanne les 255 machines du NetID 192.168.1
+`nmap -sV -p 22,53,110,143,4564 198.116.0-255.1-127`
+
+Lance une recherche des hôtes et un scan TCP dans la première moitié de chacun des 255 sous-réseaux à 8 bits dans l&#39;espace d&#39;adressage de classe B 198.116 Cela permet de déterminer si les systèmes font tourner sshd (22), DNS (53), pop3d(110), imapd(143) ou le port 4564. Pour chacun de ces ports qui sont ouverts, la détection de version est utilisée pour déterminer quelle application est actuellement lancée.
+
+### Flags intéréssant
+##### Détection d&#39;un système d&#39;exploitation:
+`-O`: Active la détection d&#39;OS
+##### Détection de services/versions:
+`-sV`: Teste les ports ouverts pour déterminer le service en écoute et sa version
+##### Spécification des ports et ordre de scan:
+`-p` &lt;plage de ports&gt;: Ne scanne que les ports spécifiés
+##### Méthode de scan:
+`-sS` / `-sT` / `-sA` / `-sW`/ `-sM`: Scans TCP SYN/Connect()/ACK/Window/Maimon 
+`-sN`/`-sF`/`-sX`: Scans TCP Null, FIN et Xmas
+`-sU`: Scan UDP
+
+##### Divers:
+`-6`: Active le scan IPv6
+`-A`: Active la détection du système d&#39;exploitation, des versions et génère un tracert (traceroute)
+&#34;&#34;&#34;,
+            )
+            room3 = Room(
+                name=&#34;John The Ripper&#34;,
+                description=&#34;Apprenez à casser des mots de passe !&#34;,
+                url_name=&#34;john&#34;,
+                instructions=&#34;&#34;&#34;
+# John the Ripper
+[John the Ripper](https://www.openwall.com/john/) (JTR ou John) est un logiciel libre permettant de tester la sécurité d&#39;un mot de passe.
+
+## Installation
+*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
+
+### Sous Linux
+On peut l&#39;installer via **apt-get** ou **snap** :
+```
+$ sudo apt-get update
+$ sudo apt-get install john -y
+```
+
+### Sous Windows
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
+Voici un petit guide : `https://miloserdov.org/?p=4961#15`
+
+# Utilisation
+Les commandes principales sont :
+`john --wordlist=&lt;/path/to/wordlist/wordlists.txt&gt;`
+
+## Les 3 différents modes
+### Mode simple (Single crack)
+En mode simple, john se génère des variations de chaînes de caractères en fonction du nom d&#39;utilisateur présent dans le fichier. Si le nom d&#39;utilisateur est &#34;voiture&#34;, le mode simple va tester les mots de passe suivants : &#34;Voiture&#34;, &#34;VOIRTURE2000&#34;, &#34;voiTure&#34;, ...
+
+Le contenu du fichier doit être sous la forme `username:hash`.
+Exemple :
+    `jardinier:a69c316fbc7ec7da1305e72f95c164a8`
+
+La commande doit spécifier le paramètre `--single` ainsi que le format du hash :
+`john --single --format=&lt;hash-format&gt; &lt;filename&gt;`
+
+
+### Attaque par dictionnaire (Wordlist)
+L&#39;attaque par dictionnaire test le hash avec tout les mots de passe présents dans une liste de mots (de passe) aussi appelée **wordlist**.
+
+Une des plus célèbre est RockYou, elle est issue d&#39;une fuite de donnée du réseau social californien Rockyou en 2009.
+
+Wordlist : `https://github.com/danielmiessler/SecLists`
+
+`john --wordlist=&lt;/path/to/wordlist&gt;` --format=&lt;hash-format&gt; &lt;filename&gt;`
+
+### Mode incrémental (Incremental)
+Dans ce mode, John essaie tout les combinaisons de caractères possible pour trouver le mot de passe.
+
+Spécifier que l&#39;on veut utiliser que des chiffres :
+`john -i=&lt;MODE&gt; --format=&lt;hash-format&gt; &lt;filename&gt;`
+Exemple :
+`john --incremental=digits --format=raw-md5 pass.txt`
+
+&#34;&#34;&#34;,
+            )
+            room4 = Room(
+                name=&#34;Introduction à Hydra&#34;,
+                description=&#34;Trouvez le mot de passe du  serveur FTP !&#34;,
+                url_name=&#34;hydra&#34;,
+                instructions=&#34;&#34;&#34;
+# Hydra
+[Hydra](https://github.com/vanhauser-thc/thc-hydra) est un logiciel libre permettant de craquer un mot de passe en ligne par **bruteforce**.
+
+## Installation
+*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
+
+### Sous Linux
+On peut l&#39;installer via **apt-get** ou **snap** :
+```
+$ sudo apt-get update
+$ sudo apt-get install hydra -y
+```
+
+### Sous Windows
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
+
+# Utilisation
+
+                &#34;&#34;&#34;,
+            )
+            room5 = Room(
+                name=&#34;Room 5&#34;,
+                description=&#34;lorem ipsum dolor sit amet&#34;,
+                url_name=&#34;room5&#34;,
+                instructions=&#34;QCM&#34;,
+            )
+            room6 = Room(
+                name=&#34;Room 6&#34;,
+                description=&#34;lorem ipsum dolor sit amet&#34;,
+                url_name=&#34;room6&#34;,
+                instructions=&#34;QCM&#34;,
+            )
+
+            db.session.add(room)
+            db.session.add(room2)
+            db.session.add(room3)
+            db.session.add(room4)
+            db.session.add(room5)
+            db.session.add(room6)
+
+            db.session.commit()
+
+            # room.users.append(user)
+            # backend.db.session.commit()
+
+        question = Question.query.filter_by(id=&#34;1&#34;).first()
+        if question is None:
+            question = Question(
+                room_id=1,
+                prompt=&#34;&#34;&#34;**Qui** a écrit *cette* __question__?
+Indice: `matt`
+Et voici un code block
+```py
+import random
+n = random.randint(1,10)
+print(n)
+```&#34;&#34;&#34;,
+                answer=&#34;matt&#34;,
+                points=15,
+            )
+            db.session.add(question)
+
+            db.session.add(
+                Question(
+                    room_id=1,
+                    prompt=&#34;Quel est le nombre associé à la célèbre chanteuse virtuelle, **Hatsune Miku**?&#34;,
+                    answer=&#34;39&#34;,
+                    points=39,
+                )
+            )
+
+            for i in range(6):
+                question = Question(
+                    room_id=1, prompt=f&#34;{i}+1=?&#34;, answer=str(i + 1), points=2
+                )
+                db.session.add(question)
+
+            # question room2
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Quel est l&#39;argument permettant d&#39;identifier l&#39;OS et la version?&#34;,
+                    answer=&#34;-A&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;&#34;&#34;Quels sont les machines qui ont un serveur FTP appartenant au réseau **10.10.12.128/25**?
+Réponse attendu sous la forme `X.X.X.X/X`&#34;&#34;&#34;,
+                    answer=&#34;10.10.12.128/25&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Combien de services sont disponibles sur ce serveur?&#34;,
+                    answer=&#34;3&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Quel est la version du serveur Web?&#34;,
+                    answer=&#34;Apache/2.4.18&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Que trouvons-nous sur le port 21?&#34;,
+                    answer=&#34;ProFTPD 1.3.3c&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=2,
+                    prompt=&#34;Quel est le titre de la page web?&#34;,
+                    answer=&#34;it works&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.commit()
+
+            # question room3 - john the ripper
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (sha256): *4cffb4ed84e2986f067c9e373ef87bf6d5eddc7866fb2cdd41eb48429743f50d*. Utilisez le mode simple.&#34;,
+                    answer=&#34;ludovic4000&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (sha1): *26e2440a5730bccb5cf325e8856ac3c38fae9273*. Utilisez la méthode incremental en mode **digits**&#34;,
+                    answer=&#34;52821071&#34;,
+                    points=2,
+                )
+            )
+
+            db.session.add(
+                Question(
+                    room_id=3,
+                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (md5): *117735823fadae51db091c7d63e60eb0*. Utilisez l&#39;attaque via la wordlist **rockyou**&#34;,
+                    answer=&#34;francisco&#34;,
+                    points=2,
+                )
+            )</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="site_elysium.app_config" href="app_config.html">site_elysium.app_config</a></code></li>
+<li><code><a title="site_elysium.backend" href="backend/index.html">site_elysium.backend</a></code></li>
+<li><code><a title="site_elysium.classes" href="classes/index.html">site_elysium.classes</a></code></li>
+<li><code><a title="site_elysium.flask_config" href="flask_config.html">site_elysium.flask_config</a></code></li>
+<li><code><a title="site_elysium.forms" href="forms/index.html">site_elysium.forms</a></code></li>
+<li><code><a title="site_elysium.models" href="models/index.html">site_elysium.models</a></code></li>
+<li><code><a title="site_elysium.routes" href="routes/index.html">site_elysium.routes</a></code></li>
+<li><code><a title="site_elysium.utils" href="utils.html">site_elysium.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="site_elysium.create_app" href="#site_elysium.create_app">create_app</a></code></li>
+<li><code><a title="site_elysium.load_user" href="#site_elysium.load_user">load_user</a></code></li>
+<li><code><a title="site_elysium.setup_app" href="#site_elysium.setup_app">setup_app</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
