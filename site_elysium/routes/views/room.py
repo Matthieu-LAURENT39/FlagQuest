@@ -1,5 +1,5 @@
 from . import main
-from flask import render_template, make_response, abort
+from flask import render_template
 from flask_login import current_user
 
 

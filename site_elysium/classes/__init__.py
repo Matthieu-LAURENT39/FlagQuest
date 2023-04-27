@@ -1,3 +1,3 @@
-from .Allocator import Allocator
-from .VMManager import VMManager
-from .views import AdminModelView
+from .Allocator import Allocator as Allocator
+from .VMManager import VMManager as VMManager
+from .views import AdminModelView as AdminModelView

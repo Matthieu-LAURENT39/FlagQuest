@@ -1,7 +1,7 @@
 from . import main
 from flask import render_template, abort, redirect, url_for
 from datetime import date, timedelta
-from flask_login import login_required, current_user, user_logged_in
+from flask_login import current_user
 from ...models import User
 from ...utils import get_n_around
 
@@ -9,12 +9,18 @@ from pychartjs import BaseChart, ChartType, Color
 
 
 class UserWeekPoints(BaseChart):
+    """Graphe représentant les points d'un utilisateur sur 7 jours"""
+
     type = ChartType.Line
 
     class labels:
+        """Les labels du graphe"""
+
         grouped = []
 
     class data:
+        """Les données du graphe"""
+
         label = "Points"
         labels = []
         data = []
