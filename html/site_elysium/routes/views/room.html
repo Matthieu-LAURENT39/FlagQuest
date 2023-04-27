@@ -100,15 +100,23 @@ def room(room_url_name: str):
 @main.route(&#34;/room/supervision/&lt;room_url_name&gt;&#34;)
 def supervision(room_url_name: str):
     &#34;&#34;&#34;Supervision du site.&#34;&#34;&#34;
-    from ...models import Room, VirtualMachine
+    from ...models import Room
+    from ...models import User
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description=&#34;Cette room n&#39;existe pas.&#34;
     )
 
+    user_list = User.query.all()
+    user_dico = {}
+    for user in user_list:
+        user_score = sum(q.is_solved_by(user) for q in room.questions)
+        user_dico[user] = user_score
+
     return render_template(
         &#34;supervision.jinja&#34;,
         room=room,
+        user_dico=user_dico,
     )</code></pre>
 </details>
 </section>
@@ -215,15 +223,23 @@ def room(room_url_name: str):
 <pre><code class="python">@main.route(&#34;/room/supervision/&lt;room_url_name&gt;&#34;)
 def supervision(room_url_name: str):
     &#34;&#34;&#34;Supervision du site.&#34;&#34;&#34;
-    from ...models import Room, VirtualMachine
+    from ...models import Room
+    from ...models import User
 
     room: Room = Room.query.filter_by(url_name=room_url_name).first_or_404(
         description=&#34;Cette room n&#39;existe pas.&#34;
     )
 
+    user_list = User.query.all()
+    user_dico = {}
+    for user in user_list:
+        user_score = sum(q.is_solved_by(user) for q in room.questions)
+        user_dico[user] = user_score
+
     return render_template(
         &#34;supervision.jinja&#34;,
         room=room,
+        user_dico=user_dico,
     )</code></pre>
 </details>
 </dd>

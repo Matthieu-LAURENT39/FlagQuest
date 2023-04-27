@@ -29,9 +29,7 @@
 <pre><code class="python">from itertools import count
 from collections import deque
 from typing import Iterator, TypeVar
-from dataclasses import dataclass
 import toml
-from flask import current_app
 
 T = TypeVar(&#34;T&#34;)
 
@@ -93,16 +91,22 @@ def get_n_around(lst: list[T], index: int, amount: int) -&gt; list[T]:
     return list(output)
 
 
-def question_from_toml(toml_txt: str) -&gt; None:
+def add_room_from_toml(toml_txt: str) -&gt; None:
     &#34;&#34;&#34;Ajoute des questions a la base de donnée a partir de texte TOML
 
     Args:
         toml_txt (str): Le texte TOML a parse
+
+    Raises:
+        ValueError: La room est déja dans la base de données
     &#34;&#34;&#34;
     from . import db
     from .models import Room, Question
 
     data = toml.loads(toml_txt)
+
+    if Room.query.filter_by(url_name=data[&#34;url_name&#34;]).first() is not None:
+        raise ValueError(&#34;La room est déja dans la base de données&#34;)
 
     r = Room(
         name=data[&#34;name&#34;],
@@ -115,7 +119,7 @@ def question_from_toml(toml_txt: str) -&gt; None:
     # Pour que r obtienne un id
     db.session.flush()
 
-    for q in data[&#34;question&#34;]:
+    for q in data.get(&#34;question&#34;, []):
         db.session.add(
             Question(
                 prompt=q[&#34;prompt&#34;],
@@ -135,6 +139,66 @@ def question_from_toml(toml_txt: str) -&gt; None:
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
+<dt id="site_elysium.utils.add_room_from_toml"><code class="name flex">
+<span>def <span class="ident">add_room_from_toml</span></span>(<span>toml_txt: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ajoute des questions a la base de donnée a partir de texte TOML</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>toml_txt</code></strong> :&ensp;<code>str</code></dt>
+<dd>Le texte TOML a parse</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>La room est déja dans la base de données</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_room_from_toml(toml_txt: str) -&gt; None:
+    &#34;&#34;&#34;Ajoute des questions a la base de donnée a partir de texte TOML
+
+    Args:
+        toml_txt (str): Le texte TOML a parse
+
+    Raises:
+        ValueError: La room est déja dans la base de données
+    &#34;&#34;&#34;
+    from . import db
+    from .models import Room, Question
+
+    data = toml.loads(toml_txt)
+
+    if Room.query.filter_by(url_name=data[&#34;url_name&#34;]).first() is not None:
+        raise ValueError(&#34;La room est déja dans la base de données&#34;)
+
+    r = Room(
+        name=data[&#34;name&#34;],
+        description=data[&#34;description&#34;],
+        url_name=data[&#34;url_name&#34;],
+        instructions=data[&#34;instructions&#34;],
+        victim_vm_ids=data[&#34;victim_vm_ids&#34;],
+    )
+    db.session.add(r)
+    # Pour que r obtienne un id
+    db.session.flush()
+
+    for q in data.get(&#34;question&#34;, []):
+        db.session.add(
+            Question(
+                prompt=q[&#34;prompt&#34;],
+                answer=q[&#34;answer&#34;],
+                points=q[&#34;points&#34;],
+                room_id=r.id,
+            )
+        )
+
+    db.session.commit()</code></pre>
+</details>
+</dd>
 <dt id="site_elysium.utils.get_n_around"><code class="name flex">
 <span>def <span class="ident">get_n_around</span></span>(<span>lst: list[~T], index: int, amount: int) ‑> list[~T]</span>
 </code></dt>
@@ -221,55 +285,6 @@ l'élémént à la position index.</p>
     return list(output)</code></pre>
 </details>
 </dd>
-<dt id="site_elysium.utils.question_from_toml"><code class="name flex">
-<span>def <span class="ident">question_from_toml</span></span>(<span>toml_txt: str) ‑> None</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Ajoute des questions a la base de donnée a partir de texte TOML</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>toml_txt</code></strong> :&ensp;<code>str</code></dt>
-<dd>Le texte TOML a parse</dd>
-</dl></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def question_from_toml(toml_txt: str) -&gt; None:
-    &#34;&#34;&#34;Ajoute des questions a la base de donnée a partir de texte TOML
-
-    Args:
-        toml_txt (str): Le texte TOML a parse
-    &#34;&#34;&#34;
-    from . import db
-    from .models import Room, Question
-
-    data = toml.loads(toml_txt)
-
-    r = Room(
-        name=data[&#34;name&#34;],
-        description=data[&#34;description&#34;],
-        url_name=data[&#34;url_name&#34;],
-        instructions=data[&#34;instructions&#34;],
-        victim_vm_ids=data[&#34;victim_vm_ids&#34;],
-    )
-    db.session.add(r)
-    # Pour que r obtienne un id
-    db.session.flush()
-
-    for q in data[&#34;question&#34;]:
-        db.session.add(
-            Question(
-                prompt=q[&#34;prompt&#34;],
-                answer=q[&#34;answer&#34;],
-                points=q[&#34;points&#34;],
-                room_id=r.id,
-            )
-        )
-
-    db.session.commit()</code></pre>
-</details>
-</dd>
 </dl>
 </section>
 <section>
@@ -288,8 +303,8 @@ l'élémént à la position index.</p>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
+<li><code><a title="site_elysium.utils.add_room_from_toml" href="#site_elysium.utils.add_room_from_toml">add_room_from_toml</a></code></li>
 <li><code><a title="site_elysium.utils.get_n_around" href="#site_elysium.utils.get_n_around">get_n_around</a></code></li>
-<li><code><a title="site_elysium.utils.question_from_toml" href="#site_elysium.utils.question_from_toml">question_from_toml</a></code></li>
 </ul>
 </li>
 </ul>

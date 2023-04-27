@@ -28,6 +28,8 @@
 </summary>
 <pre><code class="python">from __future__ import annotations
 
+import contextlib
+import glob
 from typing import TYPE_CHECKING, Optional
 
 from flask import Flask
@@ -37,7 +39,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from .backend.filters import markdown_filter
 from .flask_config import Config
-from .utils import question_from_toml
+from .utils import add_room_from_toml
 
 if TYPE_CHECKING:
     from .models import User
@@ -153,146 +155,10 @@ def setup_app(app: Flask):
             db.session.add(user)
             db.session.commit()
 
-        room = Room.query.filter_by(id=&#34;1&#34;).first()
-        if room is None:
-            with open(&#34;./rooms/room1.toml&#34;, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
-                question_from_toml(f.read())
-            with open(&#34;./rooms/introduction_nmap.toml&#34;, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
-                question_from_toml(f.read())
-            room3 = Room(
-                name=&#34;John The Ripper&#34;,
-                description=&#34;Apprenez à casser des mots de passe !&#34;,
-                url_name=&#34;john&#34;,
-                instructions=&#34;&#34;&#34;
-# John the Ripper
-[John the Ripper](https://www.openwall.com/john/) (JTR ou John) est un logiciel libre permettant de tester la sécurité d&#39;un mot de passe.
-
-## Installation
-*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
-
-### Sous Linux
-On peut l&#39;installer via **apt-get** ou **snap** :
-```
-$ sudo apt-get update
-$ sudo apt-get install john -y
-```
-
-### Sous Windows
-Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
-Voici un petit guide : `https://miloserdov.org/?p=4961#15`
-
-# Utilisation
-Les commandes principales sont :
-`john --wordlist=&lt;/path/to/wordlist/wordlists.txt&gt;`
-
-## Les 3 différents modes
-### Mode simple (Single crack)
-En mode simple, john se génère des variations de chaînes de caractères en fonction du nom d&#39;utilisateur présent dans le fichier. Si le nom d&#39;utilisateur est &#34;voiture&#34;, le mode simple va tester les mots de passe suivants : &#34;Voiture&#34;, &#34;VOIRTURE2000&#34;, &#34;voiTure&#34;, ...
-
-Le contenu du fichier doit être sous la forme `username:hash`.
-Exemple :
-    `jardinier:a69c316fbc7ec7da1305e72f95c164a8`
-
-La commande doit spécifier le paramètre `--single` ainsi que le format du hash :
-`john --single --format=&lt;hash-format&gt; &lt;filename&gt;`
-
-
-### Attaque par dictionnaire (Wordlist)
-L&#39;attaque par dictionnaire test le hash avec tout les mots de passe présents dans une liste de mots (de passe) aussi appelée **wordlist**.
-
-Une des plus célèbre est RockYou, elle est issue d&#39;une fuite de donnée du réseau social californien Rockyou en 2009.
-
-Wordlist : `https://github.com/danielmiessler/SecLists`
-
-`john --wordlist=&lt;/path/to/wordlist&gt;` --format=&lt;hash-format&gt; &lt;filename&gt;`
-
-### Mode incrémental (Incremental)
-Dans ce mode, John essaie tout les combinaisons de caractères possible pour trouver le mot de passe.
-
-Spécifier que l&#39;on veut utiliser que des chiffres :
-`john -i=&lt;MODE&gt; --format=&lt;hash-format&gt; &lt;filename&gt;`
-Exemple :
-`john --incremental=digits --format=raw-md5 pass.txt`
-
-&#34;&#34;&#34;,
-            )
-            room4 = Room(
-                name=&#34;Introduction à Hydra&#34;,
-                description=&#34;Trouvez le mot de passe du  serveur FTP !&#34;,
-                url_name=&#34;hydra&#34;,
-                instructions=&#34;&#34;&#34;
-# Hydra
-[Hydra](https://github.com/vanhauser-thc/thc-hydra) est un logiciel libre permettant de craquer un mot de passe en ligne par **bruteforce**.
-
-## Installation
-*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
-
-### Sous Linux
-On peut l&#39;installer via **apt-get** ou **snap** :
-```
-$ sudo apt-get update
-$ sudo apt-get install hydra -y
-```
-
-### Sous Windows
-Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
-
-## Utilisation
-dire comment on use hydra
-
-## Connection à un serveur FTP
-dire comment on se co a un serv ftp une fois le mdp trouvé
-
-&#34;&#34;&#34;,
-            )
-            room5 = Room(
-                name=&#34;Room 5&#34;,
-                description=&#34;lorem ipsum dolor sit amet&#34;,
-                url_name=&#34;room5&#34;,
-                instructions=&#34;QCM&#34;,
-            )
-            room6 = Room(
-                name=&#34;Room 6&#34;,
-                description=&#34;lorem ipsum dolor sit amet&#34;,
-                url_name=&#34;room6&#34;,
-                instructions=&#34;QCM&#34;,
-            )
-
-            db.session.add(room3)
-            db.session.add(room4)
-            db.session.add(room5)
-            db.session.add(room6)
-
-            db.session.commit()
-
-            # question room3 - john the ripper
-
-            db.session.add(
-                Question(
-                    room_id=3,
-                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (sha256): *4cffb4ed84e2986f067c9e373ef87bf6d5eddc7866fb2cdd41eb48429743f50d*. Utilisez le mode simple.&#34;,
-                    answer=&#34;ludovic4000&#34;,
-                    points=2,
-                )
-            )
-
-            db.session.add(
-                Question(
-                    room_id=3,
-                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (sha1): *26e2440a5730bccb5cf325e8856ac3c38fae9273*. Utilisez la méthode incremental en mode **digits**&#34;,
-                    answer=&#34;52821071&#34;,
-                    points=2,
-                )
-            )
-
-            db.session.add(
-                Question(
-                    room_id=3,
-                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (md5): *117735823fadae51db091c7d63e60eb0*. Utilisez l&#39;attaque via la wordlist **rockyou**&#34;,
-                    answer=&#34;francisco&#34;,
-                    points=2,
-                )
-            )</code></pre>
+        for filename in glob.glob(&#34;./rooms/*.toml&#34;):
+            with open(filename, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+                with contextlib.suppress(ValueError):
+                    add_room_from_toml(f.read())</code></pre>
 </details>
 </section>
 <section>
@@ -495,146 +361,10 @@ def load_user(user_id: str) -&gt; Optional[&#34;User&#34;]:
             db.session.add(user)
             db.session.commit()
 
-        room = Room.query.filter_by(id=&#34;1&#34;).first()
-        if room is None:
-            with open(&#34;./rooms/room1.toml&#34;, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
-                question_from_toml(f.read())
-            with open(&#34;./rooms/introduction_nmap.toml&#34;, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
-                question_from_toml(f.read())
-            room3 = Room(
-                name=&#34;John The Ripper&#34;,
-                description=&#34;Apprenez à casser des mots de passe !&#34;,
-                url_name=&#34;john&#34;,
-                instructions=&#34;&#34;&#34;
-# John the Ripper
-[John the Ripper](https://www.openwall.com/john/) (JTR ou John) est un logiciel libre permettant de tester la sécurité d&#39;un mot de passe.
-
-## Installation
-*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
-
-### Sous Linux
-On peut l&#39;installer via **apt-get** ou **snap** :
-```
-$ sudo apt-get update
-$ sudo apt-get install john -y
-```
-
-### Sous Windows
-Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
-Voici un petit guide : `https://miloserdov.org/?p=4961#15`
-
-# Utilisation
-Les commandes principales sont :
-`john --wordlist=&lt;/path/to/wordlist/wordlists.txt&gt;`
-
-## Les 3 différents modes
-### Mode simple (Single crack)
-En mode simple, john se génère des variations de chaînes de caractères en fonction du nom d&#39;utilisateur présent dans le fichier. Si le nom d&#39;utilisateur est &#34;voiture&#34;, le mode simple va tester les mots de passe suivants : &#34;Voiture&#34;, &#34;VOIRTURE2000&#34;, &#34;voiTure&#34;, ...
-
-Le contenu du fichier doit être sous la forme `username:hash`.
-Exemple :
-    `jardinier:a69c316fbc7ec7da1305e72f95c164a8`
-
-La commande doit spécifier le paramètre `--single` ainsi que le format du hash :
-`john --single --format=&lt;hash-format&gt; &lt;filename&gt;`
-
-
-### Attaque par dictionnaire (Wordlist)
-L&#39;attaque par dictionnaire test le hash avec tout les mots de passe présents dans une liste de mots (de passe) aussi appelée **wordlist**.
-
-Une des plus célèbre est RockYou, elle est issue d&#39;une fuite de donnée du réseau social californien Rockyou en 2009.
-
-Wordlist : `https://github.com/danielmiessler/SecLists`
-
-`john --wordlist=&lt;/path/to/wordlist&gt;` --format=&lt;hash-format&gt; &lt;filename&gt;`
-
-### Mode incrémental (Incremental)
-Dans ce mode, John essaie tout les combinaisons de caractères possible pour trouver le mot de passe.
-
-Spécifier que l&#39;on veut utiliser que des chiffres :
-`john -i=&lt;MODE&gt; --format=&lt;hash-format&gt; &lt;filename&gt;`
-Exemple :
-`john --incremental=digits --format=raw-md5 pass.txt`
-
-&#34;&#34;&#34;,
-            )
-            room4 = Room(
-                name=&#34;Introduction à Hydra&#34;,
-                description=&#34;Trouvez le mot de passe du  serveur FTP !&#34;,
-                url_name=&#34;hydra&#34;,
-                instructions=&#34;&#34;&#34;
-# Hydra
-[Hydra](https://github.com/vanhauser-thc/thc-hydra) est un logiciel libre permettant de craquer un mot de passe en ligne par **bruteforce**.
-
-## Installation
-*Cet outils est déjà installé sur la VM d&#39;attaque, cette explication est simplement à but éducatif.*
-
-### Sous Linux
-On peut l&#39;installer via **apt-get** ou **snap** :
-```
-$ sudo apt-get update
-$ sudo apt-get install hydra -y
-```
-
-### Sous Windows
-Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
-
-## Utilisation
-dire comment on use hydra
-
-## Connection à un serveur FTP
-dire comment on se co a un serv ftp une fois le mdp trouvé
-
-&#34;&#34;&#34;,
-            )
-            room5 = Room(
-                name=&#34;Room 5&#34;,
-                description=&#34;lorem ipsum dolor sit amet&#34;,
-                url_name=&#34;room5&#34;,
-                instructions=&#34;QCM&#34;,
-            )
-            room6 = Room(
-                name=&#34;Room 6&#34;,
-                description=&#34;lorem ipsum dolor sit amet&#34;,
-                url_name=&#34;room6&#34;,
-                instructions=&#34;QCM&#34;,
-            )
-
-            db.session.add(room3)
-            db.session.add(room4)
-            db.session.add(room5)
-            db.session.add(room6)
-
-            db.session.commit()
-
-            # question room3 - john the ripper
-
-            db.session.add(
-                Question(
-                    room_id=3,
-                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (sha256): *4cffb4ed84e2986f067c9e373ef87bf6d5eddc7866fb2cdd41eb48429743f50d*. Utilisez le mode simple.&#34;,
-                    answer=&#34;ludovic4000&#34;,
-                    points=2,
-                )
-            )
-
-            db.session.add(
-                Question(
-                    room_id=3,
-                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (sha1): *26e2440a5730bccb5cf325e8856ac3c38fae9273*. Utilisez la méthode incremental en mode **digits**&#34;,
-                    answer=&#34;52821071&#34;,
-                    points=2,
-                )
-            )
-
-            db.session.add(
-                Question(
-                    room_id=3,
-                    prompt=&#34;Quel est le mot de passe correspondant au hash suivant (md5): *117735823fadae51db091c7d63e60eb0*. Utilisez l&#39;attaque via la wordlist **rockyou**&#34;,
-                    answer=&#34;francisco&#34;,
-                    points=2,
-                )
-            )</code></pre>
+        for filename in glob.glob(&#34;./rooms/*.toml&#34;):
+            with open(filename, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+                with contextlib.suppress(ValueError):
+                    add_room_from_toml(f.read())</code></pre>
 </details>
 </dd>
 </dl>
