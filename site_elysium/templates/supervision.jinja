@@ -17,11 +17,11 @@
     </div>
     {%for user, user_score in user_dico.items()%}
     {% set progress_percentage = ( user_score/ nbr_question_total*100)|round|int %}
-    <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary" id="progress-bar-scroll"
-        style="width: 100%">
+    <div class="mb-4 bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
+        id="progress-bar-scroll" style="width: 100%">
         <div class="row">
             <div class="col">
-                <p><strong>Progression:</strong> {{user_score}}/{{nbr_question_total}}</p>
+                <p><strong>Progression: {{user.username}} </strong> {{user_score}}/{{nbr_question_total}}</p>
                 <div class="progress">
                     <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if user_score == nbr_question_total else ''}}"
                         aria-valuenow="{{user_score}}" aria-valuemin="0" aria-valuemax="{{nbr_question_total}}"
