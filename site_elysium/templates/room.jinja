@@ -289,9 +289,15 @@
         </div>
         {% endblock %}
 
+        <!-- Confettis -->
+        {% if nbr_question_solved == nbr_question_total %}
+        <script>
+            confetti({ particleCount: 500, spread: 95, origin: { y: 1.5 }, startVelocity: 130, });
+        </script>
+        {% endif %}
+
 
         <!-- partie progression -->
-
         <script>
             // légère animation de la progression lorsque l'on scroll vers le bas
             window.onscroll = function () { scrollFunction() };

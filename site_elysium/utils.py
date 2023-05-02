@@ -1,9 +1,7 @@
 from itertools import count
 from collections import deque
 from typing import Iterator, TypeVar
-from dataclasses import dataclass
 import toml
-from flask import current_app
 
 T = TypeVar("T")
 
