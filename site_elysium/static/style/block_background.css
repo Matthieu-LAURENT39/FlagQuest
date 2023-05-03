@@ -20,7 +20,7 @@
     left: 0;
     margin: 0;
     padding: 0;
-    background: #000000;
+    background: linear-gradient(#850868, #000000);
     overflow: hidden;
     z-index: -1;
 }

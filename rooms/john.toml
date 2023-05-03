@@ -67,8 +67,3 @@ points = 2
 prompt = "Quel est le mot de passe correspondant au hash suivant (md5): *117735823fadae51db091c7d63e60eb0*. Utilisez l'attaque via la wordlist **rockyou**"
 answer = "francisco"
 points = 2
-
-[[question]]
-prompt = """Quel est le mot de passe correspondant au hash suivant (md5): *117735823fadae51db091c7d63e60eb0*. Utilisez l&#39;attaque via la wordlist **rockyou**"""
-answer = "francisco"
-points = 3

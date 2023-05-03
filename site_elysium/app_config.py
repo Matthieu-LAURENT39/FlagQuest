@@ -1,11 +1,11 @@
-APP_NAME: str = "ROOT ME"
+APP_NAME: str = "Edouard Branly"
 """Le nom de l'application à afficher"""
 # Ce sont des URLs.
 # Il est possible de placer des fichier dans le dossier /static afin
 # de pouvoir les utiliser avec une url de la forme "/static/mon_fichier.png"
-APP_LOGO: str = "/static/img/logo_rootme_inverted.png"
+APP_LOGO: str = "/static/img/logo.png"
 """Le logo a afficher sur le site"""
-APP_FAVICO: str = "/static/img/logo_rootme.svg"
+APP_FAVICO: str = "/static/img/logo.png"
 """Le logo a afficher pour le favico"""
 
 # ========== Apparence ==========

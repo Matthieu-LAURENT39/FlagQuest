@@ -91,6 +91,10 @@
                         // refresh la page une fois que la room est rejoint
                         .then(location.reload(true))
                 }
+
+                function add_question() {
+                    fetch('{{url_for('api.')}}')
+                }
             </script>
 
             <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
@@ -240,6 +244,8 @@
             $(document).ready(function () {
                 setupVMInfos();
             });
+
+
         </script>
 
         <div id="vm-info-container" class="row p-2">
@@ -365,6 +371,10 @@
         solved=(current_user.is_authenticated and q.is_solved_by(current_user)))}}
         {% endfor %}
         {% endblock %}
+        <button type="submit" name="submit_param" value="submit_value" onclick="add_question;"
+            class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
+            id="add-question">add question
+        </button>
     </div>
 </main>
 {% endblock %}
