@@ -1,3 +1,7 @@
+"""
+Endpoints API lié aux rooms
+"""
+
 from flask import abort, request
 from flask_login import current_user, login_required
 from flask_restx import Namespace, Resource, fields
@@ -61,6 +65,35 @@ question_model = room_namespace.model(
 )
 
 
+@room_namespace.route("/room/<url_name>/create_question")
+@room_namespace.param("url_name", "L'url name de la room")
+@room_namespace.response(200, "Succès")
+@room_namespace.response(403, "L'utilisateur n'a pas les privilèges requis")
+@room_namespace.response(404, "La room n'existe pas")
+@room_namespace.doc(security="http")
+class CreateQuestionResource(Resource):
+    """Permet a un administrateur de créer une nouvelle question pour une room."""
+
+    method_decorators = [login_required]
+
+    @room_namespace.marshal_with(question_model, as_list=False)
+    def post(self, url_name: str):
+        """Permet a un administrateur de créer une nouvelle question pour une room."""
+        room: models.Room = models.Room.query.filter_by(url_name=url_name).first_or_404(
+            description="Cette room n'existe pas."
+        )
+        if not current_user.is_admin:
+            abort(403)
+
+        new_question = models.Question(
+            room_id=room.id, prompt="Lorem ipsum", answer="changeme", points=5
+        )
+        db.session.add(new_question)
+
+        db.session.commit()
+        return question_schema.dump(new_question)
+
+
 @room_namespace.route("/question/<id>")
 @room_namespace.response(200, "Succès")
 @room_namespace.response(404, "La question n'existe pas")
@@ -94,7 +127,7 @@ class QuestionResource(Resource):
 
 
 @room_namespace.route("/join_room/<room_url_name>")
-@room_namespace.param("room_url_name", "The room's url name")
+@room_namespace.param("room_url_name", "L'url name de la room")
 @room_namespace.response(200, "Succès")
 @room_namespace.response(400, "L'utilisateur est déja dans la room")
 @room_namespace.response(404, "La room n'existe pas")
