@@ -24,9 +24,9 @@ def runner(app):
 
 
 def make_test_data(app: Flask, database: SQLAlchemy):
-    from site_elysium.models import User, Room, Question
-
     with app.app_context():
+        from site_elysium.models import User, Room, Question
+
         # Les deux utilisateurs auquel on va se connecter
         user = User(
             username="john_doe",
@@ -86,10 +86,10 @@ def database(app: Flask):
 
 
 @pytest.fixture()
-def regular_user(database):
+def regular_user(app, database):
     """Un utilisateur qui n'est pas admin."""
-
-    from site_elysium.models import User
+    with app.app_context():
+        from site_elysium.models import User
 
     user = User.query.filter_by(is_admin=False).first()
 
@@ -97,10 +97,11 @@ def regular_user(database):
 
 
 @pytest.fixture()
-def admin_user(database):
+def admin_user(app, database):
     """Un utilisateur qui est admin."""
 
-    from site_elysium.models import User
+    with app.app_context():
+        from site_elysium.models import User
 
     user = User.query.filter_by(is_admin=True).first()
 
