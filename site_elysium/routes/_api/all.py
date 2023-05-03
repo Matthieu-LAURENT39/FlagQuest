@@ -1,3 +1,7 @@
+"""
+Fonctions s'appliquant à tout les endpoints API
+"""
+
 import werkzeug.exceptions
 
 from ... import models as models

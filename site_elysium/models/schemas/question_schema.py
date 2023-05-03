@@ -1,3 +1,6 @@
+"""
+Schéma Marshmallow pour les questions
+"""
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from .. import Question
 

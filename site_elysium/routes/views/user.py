@@ -1,3 +1,7 @@
+"""
+Endpoints lié au profil de l'utilisateur
+"""
+
 from . import main
 from flask import render_template, abort, redirect, url_for
 from datetime import date, timedelta

@@ -1,3 +1,7 @@
+"""
+Modèle SQLAlchemy représentant une machine virtuelle
+"""
+
 from ipaddress import IPv4Address
 from typing import Optional
 from uuid import UUID, uuid4

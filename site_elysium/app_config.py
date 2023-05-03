@@ -1,4 +1,9 @@
 APP_NAME: str = "Edouard Branly"
+"""
+Fichier de configuration de l'application
+"""
+
+APP_NAME: str = "ROOT ME"
 """Le nom de l'application à afficher"""
 # Ce sont des URLs.
 # Il est possible de placer des fichier dans le dossier /static afin

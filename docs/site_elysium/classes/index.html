@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>site_elysium.classes API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Classes n&#39;étant pas lié à SQLAlchemy ou WTForms" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -22,11 +22,16 @@
 <h1 class="title">Module <code>site_elysium.classes</code></h1>
 </header>
 <section id="section-intro">
+<p>Classes n'étant pas lié à SQLAlchemy ou WTForms</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from .Allocator import Allocator as Allocator
+<pre><code class="python">&#34;&#34;&#34;
+Classes n&#39;étant pas lié à SQLAlchemy ou WTForms
+&#34;&#34;&#34;
+
+from .Allocator import Allocator as Allocator
 from .VMManager import VMManager as VMManager
 from .views import AdminModelView as AdminModelView</code></pre>
 </details>
@@ -36,15 +41,15 @@ from .views import AdminModelView as AdminModelView</code></pre>
 <dl>
 <dt><code class="name"><a title="site_elysium.classes.Allocator" href="Allocator.html">site_elysium.classes.Allocator</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Une classe qui gère l'allocations de ressources a partir d'une source</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.classes.VMManager" href="VMManager.html">site_elysium.classes.VMManager</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Une classe qui gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.classes.views" href="views.html">site_elysium.classes.views</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Vues de modèle pour Flask-Admin.</p></div>
 </dd>
 </dl>
 </section>

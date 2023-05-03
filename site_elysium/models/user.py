@@ -1,3 +1,6 @@
+"""
+Modèle SQLAlchemy représentant un utilisateur
+"""
 from __future__ import annotations
 
 from flask_login import UserMixin
@@ -66,6 +69,17 @@ class User(_current_base, UserMixin):
     # on limite le cache à 366 jours
     @lru_cache(maxsize=366)
     def points_at_date(self, date: datetime.date) -> int:
+        """Calcule le nombre de points que l'utilisateur avais a une certaine date
+
+        Args:
+            date (datetime.date): La date pour laquelle calculer
+
+        Raises:
+            ValueError: La date est dans le futur
+
+        Returns:
+            int: Le nombre de points
+        """
         if datetime.date.today() < date:
             # The date is strictly into the future
             raise ValueError("Date is into the future.")
@@ -81,6 +95,7 @@ class User(_current_base, UserMixin):
 
     @property
     def score(self) -> int:
+        """Le nombre de points que possède l'utilisateur"""
         return self.points_at_date(datetime.date.today())
 
     @lru_cache(maxsize=5)

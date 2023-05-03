@@ -1,3 +1,7 @@
+"""
+Endpoints API lié aux machines virtuelles
+"""
+
 import time
 
 from flask import current_app, jsonify

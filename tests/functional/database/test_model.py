@@ -1,10 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from site_elysium.models import User
 
+def test_user_model(app, database: SQLAlchemy):
+    with app.app_context():
+        from site_elysium.models import User
 
-def test_user_model(database: SQLAlchemy):
     user = User(username="MyTestUser", email="testuser@test.com")
     user.set_password("123456")
     database.session.add(user)

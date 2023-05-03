@@ -1,10 +1,9 @@
 from flask import Flask, url_for
 from flask.testing import FlaskClient
 from flask_sqlalchemy import SQLAlchemy
-from site_elysium.models import Room
 
 
-#! Cela ne teste pas l'acceuil, a fixé~
+#! Cela ne teste pas l'acceuil, a fixé
 # TODO: Tester également quand authentifié
 def test_routes_no_server_errors(app: Flask, client: FlaskClient):
     for rule in app.url_map.iter_rules():
@@ -19,6 +18,9 @@ def test_routes_no_server_errors(app: Flask, client: FlaskClient):
 
 
 def test_rooms_no_error(app: Flask, client: FlaskClient, database: SQLAlchemy):
+    with app.app_context():
+        from site_elysium.models import Room
+
     for room in Room.query.all():
         room: Room
         url = url_for("main.room", room_url_name=room.url_name)

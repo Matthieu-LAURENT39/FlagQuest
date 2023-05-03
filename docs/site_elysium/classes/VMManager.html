@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>site_elysium.classes.VMManager API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Une classe qui gère les interactions avec l&#39;hyperviseur (proxmox) ainsi que les VMs" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -22,11 +22,15 @@
 <h1 class="title">Module <code>site_elysium.classes.VMManager</code></h1>
 </header>
 <section id="section-intro">
+<p>Une classe qui gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from __future__ import annotations
+<pre><code class="python">&#34;&#34;&#34;
+Une classe qui gère les interactions avec l&#39;hyperviseur (proxmox) ainsi que les VMs
+&#34;&#34;&#34;
+from __future__ import annotations
 
 import time
 from threading import Lock
@@ -39,7 +43,7 @@ from ..classes import Allocator
 
 class VMManager:
     &#34;&#34;&#34;
-    Gere les interactions avec l&#39;hyperviseur (proxmox) ainsi que la gestion des VMs
+    Gère les interactions avec l&#39;hyperviseur (proxmox) ainsi que les VMs
     &#34;&#34;&#34;
 
     def _test_auth(self) -&gt; bool:
@@ -302,7 +306,7 @@ class VMManager:
 <span>(</span><span>api: ProxmoxAPI, node_name: str, mac_manager: Allocator[str], display_port_manager: Allocator[int])</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Gere les interactions avec l'hyperviseur (proxmox) ainsi que la gestion des VMs</p>
+<div class="desc"><p>Gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs</p>
 <p>Initialise la classe</p>
 <h2 id="args">Args</h2>
 <dl>
@@ -326,7 +330,7 @@ class VMManager:
 </summary>
 <pre><code class="python">class VMManager:
     &#34;&#34;&#34;
-    Gere les interactions avec l&#39;hyperviseur (proxmox) ainsi que la gestion des VMs
+    Gère les interactions avec l&#39;hyperviseur (proxmox) ainsi que les VMs
     &#34;&#34;&#34;
 
     def _test_auth(self) -&gt; bool:

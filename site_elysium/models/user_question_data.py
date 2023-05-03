@@ -1,3 +1,6 @@
+"""
+Modèle SQLAlchemy permettant la relation many-to-many User.solved_question<->Question.solved_by
+"""
 from __future__ import annotations
 
 from . import _current_base

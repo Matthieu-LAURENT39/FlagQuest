@@ -1,3 +1,6 @@
+"""
+Modèle SQLAlchemy représentant une question d'une room
+"""
 from . import Room, User, SolvedQuestionData
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 

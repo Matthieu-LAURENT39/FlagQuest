@@ -1,3 +1,7 @@
+"""
+Filtres Jinja
+"""
+
 from markdown import markdown as md
 from markdown.extensions.codehilite import CodeHiliteExtension
 

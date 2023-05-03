@@ -1,3 +1,6 @@
+"""
+Modèles SQLAlchemy
+"""
 from flask import has_app_context
 
 # Workaround pour faire que le module soit importable
@@ -13,6 +16,8 @@ else:
     from sqlalchemy import ForeignKey
 
     class _Base(DeclarativeBase):
+        """Base SQLAlchemy placeholder"""
+
         pass
 
     _current_base = _Base

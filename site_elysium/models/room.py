@@ -1,3 +1,6 @@
+"""
+Modèle SQLAlchemy représentant une room
+"""
 from __future__ import annotations
 
 from . import _current_base, _current_relationship

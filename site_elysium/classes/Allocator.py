@@ -1,3 +1,7 @@
+"""
+Une classe qui gère l'allocations de ressources a partir d'une source
+"""
+
 from typing import Iterator, Optional, TypeVar, Generic
 from threading import Lock
 from itertools import cycle

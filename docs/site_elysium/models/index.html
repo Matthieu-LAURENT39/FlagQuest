@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>site_elysium.models API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Modèles SQLAlchemy" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -22,11 +22,15 @@
 <h1 class="title">Module <code>site_elysium.models</code></h1>
 </header>
 <section id="section-intro">
+<p>Modèles SQLAlchemy</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from flask import has_app_context
+<pre><code class="python">&#34;&#34;&#34;
+Modèles SQLAlchemy
+&#34;&#34;&#34;
+from flask import has_app_context
 
 # Workaround pour faire que le module soit importable
 # sans un contexte flask
@@ -62,31 +66,31 @@ from .question import Question</code></pre>
 <dl>
 <dt><code class="name"><a title="site_elysium.models.question" href="question.html">site_elysium.models.question</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Modèle SQLAlchemy représentant une question d'une room</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.models.room" href="room.html">site_elysium.models.room</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Modèle SQLAlchemy représentant une room</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.models.room_user" href="room_user.html">site_elysium.models.room_user</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Modèle SQLAlchemy permettant la relation many-to-many Room.users&lt;-&gt;User.rooms</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.models.schemas" href="schemas/index.html">site_elysium.models.schemas</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Schémas Marshmallow</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.models.user" href="user.html">site_elysium.models.user</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Modèle SQLAlchemy représentant un utilisateur</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.models.user_question_data" href="user_question_data.html">site_elysium.models.user_question_data</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Modèle SQLAlchemy permettant la relation many-to-many User.solved_question&lt;-&gt;Question.solved_by</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.models.virtual_machine" href="virtual_machine.html">site_elysium.models.virtual_machine</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Modèle SQLAlchemy représentant une machine virtuelle</p></div>
 </dd>
 </dl>
 </section>
