@@ -1,3 +1,8 @@
+"""
+Fichier de configuration de Flask
+"""
+
+
 class Config:
     """
     La configuration de production de Flask.

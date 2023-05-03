@@ -1,3 +1,7 @@
+"""
+Fonctions utilitaires pour tout le projet
+"""
+
 from itertools import count
 from collections import deque
 from typing import Iterator, TypeVar

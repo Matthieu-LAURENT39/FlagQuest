@@ -1,3 +1,6 @@
+"""
+Une classe qui gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs
+"""
 from __future__ import annotations
 
 import time
@@ -11,7 +14,7 @@ from ..classes import Allocator
 
 class VMManager:
     """
-    Gere les interactions avec l'hyperviseur (proxmox) ainsi que la gestion des VMs
+    Gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs
     """
 
     def _test_auth(self) -> bool:

@@ -1,3 +1,7 @@
+"""
+Endpoints API lié aux utilisateurs
+"""
+
 from flask_restx import Namespace, Resource, fields
 
 from ... import models as models

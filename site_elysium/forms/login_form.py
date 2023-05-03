@@ -1,3 +1,7 @@
+"""
+Formulaire WTForms pour la connexion
+"""
+
 from flask_wtf import FlaskForm
 import wtforms
 

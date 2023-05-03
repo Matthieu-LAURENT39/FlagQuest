@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>site_elysium API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Application pour le projet de BTS 2023 …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -22,11 +22,25 @@
 <h1 class="title">Package <code>site_elysium</code></h1>
 </header>
 <section id="section-intro">
+<p>Application pour le projet de BTS 2023</p>
+<p>Développeurs:<br>
+- Matthieu LAURENT<br>
+- Adrien BRUAS<br>
+- Stefen INCE</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from __future__ import annotations
+<pre><code class="python">&#34;&#34;&#34;
+Application pour le projet de BTS 2023
+
+Développeurs:  
+- Matthieu LAURENT  
+- Adrien BRUAS  
+- Stefen INCE
+&#34;&#34;&#34;
+from __future__ import annotations
+
 
 import contextlib
 import glob
@@ -108,6 +122,8 @@ def create_app(config: object = Config) -&gt; Flask:
     with app.app_context():
         from .models import Question, Room, SolvedQuestionData, User, VirtualMachine
 
+        db.create_all()
+
     admin.add_view(AdminModelView(User, db.session))
     admin.add_view(AdminModelView(Room, db.session))
     admin.add_view(AdminModelView(VirtualMachine, db.session))
@@ -141,9 +157,6 @@ def setup_app(app: Flask):
     from .models import Question, Room, User
 
     with app.app_context():
-        db.create_all()
-
-    with app.app_context():
         user = User.query.filter_by(username=&#34;admin&#34;).first()
         if user is None:
             user = User(
@@ -166,35 +179,35 @@ def setup_app(app: Flask):
 <dl>
 <dt><code class="name"><a title="site_elysium.app_config" href="app_config.html">site_elysium.app_config</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Fichier de configuration de l'application</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.backend" href="backend/index.html">site_elysium.backend</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Eléments lié aux backend</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.classes" href="classes/index.html">site_elysium.classes</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Classes n'étant pas lié à SQLAlchemy ou WTForms</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.flask_config" href="flask_config.html">site_elysium.flask_config</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Fichier de configuration de Flask</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.forms" href="forms/index.html">site_elysium.forms</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Formulaire WTForms</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.models" href="models/index.html">site_elysium.models</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Modèles SQLAlchemy</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.routes" href="routes/index.html">site_elysium.routes</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Routes Flask</p></div>
 </dd>
 <dt><code class="name"><a title="site_elysium.utils" href="utils.html">site_elysium.utils</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Fonctions utilitaires pour tout le projet</p></div>
 </dd>
 </dl>
 </section>
@@ -264,6 +277,8 @@ def setup_app(app: Flask):
 
     with app.app_context():
         from .models import Question, Room, SolvedQuestionData, User, VirtualMachine
+
+        db.create_all()
 
     admin.add_view(AdminModelView(User, db.session))
     admin.add_view(AdminModelView(Room, db.session))
@@ -345,9 +360,6 @@ def load_user(user_id: str) -&gt; Optional[&#34;User&#34;]:
         app (Flask): l&#39;app où généré les données.
     &#34;&#34;&#34;
     from .models import Question, Room, User
-
-    with app.app_context():
-        db.create_all()
 
     with app.app_context():
         user = User.query.filter_by(username=&#34;admin&#34;).first()

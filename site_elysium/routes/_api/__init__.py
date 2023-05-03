@@ -1,3 +1,7 @@
+"""
+Api Flask-restx
+"""
+
 from flask_restx import Api
 
 from .. import api

@@ -1,3 +1,6 @@
+"""
+Modèle SQLAlchemy permettant la relation many-to-many Room.users<->User.rooms
+"""
 from flask import has_app_context
 from sqlalchemy import Column, ForeignKey, Integer, Table
 

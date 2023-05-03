@@ -1,3 +1,7 @@
+"""
+Endpoints pour les fichiers statiques avec une URL dynamique
+"""
+
 from flask import send_file
 
 from . import main

@@ -1,3 +1,7 @@
+"""
+Fichier de configuration de l'application
+"""
+
 APP_NAME: str = "ROOT ME"
 """Le nom de l'application à afficher"""
 # Ce sont des URLs.

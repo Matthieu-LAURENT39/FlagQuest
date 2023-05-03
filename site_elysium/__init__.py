@@ -1,4 +1,13 @@
+"""
+Application pour le projet de BTS 2023
+
+Développeurs:  
+- Matthieu LAURENT  
+- Adrien BRUAS  
+- Stefen INCE
+"""
 from __future__ import annotations
+
 
 import contextlib
 import glob
@@ -80,6 +89,8 @@ def create_app(config: object = Config) -> Flask:
     with app.app_context():
         from .models import Question, Room, SolvedQuestionData, User, VirtualMachine
 
+        db.create_all()
+
     admin.add_view(AdminModelView(User, db.session))
     admin.add_view(AdminModelView(Room, db.session))
     admin.add_view(AdminModelView(VirtualMachine, db.session))
@@ -111,9 +122,6 @@ def setup_app(app: Flask):
         app (Flask): l'app où généré les données.
     """
     from .models import Question, Room, User
-
-    with app.app_context():
-        db.create_all()
 
     with app.app_context():
         user = User.query.filter_by(username="admin").first()

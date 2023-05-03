@@ -1,3 +1,6 @@
+"""
+Schéma Marshmallow pour les utilisateurs
+"""
 from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
 from ...models import User
 

@@ -1,9 +1,13 @@
+"""
+Formulaire WTForms pour l'inscription
+"""
+
 from flask_wtf import FlaskForm
 import wtforms
 
 
 class SignupForm(FlaskForm):
-    """Formulaire de connexion"""
+    """Formulaire d'inscription"""
 
     username = wtforms.StringField(
         "Votre pseudo",

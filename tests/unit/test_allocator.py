@@ -16,7 +16,7 @@ def ip_network() -> IPv4Network:
 
 def test_ip_allocator(ip_network):
     """
-    Teste que l'Allocator alloue bien les IPs
+    Teste que la classe Allocator alloue bien les IPs
     """
 
     ip_allocator = Allocator(ip_network.hosts())
@@ -32,9 +32,8 @@ def test_ip_allocator(ip_network):
     with pytest.raises(ValueError):
         ip_allocator.allocate()
 
-    # On libère deux ips
+    # On libère une ip
     ip_allocator.free(IPv4Address("10.0.0.3"))
-    ip_allocator.free(IPv4Address("10.0.0.6"))
 
     # Puis on teste qu'on puisse a nouveau attribuer des IPs
     assert ip_allocator.allocate() == IPv4Address("10.0.0.3")
@@ -61,7 +60,7 @@ def test_ip_allocator_with_allocated(ip_network):
         },
     )
 
-    # L'Allocator doit évité les ips déja attribué
+    # L'Allocator doit éviter les ips déja attribué
     assert ip_allocator.allocate() == IPv4Address("10.0.0.3")
     assert ip_allocator.allocate() == IPv4Address("10.0.0.5")
 
