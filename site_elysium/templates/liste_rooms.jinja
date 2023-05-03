@@ -1,13 +1,14 @@
 {% extends 'base.jinja' %}
 {# recup url du site #}
 {# {{ url_for(request.endpoint) }} #}
-{% from 'macros/_acceuil.jinja' import room_widget %}
+{% from 'macros/_acceuil.jinja' import room_widget with context %}
 
 {% block title %}
 {{ super() }} - Accueil
 {% endblock %}
 
 {% block content %}
+{% if current_user.is_authenticated %}
 <main class="container bg-black pt-3">
     <div class="container-index row">
         <div class="d-flex row align-items-md-stretch">
@@ -17,5 +18,6 @@
         </div>
     </div>
 </main>
+{% endif %}
 
 {% endblock %}
