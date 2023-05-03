@@ -6,6 +6,12 @@
 
 {% block content %}
 
+<script>
+    setTimeout(function () {
+        location.reload();
+    }, 10000);
+</script>
+
 <main class="container pt-5">
     <div class="container-index row">
         <!-- partie gauche avec logo + texte -->
@@ -16,7 +22,11 @@
         </div>
     </div>
     {%for user, user_score in user_dico.items()%}
+    {% if nbr_question_total == 0 %}
+    {% set progress_percentage = 0 %}
+    {% else %}
     {% set progress_percentage = ( user_score/ nbr_question_total*100)|round|int %}
+    {% endif %}
     <div class="mb-4 bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
         id="progress-bar-scroll" style="width: 100%">
         <div class="row">

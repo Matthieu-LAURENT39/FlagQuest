@@ -94,6 +94,17 @@ class User(_current_base, UserMixin):
     # on limite le cache à 366 jours
     @lru_cache(maxsize=366)
     def points_at_date(self, date: datetime.date) -&gt; int:
+        &#34;&#34;&#34;Calcule le nombre de points que l&#39;utilisateur avais a une certaine date
+
+        Args:
+            date (datetime.date): La date pour laquelle calculer
+
+        Raises:
+            ValueError: La date est dans le futur
+
+        Returns:
+            int: Le nombre de points
+        &#34;&#34;&#34;
         if datetime.date.today() &lt; date:
             # The date is strictly into the future
             raise ValueError(&#34;Date is into the future.&#34;)
@@ -109,6 +120,7 @@ class User(_current_base, UserMixin):
 
     @property
     def score(self) -&gt; int:
+        &#34;&#34;&#34;Le nombre de points que possède l&#39;utilisateur&#34;&#34;&#34;
         return self.points_at_date(datetime.date.today())
 
     @lru_cache(maxsize=5)
@@ -205,6 +217,17 @@ for example, any mapped columns or relationships.</p></div>
     # on limite le cache à 366 jours
     @lru_cache(maxsize=366)
     def points_at_date(self, date: datetime.date) -&gt; int:
+        &#34;&#34;&#34;Calcule le nombre de points que l&#39;utilisateur avais a une certaine date
+
+        Args:
+            date (datetime.date): La date pour laquelle calculer
+
+        Raises:
+            ValueError: La date est dans le futur
+
+        Returns:
+            int: Le nombre de points
+        &#34;&#34;&#34;
         if datetime.date.today() &lt; date:
             # The date is strictly into the future
             raise ValueError(&#34;Date is into the future.&#34;)
@@ -220,6 +243,7 @@ for example, any mapped columns or relationships.</p></div>
 
     @property
     def score(self) -&gt; int:
+        &#34;&#34;&#34;Le nombre de points que possède l&#39;utilisateur&#34;&#34;&#34;
         return self.points_at_date(datetime.date.today())
 
     @lru_cache(maxsize=5)
@@ -376,13 +400,14 @@ Voir également <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#we
 </dd>
 <dt id="site_elysium.models.user.User.score"><code class="name">var <span class="ident">score</span> : int</code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Le nombre de points que possède l'utilisateur</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
 def score(self) -&gt; int:
+    &#34;&#34;&#34;Le nombre de points que possède l&#39;utilisateur&#34;&#34;&#34;
     return self.points_at_date(datetime.date.today())</code></pre>
 </details>
 </dd>
@@ -482,13 +507,39 @@ def get_profile_picture(self, size: int = 250) -&gt; bytes:
 <span>def <span class="ident">points_at_date</span></span>(<span>self, date: datetime.date) ‑> int</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Calcule le nombre de points que l'utilisateur avais a une certaine date</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>date</code></strong> :&ensp;<code>datetime.date</code></dt>
+<dd>La date pour laquelle calculer</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>La date est dans le futur</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>Le nombre de points</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@lru_cache(maxsize=366)
 def points_at_date(self, date: datetime.date) -&gt; int:
+    &#34;&#34;&#34;Calcule le nombre de points que l&#39;utilisateur avais a une certaine date
+
+    Args:
+        date (datetime.date): La date pour laquelle calculer
+
+    Raises:
+        ValueError: La date est dans le futur
+
+    Returns:
+        int: Le nombre de points
+    &#34;&#34;&#34;
     if datetime.date.today() &lt; date:
         # The date is strictly into the future
         raise ValueError(&#34;Date is into the future.&#34;)

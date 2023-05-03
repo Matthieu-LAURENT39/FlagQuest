@@ -22,10 +22,6 @@ Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logici
 """
 victim_vm_ids = []
 
-[[question]]
-prompt = """Quel était le mot de passe du server FTP"""
-answer = "hannah"
-points = 2
 
 [[question]]
 prompt = """Quel était le mot de passe du server FTP"""
@@ -40,6 +36,6 @@ points = 3
 
 [[question]]
 prompt = """Donnez le flag caché dans l'un des fichiers du server"""
-answer = "trouverunephrase"
-points = 3
+answer = "r4ti0-au_M@x"
+points = 5
 

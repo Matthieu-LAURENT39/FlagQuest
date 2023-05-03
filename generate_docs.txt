@@ -1,1 +1,1 @@
-pdoc --html site_elysium --force
+pdoc --html site_elysium --force -o './docs'
