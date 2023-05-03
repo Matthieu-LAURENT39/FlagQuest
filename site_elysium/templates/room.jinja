@@ -91,10 +91,6 @@
                         // refresh la page une fois que la room est rejoint
                         .then(location.reload(true))
                 }
-
-                function add_question() {
-                    fetch('{{url_for('api.')}}')
-                }
             </script>
 
             <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
@@ -245,7 +241,19 @@
                 setupVMInfos();
             });
 
-
+            function createQuestion() {
+                fetch('{{ url_for('api.Room_create_question_resource', url_name = room.url_name) }}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => response.json())
+                    // .then(response => alert(JSON.stringify(response)))
+                    // refresh la page une fois que la room est rejoint
+                    .then(location.reload(true))
+            }
         </script>
 
         <div id="vm-info-container" class="row p-2">
@@ -371,9 +379,9 @@
         solved=(current_user.is_authenticated and q.is_solved_by(current_user)))}}
         {% endfor %}
         {% endblock %}
-        <button type="submit" name="submit_param" value="submit_value" onclick="add_question;"
+        <button type="submit" name="submit_param" value="submit_value" onclick="createQuestion();"
             class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
-            id="add-question">add question
+            id="add-question">Ajouter une question
         </button>
     </div>
 </main>

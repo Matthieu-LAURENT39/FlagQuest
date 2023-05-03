@@ -1,4 +1,3 @@
-APP_NAME: str = "Edouard Branly"
 """
 Fichier de configuration de l'application
 """

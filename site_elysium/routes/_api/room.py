@@ -86,7 +86,7 @@ class CreateQuestionResource(Resource):
             abort(403)
 
         new_question = models.Question(
-            room_id=room.id, prompt="Lorem ipsum", answer="changeme", points=5
+            room_id=room.id, prompt="Lorem ipsum", answer="changeme", points=2
         )
         db.session.add(new_question)
 
