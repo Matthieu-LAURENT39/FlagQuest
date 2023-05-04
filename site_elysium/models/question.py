@@ -30,8 +30,9 @@ class Question(_current_base):
     Utilisé pour calculer le score des utilisateurs.
     """
 
+    # Les SolvedQuestionData sont supprimer automatiquement lorsque l'on supprime une question
     solved_questions_data: Mapped[list["SolvedQuestionData"]] = relationship(
-        back_populates="question"
+        back_populates="question", cascade="all, delete"
     )
 
     def is_solved_by(self, user: User) -> bool:

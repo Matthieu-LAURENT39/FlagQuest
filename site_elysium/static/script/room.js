@@ -34,6 +34,7 @@ function toggleEditMode(question_id, edit_mode_enabled) {
 function saveQuestion(question_id) {
     let new_prompt = document.querySelectorAll(`#question_block-${question_id} .question-prompt-edit textarea`)[0].value
     let new_answer = document.querySelectorAll(`#question-form-edit-${question_id} .question-answer-edit`)[0].value
+    let new_points = document.querySelectorAll(`#question-form-edit-${question_id} .question-points-edit`)[0].value
 
     // Save the values to the server
     var myHeaders = new Headers();
@@ -41,7 +42,8 @@ function saveQuestion(question_id) {
 
     var body = JSON.stringify({
         "prompt": new_prompt,
-        "answer": new_answer
+        "answer": new_answer,
+        "points": new_points
     });
 
     var requestOptions = {
@@ -55,4 +57,23 @@ function saveQuestion(question_id) {
     //.then(response => response.text())
     //.then(result => console.log(result))
     //.catch(error => console.log('error', error));
+}
+
+/**
+ * supprime la question
+ * @param { int } question_id 
+ */
+function deleteQuestion(question_id) {
+    // Save the values to the server
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: "",
+    };
+
+    fetch(`/api/question/${question_id}`, requestOptions)
+        .then(response => window.location.reload(true))
 }

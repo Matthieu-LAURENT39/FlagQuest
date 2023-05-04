@@ -125,6 +125,14 @@ class QuestionResource(Resource):
         db.session.commit()
         return question_schema.dump(question)
 
+    def delete(self, id):
+        """Supprime une question"""
+        question: models.User = models.Question.query.filter_by(id=id).first_or_404(
+            description="Cet question n'existe pas."
+        )
+        db.session.delete(question)
+        db.session.commit()
+
 
 @room_namespace.route("/join_room/<room_url_name>")
 @room_namespace.param("room_url_name", "L'url name de la room")

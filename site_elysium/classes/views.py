@@ -4,11 +4,23 @@ Vues de modèle pour Flask-Admin.
 
 from flask_login import current_user
 from flask_admin.contrib.sqla import ModelView
+from flask_admin import AdminIndexView
 
 
 class AdminModelView(ModelView):
     """
     Une vue de modèle pour Flask-Admin.
+    Accessible uniquement par les admins.
+    """
+
+    def is_accessible(self):
+        """Vérifie que l'utilisateur a le droit d'accéder à la page"""
+        return current_user.is_authenticated and current_user.is_admin
+
+
+class RestrictedAdminIndexView(AdminIndexView):
+    """
+    Une vue d'index pour Flask-Admin.
     Accessible uniquement par les admins.
     """
 

@@ -29,9 +29,18 @@ class LoginLevel(Enum):
         ("main.acceuil", 200, LoginLevel.NOT_LOGGED_IN),
         ("main.acceuil", 200, LoginLevel.REGULAR_USER),
         ("main.liste_room", 200, LoginLevel.NOT_LOGGED_IN),
+        ("main.liste_room", 200, LoginLevel.REGULAR_USER),
         ("main.connexion", 200, LoginLevel.NOT_LOGGED_IN),
         ("main.deconnexion", 401, LoginLevel.NOT_LOGGED_IN),
         ("main.deconnexion", 200, LoginLevel.REGULAR_USER),
+        ("admin.index", 403, LoginLevel.REGULAR_USER),
+        ("admin.index", 200, LoginLevel.ADMIN),
+        ("api.doc", 200, LoginLevel.NOT_LOGGED_IN),
+        ("api.doc", 200, LoginLevel.REGULAR_USER),
+        ("api.doc", 200, LoginLevel.ADMIN),
+        ("main.classement", 200, LoginLevel.NOT_LOGGED_IN),
+        ("main.classement", 200, LoginLevel.REGULAR_USER),
+        ("main.classement", 200, LoginLevel.ADMIN),
     ],
 )
 def test_route_access(

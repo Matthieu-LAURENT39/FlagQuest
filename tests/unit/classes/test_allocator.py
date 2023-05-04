@@ -39,6 +39,7 @@ def test_ip_allocator(ip_network):
     assert ip_allocator.allocate() == IPv4Address("10.0.0.3")
 
     # Enfin, on teste que l'on ne peut pas libéré une IP déja libre
+    ip_allocator.free(IPv4Address("10.0.0.6"))
     with pytest.raises(ValueError):
         ip_allocator.free(IPv4Address("10.0.0.6"))
 

@@ -63,12 +63,12 @@ VICTIM_VM_PREFIX: str = "automatic"
 
 ATTACK_VM_TEMPLATE_ID: str = "104"
 """L'ID de la template pour les VMs d'attaques"""
-ATTACK_VM_USERNAME: str = "hacker"
+ATTACK_VM_USERNAME: str = "ubuntu"
 """
 Le login pour la VM d'attaque qui sera affiché à l'utilisateur.
 Changer cette valeur ne change pas automatiquement le nom d'utilisateur sur la VM!
 """
-ATTACK_VM_PASSWORD: str = "kali"
+ATTACK_VM_PASSWORD: str = "ubuntu"
 """
 Le mot de passe pour la VM d'attaque.
 Changer cette valeur ne change pas automatiquement le mot de passe sur la VM!

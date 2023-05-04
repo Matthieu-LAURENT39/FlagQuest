@@ -310,8 +310,10 @@
         </script>
         {% endif %}
 
-
-        <!-- partie progression -->
+        {% block progession %}
+        {# si l'user est CONNECTE et est DANS LA ROOM ---> afficher progression #}
+        {% if current_user.is_authenticated %}
+        {% if user_is_in_room %}
         <script>
             // légère animation de la progression lorsque l'on scroll vers le bas
             window.onscroll = function () { scrollFunction() };
@@ -329,11 +331,6 @@
                 }
             }
         </script>
-
-        {% block progession %}
-        {# si l'user est CONNECTE et est DANS LA ROOM ---> afficher progression #}
-        {% if current_user.is_authenticated %}
-        {% if user_is_in_room %}
         <div class="mx-2 sticky-top pb-1 d-flex justify-content-center">
             <!-- Progression -->
             <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
@@ -379,10 +376,12 @@
         solved=(current_user.is_authenticated and q.is_solved_by(current_user)))}}
         {% endfor %}
         {% endblock %}
+        {% if current_user.is_authenticated and current_user.is_admin %}
         <button type="submit" name="submit_param" value="submit_value" onclick="createQuestion();"
             class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
             id="add-question">Ajouter une question
         </button>
+        {% endif %}
     </div>
 </main>
 {% endblock %}
