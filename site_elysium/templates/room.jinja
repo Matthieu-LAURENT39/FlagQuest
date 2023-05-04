@@ -379,10 +379,12 @@
         solved=(current_user.is_authenticated and q.is_solved_by(current_user)))}}
         {% endfor %}
         {% endblock %}
+        {% if current_user.is_authenticated and current_user.is_admin %}
         <button type="submit" name="submit_param" value="submit_value" onclick="createQuestion();"
             class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
             id="add-question">Ajouter une question
         </button>
+        {% endif %}
     </div>
 </main>
 {% endblock %}

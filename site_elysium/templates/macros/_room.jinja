@@ -38,8 +38,18 @@
             </form>
             {% if current_user.is_authenticated and current_user.is_admin %}
             <div id="question-form-edit-{{question.id}}" style="display: none;">
-                <input class="form-control border-0 question-answer-edit" type="text" placeholder="Réponse"
-                    aria-label="input example" required="required" autocomplete="off" value="{{question.answer}}">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control border-0 question-answer-edit" type="text" placeholder="Réponse"
+                            aria-label="input example" required="required" autocomplete="off"
+                            value="{{question.answer}}">
+                    </div>
+                    <div class="col-1">
+                        <input class="form-control border-0 question-points-edit" type="text" placeholder="points"
+                            aria-label="input example" required="required" autocomplete="off"
+                            value="{{question.points}}">
+                    </div>
+                </div>
                 <input type="button" class="btn rounded-1 border-2 active text-info fw-semibold m-2" role="button"
                     onclick="saveQuestion({{question.id}})" value="Enregistrer les modifications">
             </div>
