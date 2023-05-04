@@ -61,7 +61,7 @@ VM_NETWORK: str = "10.0.0.0/16"
 VICTIM_VM_PREFIX: str = "automatic"
 """Le préfix à ajouté aux nom des VMs victimes"""
 
-ATTACK_VM_TEMPLATE_ID: str = "100"
+ATTACK_VM_TEMPLATE_ID: str = "104"
 """L'ID de la template pour les VMs d'attaques"""
 ATTACK_VM_USERNAME: str = "hacker"
 """

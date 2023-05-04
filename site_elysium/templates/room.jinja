@@ -248,7 +248,7 @@
                     .then(response => response.json())
                     // .then(response => alert(JSON.stringify(response)))
                     // refresh la page une fois que les VMs sont supprimé
-                    .then(location.reload(true))
+                    .then(response => location.reload(true))
             }
 
             $(document).ready(function () {
