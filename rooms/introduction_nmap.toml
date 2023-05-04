@@ -38,7 +38,7 @@ Lance une recherche des hôtes et un scan TCP dans la première moitié de chacu
 victim_vm_ids = [ 121 ]
 
 [[question]]
-prompt = "Quel est l'argument permettant d'identifier l'OS et la version?"
+prompt = "Quel est l'argument permettant d'identifier l'OS **et** la version?"
 answer = "-A"
 points = 2
 

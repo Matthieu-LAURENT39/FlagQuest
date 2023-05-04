@@ -40,10 +40,10 @@ class Room(_current_base):
     """Les IDs des templates des machines victimes de la room, séparé par des points virgule ';'."""
 
     @property
-    def victim_vm_ids(self) -> Optional[list[int]]:
+    def victim_vm_ids(self) -> list[int]:
         """Les IDs des templates des machines victimes de la room"""
         if not self._victim_vm_ids:
-            return None
+            return []
         return [int(v) for v in self._victim_vm_ids.split(";")]
 
     @victim_vm_ids.setter

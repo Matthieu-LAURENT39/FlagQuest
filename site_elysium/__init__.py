@@ -75,16 +75,20 @@ def create_app(config: object = Config) -> Flask:
     login_manager.init_app(app)
 
     # flask-admin
+    from .classes import AdminModelView, RestrictedAdminIndexView
+
     # Créer l'instance va a l'encontre des principes de design des app factory, mais
     # on y est contraint du a au design de flask-admin.
     # Voir aussi https://github.com/flask-admin/flask-admin/issues/910
-    admin = Admin(name="Interface Admin", template_mode="bootstrap3")
+    admin = Admin(
+        name="Interface Admin",
+        template_mode="bootstrap3",
+        index_view=RestrictedAdminIndexView(),
+    )
 
     # remplacer superhero par cerulean pour screens
     app.config["FLASK_ADMIN_SWATCH"] = "cerulean"
     admin.init_app(app)
-
-    from .classes import AdminModelView
 
     with app.app_context():
         from .models import Question, Room, SolvedQuestionData, User, VirtualMachine
@@ -110,7 +114,7 @@ def create_app(config: object = Config) -> Flask:
     if not app.testing:
         setup_app(app)
 
-    # print(app.url_map)
+    print(app.url_map)
 
     return app
 
