@@ -34,7 +34,8 @@ Lance une recherche des hôtes et un scan TCP dans la première moitié de chacu
 ##### Divers:
 `-6`: Active le scan IPv6
 `-A`: Active la détection du système d'exploitation, des versions et génère un tracert (traceroute)"""
-victim_vm_ids = [ ]
+# TODO: VM temporaire
+victim_vm_ids = [ 121 ]
 
 [[question]]
 prompt = "Quel est l'argument permettant d'identifier l'OS et la version?"

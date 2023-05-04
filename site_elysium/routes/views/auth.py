@@ -58,9 +58,12 @@ def deconnexion():
 
 
 # TODO: Support pour la méthode GET
-@main.route("/inscription", methods=["POST"])
+@main.route("/inscription", methods=["GET", "POST"])
 def inscription():
     """Formulaire permettant l'inscription"""
+    if request.method == "GET":
+        return redirect(url_for("main.acceuil"))
+
     form = SignupForm()
     # Si le formulaire a été correctement rempli
     if form.validate_on_submit():

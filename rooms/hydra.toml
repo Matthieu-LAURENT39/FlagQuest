@@ -20,22 +20,21 @@ Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logici
 
 # Utilisation
 """
-victim_vm_ids = []
+victim_vm_ids = [121]
 
 
 [[question]]
-prompt = """Quel était le mot de passe du server FTP"""
+prompt = "Quel était le mot de passe du serveur FTP"
 answer = "hannah"
 points = 5
 
 [[question]]
-prompt = """Avec quel outils graphique (très populaire) peut-on se connecter au serveur FTP 
-?"""
+prompt = "Avec quel outils graphique (très populaire) peut-on se connecter au serveur FTP?"
 answer = "filezilla"
 points = 3
 
 [[question]]
-prompt = """Donnez le flag caché dans l'un des fichiers du server"""
+prompt = "Donnez le flag caché dans le fichier `flag.txt` sur le serveur"
 answer = "r4ti0-au_M@x"
 points = 5
 
