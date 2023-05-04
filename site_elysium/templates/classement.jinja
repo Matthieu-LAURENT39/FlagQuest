@@ -42,6 +42,7 @@
                 <tbody>
                     {% for user in user %}
                     {% if user.id == current_user.id %}
+                    <!-- rose si l'user qui consulte est connecté -->
                     <tr class="active-row">
                         <th># {{ loop.index }}</th>
                         <td><img class="img-avatar-classement"
@@ -52,6 +53,7 @@
                         <td class="td-score">{{user.score|e}}
                     </tr>
                     {% else %}
+                    <!-- les autres sont affichés en vert/bleu -->
                     <tr class="lambda-row">
                         <th># {{ loop.index }}</th>
                         <td>
