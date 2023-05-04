@@ -102,7 +102,7 @@ class QuestionResource(Resource):
 
     @room_namespace.marshal_with(question_model, as_list=False)
     def get(self, id):
-        """Récupère les informations lié a une Room."""
+        """Récupère les informations lié a une question."""
         question: models.User = models.Question.query.filter_by(id=id).first_or_404(
             description="Cet question n'existe pas."
         )
@@ -110,7 +110,7 @@ class QuestionResource(Resource):
 
     @room_namespace.marshal_with(question_model, as_list=False)
     def post(self, id):
-        """Récupère les informations lié a une Room."""
+        """Modifie les informations lié a une question."""
         question: models.User = models.Question.query.filter_by(id=id).first_or_404(
             description="Cet question n'existe pas."
         )

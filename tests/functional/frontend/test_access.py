@@ -47,7 +47,7 @@ def test_route_access(
     """
     if login_level == LoginLevel.REGULAR_USER:
         login_user(regular_user)
-    if login_level == LoginLevel.ADMIN:
+    elif login_level == LoginLevel.ADMIN:
         login_user(admin_user)
 
     url = url_for(endpoint)
