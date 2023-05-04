@@ -20,7 +20,7 @@ Profile - {{user.username}}
                 </div>
             </div>
 
-            {# partie gauche #}
+            {# partie haute #}
             <div class="col col-lg-5">
                 <div class="div-statistiques stats-profile-bar-responsive">
                     <div class="sous-div-stat">
@@ -42,7 +42,7 @@ Profile - {{user.username}}
                         <h2 class="variable-stat">
                             <img class="icon-stat" src="/static/img/challenges.svg"
                                 alt="logo de la catégorie challenges (nombre de challenges terminés)">
-                            134<!-- variable challenge terminés -->
+                            {{user_rooms | length }}
                         </h2>
                         <h3 class="title-stat">Challenges</h3>
                     </div>
@@ -58,7 +58,7 @@ Profile - {{user.username}}
                 <h2 class="title-sous-section">
                     <img class="icon-second-part-profile" src="/static/img/challenges.svg"
                         alt="logo de le section challenges réussis">
-                    &nbsp;Rooms complétées
+                    &nbsp;Rooms participées
                 </h2>
 
                 <hr>
@@ -66,55 +66,27 @@ Profile - {{user.username}}
                 {# liste des rooms lancées #}
                 <div>
                     {# {{room_launched_widget("Crypto advice", "20", "17", "48")}} #}
+                    {# si user_rooms n'est pas vide #}
+                    {% if user_rooms %}
 
-                    <a class="room-launched" href="/room1">
-                        <h3 class="room-title m-0">Cryptos<!-- room 1 lancée--></h3>
+                    {% for r in user_rooms %}
+                    <a class="room-launched" href="{{url_for('main.classement') }}">
+                        <h3 class="room-title m-0">{{r.name}}</h3>
                         <div class="img-room">
                             <img src="/static/img/virtual_env.svg">
                         </div>
                         <div class="point-progression-room">
                             <span class="nbr-points-room">
-                                <b>20</b></b>
-                                &nbsp;Points
-                                <br>
-                                <b>3</b>
-                                &nbsp;/&nbsp;28
+                                {{ r.description}}
                             </span>
                         </div>
                     </a>
+                    {% endfor %}
+                    {# si l'user n'a rejoint aucune room #}
+                    {% else %}
+                    <p class="text-light fs-5 text-center">Qu'attendez vous !?</p>
 
-                    <a class="room-launched" href="/room1">
-                        <h3 class="room-title m-0">Cryptos<!-- room 1 lancée--></h3>
-                        <div class="img-room">
-                            <img src="/static/img/virtual_env.svg">
-                        </div>
-                        <div class="point-progression-room">
-                            <span class="nbr-points-room">
-                                <b>20</b></b>
-                                &nbsp;Points
-                                <br>
-                                <b>3</b>
-                                &nbsp;/&nbsp;28
-                            </span>
-                        </div>
-                    </a>
-
-                    <a class="room-launched" href="/room1">
-                        <h3 class="room-title m-0">Cryptos<!-- room 1 lancée--></h3>
-                        <div class="img-room">
-                            <img src="/static/img/virtual_env.svg">
-                        </div>
-                        <div class="point-progression-room">
-                            <span class="nbr-points-room">
-                                <b>20</b></b>
-                                &nbsp;Points
-                                <br>
-                                <b>3</b>
-                                &nbsp;/&nbsp;28
-                            </span>
-                        </div>
-                    </a>
-
+                    {% endif %}
                 </div>
             </div>
 
