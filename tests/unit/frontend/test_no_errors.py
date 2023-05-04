@@ -1,11 +1,19 @@
 from flask import Flask, url_for
 from flask.testing import FlaskClient
 from flask_sqlalchemy import SQLAlchemy
+import pytest
+from flask_login import login_user
 
 
-#! Cela ne teste pas l'acceuil, a fixé
 # TODO: Tester également quand authentifié
-def test_routes_no_server_errors(app: Flask, client: FlaskClient):
+@pytest.mark.parametrize("user", (None, "regular_user", "admin_user"))
+def test_routes_no_server_errors(
+    app: Flask, client: FlaskClient, user: str | None, request
+):
+    if user is not None:
+        user_obj = request.getfixturevalue(user)
+        login_user(user_obj)
+
     for rule in app.url_map.iter_rules():
         # On ne peut pas tester automatiquement les routes
         # qui ont besoin d'une variable dans l'URL
@@ -17,9 +25,14 @@ def test_routes_no_server_errors(app: Flask, client: FlaskClient):
         assert not str(r.status_code).startswith("5")
 
 
-def test_rooms_no_error(app: Flask, client: FlaskClient, database: SQLAlchemy):
+@pytest.mark.parametrize("user", (None, "regular_user", "admin_user"))
+def test_rooms_no_error(app: Flask, client: FlaskClient, user: str | None, request):
     with app.app_context():
         from site_elysium.models import Room
+
+        if user is not None:
+            user_obj = request.getfixturevalue(user)
+            login_user(user_obj)
 
     for room in Room.query.all():
         room: Room

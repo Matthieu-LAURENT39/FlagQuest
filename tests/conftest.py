@@ -74,6 +74,8 @@ def database(app: Flask):
 
     # On créer les tables
     with app.app_context():
+        import site_elysium.models
+
         db.create_all()
 
     # On créer les données de tests
