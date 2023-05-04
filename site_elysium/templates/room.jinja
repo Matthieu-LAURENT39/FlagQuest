@@ -59,6 +59,20 @@
                 }
             })
     }
+
+    function createQuestion() {
+        fetch('{{ url_for('api.Room_create_question_resource', url_name = room.url_name) }}', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            // .then(response => alert(JSON.stringify(response)))
+            // refresh la page une fois que la room est rejoint
+            .then(location.reload(true))
+    }
 </script>
 {% endblock head %}
 
@@ -240,20 +254,6 @@
             $(document).ready(function () {
                 setupVMInfos();
             });
-
-            function createQuestion() {
-                fetch('{{ url_for('api.Room_create_question_resource', url_name = room.url_name) }}', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                })
-                    .then(response => response.json())
-                    // .then(response => alert(JSON.stringify(response)))
-                    // refresh la page une fois que la room est rejoint
-                    .then(location.reload(true))
-            }
         </script>
 
         <div id="vm-info-container" class="row p-2">
