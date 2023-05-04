@@ -136,7 +136,7 @@
 .room-launched {
     text-decoration: none;
     display: grid;
-    grid-template-columns: 265px 265px 70px;
+    grid-template-columns: 450px 60px 80px;
     border: solid 1px var(--grey);
     border-radius: 4px;
     background-color: var(--night-grey);

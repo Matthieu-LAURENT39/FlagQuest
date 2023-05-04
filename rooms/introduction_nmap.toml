@@ -1,5 +1,5 @@
 name = "Introduction à Nmap"
-description = "Apprenez les bases de **Nmap**, un outil d'exploration réseau."
+description = "Apprenez les bases de Nmap, un outil d'exploration réseau."
 url_name = "introduction_nmap"
 instructions = """
 Après avoir dressé et borné la prestation de tests d'intrusion, vous devez commencer par la première étape de votre mission : Enumération

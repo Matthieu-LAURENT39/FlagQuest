@@ -6,7 +6,7 @@ from . import main
 from flask import render_template, abort, redirect, url_for
 from datetime import date, timedelta
 from flask_login import current_user
-from ...models import User
+from ...models import User, Room
 from ...utils import get_n_around
 
 from pychartjs import BaseChart, ChartType, Color
@@ -72,6 +72,7 @@ def profile(username):
         chart_json=chart.get(),
         ranking_users=ranking_users,
         user_position=user_index + 1,
+        user_rooms=list(user.joined_rooms),
     )
 
 
@@ -84,4 +85,5 @@ def classement():
 
     # compte nombre total d'utilisateurs
     nbr_user = User.query.count()
+
     return render_template("classement.jinja", user=user, nbr_user=nbr_user)
