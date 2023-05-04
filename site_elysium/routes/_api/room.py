@@ -96,6 +96,8 @@ class CreateQuestionResource(Resource):
 
 @room_namespace.route("/question/<id>")
 @room_namespace.response(200, "Succès")
+@room_namespace.response(401, "L'utilisateur n'est pas connecté")
+@room_namespace.response(403, "L'utilisateur n'a pas les privilèges requis")
 @room_namespace.response(404, "La question n'existe pas")
 class QuestionResource(Resource):
     """Informations lié à une question"""
@@ -111,6 +113,11 @@ class QuestionResource(Resource):
     @room_namespace.marshal_with(question_model, as_list=False)
     def post(self, id):
         """Modifie les informations lié a une question."""
+        if not current_user.is_authenticated:
+            abort(401)
+        if not current_user.is_admin:
+            abort(403)
+
         question: models.User = models.Question.query.filter_by(id=id).first_or_404(
             description="Cet question n'existe pas."
         )
@@ -127,6 +134,11 @@ class QuestionResource(Resource):
 
     def delete(self, id):
         """Supprime une question"""
+        if not current_user.is_authenticated:
+            abort(401)
+        if not current_user.is_admin:
+            abort(403)
+
         question: models.User = models.Question.query.filter_by(id=id).first_or_404(
             description="Cet question n'existe pas."
         )
