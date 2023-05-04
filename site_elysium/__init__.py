@@ -81,7 +81,7 @@ def create_app(config: object = Config) -> Flask:
     admin = Admin(name="Interface Admin", template_mode="bootstrap3")
 
     # remplacer superhero par cerulean pour screens
-    app.config["FLASK_ADMIN_SWATCH"] = "superhero"
+    app.config["FLASK_ADMIN_SWATCH"] = "cerulean"
     admin.init_app(app)
 
     from .classes import AdminModelView

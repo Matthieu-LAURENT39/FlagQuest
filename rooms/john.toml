@@ -6,7 +6,7 @@ instructions = """
 [John the Ripper](https://www.openwall.com/john/) (JTR ou John) est un logiciel libre permettant de tester la sécurité d'un mot de passe.
 
 ## Installation
-*Cet outils est déjà installé sur la VM d'attaque, cette explication est simplement à but éducatif.*
+*Cet outil est déjà installé sur la VM d'attaque, cette explication est simplement à but éducatif.*
 
 ### Sous Linux
 On peut l'installer via **apt-get** ou **snap** :
@@ -23,7 +23,9 @@ Voici un petit guide : `https://miloserdov.org/?p=4961#15`
 Les commandes principales sont :
 `john --wordlist=</path/to/wordlist/wordlists.txt>`
 
-## Les 3 différents modes
+Pour identifier le format d'un hash, vous pouvez utiliser hash-identifier (outils hors ligne) ou des sites comme [hashes.com](https://hashes.com/en/tools/hash_identifier) et [md5hashing.com](https://md5hashing.net/hash_type_checker) 
+
+## Les 3 modes différents
 ### Mode simple (Single crack)
 En mode simple, john se génère des variations de chaînes de caractères en fonction du nom d'utilisateur présent dans le fichier. Si le nom d'utilisateur est "voiture", le mode simple va tester les mots de passe suivants : "Voiture", "VOIRTURE2000", "voiTure", ...
 
@@ -36,21 +38,22 @@ La commande doit spécifier le paramètre `--single` ainsi que le format du hash
 
 
 ### Attaque par dictionnaire (Wordlist)
-L'attaque par dictionnaire test le hash avec tout les mots de passe présents dans une liste de mots (de passe) aussi appelée **wordlist**.
+L'attaque par dictionnaire teste le hash avec tous les mots de passe présents dans une liste de mots (de passe) aussi appelée **wordlist**.
 
-Une des plus célèbre est RockYou, elle est issue d'une fuite de donnée du réseau social californien Rockyou en 2009.
+Une des plus célèbres est RockYou, elle est issue d'une fuite de données du réseau social californien Rockyou en 2009.
 
 Wordlist : `https://github.com/danielmiessler/SecLists`
 
 `john --wordlist=</path/to/wordlist>` --format=<hash-format> <filename>`
 
 ### Mode incrémental (Incremental)
-Dans ce mode, John essaie tout les combinaisons de caractères possible pour trouver le mot de passe.
+Dans ce mode, John essai tout les combinaisons de caractères possibles pour trouver le mot de passe.
 
-Spécifier que l'on veut utiliser que des chiffres :
+Spécifier que l'on veut n'utiliser que des chiffres :
 `john -i=<MODE> --format=<hash-format> <filename>`
 Exemple :
-`john --incremental=digits --format=raw-md5 pass.txt`"""
+`john --incremental=digits --format=raw-md5 pass.txt`
+"""
 victim_vm_ids = [ ]
 
 [[question]]

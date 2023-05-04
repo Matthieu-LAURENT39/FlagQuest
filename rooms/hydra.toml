@@ -6,7 +6,7 @@ instructions = """
 [Hydra](https://github.com/vanhauser-thc/thc-hydra) est un logiciel libre permettant de craquer un mot de passe en ligne par **bruteforce**.
 
 ## Installation
-*Cet outils est déjà installé sur la VM d'attaque, cette explication est simplement à but éducatif.*
+*Cet outil est déjà installé sur la VM d'attaque, cette explication est simplement à but éducatif.*
 
 ### Sous Linux
 On peut l'installer via **apt-get** ou **snap** :
@@ -16,9 +16,26 @@ $ sudo apt-get install hydra -y
 ```
 
 ### Sous Windows
-Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d&#39;émuler un système Linux sous différentes versions de Windows.
+Passez par [Cygwin](https://www.cygwin.com/) qui est une bibliothèque de logiciels libres permettant d'émuler un système Linux sous différentes versions de Windows.
 
 # Utilisation
+## FTP
+Pour brute forcer un serveur FTP, on utilise la commande suivante :
+```
+$ hydra -l <username> -P </path/to/wordlist> ftp://<ftp-ip-adress> -V
+```
+-l - spécifier le nom d'utilisateur du FTP
+-P - indiquer le chemin de la wordlist à utiliser
+-V - affiche le nom d'utilisateur et le mot de passe testés à chaque essai
+
+## SSH
+Pour SSH, c'est légèrement différent :
+```
+hydra -l <username> -P </path/to/wordlist> <ssh-ip-adress> -t 4 ssh
+```
+-l - spécifier le nom d'utilisateur
+-P - indiquer le chemin de la wordlist à utiliser
+-t - nombre de connexions en parallèle (16 par défaut)
 """
 victim_vm_ids = []
 
