@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# @Author: Mattlau04
+# @Date:   2023-05-04 19:21:24
+# @Last Modified by:   Mattlau04
+# @Last Modified time: 2023-05-09 23:43:59
 """
 Modèle SQLAlchemy représentant une question d'une room
 """
@@ -32,7 +37,7 @@ class Question(_current_base):
 
     # Les SolvedQuestionData sont supprimer automatiquement lorsque l'on supprime une question
     solved_questions_data: Mapped[list["SolvedQuestionData"]] = relationship(
-        back_populates="question", cascade="all, delete"
+        back_populates="question", cascade="all, delete, delete-orphan"
     )
 
     def is_solved_by(self, user: User) -> bool:

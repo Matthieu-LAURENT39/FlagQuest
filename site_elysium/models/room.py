@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# @Author: Mattlau04
+# @Date:   2023-05-04 19:21:24
+# @Last Modified by:   Mattlau04
+# @Last Modified time: 2023-05-09 23:46:08
 """
 Modèle SQLAlchemy représentant une room
 """
@@ -34,7 +39,9 @@ class Room(_current_base):
         secondary=room_user, back_populates="joined_rooms"
     )
 
-    questions: Mapped[list["Question"]] = _current_relationship(back_populates="room")
+    questions: Mapped[list["Question"]] = _current_relationship(
+        back_populates="room", cascade="all, delete, delete-orphan"
+    )
 
     _victim_vm_ids: Mapped[str] = mapped_column("victim_vm_ids", default="")
     """Les IDs des templates des machines victimes de la room, séparé par des points virgule ';'."""

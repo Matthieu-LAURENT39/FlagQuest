@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# @Author: Mattlau04
+# @Date:   2023-05-04 19:21:24
+# @Last Modified by:   Mattlau04
+# @Last Modified time: 2023-05-09 23:45:41
 """
 Modèle SQLAlchemy représentant un utilisateur
 """
@@ -22,7 +27,7 @@ if TYPE_CHECKING:
 
 
 # On hérite UserMixin afin d'avoir les @property par défaut
-class User(_current_base, UserMixin):
+class User(db.Model):
     """Un utilisateur du site web"""
 
     __tablename__ = "users"
@@ -39,11 +44,11 @@ class User(_current_base, UserMixin):
 
     is_admin: Mapped[bool] = mapped_column(default=False)
 
+    solved_questions_data: Mapped[list["SolvedQuestionData"]] = relationship(
+        back_populates="user", cascade="all, delete, delete-orphan"
+    )
     joined_rooms: Mapped[list["Room"]] = relationship(
         secondary=room_user, back_populates="users"
-    )
-    solved_questions_data: Mapped[list["SolvedQuestionData"]] = relationship(
-        back_populates="user"
     )
 
     def set_password(self, password: str) -> None:

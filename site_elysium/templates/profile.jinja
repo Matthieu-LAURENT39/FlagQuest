@@ -77,7 +77,7 @@ Profile - {{user.username}}
                         </div>
                         <div class="point-progression-room">
                             <span class="nbr-points-room">
-                                {{ r.description | markdown | s}}
+                                {{ r.description | markdown | safe}}
                             </span>
                         </div>
                     </a>
