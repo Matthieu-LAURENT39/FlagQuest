@@ -16,7 +16,6 @@ classDiagram
     }
 
     Allocator "1" -- "1" Lock
-    
 ```
 """
 

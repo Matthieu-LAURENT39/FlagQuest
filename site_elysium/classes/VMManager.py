@@ -1,5 +1,31 @@
 """
 Une classe qui gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs
+```mermaid
+
+classDiagram
+    class VMManager~ABC~{
+        +  None start_vm(int vm_id, bool wait_until_on = True)*
+        +  None stop_vm(int vm_id, bool wait_until_off = True)*
+        +  dict setup(int template_id, str vm_name, bool vnc = False)*
+        +  None delete_vm(int vm_id)*
+    }
+
+    class ProxmoxVMManager{
+        + __init__(ProxmoxAPI api, str node_name, Allocator[str] mac_manager, Allocator[int] display_port_manager) None
+        +  None start_vm(int vm_id, bool wait_until_on = True)
+        +  None stop_vm(int vm_id, bool wait_until_off = True)
+        +  dict setup(int template_id, str vm_name, bool vnc = False)
+        +  None delete_vm(int vm_id)
+        + ProxmoxAPI api
+        + str node_name
+        - Lock _vm_modification_lock
+        - Allocator _mac_manager
+        - Allocator _display_port_manager
+        - None _test_auth()
+    }
+
+    VMManager <|-- ProxmoxVMManager
+```
 """
 from __future__ import annotations
 

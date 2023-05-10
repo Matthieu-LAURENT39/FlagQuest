@@ -66,7 +66,6 @@ erDiagram
 
     virtual_machines |o--1 rooms: "créé pour"
     questions 0+--1 rooms: "appartenir"
-
 ```
 """
 from flask import has_app_context
