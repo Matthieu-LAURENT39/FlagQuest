@@ -200,12 +200,6 @@ class ProxmoxVMManager(VMManager):
         )
 
     def start_vm(self, vm_id: int, *, wait_until_on: bool = True):
-        """Allume une machine virtuelle.
-
-        Args:
-            vm_id (int): L'id de la machine virtuelle.
-            wait_until_on (bool): Bloque jusque à ce que la VM soit en ligne.
-        """
         self.api.nodes(self.node_name).qemu(vm_id).status.start.post()
         if wait_until_on:
             # Tant que le status de la VM n'est pas "running"
@@ -218,12 +212,6 @@ class ProxmoxVMManager(VMManager):
                 time.sleep(1)
 
     def stop_vm(self, vm_id: int, *, wait_until_off: bool = True):
-        """Eteind une machine virtuelle.
-
-        Args:
-            vm_id (int): L'id de la machine virtuelle.
-            wait_until_off (bool): Bloque jusque à ce que la VM soit hors ligne.
-        """
         self.api.nodes(self.node_name).qemu(vm_id).status.stop.post()
         if wait_until_off:
             # Tant que le status de la VM n'est pas "running"
@@ -236,17 +224,6 @@ class ProxmoxVMManager(VMManager):
                 time.sleep(1)
 
     def setup(self, template_id: int, vm_name: str, vnc: bool = False) -> dict:
-        """Met en place une machine virtuelle à partir d'un template, avec une addresse IP,
-        optionellement VNC. Il ne reste plus qu'a stoquer ces informations dans la base de donnée.
-
-        Args:
-            template_id (int): L'ID du template à cloné.
-            vnc (bool, optional): Si True, alors un display port VNC sera alloué à la VM. Defaults to False.
-
-        Returns:
-            VirtualMachine: Les informations de la machine virtuelle.
-        """
-
         # Première étape, cloner le template
         new_vm_id = self._clone_vm(template_id, name=vm_name, wait_until_done=True)
 
@@ -271,11 +248,6 @@ class ProxmoxVMManager(VMManager):
         }
 
     def delete_vm(self, vm_id: int):
-        """Supprime une VM sur proxmox.
-
-        Args:
-            vm_id (int): L'ID de la VM à supprimer.
-        """
         # On ne peut pas supprimer une VM qui est allumé
         self.stop_vm(vm_id)
         self.api.nodes(self.node_name).qemu(vm_id).delete()

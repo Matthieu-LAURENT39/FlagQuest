@@ -122,7 +122,7 @@
 </span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>
 </span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>
 </span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a><span class="c1"># On hérite UserMixin afin d&#39;avoir les @property par défaut</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">_current_base</span><span class="p">):</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">_current_base</span><span class="p">,</span> <span class="n">UserMixin</span><span class="p">):</span>
 </span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Un utilisateur du site web&quot;&quot;&quot;</span>
 </span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>
 </span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
@@ -233,7 +233,7 @@
 
     </div>
     <a class="headerlink" href="#User"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="User-26"><a href="#User-26"><span class="linenos"> 26</span></a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">_current_base</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="User-26"><a href="#User-26"><span class="linenos"> 26</span></a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">_current_base</span><span class="p">,</span> <span class="n">UserMixin</span><span class="p">):</span>
 </span><span id="User-27"><a href="#User-27"><span class="linenos"> 27</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Un utilisateur du site web&quot;&quot;&quot;</span>
 </span><span id="User-28"><a href="#User-28"><span class="linenos"> 28</span></a>
 </span><span id="User-29"><a href="#User-29"><span class="linenos"> 29</span></a>    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
@@ -571,6 +571,15 @@ Voir également <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#we
 </div>
 
 
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>flask_login.mixins.UserMixin</dt>
+                                <dd id="User.get_id" class="function">get_id</dd>
+
+            </div>
+                                </dl>
                             </div>
                 </section>
     </main>
