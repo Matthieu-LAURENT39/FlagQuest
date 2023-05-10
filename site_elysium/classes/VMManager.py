@@ -12,7 +12,7 @@ from proxmoxer import ProxmoxAPI
 from ..classes import Allocator
 
 
-class VMManager:
+class ProxmoxVMManager:
     """
     Gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs
     """

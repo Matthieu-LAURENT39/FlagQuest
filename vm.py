@@ -2,7 +2,7 @@ import ipaddress
 
 from proxmoxer import ProxmoxAPI
 
-from site_elysium.classes import Allocator, VMManager
+from site_elysium.classes import Allocator, ProxmoxVMManager
 import site_elysium.models
 from tools import ip_to_mac
 from flask import current_app
@@ -10,7 +10,7 @@ from flask import current_app
 _current_vm_manager = None
 
 
-def get_vm_manager() -> VMManager:
+def get_vm_manager() -> ProxmoxVMManager:
     global _current_vm_manager
     if _current_vm_manager is None:
         _proxmox_api = ProxmoxAPI(
@@ -42,7 +42,7 @@ def get_vm_manager() -> VMManager:
             iter(range(1, 5000)), allocated=_allocated_ports
         )
 
-        _current_vm_manager = VMManager(
+        _current_vm_manager = ProxmoxVMManager(
             _proxmox_api,
             "rootme",
             _mac_allocator,

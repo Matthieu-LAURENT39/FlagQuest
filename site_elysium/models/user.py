@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 
 # On hérite UserMixin afin d'avoir les @property par défaut
-class User(_current_base):
+class User(_current_base, UserMixin):
     """Un utilisateur du site web"""
 
     __tablename__ = "users"
