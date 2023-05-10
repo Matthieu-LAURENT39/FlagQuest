@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# @Author: Mattlau04
+# @Date:   2023-05-04 19:21:24
+# @Last Modified by:   Mattlau04
+# @Last Modified time: 2023-05-10 08:08:41
 """
 Une classe qui gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs
 """
@@ -39,7 +44,7 @@ class VMManager:
             display_port_manager (Allocator[int]): Un Allocator gérant l'allocation des display ports.
 
         Raises:
-            ValueError: api_token n'étais pas valide
+            ValueError: api n'a pas une auth valide.
         """
         self.api = api
         self.node_name = node_name

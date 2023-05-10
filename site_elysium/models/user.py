@@ -2,7 +2,7 @@
 # @Author: Mattlau04
 # @Date:   2023-05-04 19:21:24
 # @Last Modified by:   Mattlau04
-# @Last Modified time: 2023-05-09 23:45:41
+# @Last Modified time: 2023-05-10 08:18:59
 """
 Modèle SQLAlchemy représentant un utilisateur
 """
@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
 
 # On hérite UserMixin afin d'avoir les @property par défaut
-class User(db.Model):
+class User(_current_base):
     """Un utilisateur du site web"""
 
     __tablename__ = "users"
