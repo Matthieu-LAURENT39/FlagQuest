@@ -15,7 +15,7 @@ classDiagram
         - Lock _lock
     }
 
-    Allocator "1" -- "1" Lock
+    Allocator "1" *-- "1" Lock
 ```
 """
 
@@ -76,3 +76,6 @@ class Allocator(Generic[Resource]):
                 raise ValueError(
                     "Cette resource n'est pas alloué et ne peut donc pas être libéré."
                 ) from e
+
+
+

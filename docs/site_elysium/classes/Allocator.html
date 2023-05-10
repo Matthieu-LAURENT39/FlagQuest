@@ -93,7 +93,7 @@ classDiagram
         - Lock _lock
     }
 
-    Allocator "1" -- "1" Lock
+    Allocator "1" *-- "1" Lock
 </div></pre>
 </div>
 
@@ -118,7 +118,7 @@ classDiagram
 </span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="sd">        - Lock _lock</span>
 </span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="sd">    }</span>
 </span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a><span class="sd">    Allocator &quot;1&quot; -- &quot;1&quot; Lock</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a><span class="sd">    Allocator &quot;1&quot; *-- &quot;1&quot; Lock</span>
 </span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="sd">```</span>
 </span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>
@@ -186,7 +186,7 @@ classDiagram
                 <section id="Allocator">
                             <input id="Allocator-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">Allocator</span><wbr>(<span class="base">typing.Generic[~Resource]</span>):
 
@@ -253,7 +253,7 @@ classDiagram
                             <div id="Allocator.__init__" class="classattr">
                                         <input id="Allocator.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="name">Allocator</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">source</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="o">~</span><span class="n">Resource</span><span class="p">]</span>,</span><span class="param">	<span class="n">allocated</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">set</span><span class="p">[</span><span class="o">~</span><span class="n">Resource</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></span>)</span>
 
                 <label class="view-source-button" for="Allocator.__init__-view-source"><span>View Source</span></label>
@@ -292,7 +292,7 @@ classDiagram
                             <div id="Allocator.allocate" class="classattr">
                                         <input id="Allocator.allocate-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">allocate</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="o">~</span><span class="n">Resource</span>:</span></span>
 
@@ -334,7 +334,7 @@ classDiagram
                             <div id="Allocator.free" class="classattr">
                                         <input id="Allocator.free-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">free</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">resource</span><span class="p">:</span> <span class="o">~</span><span class="n">Resource</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
