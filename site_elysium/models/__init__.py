@@ -1,5 +1,73 @@
 """
 Modèles SQLAlchemy
+
+```mermaid
+
+erDiagram
+    %% Tables principales
+    users {
+        int id "PRIMARY KEY"
+        str username "NOT NULL"
+        str email "NOT NULL"
+        str password_hash "NOT NULL"
+        bool is_admin "NOT NULL"
+
+    }
+
+    rooms {
+        int id "PRIMARY KEY"
+        str name "NOT NULL"
+        str url_name "NOT NULL"
+        str description "NOT NULL"
+        str instructions "NOT NULL"
+        str victim_vm_ids "NOT NULL"
+    }
+
+
+    virtual_machines {
+        uuid uuid "PRIMARY KEY"
+        int proxmox_id "NOT NULL"
+        int user_id "NOT NULL"
+        int template_vm_id "NOT NULL"
+        str mac_address "NOT NULL"
+        int room_id
+        int display_post
+    }
+
+    questions {
+        int id "PRIMARY KEY"
+        int room_id "NOT NULL"
+        str prompt "NOT NULL"
+        str answer "NOT NULL"
+        int points "NOT NULL"
+    }
+
+    %% Tables de jointure
+    user_question_data {
+        int user_id "PRIMARY KEY"
+        int question_id "PRIMARY KEY"
+        int solved_at "NOT NULL"
+    }
+
+    room_user {
+        int room_id "PRIMARY KEY"
+        int user_id "PRIMARY KEY"
+    }
+
+
+    %% Relations
+    virtual_machines 0+--1 users : "posseder"
+    
+    rooms 1--1 room_user : "être participer par"
+    users 1--1 room_user : "participer à"
+
+    users 1--1 user_question_data : "répondre"
+    questions 1--1 user_question_data : "répondu par"
+
+    virtual_machines |o--1 rooms: "créé pour"
+    questions 0+--1 rooms: "appartenir"
+
+```
 """
 from flask import has_app_context
 

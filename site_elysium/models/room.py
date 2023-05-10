@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Author: Mattlau04
-# @Date:   2023-05-04 19:21:24
-# @Last Modified by:   Mattlau04
-# @Last Modified time: 2023-05-09 23:46:08
 """
 Modèle SQLAlchemy représentant une room
 """

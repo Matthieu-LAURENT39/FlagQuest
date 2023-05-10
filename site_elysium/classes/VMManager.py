@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Author: Mattlau04
-# @Date:   2023-05-04 19:21:24
-# @Last Modified by:   Mattlau04
-# @Last Modified time: 2023-05-10 08:08:41
 """
 Une classe qui gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs
 """

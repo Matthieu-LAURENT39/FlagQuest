@@ -1,5 +1,23 @@
 """
 Une classe qui gère l'allocations de ressources a partir d'une source
+
+
+```mermaid
+
+classDiagram
+
+    class VMManager~Generic[Resource]~{
+        + __init__(Iterator[Resource] source, Optional[set[Resource]] allocated = None) None
+        + allocate(): Resource
+        + free(Resource resource): None
+        + Iterator[Resource] source
+        - set[Resource] _allocated
+        - Lock _lock
+    }
+
+    VMManager "1" -- "1" Lock
+    
+```
 """
 
 from typing import Iterator, Optional, TypeVar, Generic
