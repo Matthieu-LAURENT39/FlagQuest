@@ -1,1 +1,1 @@
-pdoc site_elysium -o './docs' -d google --footer-text "Projet BTS 2023 - Matthieu L. / Adrien B. / Stefen I."
+pdoc site_elysium -o './docs' -d google --footer-text "Projet BTS 2023 - Matthieu L. / Adrien B. / Stefen I." --edit-url site_elysium='https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/'
