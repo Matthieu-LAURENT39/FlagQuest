@@ -382,8 +382,11 @@ Voir également <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#we
 
             <div class="docstring"><p>Défini le mot de passe d'un utilisateur en stockant son hash</p>
 
-<p>Args:
-    password (str): Le nouveau mot de passe en clair de l'utilisateur</p>
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>password (str):</strong>  Le nouveau mot de passe en clair de l'utilisateur</li>
+</ul>
 </div>
 
 
@@ -414,11 +417,17 @@ Voir également <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#we
 
             <div class="docstring"><p>Vérifie que le mot de passe soit celui de l'utilisateur</p>
 
-<p>Args:
-    password (str): Le mot de passe en clair à vérifier</p>
+<h6 id="arguments">Arguments:</h6>
 
-<p>Returns:
-    bool: True si le mot de passe est correct, sinon False</p>
+<ul>
+<li><strong>password (str):</strong>  Le mot de passe en clair à vérifier</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>bool: True si le mot de passe est correct, sinon False</p>
+</blockquote>
 </div>
 
 
@@ -465,14 +474,23 @@ Voir également <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#we
 
             <div class="docstring"><p>Calcule le nombre de points que l'utilisateur avais a une certaine date</p>
 
-<p>Args:
-    date (datetime.date): La date pour laquelle calculer</p>
+<h6 id="arguments">Arguments:</h6>
 
-<p>Raises:
-    ValueError: La date est dans le futur</p>
+<ul>
+<li><strong>date (datetime.date):</strong>  La date pour laquelle calculer</li>
+</ul>
 
-<p>Returns:
-    int: Le nombre de points</p>
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>ValueError:</strong>  La date est dans le futur</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>int: Le nombre de points</p>
+</blockquote>
 </div>
 
 
@@ -527,11 +545,17 @@ Voir également <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#we
 
             <div class="docstring"><p>Gets the profile picture of a user as an image.</p>
 
-<p>Args:
-    size (int, optional): The size of the square, in pixels. Defaults to 250.</p>
+<h6 id="arguments">Arguments:</h6>
 
-<p>Returns:
-    bytes: A PNG image.</p>
+<ul>
+<li><strong>size (int, optional):</strong>  The size of the square, in pixels. Defaults to 250.</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>bytes: A PNG image.</p>
+</blockquote>
 </div>
 
 

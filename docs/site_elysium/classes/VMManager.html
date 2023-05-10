@@ -656,14 +656,20 @@
 
             <div class="docstring"><p>Initialise la classe</p>
 
-<p>Args:
-    api: (ProxmoxAPI): le client proxmox à utiliser
-    node_name (str): Le nom du node promox sur lequel stocker les VMs.
-    mac_manager (Allocator[str]): Un Allocator gérant l'allocation des adresses MAC.
-    display_port_manager (Allocator[int]): Un Allocator gérant l'allocation des display ports.</p>
+<h6 id="arguments">Arguments:</h6>
 
-<p>Raises:
-    ValueError: api n'a pas une auth valide.</p>
+<ul>
+<li><strong>api:</strong>  (ProxmoxAPI): le client proxmox à utiliser</li>
+<li><strong>node_name (str):</strong>  Le nom du node promox sur lequel stocker les VMs.</li>
+<li><strong>mac_manager (Allocator[str]):</strong>  Un Allocator gérant l'allocation des adresses MAC.</li>
+<li><strong>display_port_manager (Allocator[int]):</strong>  Un Allocator gérant l'allocation des display ports.</li>
+</ul>
+
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>ValueError:</strong>  api n'a pas une auth valide.</li>
+</ul>
 </div>
 
 
@@ -701,9 +707,12 @@
 
             <div class="docstring"><p>Allume une machine virtuelle.</p>
 
-<p>Args:
-    vm_id (int): L'id de la machine virtuelle.
-    wait_until_on (bool): Bloque jusque à ce que la VM soit en ligne.</p>
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>vm_id (int):</strong>  L'id de la machine virtuelle.</li>
+<li><strong>wait_until_on (bool):</strong>  Bloque jusque à ce que la VM soit en ligne.</li>
+</ul>
 </div>
 
 
@@ -741,9 +750,12 @@
 
             <div class="docstring"><p>Eteind une machine virtuelle.</p>
 
-<p>Args:
-    vm_id (int): L'id de la machine virtuelle.
-    wait_until_off (bool): Bloque jusque à ce que la VM soit hors ligne.</p>
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>vm_id (int):</strong>  L'id de la machine virtuelle.</li>
+<li><strong>wait_until_off (bool):</strong>  Bloque jusque à ce que la VM soit hors ligne.</li>
+</ul>
 </div>
 
 
@@ -799,12 +811,18 @@
             <div class="docstring"><p>Met en place une machine virtuelle à partir d'un template, avec une addresse IP,
 optionellement VNC. Il ne reste plus qu'a stoquer ces informations dans la base de donnée.</p>
 
-<p>Args:
-    template_id (int): L'ID du template à cloné.
-    vnc (bool, optional): Si True, alors un display port VNC sera alloué à la VM. Defaults to False.</p>
+<h6 id="arguments">Arguments:</h6>
 
-<p>Returns:
-    VirtualMachine: Les informations de la machine virtuelle.</p>
+<ul>
+<li><strong>template_id (int):</strong>  L'ID du template à cloné.</li>
+<li><strong>vnc (bool, optional):</strong>  Si True, alors un display port VNC sera alloué à la VM. Defaults to False.</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>VirtualMachine: Les informations de la machine virtuelle.</p>
+</blockquote>
 </div>
 
 
@@ -834,8 +852,11 @@ optionellement VNC. Il ne reste plus qu'a stoquer ces informations dans la base 
 
             <div class="docstring"><p>Supprime une VM sur proxmox.</p>
 
-<p>Args:
-    vm_id (int): L'ID de la VM à supprimer.</p>
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>vm_id (int):</strong>  L'ID de la VM à supprimer.</li>
+</ul>
 </div>
 
 

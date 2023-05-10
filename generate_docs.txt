@@ -1,1 +1,1 @@
-pdoc site_elysium -o './docs' --footer-text "Projet BTS 2023 - Matthieu L. / Adrien B. / Stefen I."
+pdoc site_elysium -o './docs' -d google --footer-text "Projet BTS 2023 - Matthieu L. / Adrien B. / Stefen I."
