@@ -2,7 +2,7 @@ import ipaddress
 
 from proxmoxer import ProxmoxAPI
 
-from site_elysium.classes import Allocator, ProxmoxVMManager
+from site_elysium.classes import Allocator, VMManager, ProxmoxVMManager
 import site_elysium.models
 from tools import ip_to_mac
 from flask import current_app
@@ -10,7 +10,7 @@ from flask import current_app
 _current_vm_manager = None
 
 
-def get_vm_manager() -> ProxmoxVMManager:
+def get_vm_manager() -> VMManager:
     global _current_vm_manager
     if _current_vm_manager is None:
         _proxmox_api = ProxmoxAPI(

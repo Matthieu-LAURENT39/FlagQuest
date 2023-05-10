@@ -10,9 +10,59 @@ from typing import Optional
 from proxmoxer import ProxmoxAPI
 
 from ..classes import Allocator
+from abc import ABC, abstractmethod
 
 
-class ProxmoxVMManager:
+class VMManager(ABC):
+    """
+    Abstract Base Class d'un gestionnaire de VM
+    """
+
+    @abstractmethod
+    def start_vm(self, vm_id: int, *, wait_until_on: bool = True):
+        """Allume une machine virtuelle.
+
+        Args:
+            vm_id (int): L'id de la machine virtuelle.
+            wait_until_on (bool): Bloque jusque à ce que la VM soit en ligne.
+        """
+        ...
+
+    @abstractmethod
+    def stop_vm(self, vm_id: int, *, wait_until_off: bool = True):
+        """Eteind une machine virtuelle.
+
+        Args:
+            vm_id (int): L'id de la machine virtuelle.
+            wait_until_off (bool): Bloque jusque à ce que la VM soit hors ligne.
+        """
+        ...
+
+    @abstractmethod
+    def setup(self, template_id: int, vm_name: str, vnc: bool = False) -> dict:
+        """Met en place une machine virtuelle à partir d'un template, avec une addresse IP,
+        optionellement VNC.
+
+        Args:
+            template_id (int): L'ID du template à cloné.
+            vnc (bool, optional): Si True, alors un display port VNC sera alloué à la VM. Defaults to False.
+
+        Returns:
+            VirtualMachine: Les informations de la machine virtuelle.
+        """
+        ...
+
+    @abstractmethod
+    def delete_vm(self, vm_id: int):
+        """Supprime une VM sur proxmox.
+
+        Args:
+            vm_id (int): L'ID de la VM à supprimer.
+        """
+        ...
+
+
+class ProxmoxVMManager(VMManager):
     """
     Gère les interactions avec l'hyperviseur (proxmox) ainsi que les VMs
     """
