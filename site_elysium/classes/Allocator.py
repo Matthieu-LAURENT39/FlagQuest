@@ -6,7 +6,7 @@ Une classe qui gère l'allocations de ressources a partir d'une source
 
 classDiagram
 
-    class VMManager~Generic[Resource]~{
+    class Allocator~Generic[Resource]~{
         + __init__(Iterator[Resource] source, Optional[set[Resource]] allocated = None) None
         + allocate(): Resource
         + free(Resource resource): None
@@ -15,7 +15,7 @@ classDiagram
         - Lock _lock
     }
 
-    VMManager "1" -- "1" Lock
+    Allocator "1" -- "1" Lock
     
 ```
 """
