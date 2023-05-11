@@ -70,7 +70,7 @@ Profile - {{user.username}}
                     {% if user_rooms %}
 
                     {% for r in user_rooms %}
-                    <a class="room-launched" href="{{url_for('main.classement') }}">
+                    <a class="room-launched" href="{{url_for('main.room', room_url_name=r.url_name) }}">
                         <h3 class="room-title m-0">{{r.name}}</h3>
                         <div class="img-room">
                             <img src="/static/img/virtual_env.svg">
