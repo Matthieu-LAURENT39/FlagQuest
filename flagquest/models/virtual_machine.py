@@ -7,12 +7,14 @@ from typing import Optional
 from uuid import UUID, uuid4
 
 from flask import current_app
+from sqlalchemy.event import listens_for
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy_utils import UUIDType
 
 from tools import mac_to_ip
 
 from . import _current_base
+from vm import get_vm_manager
 
 
 # class VMType(enum.Enum):
@@ -70,3 +72,10 @@ class VirtualMachine(_current_base):
         if self.display_port is None:
             return None
         return self.display_port + 5900
+
+
+@listens_for(VirtualMachine, "after_delete")
+def after_user_delete(mapper, connection, target: VirtualMachine):
+    """Supprime automatiquement la VM proxmox correspondante lorsqu'elle est supprimé de la VM"""
+    mgr = get_vm_manager()
+    mgr.delete_vm(target.proxmox_id)
