@@ -71,3 +71,31 @@
     </div>
 </div>
 {% endmacro %}
+
+{% macro progress_bar(nbr_question_solved, nbr_question_total) -%}
+{% if nbr_question_total == 0 %}
+{% set progress_percentage = 0 %}
+{% else %}
+{% set progress_percentage = (nbr_question_solved / nbr_question_total*100)|round|int %}
+{% endif %}
+<div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary mb-0">
+    <div class="row">
+        <div class="col">
+            <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>
+            <div class="progress">
+                <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if nbr_question_solved == nbr_question_total else ''}}"
+                    aria-valuenow="{{nbr_question_solved}}" aria-valuemin="0" aria-valuemax="{{nbr_question_total}}"
+                    style="width: {{ progress_percentage }}%">
+                </div>
+            </div>
+        </div>
+        <!-- button SUPPRIMER VM ----- call :  deleteVms() -->
+        <div class="col-md-auto delete-vms-button-container" style="display: none;">
+            <button type="submit" name="submit_param" value="submit_value" onclick="deleteVms();"
+                class="btn text-danger rounded-1 border-2 active fw-semibold m-2 align-self-end delete-vms-button"
+                role="button">Supprimer les VMs
+            </button>
+        </div>
+    </div>
+</div>
+{% endmacro %}

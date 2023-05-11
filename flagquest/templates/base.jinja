@@ -46,7 +46,7 @@
 </head>
 
 
-<body class="bg-black">
+<body {% block body_args %}class="bg-black" {% endblock body_args %}>
     {% block header %}
     <header class="text-dark bg-transparent">
         <div class="container-fluid m-0">
