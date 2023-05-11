@@ -1,15 +1,10 @@
 {% extends 'base.jinja' %}
-{% from 'macros/_room.jinja' import question_widget with context %}
+{% from 'macros/_room.jinja' import question_widget, progress_bar with context %}
 
 {# Variables pour plus tard #}
 {% set user_is_in_room = current_user in room.users %}
 {# {% set nbr_question_solved = sum(q.is_solved_by(current_user) for q in room.questions) %} #}
 {% set nbr_question_total = room.questions | length %}
-{% if nbr_question_total == 0 %}
-{% set progress_percentage = 0 %}
-{% else %}
-{% set progress_percentage = (nbr_question_solved / nbr_question_total*100)|round|int %}
-{% endif %}
 
 {% block title %}
 {{ super() }} - {{room.name}}
@@ -103,7 +98,7 @@
         console.log(data)
         vmInfoDiv = document.getElementById("victim-vm-info-data")
         vmInfoDiv.innerHTML = ""
-        document.getElementById("delete-vms-button-container").style.display = ''
+        $('.delete-vms-button-container').css('display', '');
 
         for (const i in data) {
             var para = document.createElement("p");
@@ -140,7 +135,7 @@
         console.log(data)
         vmInfoDiv = document.getElementById("attack-vm-info-data");
         vmInfoDiv.innerHTML = ""
-        document.getElementById("delete-vms-button-container").style.display = ''
+        $('.delete-vms-button-container').css('display', '');
 
         let label_data = { "IP Address": data.ip_address, "VNC Port": data.vnc_port, "Login": data.username, "Mot de passe": data.password };
         for (let [key, value] of Object.entries(label_data)) {
@@ -215,7 +210,7 @@
 
     function deleteVms() {
         // Disable the button so the users gets feedback
-        $('#delete-vms-button').prop('disabled', true);
+        $('.delete-vms-button').prop('disabled', true);
 
         fetch('{{ url_for('api.VM_delete_vms_resource') }}', {
             method: 'POST',
@@ -232,7 +227,7 @@
                 console.error('Error while deleting VMs:', error);
                 showErrorToast("Erreur lors de la suppression des VMs.");
                 // Re-enable button so user can try again
-                $('#delete-vms-button').prop('disabled', false);
+                $('.delete-vms-button').prop('disabled', false);
             });
     }
 
@@ -244,153 +239,190 @@
 </script>
 {% endblock head %}
 
+
+{% block body_args %}{{super()}} data-bs-spy="scroll" data-bs-target="#nav-questions"{% endblock body_args %}
+
 {% block content %}
 <main>
     <!-- partie consigne - progression - questions -->
-    <div class="container">
-        {# Si l'utilisateur n'est pas dans la room, on lui propose de la rejoindre #}
-        {% if current_user.is_authenticated %}
-        {% if not user_is_in_room %}
-        <div class="align-item-top">
-            {#
-            <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
-                class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
-                la room
-            </a>
-            #}
-            <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
-                class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
-                la room
-            </button>
-        </div>
-        {% else %}
-        {# * l'utilisateur est dans la room, on lui propose de lancer les VMs #}
-        <div id="vm-info-container" class="row p-2">
-            <div id="attack-vm-info-container" class="bg-white rounded-3 m-3 mb-0 p-4 col">
-                <h2>VM attaque:</h2>
-                <div id="attack-vm-info-data">
-                    <p class="placeholder-wave"><span class="placeholder col-6"></span></p>
-                    <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
-                    <p class="placeholder-wave"><span class="placeholder col-5"></span></p>
-                    <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
-                </div>
-                {# button lancer VM attaque -> call : requestAttackVMs() #}
-                <button type="submit" name="submit_param" value="submit_value" onclick="requestAttackVMs();"
-                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button"
-                    style="display: none;" id="request-attack-vm-button">Lancers la VM d'attaque
+    <div class="container-fluid px-5">
+
+        {# Block VMs #}
+        <div class="container-lg">
+            {# Si l'utilisateur n'est pas dans la room, on lui propose de la rejoindre #}
+            {% if current_user.is_authenticated %}
+            {% if not user_is_in_room %}
+            <div class="align-item-top">
+                {#
+                <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
+                    la room
+                </a>
+                #}
+                <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
+                    la room
                 </button>
             </div>
-
-            {% if room.victim_vm_ids %}
-            <div id="victim-vm-info-container" class="bg-white rounded-3 m-3 mb-0 p-4 col">
-                <h2>VMs victimes:</h2>
-                <div id="victim-vm-info-data">
-                    <p class="placeholder-wave"><span class="placeholder col-6"></span></p>
-                    <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
-                    <p class="placeholder-wave"><span class="placeholder col-5"></span></p>
-                    <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
-                </div>
-                <div id="request-victim-vms" class="">
-                    {# button lancer VM victime -> call : requestVictimVMs() #}
-                    <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
-                        class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
-                        style="display: none;" id="request-victim-vms-button">Lancers les VMs victimes
+            {% else %}
+            {# * l'utilisateur est dans la room, on lui propose de lancer les VMs #}
+            <div id="vm-info-container" class="row p-2">
+                <div id="attack-vm-info-container" class="bg-white rounded-3 m-3 mb-0 p-4 col">
+                    <h2>VM attaque:</h2>
+                    <div id="attack-vm-info-data">
+                        <p class="placeholder-wave"><span class="placeholder col-6"></span></p>
+                        <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
+                        <p class="placeholder-wave"><span class="placeholder col-5"></span></p>
+                        <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
+                    </div>
+                    {# button lancer VM attaque -> call : requestAttackVMs() #}
+                    <button type="submit" name="submit_param" value="submit_value" onclick="requestAttackVMs();"
+                        class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button"
+                        style="display: none;" id="request-attack-vm-button">Lancers la VM d'attaque
                     </button>
                 </div>
-            </div>
-            {% endif %}
-        </div>
 
-
-        {% endif %}
-        {% endif %}
-        {% block room_info %}
-        <div class="p-2">
-            <div class="bg-white rounded-3 p-4">
-                {{ room.instructions | markdown }}
-            </div>
-        </div>
-        {% endblock %}
-
-        <!-- Confettis -->
-        {% if nbr_question_solved == nbr_question_total %}
-        <script>
-            confetti({ particleCount: 500, spread: 95, origin: { y: 1.5 }, startVelocity: 130, });
-        </script>
-        {% endif %}
-
-        {% block progession %}
-        {# si l'user est CONNECTE et est DANS LA ROOM ---> afficher progression #}
-        {% if current_user.is_authenticated %}
-        {% if user_is_in_room %}
-        <script>
-            // légère animation de la progression lorsque l'on scroll vers le bas
-            window.onscroll = function () { scrollFunction() };
-            function scrollFunction() {
-                var progressBar = document.getElementById("progress-bar-scroll")
-                // Si la progress bar est "pinned"
-                if (progressBar.getBoundingClientRect().top <= 50) {
-                    document.getElementById("progress-bar-scroll").removeAttribute('class');
-                    document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 px-4 py-2 pb-3 justify-content-center border border-2 border-primary progress-bar-vertical-transition mt-2")
-                    document.getElementById("progress-bar-scroll").setAttribute("style", "width: 80%;")
-                } else {
-                    document.getElementById("progress-bar-scroll").removeAttribute('class');
-                    document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 p-4 justify-content-center border border-2 border-primary progress-bar-vertical-transition")
-                    document.getElementById("progress-bar-scroll").setAttribute("style", "width: 100%;")
-                }
-            }
-        </script>
-        <div class="mx-2 sticky-top pb-1 d-flex justify-content-center">
-            <!-- Progression -->
-            <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
-                id="progress-bar-scroll" style="width: 100%">
-                <div class="row">
-                    <div class="col">
-                        <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>
-                        <div class="progress">
-                            <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if nbr_question_solved == nbr_question_total else ''}}"
-                                aria-valuenow="{{nbr_question_solved}}" aria-valuemin="0"
-                                aria-valuemax="{{nbr_question_total}}" style="width: {{ progress_percentage }}%"></div>
-                        </div>
+                {% if room.victim_vm_ids %}
+                <div id="victim-vm-info-container" class="bg-white rounded-3 m-3 mb-0 p-4 col">
+                    <h2>VMs victimes:</h2>
+                    <div id="victim-vm-info-data">
+                        <p class="placeholder-wave"><span class="placeholder col-6"></span></p>
+                        <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
+                        <p class="placeholder-wave"><span class="placeholder col-5"></span></p>
+                        <p class="placeholder-wave"><span class="placeholder col-4"></span></p>
                     </div>
-                    <!-- button SUPPRIMER VM ----- call :  deleteVms() -->
-                    <div class="col-2" id="delete-vms-button-container" style="display: none;">
-                        <button type="submit" name="submit_param" value="submit_value" onclick="deleteVms();"
-                            class="btn text-danger rounded-1 border-2 active fw-semibold m-2 align-self-end"
-                            role="button" id="delete-vms-button">Supprimer les VMs
+                    <div id="request-victim-vms" class="">
+                        {# button lancer VM victime -> call : requestVictimVMs() #}
+                        <button type="submit" name="submit_param" value="submit_value" onclick="requestVictimVMs();"
+                            class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end"
+                            role="button" style="display: none;" id="request-victim-vms-button">Lancers les VMs
+                            victimes
                         </button>
                     </div>
                 </div>
+                {% endif %}
             </div>
-            {# <!-- VM --> #}
-            {# <iframe class="responsive-iframe " style="width: 100% height: 100%;"
-                src="http://172.17.50.249:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale">
-            </iframe> #}
-            {# <iframe class="responsive-iframe " sandbox='allow-same-origin allow-scripts allow-modals'
-                style="width: 100% height: 100%;" src="{{vnc_url}}">
-            </iframe> #}
-            {# <iframe class="responsive-iframe " style="width: 100% height: 100%;" src="{{vnc_url}}">
-            </iframe> #}
         </div>
         {% endif %}
         {% endif %}
-        {% endblock %}
 
-        {% block questions %}
-        {# pour chaque question #}
-        {% for q in room.questions %}
-        {# disabled - la question est bloqué si l'user n'est pas co OU s'il a résolu la question #}
-        {{ question_widget(q, disabled=(not current_user.is_authenticated or q.is_solved_by(current_user) or not
-        user_is_in_room),
-        solved=(current_user.is_authenticated and q.is_solved_by(current_user)))}}
-        {% endfor %}
-        {% endblock %}
-        {% if current_user.is_authenticated and current_user.is_admin %}
-        <button type="submit" name="submit_param" value="submit_value" onclick="createQuestion();"
-            class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
-            id="add-question">Ajouter une question
-        </button>
-        {% endif %}
-    </div>
+        <div class="container-fluid pt-0">
+            <div class="d-lg-none">
+                {{ progress_bar(nbr_question_solved, nbr_question_total) }}
+            </div>
+
+            <div class="row">
+                {# Navbar - Seulement afficher sur les grands écrans #}
+                <div class="col-4 d-none d-lg-block p-0">
+                    <div class="sticky-top pt-3">
+                        {{ progress_bar(nbr_question_solved, nbr_question_total) }}
+                        <div id="list-example" class="list-group mt-3">
+                            <a class="list-group-item list-group-item-action" href="#room-info">Consignes</a>
+                            {% for q in room.questions %}
+                            <a class="list-group-item list-group-item-action"
+                                href="#question_block-{{q.id}}">{{q.prompt}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                {# Parti room / questions #}
+                <div class="col pe-0">
+                    {% block room_info %}
+                    <div class="p-2 pt-3" id="room-info">
+                        <div class="bg-white rounded-3 p-4">
+                            {{ room.instructions | markdown }}
+                        </div>
+                    </div>
+                    {% endblock %}
+
+                    <!-- Confettis -->
+                    {% if nbr_question_solved == nbr_question_total %}
+                    <script>
+                        confetti({ particleCount: 500, spread: 95, origin: { y: 1.5 }, startVelocity: 130, });
+                    </script>
+                    {% endif %}
+
+                    {% block progession %}
+                    {# si l'user est CONNECTE et est DANS LA ROOM ---> afficher progression #}
+                    {% if current_user.is_authenticated %}
+                    {% if user_is_in_room %}
+                    {#
+                    <script>
+                        // légère animation de la progression lorsque l'on scroll vers le bas
+                        window.onscroll = function () { scrollFunction() };
+                        function scrollFunction() {
+                            var progressBar = document.getElementById("progress-bar-scroll")
+                            // Si la progress bar est "pinned"
+                            if (progressBar.getBoundingClientRect().top <= 50) {
+                                document.getElementById("progress-bar-scroll").removeAttribute('class');
+                                document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 px-4 py-2 pb-3 justify-content-center border border-2 border-primary progress-bar-vertical-transition mt-2")
+                                document.getElementById("progress-bar-scroll").setAttribute("style", "width: 80%;")
+                            } else {
+                                document.getElementById("progress-bar-scroll").removeAttribute('class');
+                                document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 p-4 justify-content-center border border-2 border-primary progress-bar-vertical-transition")
+                                document.getElementById("progress-bar-scroll").setAttribute("style", "width: 100%;")
+                            }
+                        }
+                    </script> #}
+                    {# <div class="mx-2 sticky-top pb-1 d-flex justify-content-center"> #}
+                        <!-- Progression -->
+                        {# <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
+                            id="progress-bar-scroll" style="width: 100%">
+                            <div class="row">
+                                <div class="col">
+                                    <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>
+                                    <div class="progress">
+                                        <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if nbr_question_solved == nbr_question_total else ''}}"
+                                            aria-valuenow="{{nbr_question_solved}}" aria-valuemin="0"
+                                            aria-valuemax="{{nbr_question_total}}"
+                                            style="width: {{ progress_percentage }}%"></div>
+                                    </div>
+                                </div>
+                                <!-- button SUPPRIMER VM ----- call :  deleteVms() -->
+                                <div class="col-md-auto" id="delete-vms-button-container" style="display: none;">
+                                    <button type="submit" name="submit_param" value="submit_value"
+                                        onclick="deleteVms();"
+                                        class="btn text-danger rounded-1 border-2 active fw-semibold m-2 align-self-end"
+                                        role="button" id="delete-vms-button">Supprimer les VMs
+                                    </button>
+                                </div>
+                            </div>
+                        </div> #}
+                        {# <!-- VM --> #}
+                        {# <iframe class="responsive-iframe " style="width: 100% height: 100%;"
+                            src="http://172.17.50.249:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale">
+                        </iframe> #}
+                        {# <iframe class="responsive-iframe " sandbox='allow-same-origin allow-scripts allow-modals'
+                            style="width: 100% height: 100%;" src="{{vnc_url}}">
+                        </iframe> #}
+                        {# <iframe class="responsive-iframe " style="width: 100% height: 100%;" src="{{vnc_url}}">
+                        </iframe> #}
+                        {#
+                    </div> #}
+                    {% endif %}
+                    {% endif %}
+                    {% endblock %}
+
+                    {% block questions %}
+                    {# pour chaque question #}
+                    {% for q in room.questions %}
+                    {# Le widget à un id de "question_block-{{question.id}}"" #}
+                    {# disabled - la question est bloqué si l'user n'est pas co OU s'il a résolu la question #}
+                    {{ question_widget(q, disabled=(not current_user.is_authenticated or q.is_solved_by(current_user) or
+                    not
+                    user_is_in_room),
+                    solved=(current_user.is_authenticated and q.is_solved_by(current_user)))}}
+                    {% endfor %}
+                    {% endblock %}
+                    {% if current_user.is_authenticated and current_user.is_admin %}
+                    <button type="submit" name="submit_param" value="submit_value" onclick="createQuestion();"
+                        class="btn text-success rounded-1 border-2 active fw-semibold m-2 align-self-end" role="button"
+                        id="add-question">Ajouter une question
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 </main>
 {% endblock %}
