@@ -32,6 +32,7 @@ from __future__ import annotations
 import time
 from threading import Lock
 from typing import Optional
+from flask import current_app
 
 from proxmoxer import ProxmoxAPI
 
@@ -222,7 +223,7 @@ class ProxmoxVMManager(VMManager):
             mac_address (str): L'adresse mac, de la forme 'AA:BB:CC:DD:EE:FF'
         """
         self.api.nodes(self.node_name).qemu(vm_id).config.post(
-            net0=f"virtio,macaddr={mac_address}"
+            net0=f"virtio,macaddr={mac_address},bridge={current_app.config['PROXMOX_VM_BRIDGE']}"
         )
 
     def start_vm(self, vm_id: int, *, wait_until_on: bool = True):

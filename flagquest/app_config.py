@@ -73,3 +73,6 @@ ATTACK_VM_PASSWORD: str = "ubuntu"
 Le mot de passe pour la VM d'attaque.
 Changer cette valeur ne change pas automatiquement le mot de passe sur la VM!
 """
+
+PROXMOX_VM_BRIDGE: str = "vmbr1"
+"""L'interface sur laquelle doivent être placer les VMs"""
