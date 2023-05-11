@@ -1,6 +1,6 @@
 {
     "python.analysis.typeCheckingMode": "off",
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "none",
     "python.linting.flake8Enabled": true,
     "autoDocstring.docstringFormat": "google",
     "autoDocstring.quoteStyle": "\"\"\"",
@@ -74,4 +74,7 @@
     "codesnap.showWindowTitle": false,
     "codesnap.target": "container",
     "codesnap.realLineNumbers": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
 }
