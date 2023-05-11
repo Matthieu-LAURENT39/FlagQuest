@@ -216,6 +216,7 @@
                             document.getElementById("request-victim-vms-button").style.display = ''
                         } else {
                             // Show the info of the existing VMs
+                            console.debug("Found existing victim VMs")
                             displayVictimVMInfos(data)
                         }
                     })
@@ -227,6 +228,7 @@
                     .then(data => {
                         if (data.exists) {
                             // Show the info of the existing VMs
+                            console.debug("Found existing attack VMs")
                             displayAttackVMInfos(data)
                         } else {
                             // We don't have any VMs, show the "request VM" button
@@ -238,6 +240,9 @@
             }
 
             function deleteVms() {
+                // Disable the button so the users gets feedback
+                $('#delete-vms-button').prop('disabled', true);
+
                 fetch('{{ url_for('api.VM_delete_vms_resource') }}', {
                     method: 'POST',
                     headers: {
@@ -247,8 +252,14 @@
                 })
                     .then(response => response.json())
                     // .then(response => alert(JSON.stringify(response)))
-                    // refresh la page une fois que les VMs sont supprimé
+                    // refresh the page once the VMs are deleted
                     .then(response => location.reload(true))
+                    .catch(error => {
+                        console.error('Error while deleting VMs:', error);
+                        showErrorToast("Erreur lors de la suppression des VMs.");
+                        // Re-enable button so user can try again
+                        $('#delete-vms-button').prop('disabled', false);
+                    });
             }
 
             $(document).ready(function () {

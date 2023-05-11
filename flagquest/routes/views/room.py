@@ -49,7 +49,7 @@ def room(room_url_name: str):
         user_existing_vms = None
         user_attack_vm = None
 
-    # from vm import get_vm_manager
+    # from flagquest.vm import get_vm_manager
 
     # vm_manager = get_vm_manager()
     # # vnc_url = f"https://172.17.50.250:8006/vnc.html?host=172.17.50.250&port=6080&autoconnect=true&resize=scale"

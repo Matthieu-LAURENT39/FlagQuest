@@ -64,7 +64,7 @@ class GetExistingAttackVmResource(Resource):
 
     method_decorators = [login_required]
 
-    @vm_namespace.marshal_with(attack_vm_model, as_list=False)
+    # @vm_namespace.marshal_with(attack_vm_model, as_list=False)
     def get(self):
         """Obtient des informations sur la VM d'attaque existante"""
 
@@ -142,7 +142,6 @@ class RequestAttackVmResource(Resource):
             )
 
             vm_infos = vm_manager.setup(attack_vm_id, user_attack_vm.vm_name, vnc=True)
-
             user_attack_vm.mac_address = vm_infos["mac_address"]
             user_attack_vm.display_port = vm_infos["display_port"]
             user_attack_vm.proxmox_id = vm_infos["vm_id"]
@@ -231,10 +230,7 @@ class DeleteVmsResource(Resource):
         ).all()
 
         for vm in vms:
-            vm_manager.delete_vm(vm.proxmox_id)
             db.session.delete(vm)
 
         db.session.commit()
-        # Wait a bit to avoid race conditions
-        time.sleep(0.1)
         return {}
