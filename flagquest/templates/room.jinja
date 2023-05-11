@@ -253,12 +253,6 @@
             {% if current_user.is_authenticated %}
             {% if not user_is_in_room %}
             <div class="align-item-top">
-                {#
-                <a href="{{ url_for('api.join_room', room_url_name=room.url_name) }}"
-                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
-                    la room
-                </a>
-                #}
                 <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
                     class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
                     la room
@@ -302,9 +296,9 @@
                 </div>
                 {% endif %}
             </div>
+            {% endif %}
+            {% endif %}
         </div>
-        {% endif %}
-        {% endif %}
 
         <div class="container-fluid pt-0">
             <div class="d-lg-none">
@@ -319,8 +313,8 @@
                         <div id="list-example" class="list-group mt-3">
                             <a class="list-group-item list-group-item-action" href="#room-info">Consignes</a>
                             {% for q in room.questions %}
-                            <a class="list-group-item list-group-item-action"
-                                href="#question_block-{{q.id}}">{{q.prompt}}</a>
+                            <a class="list-group-item list-group-item-action" href="#question_block-{{q.id}}">{{q.prompt
+                                | markdown}}</a>
                             {% endfor %}
                         </div>
                     </div>
