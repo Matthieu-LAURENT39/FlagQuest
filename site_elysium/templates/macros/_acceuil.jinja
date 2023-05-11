@@ -1,11 +1,15 @@
+{# bloc bouton accès rooms #}
 {% macro room_widget(name, description, template_name, size=6) -%}
 <div class="col-md-{{size}} p-3">
     <div class="room-widget h-100 p-5 rounded-3 text-black">
         <h2>{{name|e}}</h2>
         <p>{{description|markdown}}</p>
+        {# bouton lancer la room #}
         <a href="/room/{{template_name}}" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
             role="button">Lancer</a>
+        {# si l'utilisateur est administrateur #}
         {% if current_user and current_user.is_admin==true %}
+        {# bouton supervision #}
         <a href="/room/supervision/{{template_name}}"
             class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5" role="button">Supervision</a>
         {% endif%}
