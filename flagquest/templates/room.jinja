@@ -21,6 +21,21 @@
 <script src="{{url_for('static', filename='script/room.js')}}"></script>
 
 <script>
+    // fonction button Rejoindre la room
+    function joinRoom() {
+        fetch('{{ url_for('api.Room_room_join_resource', room_url_name = room.url_name) }}', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            // .then(response => alert(JSON.stringify(response)))
+            // refresh la page une fois que la room est rejoint
+            .then(response => location.reload(true))
+    }
+
     function answerQuestion(question_id) {
         // On récupère la réponse actuelle
         let answer_field = document.getElementById(`question_answer-${question_id}`)
@@ -73,6 +88,159 @@
             // refresh la page une fois que la room est rejoint
             .then(location.reload(true))
     }
+
+    function existingVictimVMInfos() {
+        vmInfoDiv = document.getElementById("victim-vm-info")
+        for (const i in response) {
+            var para = document.createElement("p");
+            var node = document.createTextNode(response[i].ip_address);
+            para.appendChild(node);
+            vmInfoDiv.appendChild(para)
+        }
+    }
+
+    function displayVictimVMInfos(data) {
+        console.log(data)
+        vmInfoDiv = document.getElementById("victim-vm-info-data")
+        vmInfoDiv.innerHTML = ""
+        document.getElementById("delete-vms-button-container").style.display = ''
+
+        for (const i in data) {
+            var para = document.createElement("p");
+            var node = document.createTextNode(data[i].ip_address);
+            para.appendChild(node);
+            vmInfoDiv.appendChild(para)
+        }
+    }
+
+    function requestVictimVMs() {
+        document.getElementById("victim-vm-info-data").style.display = ''
+        document.getElementById("request-victim-vms-button").style.display = 'none'
+        fetch("{{ url_for('api.VM_request_victim_vms_resource', room_url_name = room.url_name) }}", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            // .then(response => alert(JSON.stringify(response)))
+            .then(data => displayVictimVMInfos(data))
+            .then(document.getElementById("request-victim-vms-button").style.display = 'none')
+            .then(document.getElementById("victim-vm-info-container").style.display = 'block')
+            .catch(error => {
+                console.error("Error creating the victim VMs: ", error)
+                showErrorToast("Error lors de la création des VMs victimes!")
+                document.getElementById("victim-vm-info-data").style.display = 'none'
+                document.getElementById("request-victim-vms-button").style.display = ''
+            });
+    }
+
+    function displayAttackVMInfos(data) {
+        console.log(data)
+        vmInfoDiv = document.getElementById("attack-vm-info-data");
+        vmInfoDiv.innerHTML = ""
+        document.getElementById("delete-vms-button-container").style.display = ''
+
+        let label_data = { "IP Address": data.ip_address, "VNC Port": data.vnc_port, "Login": data.username, "Mot de passe": data.password };
+        for (let [key, value] of Object.entries(label_data)) {
+            var para = document.createElement("p");
+            var node = document.createTextNode(key + ": " + value);
+            para.appendChild(node);
+            vmInfoDiv.appendChild(para)
+        }
+        // Direct connection button
+        var link = document.createElement("a");
+        link.setAttribute("href", `com.realvnc.vncviewer.connect://${data.ip_address}:${data.vnc_port}`);
+        link.setAttribute("class", "btn btn-primary")
+        link.textContent = "Ouvrir avec RealVNC Viewer";
+        vmInfoDiv.appendChild(link)
+    }
+
+    function requestAttackVMs() {
+        document.getElementById("attack-vm-info-data").style.display = ''
+        document.getElementById("request-attack-vm-button").style.display = 'none'
+        fetch('{{ url_for("api.VM_request_attack_vm_resource") }}', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            //.then(response => alert(JSON.stringify(response)))
+            .then(response => displayAttackVMInfos(response))
+            .then(document.getElementById("request-attack-vm-button").style.display = 'none')
+            .catch(error => {
+                console.error("Error creating the attack VM: ", error)
+                showErrorToast("Error lors de la création de la VM d'attaque!")
+                document.getElementById("attack-vm-info-data").style.display = 'none'
+                document.getElementById("request-attack-vm-button").style.display = ''
+            });
+    }
+
+    function setupVMInfos() {
+        // On met en place les VMs victimes
+        fetch("{{url_for('api.VM_get_existing_victim_vm_resource', room_url_name=room.url_name)}}")
+            .then(response => response.json())
+            .then(data => {
+                if (data.length == 0) {
+                    // We don't have any VMs, show the "request VM" button
+                    document.getElementById("victim-vm-info-data").style.display = 'none'
+                    document.getElementById("request-victim-vms-button").style.display = ''
+                } else {
+                    // Show the info of the existing VMs
+                    console.debug("Found existing victim VMs")
+                    displayVictimVMInfos(data)
+                }
+            })
+            .catch(error => console.error(error));
+
+        // On met en place la VM d'attaque
+        fetch("{{url_for('api.VM_get_existing_attack_vm_resource')}}")
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    // Show the info of the existing VMs
+                    console.debug("Found existing attack VMs")
+                    displayAttackVMInfos(data)
+                } else {
+                    // We don't have any VMs, show the "request VM" button
+                    document.getElementById("attack-vm-info-data").style.display = 'none'
+                    document.getElementById("request-attack-vm-button").style.display = ''
+                }
+            })
+            .catch(error => console.error(error));
+    }
+
+    function deleteVms() {
+        // Disable the button so the users gets feedback
+        $('#delete-vms-button').prop('disabled', true);
+
+        fetch('{{ url_for('api.VM_delete_vms_resource') }}', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            // .then(response => alert(JSON.stringify(response)))
+            // refresh the page once the VMs are deleted
+            .then(response => location.reload(true))
+            .catch(error => {
+                console.error('Error while deleting VMs:', error);
+                showErrorToast("Erreur lors de la suppression des VMs.");
+                // Re-enable button so user can try again
+                $('#delete-vms-button').prop('disabled', false);
+            });
+    }
+
+    {% if user_is_in_room %}
+    $(document).ready(function () {
+        setupVMInfos();
+    });
+    {% endif %}
 </script>
 {% endblock head %}
 
@@ -90,23 +258,6 @@
                 la room
             </a>
             #}
-            <script>
-                // fonction button Rejoindre la room
-                function joinRoom() {
-                    fetch('{{ url_for('api.Room_room_join_resource', room_url_name = room.url_name) }}', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                    })
-                        .then(response => response.json())
-                        // .then(response => alert(JSON.stringify(response)))
-                        // refresh la page une fois que la room est rejoint
-                        .then(response => location.reload(true))
-                }
-            </script>
-
             <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
                 class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
                 la room
@@ -114,159 +265,6 @@
         </div>
         {% else %}
         {# * l'utilisateur est dans la room, on lui propose de lancer les VMs #}
-        <script>
-            function existingVictimVMInfos() {
-                vmInfoDiv = document.getElementById("victim-vm-info")
-                for (const i in response) {
-                    var para = document.createElement("p");
-                    var node = document.createTextNode(response[i].ip_address);
-                    para.appendChild(node);
-                    vmInfoDiv.appendChild(para)
-                }
-            }
-
-            function displayVictimVMInfos(data) {
-                console.log(data)
-                vmInfoDiv = document.getElementById("victim-vm-info-data")
-                vmInfoDiv.innerHTML = ""
-                document.getElementById("delete-vms-button-container").style.display = ''
-
-                for (const i in data) {
-                    var para = document.createElement("p");
-                    var node = document.createTextNode(data[i].ip_address);
-                    para.appendChild(node);
-                    vmInfoDiv.appendChild(para)
-                }
-            }
-
-            function requestVictimVMs() {
-                document.getElementById("victim-vm-info-data").style.display = ''
-                document.getElementById("request-victim-vms-button").style.display = 'none'
-                fetch("{{ url_for('api.VM_request_victim_vms_resource', room_url_name = room.url_name) }}", {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                })
-                    .then(response => response.json())
-                    // .then(response => alert(JSON.stringify(response)))
-                    .then(data => displayVictimVMInfos(data))
-                    .then(document.getElementById("request-victim-vms-button").style.display = 'none')
-                    .then(document.getElementById("victim-vm-info-container").style.display = 'block')
-                    .catch(error => {
-                        console.error("Error creating the victim VMs: ", error)
-                        showErrorToast("Error lors de la création des VMs victimes!")
-                        document.getElementById("victim-vm-info-data").style.display = 'none'
-                        document.getElementById("request-victim-vms-button").style.display = ''
-                    });
-            }
-
-            function displayAttackVMInfos(data) {
-                console.log(data)
-                vmInfoDiv = document.getElementById("attack-vm-info-data");
-                vmInfoDiv.innerHTML = ""
-                document.getElementById("delete-vms-button-container").style.display = ''
-
-                let label_data = { "IP Address": data.ip_address, "VNC Port": data.vnc_port, "Login": data.username, "Mot de passe": data.password };
-                for (let [key, value] of Object.entries(label_data)) {
-                    var para = document.createElement("p");
-                    var node = document.createTextNode(key + ": " + value);
-                    para.appendChild(node);
-                    vmInfoDiv.appendChild(para)
-                }
-                // Direct connection button
-                var link = document.createElement("a");
-                link.setAttribute("href", `com.realvnc.vncviewer.connect://${data.ip_address}:${data.vnc_port}`);
-                link.setAttribute("class", "btn btn-primary")
-                link.textContent = "Ouvrir avec RealVNC Viewer";
-                vmInfoDiv.appendChild(link)
-            }
-
-            function requestAttackVMs() {
-                document.getElementById("attack-vm-info-data").style.display = ''
-                document.getElementById("request-attack-vm-button").style.display = 'none'
-                fetch('{{ url_for("api.VM_request_attack_vm_resource") }}', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                })
-                    .then(response => response.json())
-                    //.then(response => alert(JSON.stringify(response)))
-                    .then(response => displayAttackVMInfos(response))
-                    .then(document.getElementById("request-attack-vm-button").style.display = 'none')
-                    .catch(error => {
-                        console.error("Error creating the attack VM: ", error)
-                        showErrorToast("Error lors de la création de la VM d'attaque!")
-                        document.getElementById("attack-vm-info-data").style.display = 'none'
-                        document.getElementById("request-attack-vm-button").style.display = ''
-                    });
-            }
-
-            function setupVMInfos() {
-                // On met en place les VMs victimes
-                fetch("{{url_for('api.VM_get_existing_victim_vm_resource', room_url_name=room.url_name)}}")
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.length == 0) {
-                            // We don't have any VMs, show the "request VM" button
-                            document.getElementById("victim-vm-info-data").style.display = 'none'
-                            document.getElementById("request-victim-vms-button").style.display = ''
-                        } else {
-                            // Show the info of the existing VMs
-                            console.debug("Found existing victim VMs")
-                            displayVictimVMInfos(data)
-                        }
-                    })
-                    .catch(error => console.error(error));
-
-                // On met en place la VM d'attaque
-                fetch("{{url_for('api.VM_get_existing_attack_vm_resource')}}")
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.exists) {
-                            // Show the info of the existing VMs
-                            console.debug("Found existing attack VMs")
-                            displayAttackVMInfos(data)
-                        } else {
-                            // We don't have any VMs, show the "request VM" button
-                            document.getElementById("attack-vm-info-data").style.display = 'none'
-                            document.getElementById("request-attack-vm-button").style.display = ''
-                        }
-                    })
-                    .catch(error => console.error(error));
-            }
-
-            function deleteVms() {
-                // Disable the button so the users gets feedback
-                $('#delete-vms-button').prop('disabled', true);
-
-                fetch('{{ url_for('api.VM_delete_vms_resource') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                })
-                    .then(response => response.json())
-                    // .then(response => alert(JSON.stringify(response)))
-                    // refresh the page once the VMs are deleted
-                    .then(response => location.reload(true))
-                    .catch(error => {
-                        console.error('Error while deleting VMs:', error);
-                        showErrorToast("Erreur lors de la suppression des VMs.");
-                        // Re-enable button so user can try again
-                        $('#delete-vms-button').prop('disabled', false);
-                    });
-            }
-
-            $(document).ready(function () {
-                setupVMInfos();
-            });
-        </script>
-
         <div id="vm-info-container" class="row p-2">
             <div id="attack-vm-info-container" class="bg-white rounded-3 m-3 mb-0 p-4 col">
                 <h2>VM attaque:</h2>
