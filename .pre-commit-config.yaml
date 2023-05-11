@@ -1,0 +1,24 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v3.2.0
+      hooks:
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-toml
+    - repo: https://github.com/psf/black
+      rev: 22.10.0
+      hooks:
+          - id: black
+    # - repo: local
+    #   hooks:
+    #       - id: pdoc
+    #         name: pdoc
+    #         description: "pdoc: Auto-generate API documentation for Python projects"
+    #         entry: pdoc flagquest -o './docs' -d google --mermaid --footer-text 'FlagQuest - Matthieu L. / Adrien B. / Stefen I.' --edit-url flagquest='https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/'
+    #         language: python
+    #         language_version: python3
+    #         require_serial: true
+    #         types: [python]
+    #         pass_filenames: false

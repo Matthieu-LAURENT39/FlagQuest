@@ -2,8 +2,8 @@ import pytest
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from site_elysium import create_app, db
-from site_elysium.flask_config import TestConfig
+from flagquest import create_app, db
+from flagquest.flask_config import TestConfig
 
 
 @pytest.fixture(scope="session")
@@ -25,7 +25,7 @@ def runner(app):
 
 def make_test_data(app: Flask, database: SQLAlchemy):
     with app.app_context():
-        from site_elysium.models import User, Room, Question
+        from flagquest.models import User, Room, Question
 
         # Les deux utilisateurs auquel on va se connecter
         user = User(
@@ -74,7 +74,7 @@ def database(app: Flask):
 
     # On créer les tables
     with app.app_context():
-        import site_elysium.models
+        import flagquest.models
 
         db.create_all()
 
@@ -91,7 +91,7 @@ def database(app: Flask):
 def regular_user(app, database):
     """Un utilisateur qui n'est pas admin."""
     with app.app_context():
-        from site_elysium.models import User
+        from flagquest.models import User
 
     user = User.query.filter_by(is_admin=False).first()
 
@@ -103,7 +103,7 @@ def admin_user(app, database):
     """Un utilisateur qui est admin."""
 
     with app.app_context():
-        from site_elysium.models import User
+        from flagquest.models import User
 
     user = User.query.filter_by(is_admin=True).first()
 

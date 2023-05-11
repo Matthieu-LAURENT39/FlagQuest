@@ -1,1 +1,1 @@
-pdoc --html site_elysium --force -o './docs'
+pdoc flagquest -o './docs' -d google --mermaid --footer-text "FlagQuest - Matthieu L. / Adrien B. / Stefen I." --edit-url flagquest='https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/'

@@ -28,7 +28,7 @@ def test_routes_no_server_errors(
 @pytest.mark.parametrize("user", (None, "regular_user", "admin_user"))
 def test_rooms_no_error(app: Flask, client: FlaskClient, user: str | None, request):
     with app.app_context():
-        from site_elysium.models import Room
+        from flagquest.models import Room
 
         if user is not None:
             user_obj = request.getfixturevalue(user)

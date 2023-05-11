@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 def test_user_model(app, database: SQLAlchemy):
     with app.app_context():
-        from site_elysium.models import User
+        from flagquest.models import User
 
     user = User(username="MyTestUser", email="testuser@test.com")
     user.set_password("123456")
@@ -22,7 +22,7 @@ def test_user_model(app, database: SQLAlchemy):
 
 def test_room_model(app, database: SQLAlchemy):
     with app.app_context():
-        from site_elysium.models import Room
+        from flagquest.models import Room
 
         test_room = Room(
             name="test_room_model",

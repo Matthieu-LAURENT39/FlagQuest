@@ -1,6 +1,6 @@
 import mimetypes
 
-from site_elysium import create_app
+from flagquest import create_app
 
 mimetypes.add_type("application/javascript", ".js")
 

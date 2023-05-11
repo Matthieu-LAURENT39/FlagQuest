@@ -2,8 +2,8 @@ import ipaddress
 
 from proxmoxer import ProxmoxAPI
 
-from site_elysium.classes import Allocator, VMManager
-import site_elysium.models
+from flagquest.classes import Allocator, VMManager, ProxmoxVMManager
+import flagquest.models
 from tools import ip_to_mac
 from flask import current_app
 
@@ -22,10 +22,10 @@ def get_vm_manager() -> VMManager:
 
         with current_app.app_context():
             _allocated_macs: set[str] = {
-                vm.mac_address for vm in site_elysium.models.VirtualMachine.query.all()
+                vm.mac_address for vm in flagquest.models.VirtualMachine.query.all()
             }
             _allocated_ports: set[int] = {
-                vm.display_port for vm in site_elysium.models.VirtualMachine.query.all()
+                vm.display_port for vm in flagquest.models.VirtualMachine.query.all()
             }
 
         _mac_allocator = Allocator(
@@ -42,7 +42,7 @@ def get_vm_manager() -> VMManager:
             iter(range(1, 5000)), allocated=_allocated_ports
         )
 
-        _current_vm_manager = VMManager(
+        _current_vm_manager = ProxmoxVMManager(
             _proxmox_api,
             "rootme",
             _mac_allocator,

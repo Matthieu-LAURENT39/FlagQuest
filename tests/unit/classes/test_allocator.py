@@ -1,4 +1,4 @@
-from site_elysium.classes import Allocator
+from flagquest.classes import Allocator
 from ipaddress import IPv4Network, IPv4Address
 import pytest
 

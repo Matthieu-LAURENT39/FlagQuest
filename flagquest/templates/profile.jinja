@@ -1,0 +1,152 @@
+{% extends 'base.jinja' %}
+
+
+{% block title %}
+Profile - {{user.username}}
+{% endblock %}
+
+{% block content %}
+<main class="container bg-black pt-5">
+    <div class="container-index">
+        <!-- bar principal profile -->
+        <div class="main-profile-bar row">
+            {# partie droite #}
+            <div class="col-md-auto main-infos-profil-responsive">
+                <div class="div-pseudo">
+                    <img src="{{url_for('main.profile_picture', username=user.username)}}"
+                        alt="photo de profil de l'utilisateur" class="col avatar-profile">
+                    <h1 class="username-profile">{{user.username}}</h1>
+                    <img src="/static/img/france.svg" alt="logo" class="country-profile col">
+                </div>
+            </div>
+
+            {# partie haute #}
+            <div class="col col-lg-5">
+                <div class="div-statistiques stats-profile-bar-responsive">
+                    <div class="sous-div-stat">
+                        <h2 class="variable-stat">
+                            <img class="icon-stat" src="/static/img/podium.svg" alt="logo de la catégorie classement">
+                            #{{user_position}}
+                        </h2>
+                        <h3 class="title-stat">Position</h3>
+                    </div>
+                    <div class="sous-div-stat score">
+                        <h2 class="variable-stat">
+                            <img class="icon-stat" src="/static/img/points.svg"
+                                alt="logo de la catégorie score (nombre de points)">
+                            {{user.score}}
+                        </h2>
+                        <h3 class="title-stat">Points</h3>
+                    </div>
+                    <div class="sous-div-stat challenges">
+                        <h2 class="variable-stat">
+                            <img class="icon-stat" src="/static/img/challenges.svg"
+                                alt="logo de la catégorie challenges (nombre de challenges terminés)">
+                            {{user_rooms | length }}
+                        </h2>
+                        <h3 class="title-stat">Challenges</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- partie rooms lancées à droite + classement à gauche -->
+        <div class="second-part-profile row h-100">
+
+            {# partie droite / rooms faites#}
+            <div class="rooms sous-section col h-100">
+                <h2 class="title-sous-section">
+                    <img class="icon-second-part-profile" src="/static/img/challenges.svg"
+                        alt="logo de le section challenges réussis">
+                    &nbsp;Rooms participées
+                </h2>
+
+                <hr>
+
+                {# liste des rooms lancées #}
+                <div>
+                    {# {{room_launched_widget("Crypto advice", "20", "17", "48")}} #}
+                    {# si user_rooms n'est pas vide #}
+                    {% if user_rooms %}
+
+                    {% for r in user_rooms %}
+                    <a class="room-launched" href="{{url_for('main.room', room_url_name=r.url_name) }}">
+                        <h3 class="room-title m-0">{{r.name}}</h3>
+                        <div class="img-room">
+                            <img src="/static/img/virtual_env.svg">
+                        </div>
+                        <div class="point-progression-room">
+                            <span class="nbr-points-room">
+                                {{ r.description | markdown | safe}}
+                            </span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    {# si l'user n'a rejoint aucune room #}
+                    {% else %}
+                    <p class="text-light fs-5 text-center">Qu'attendez vous !?</p>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            {# partie gauche / classement #}
+            <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
+            <div class="col ranking h-100">
+                <div class="row sous-section mb-3">
+                    <a href="{{ url_for('main.classement') }}">
+                        <h2 class="title-sous-section">
+                            <img class="icon-second-part-profile" src="/static/img/podium.svg"
+                                alt="logo de le section challenges réussis">
+                            &nbsp;Classement
+                        </h2>
+                    </a>
+
+                    {# TABLEAU CLASSEMENT #}
+                    <table class="table-classement-profile">
+                        <!-- HEADER TABLE-->
+                        <thead>
+                            <tr>
+                                <th scope="col">Position</th>
+                                <th scope="col">Avatar</th> <!-- vraiment utile ???????? -->
+                                <th scope="col">Utilisateur</th>
+                                <th scope="col">Score</th>
+                            </tr>
+                        </thead>
+
+                        <!-- BODY TABLE-->
+                        <tbody>
+                            {% for position, u in ranking_users %}
+                            <tr class="{{'active-row' if u == user else 'lambda-row'}}">
+                                <th>#{{position}}</th>
+                                <td><img class="img-avatar-classement rounded-1"
+                                        src="{{url_for('main.profile_picture', username=u.username)}}"></td>
+                                <!-- a voir -->
+                                <td class="username-classement-style">
+                                    <a href="{{url_for('main.profile', username=u.username)}}">{{u.username}}</a>
+                                </td>
+                                <td class="td-score">{{u.score}}
+                                <td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row sous-section h-100">
+                    <canvas id="myChart"></canvas>
+
+                    <script>
+                        var data = {{ chart_json | safe }}
+                        var ctx = document.getElementById("myChart").getContext('2d');
+                        var myChart = new Chart(ctx, data);
+                    </script>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</main>
+{% endblock %}

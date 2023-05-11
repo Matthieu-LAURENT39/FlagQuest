@@ -1,0 +1,14 @@
+{% macro room_widget(name, description, url_name, size=6) -%}
+<div class="col-md-{{size}} p-3">
+    <div class="room-widget h-100 p-5 rounded-3 text-black">
+        <h2>{{name|e}}</h2>
+        <p>{{description|markdown}}</p>
+        <a href="{{url_for('main.room', room_url_name=url_name) }}"
+            class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5" role="button">Lancer</a>
+        {% if current_user and current_user.is_admin==true %}
+        <a href="/room/supervision/{{url_name}}"
+            class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5" role="button">Supervision</a>
+        {% endif%}
+    </div>
+</div>
+{%- endmacro %}
