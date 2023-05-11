@@ -8,8 +8,6 @@ Développeurs:
 """
 from __future__ import annotations
 
-__all__ = ["create_app"]
-
 import contextlib
 import glob
 from typing import TYPE_CHECKING, Optional

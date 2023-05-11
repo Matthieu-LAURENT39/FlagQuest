@@ -1,0 +1,1179 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="pdoc 13.1.1"/>
+    <title>flagquest.classes.views API documentation</title>
+
+    <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
+    <style>/*! syntax-highlighting.css */pre{line-height:125%;}span.linenos{color:inherit; background-color:transparent; padding-left:5px; padding-right:20px;}.pdoc-code .hll{background-color:#ffffcc}.pdoc-code{background:#f8f8f8;}.pdoc-code .c{color:#3D7B7B; font-style:italic}.pdoc-code .err{border:1px solid #FF0000}.pdoc-code .k{color:#008000; font-weight:bold}.pdoc-code .o{color:#666666}.pdoc-code .ch{color:#3D7B7B; font-style:italic}.pdoc-code .cm{color:#3D7B7B; font-style:italic}.pdoc-code .cp{color:#9C6500}.pdoc-code .cpf{color:#3D7B7B; font-style:italic}.pdoc-code .c1{color:#3D7B7B; font-style:italic}.pdoc-code .cs{color:#3D7B7B; font-style:italic}.pdoc-code .gd{color:#A00000}.pdoc-code .ge{font-style:italic}.pdoc-code .gr{color:#E40000}.pdoc-code .gh{color:#000080; font-weight:bold}.pdoc-code .gi{color:#008400}.pdoc-code .go{color:#717171}.pdoc-code .gp{color:#000080; font-weight:bold}.pdoc-code .gs{font-weight:bold}.pdoc-code .gu{color:#800080; font-weight:bold}.pdoc-code .gt{color:#0044DD}.pdoc-code .kc{color:#008000; font-weight:bold}.pdoc-code .kd{color:#008000; font-weight:bold}.pdoc-code .kn{color:#008000; font-weight:bold}.pdoc-code .kp{color:#008000}.pdoc-code .kr{color:#008000; font-weight:bold}.pdoc-code .kt{color:#B00040}.pdoc-code .m{color:#666666}.pdoc-code .s{color:#BA2121}.pdoc-code .na{color:#687822}.pdoc-code .nb{color:#008000}.pdoc-code .nc{color:#0000FF; font-weight:bold}.pdoc-code .no{color:#880000}.pdoc-code .nd{color:#AA22FF}.pdoc-code .ni{color:#717171; font-weight:bold}.pdoc-code .ne{color:#CB3F38; font-weight:bold}.pdoc-code .nf{color:#0000FF}.pdoc-code .nl{color:#767600}.pdoc-code .nn{color:#0000FF; font-weight:bold}.pdoc-code .nt{color:#008000; font-weight:bold}.pdoc-code .nv{color:#19177C}.pdoc-code .ow{color:#AA22FF; font-weight:bold}.pdoc-code .w{color:#bbbbbb}.pdoc-code .mb{color:#666666}.pdoc-code .mf{color:#666666}.pdoc-code .mh{color:#666666}.pdoc-code .mi{color:#666666}.pdoc-code .mo{color:#666666}.pdoc-code .sa{color:#BA2121}.pdoc-code .sb{color:#BA2121}.pdoc-code .sc{color:#BA2121}.pdoc-code .dl{color:#BA2121}.pdoc-code .sd{color:#BA2121; font-style:italic}.pdoc-code .s2{color:#BA2121}.pdoc-code .se{color:#AA5D1F; font-weight:bold}.pdoc-code .sh{color:#BA2121}.pdoc-code .si{color:#A45A77; font-weight:bold}.pdoc-code .sx{color:#008000}.pdoc-code .sr{color:#A45A77}.pdoc-code .s1{color:#BA2121}.pdoc-code .ss{color:#19177C}.pdoc-code .bp{color:#008000}.pdoc-code .fm{color:#0000FF}.pdoc-code .vc{color:#19177C}.pdoc-code .vg{color:#19177C}.pdoc-code .vi{color:#19177C}.pdoc-code .vm{color:#19177C}.pdoc-code .il{color:#666666}</style>
+    <style>/*! theme.css */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f8f8f8;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}</style>
+    <style>/*! layout.css */html, body{width:100%;height:100%;}html, main{scroll-behavior:smooth;}body{background-color:var(--pdoc-background);}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;z-index:999;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main, header{padding:2rem 3vw;}header + main{margin-top:-3rem;}.git-button{display:none !important;}nav input[type="search"]{max-width:77%;}nav input[type="search"]:first-child{margin-top:-6px;}nav input[type="search"]:valid ~ *{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main, header{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}header + main{margin-top:-4rem;}#navtoggle{display:none;}}#togglestate{position:absolute;height:0;opacity:0;}nav.pdoc{--pad:clamp(0.5rem, 2vw, 1.75rem);--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent }nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc input[type=search]{display:block;outline-offset:0;width:calc(100% - var(--pad));}nav.pdoc .logo{max-width:calc(100% - var(--pad));max-height:35vh;display:block;margin:0 auto 1rem;transform:translate(calc(-.5 * var(--pad)), 0);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc > div > ul{margin-left:calc(0px - var(--pad));}nav.pdoc li a{padding:.2rem 0 .2rem calc(var(--pad) + var(--indent));}nav.pdoc > div > ul > li > a{padding-left:var(--pad);}nav.pdoc li{transition:all 100ms;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}nav.pdoc footer:before{content:"";display:block;width:calc(100% - var(--pad));border-top:solid var(--accent2) 1px;margin-top:1.5rem;padding-top:.5rem;}nav.pdoc footer{font-size:small;}</style>
+    <style>/*! content.css */.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{cursor:pointer;display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .pdoc-alert{padding:1rem 1rem 1rem calc(1.5rem + 24px);border:1px solid transparent;border-radius:.25rem;background-repeat:no-repeat;background-position:1rem center;margin-bottom:1rem;}.pdoc .pdoc-alert > *:last-child{margin-bottom:0;}.pdoc .pdoc-alert-note {color:#084298;background-color:#cfe2ff;border-color:#b6d4fe;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23084298%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%2016A8%208%200%201%200%208%200a8%208%200%200%200%200%2016zm.93-9.412-1%204.705c-.07.34.029.533.304.533.194%200%20.487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703%200-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381%202.29-.287zM8%205.5a1%201%200%201%201%200-2%201%201%200%200%201%200%202z%22/%3E%3C/svg%3E");}.pdoc .pdoc-alert-warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23664d03%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.982%201.566a1.13%201.13%200%200%200-1.96%200L.165%2013.233c-.457.778.091%201.767.98%201.767h13.713c.889%200%201.438-.99.98-1.767L8.982%201.566zM8%205c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%205.995A.905.905%200%200%201%208%205zm.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2z%22/%3E%3C/svg%3E");}.pdoc .pdoc-alert-danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.52.359A.5.5%200%200%201%206%200h4a.5.5%200%200%201%20.474.658L8.694%206H12.5a.5.5%200%200%201%20.395.807l-7%209a.5.5%200%200%201-.873-.454L6.823%209.5H3.5a.5.5%200%200%201-.48-.641l2.5-8.5z%22/%3E%3C/svg%3E");}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc > section:not(.module-info) h1{font-size:1.5rem;font-weight:500;}.pdoc > section:not(.module-info) h2{font-size:1.4rem;font-weight:500;}.pdoc > section:not(.module-info) h3{font-size:1.3rem;font-weight:500;}.pdoc > section:not(.module-info) h4{font-size:1.2rem;}.pdoc > section:not(.module-info) h5{font-size:1.1rem;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-top:0;margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;background-color:var(--code);}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--code);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc > section:not(.module-info){margin-bottom:1.5rem;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.view-source-toggle-state,.view-source-toggle-state ~ .pdoc-code{display:none;}.view-source-toggle-state:checked ~ .pdoc-code{display:block;}.view-source-button{display:inline-block;float:right;font-size:.75rem;line-height:1.5rem;color:var(--muted);padding:0 .4rem 0 1.3rem;cursor:pointer;text-indent:-2px;}.view-source-button > span{visibility:hidden;}.module-info .view-source-button{float:none;display:flex;justify-content:flex-end;margin:-1.2rem .4rem -.2rem 0;}.view-source-button::before{position:absolute;content:"View Source";display:list-item;list-style-type:disclosure-closed;}.view-source-toggle-state:checked ~ .attr .view-source-button::before,.view-source-toggle-state:checked ~ .view-source-button::before{list-style-type:disclosure-open;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc section:not(.module-info) .docstring{margin-left:clamp(0rem, 5vw - 2rem, 1rem);}.pdoc .docstring .pdoc-code{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target,.pdoc .pdoc-code > pre > span:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc .pdoc-code > pre > span:target{display:block;}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc *{scroll-margin:2rem;}.pdoc .pdoc-code .linenos{user-select:none;}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc section, .pdoc .classattr{position:relative;}.pdoc .headerlink{--width:clamp(1rem, 3vw, 2rem);position:absolute;top:0;left:calc(0rem - var(--width));transition:all 100ms ease-in-out;opacity:0;}.pdoc .headerlink::before{content:"#";display:block;text-align:center;width:var(--width);height:2.3rem;line-height:2.3rem;font-size:1.5rem;}.pdoc .attr:hover ~ .headerlink,.pdoc *:target > .headerlink,.pdoc .headerlink:hover{opacity:1;}.pdoc .attr{display:block;margin:.5rem 0 .5rem;padding:.4rem .4rem .4rem 1rem;background-color:var(--accent);overflow-x:auto;}.pdoc .classattr{margin-left:2rem;}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{background-color:transparent;}.pdoc .param, .pdoc .return-annotation{white-space:pre;}.pdoc .signature.multiline .param{display:block;}.pdoc .signature.condensed .param{display:inline-block;}.pdoc .annotation{color:var(--annotation);}.pdoc .view-value-toggle-state,.pdoc .view-value-toggle-state ~ .default_value{display:none;}.pdoc .view-value-toggle-state:checked ~ .default_value{display:inherit;}.pdoc .view-value-button{font-size:.5rem;vertical-align:middle;border-style:dashed;margin-top:-0.1rem;}.pdoc .view-value-button:hover{background:white;}.pdoc .view-value-button::before{content:"show";text-align:center;width:2.2em;display:inline-block;}.pdoc .view-value-toggle-state:checked ~ .view-value-button::before{content:"hide";}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:35px;vertical-align:middle;width:70px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
+    <style>/*! custom.css */</style><style>
+    .pdoc .mermaid-pre {
+        border: none;
+        background: none;
+    }
+</style>
+<script type="module" defer>
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+
+    /* Re-invoke Mermaid when DOM content changes, for example during search. */
+    document.addEventListener("DOMContentLoaded", () => {
+        new MutationObserver(() => mermaid.run()).observe(
+            document.querySelector("main.pdoc").parentNode,
+            {childList: true}
+        );
+    })
+</script></head>
+<body>
+    <nav class="pdoc">
+        <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
+        <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
+        <div>            <a class="pdoc-button module-list-button" href="../classes.html">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg>                &nbsp;flagquest.classes</a>
+
+
+            <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
+                   pattern=".+" required>
+
+
+
+            <h2>API Documentation</h2>
+                <ul class="memberlist">
+            <li>
+                    <a class="class" href="#AdminModelView">AdminModelView</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#AdminModelView.is_accessible">is_accessible</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.index_view">index_view</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.create_view">create_view</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.edit_view">edit_view</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.details_view">details_view</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.delete_view">delete_view</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.action_view">action_view</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.export">export</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.ajax_lookup">ajax_lookup</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#AdminModelView.ajax_update">ajax_update</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#RestrictedAdminIndexView">RestrictedAdminIndexView</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#RestrictedAdminIndexView.is_accessible">is_accessible</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#RestrictedAdminIndexView.index">index</a>
+                        </li>
+                </ul>
+
+            </li>
+    </ul>
+
+
+            <footer>FlagQuest - Matthieu L. / Adrien B. / Stefen I.</footer>
+
+        <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
+            built with <span class="visually-hidden">pdoc</span><img
+                alt="pdoc logo"
+                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20role%3D%22img%22%20aria-label%3D%22pdoc%20logo%22%20width%3D%22300%22%20height%3D%22150%22%20viewBox%3D%22-1%200%2060%2030%22%3E%3Ctitle%3Epdoc%3C/title%3E%3Cpath%20d%3D%22M29.621%2021.293c-.011-.273-.214-.475-.511-.481a.5.5%200%200%200-.489.503l-.044%201.393c-.097.551-.695%201.215-1.566%201.704-.577.428-1.306.486-2.193.182-1.426-.617-2.467-1.654-3.304-2.487l-.173-.172a3.43%203.43%200%200%200-.365-.306.49.49%200%200%200-.286-.196c-1.718-1.06-4.931-1.47-7.353.191l-.219.15c-1.707%201.187-3.413%202.131-4.328%201.03-.02-.027-.49-.685-.141-1.763.233-.721.546-2.408.772-4.076.042-.09.067-.187.046-.288.166-1.347.277-2.625.241-3.351%201.378-1.008%202.271-2.586%202.271-4.362%200-.976-.272-1.935-.788-2.774-.057-.094-.122-.18-.184-.268.033-.167.052-.339.052-.516%200-1.477-1.202-2.679-2.679-2.679-.791%200-1.496.352-1.987.9a6.3%206.3%200%200%200-1.001.029c-.492-.564-1.207-.929-2.012-.929-1.477%200-2.679%201.202-2.679%202.679A2.65%202.65%200%200%200%20.97%206.554c-.383.747-.595%201.572-.595%202.41%200%202.311%201.507%204.29%203.635%205.107-.037.699-.147%202.27-.423%203.294l-.137.461c-.622%202.042-2.515%208.257%201.727%2010.643%201.614.908%203.06%201.248%204.317%201.248%202.665%200%204.492-1.524%205.322-2.401%201.476-1.559%202.886-1.854%206.491.82%201.877%201.393%203.514%201.753%204.861%201.068%202.223-1.713%202.811-3.867%203.399-6.374.077-.846.056-1.469.054-1.537zm-4.835%204.313c-.054.305-.156.586-.242.629-.034-.007-.131-.022-.307-.157-.145-.111-.314-.478-.456-.908.221.121.432.25.675.355.115.039.219.051.33.081zm-2.251-1.238c-.05.33-.158.648-.252.694-.022.001-.125-.018-.307-.157-.217-.166-.488-.906-.639-1.573.358.344.754.693%201.198%201.036zm-3.887-2.337c-.006-.116-.018-.231-.041-.342.635.145%201.189.368%201.599.625.097.231.166.481.174.642-.03.049-.055.101-.067.158-.046.013-.128.026-.298.004-.278-.037-.901-.57-1.367-1.087zm-1.127-.497c.116.306.176.625.12.71-.019.014-.117.045-.345.016-.206-.027-.604-.332-.986-.695.41-.051.816-.056%201.211-.031zm-4.535%201.535c.209.22.379.47.358.598-.006.041-.088.138-.351.234-.144.055-.539-.063-.979-.259a11.66%2011.66%200%200%200%20.972-.573zm.983-.664c.359-.237.738-.418%201.126-.554.25.237.479.548.457.694-.006.042-.087.138-.351.235-.174.064-.694-.105-1.232-.375zm-3.381%201.794c-.022.145-.061.29-.149.401-.133.166-.358.248-.69.251h-.002c-.133%200-.306-.26-.45-.621.417.091.854.07%201.291-.031zm-2.066-8.077a4.78%204.78%200%200%201-.775-.584c.172-.115.505-.254.88-.378l-.105.962zm-.331%202.302a10.32%2010.32%200%200%201-.828-.502c.202-.143.576-.328.984-.49l-.156.992zm-.45%202.157l-.701-.403c.214-.115.536-.249.891-.376a11.57%2011.57%200%200%201-.19.779zm-.181%201.716c.064.398.194.702.298.893-.194-.051-.435-.162-.736-.398.061-.119.224-.3.438-.495zM8.87%204.141c0%20.152-.123.276-.276.276s-.275-.124-.275-.276.123-.276.276-.276.275.124.275.276zm-.735-.389a1.15%201.15%200%200%200-.314.783%201.16%201.16%200%200%200%201.162%201.162c.457%200%20.842-.27%201.032-.653.026.117.042.238.042.362a1.68%201.68%200%200%201-1.679%201.679%201.68%201.68%200%200%201-1.679-1.679c0-.843.626-1.535%201.436-1.654zM5.059%205.406A1.68%201.68%200%200%201%203.38%207.085a1.68%201.68%200%200%201-1.679-1.679c0-.037.009-.072.011-.109.21.3.541.508.935.508a1.16%201.16%200%200%200%201.162-1.162%201.14%201.14%200%200%200-.474-.912c.015%200%20.03-.005.045-.005.926.001%201.679.754%201.679%201.68zM3.198%204.141c0%20.152-.123.276-.276.276s-.275-.124-.275-.276.123-.276.276-.276.275.124.275.276zM1.375%208.964c0-.52.103-1.035.288-1.52.466.394%201.06.64%201.717.64%201.144%200%202.116-.725%202.499-1.738.383%201.012%201.355%201.738%202.499%201.738.867%200%201.631-.421%202.121-1.062.307.605.478%201.267.478%201.942%200%202.486-2.153%204.51-4.801%204.51s-4.801-2.023-4.801-4.51zm24.342%2019.349c-.985.498-2.267.168-3.813-.979-3.073-2.281-5.453-3.199-7.813-.705-1.315%201.391-4.163%203.365-8.423.97-3.174-1.786-2.239-6.266-1.261-9.479l.146-.492c.276-1.02.395-2.457.444-3.268a6.11%206.11%200%200%200%201.18.115%206.01%206.01%200%200%200%202.536-.562l-.006.175c-.802.215-1.848.612-2.021%201.25-.079.295.021.601.274.837.219.203.415.364.598.501-.667.304-1.243.698-1.311%201.179-.02.144-.022.507.393.787.213.144.395.26.564.365-1.285.521-1.361.96-1.381%201.126-.018.142-.011.496.427.746l.854.489c-.473.389-.971.914-.999%201.429-.018.278.095.532.316.713.675.556%201.231.721%201.653.721.059%200%20.104-.014.158-.02.207.707.641%201.64%201.513%201.64h.013c.8-.008%201.236-.345%201.462-.626.173-.216.268-.457.325-.692.424.195.93.374%201.372.374.151%200%20.294-.021.423-.068.732-.27.944-.704.993-1.021.009-.061.003-.119.002-.179.266.086.538.147.789.147.15%200%20.294-.021.423-.069.542-.2.797-.489.914-.754.237.147.478.258.704.288.106.014.205.021.296.021.356%200%20.595-.101.767-.229.438.435%201.094.992%201.656%201.067.106.014.205.021.296.021a1.56%201.56%200%200%200%20.323-.035c.17.575.453%201.289.866%201.605.358.273.665.362.914.362a.99.99%200%200%200%20.421-.093%201.03%201.03%200%200%200%20.245-.164c.168.428.39.846.68%201.068.358.273.665.362.913.362a.99.99%200%200%200%20.421-.093c.317-.148.512-.448.639-.762.251.157.495.257.726.257.127%200%20.25-.024.37-.071.427-.17.706-.617.841-1.314.022-.015.047-.022.068-.038.067-.051.133-.104.196-.159-.443%201.486-1.107%202.761-2.086%203.257zM8.66%209.925a.5.5%200%201%200-1%200c0%20.653-.818%201.205-1.787%201.205s-1.787-.552-1.787-1.205a.5.5%200%201%200-1%200c0%201.216%201.25%202.205%202.787%202.205s2.787-.989%202.787-2.205zm4.4%2015.965l-.208.097c-2.661%201.258-4.708%201.436-6.086.527-1.542-1.017-1.88-3.19-1.844-4.198a.4.4%200%200%200-.385-.414c-.242-.029-.406.164-.414.385-.046%201.249.367%203.686%202.202%204.896.708.467%201.547.7%202.51.7%201.248%200%202.706-.392%204.362-1.174l.185-.086a.4.4%200%200%200%20.205-.527c-.089-.204-.326-.291-.527-.206zM9.547%202.292c.093.077.205.114.317.114a.5.5%200%200%200%20.318-.886L8.817.397a.5.5%200%200%200-.703.068.5.5%200%200%200%20.069.703l1.364%201.124zm-7.661-.065c.086%200%20.173-.022.253-.068l1.523-.893a.5.5%200%200%200-.506-.863l-1.523.892a.5.5%200%200%200-.179.685c.094.158.261.247.432.247z%22%20transform%3D%22matrix%28-1%200%200%201%2058%200%29%22%20fill%3D%22%233bb300%22/%3E%3Cpath%20d%3D%22M.3%2021.86V10.18q0-.46.02-.68.04-.22.18-.5.28-.54%201.34-.54%201.06%200%201.42.28.38.26.44.78.76-1.04%202.38-1.04%201.64%200%203.1%201.54%201.46%201.54%201.46%203.58%200%202.04-1.46%203.58-1.44%201.54-3.08%201.54-1.64%200-2.38-.92v4.04q0%20.46-.04.68-.02.22-.18.5-.14.3-.5.42-.36.12-.98.12-.62%200-1-.12-.36-.12-.52-.4-.14-.28-.18-.5-.02-.22-.02-.68zm3.96-9.42q-.46.54-.46%201.18%200%20.64.46%201.18.48.52%201.2.52.74%200%201.24-.52.52-.52.52-1.18%200-.66-.48-1.18-.48-.54-1.26-.54-.76%200-1.22.54zm14.741-8.36q.16-.3.54-.42.38-.12%201-.12.64%200%201.02.12.38.12.52.42.16.3.18.54.04.22.04.68v11.94q0%20.46-.04.7-.02.22-.18.5-.3.54-1.7.54-1.38%200-1.54-.98-.84.96-2.34.96-1.8%200-3.28-1.56-1.48-1.58-1.48-3.66%200-2.1%201.48-3.68%201.5-1.58%203.28-1.58%201.48%200%202.3%201v-4.2q0-.46.02-.68.04-.24.18-.52zm-3.24%2010.86q.52.54%201.26.54.74%200%201.22-.54.5-.54.5-1.18%200-.66-.48-1.22-.46-.56-1.26-.56-.8%200-1.28.56-.48.54-.48%201.2%200%20.66.52%201.2zm7.833-1.2q0-2.4%201.68-3.96%201.68-1.56%203.84-1.56%202.16%200%203.82%201.56%201.66%201.54%201.66%203.94%200%201.66-.86%202.96-.86%201.28-2.1%201.9-1.22.6-2.54.6-1.32%200-2.56-.64-1.24-.66-2.1-1.92-.84-1.28-.84-2.88zm4.18%201.44q.64.48%201.3.48.66%200%201.32-.5.66-.5.66-1.48%200-.98-.62-1.46-.62-.48-1.34-.48-.72%200-1.34.5-.62.5-.62%201.48%200%20.96.64%201.46zm11.412-1.44q0%20.84.56%201.32.56.46%201.18.46.64%200%201.18-.36.56-.38.9-.38.6%200%201.46%201.06.46.58.46%201.04%200%20.76-1.1%201.42-1.14.8-2.8.8-1.86%200-3.58-1.34-.82-.64-1.34-1.7-.52-1.08-.52-2.36%200-1.3.52-2.34.52-1.06%201.34-1.7%201.66-1.32%203.54-1.32.76%200%201.48.22.72.2%201.06.4l.32.2q.36.24.56.38.52.4.52.92%200%20.5-.42%201.14-.72%201.1-1.38%201.1-.38%200-1.08-.44-.36-.34-1.04-.34-.66%200-1.24.48-.58.48-.58%201.34z%22%20fill%3D%22green%22/%3E%3C/svg%3E"/>
+        </a>
+</div>
+    </nav>
+    <main class="pdoc">
+            <section class="module-info">
+                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/classes/views.py">Edit Source</a>
+                    <h1 class="modulename">
+<a href="./../../flagquest.html">flagquest</a><wbr>.<a href="./../classes.html">classes</a><wbr>.views    </h1>
+
+                        <div class="docstring"><p>Vues de modèle pour Flask-Admin.</p>
+</div>
+
+                        <input id="mod-views-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+
+                        <label class="view-source-button" for="mod-views-view-source"><span>View Source</span></label>
+
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="sd">Vues de modèle pour Flask-Admin.</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">from</span> <span class="nn">flask_login</span> <span class="kn">import</span> <span class="n">current_user</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span> <span class="nn">flask_admin.contrib.sqla</span> <span class="kn">import</span> <span class="n">ModelView</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">flask_admin</span> <span class="kn">import</span> <span class="n">AdminIndexView</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="k">class</span> <span class="nc">AdminModelView</span><span class="p">(</span><span class="n">ModelView</span><span class="p">):</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="sd">    Une vue de modèle pour Flask-Admin.</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="sd">    Accessible uniquement par les admins.</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="k">def</span> <span class="nf">is_accessible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Vérifie que l&#39;utilisateur a le droit d&#39;accéder à la page&quot;&quot;&quot;</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>        <span class="k">return</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="k">class</span> <span class="nc">RestrictedAdminIndexView</span><span class="p">(</span><span class="n">AdminIndexView</span><span class="p">):</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="sd">    Une vue d&#39;index pour Flask-Admin.</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="sd">    Accessible uniquement par les admins.</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>    <span class="k">def</span> <span class="nf">is_accessible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Vérifie que l&#39;utilisateur a le droit d&#39;accéder à la page&quot;&quot;&quot;</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>        <span class="k">return</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a><span class="c1"># class MyAdminIndexView(AdminIndexView):</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a><span class="c1">#     @expose(&quot;/&quot;)</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a><span class="c1">#     def index(self):</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="c1">#         # si l&#39;user n&#39;est pas connecté -&gt; error</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a><span class="c1">#         if not current_user.is_authenticated:</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a><span class="c1">#             abort(403)</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a><span class="c1">#         # si l&#39;user est admin -&gt; interface admin</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a><span class="c1">#         if current_user.is_admin == True:</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a><span class="c1">#             return super(MyAdminIndexView, self).index()</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a><span class="c1">#         else:</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a><span class="c1">#             abort(403)</span>
+</span></pre></div>
+
+
+            </section>
+                <section id="AdminModelView">
+                            <input id="AdminModelView-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">AdminModelView</span><wbr>(<span class="base">flask_admin.contrib.sqla.view.ModelView</span>):
+
+                <label class="view-source-button" for="AdminModelView-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView-11"><a href="#AdminModelView-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">AdminModelView</span><span class="p">(</span><span class="n">ModelView</span><span class="p">):</span>
+</span><span id="AdminModelView-12"><a href="#AdminModelView-12"><span class="linenos">12</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AdminModelView-13"><a href="#AdminModelView-13"><span class="linenos">13</span></a><span class="sd">    Une vue de modèle pour Flask-Admin.</span>
+</span><span id="AdminModelView-14"><a href="#AdminModelView-14"><span class="linenos">14</span></a><span class="sd">    Accessible uniquement par les admins.</span>
+</span><span id="AdminModelView-15"><a href="#AdminModelView-15"><span class="linenos">15</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="AdminModelView-16"><a href="#AdminModelView-16"><span class="linenos">16</span></a>
+</span><span id="AdminModelView-17"><a href="#AdminModelView-17"><span class="linenos">17</span></a>    <span class="k">def</span> <span class="nf">is_accessible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView-18"><a href="#AdminModelView-18"><span class="linenos">18</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Vérifie que l&#39;utilisateur a le droit d&#39;accéder à la page&quot;&quot;&quot;</span>
+</span><span id="AdminModelView-19"><a href="#AdminModelView-19"><span class="linenos">19</span></a>        <span class="k">return</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Une vue de modèle pour Flask-Admin.
+Accessible uniquement par les admins.</p>
+</div>
+
+
+                            <div id="AdminModelView.is_accessible" class="classattr">
+                                        <input id="AdminModelView.is_accessible-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">is_accessible</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.is_accessible-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.is_accessible"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.is_accessible-17"><a href="#AdminModelView.is_accessible-17"><span class="linenos">17</span></a>    <span class="k">def</span> <span class="nf">is_accessible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.is_accessible-18"><a href="#AdminModelView.is_accessible-18"><span class="linenos">18</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Vérifie que l&#39;utilisateur a le droit d&#39;accéder à la page&quot;&quot;&quot;</span>
+</span><span id="AdminModelView.is_accessible-19"><a href="#AdminModelView.is_accessible-19"><span class="linenos">19</span></a>        <span class="k">return</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Vérifie que l'utilisateur a le droit d'accéder à la page</p>
+</div>
+
+
+                            </div>
+                            <div id="AdminModelView.index_view" class="classattr">
+                                        <input id="AdminModelView.index_view-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/&#39;)</div>
+
+        <span class="def">def</span>
+        <span class="name">index_view</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.index_view-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.index_view"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.index_view-1959"><a href="#AdminModelView.index_view-1959"><span class="linenos">1959</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.index_view-1960"><a href="#AdminModelView.index_view-1960"><span class="linenos">1960</span></a>    <span class="k">def</span> <span class="nf">index_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.index_view-1961"><a href="#AdminModelView.index_view-1961"><span class="linenos">1961</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AdminModelView.index_view-1962"><a href="#AdminModelView.index_view-1962"><span class="linenos">1962</span></a><span class="sd">            List view</span>
+</span><span id="AdminModelView.index_view-1963"><a href="#AdminModelView.index_view-1963"><span class="linenos">1963</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AdminModelView.index_view-1964"><a href="#AdminModelView.index_view-1964"><span class="linenos">1964</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_delete</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-1965"><a href="#AdminModelView.index_view-1965"><span class="linenos">1965</span></a>            <span class="n">delete_form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_form</span><span class="p">()</span>
+</span><span id="AdminModelView.index_view-1966"><a href="#AdminModelView.index_view-1966"><span class="linenos">1966</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-1967"><a href="#AdminModelView.index_view-1967"><span class="linenos">1967</span></a>            <span class="n">delete_form</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="AdminModelView.index_view-1968"><a href="#AdminModelView.index_view-1968"><span class="linenos">1968</span></a>
+</span><span id="AdminModelView.index_view-1969"><a href="#AdminModelView.index_view-1969"><span class="linenos">1969</span></a>        <span class="c1"># Grab parameters from URL</span>
+</span><span id="AdminModelView.index_view-1970"><a href="#AdminModelView.index_view-1970"><span class="linenos">1970</span></a>        <span class="n">view_args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_list_extra_args</span><span class="p">()</span>
+</span><span id="AdminModelView.index_view-1971"><a href="#AdminModelView.index_view-1971"><span class="linenos">1971</span></a>
+</span><span id="AdminModelView.index_view-1972"><a href="#AdminModelView.index_view-1972"><span class="linenos">1972</span></a>        <span class="c1"># Map column index to column name</span>
+</span><span id="AdminModelView.index_view-1973"><a href="#AdminModelView.index_view-1973"><span class="linenos">1973</span></a>        <span class="n">sort_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_column_by_idx</span><span class="p">(</span><span class="n">view_args</span><span class="o">.</span><span class="n">sort</span><span class="p">)</span>
+</span><span id="AdminModelView.index_view-1974"><a href="#AdminModelView.index_view-1974"><span class="linenos">1974</span></a>        <span class="k">if</span> <span class="n">sort_column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-1975"><a href="#AdminModelView.index_view-1975"><span class="linenos">1975</span></a>            <span class="n">sort_column</span> <span class="o">=</span> <span class="n">sort_column</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="AdminModelView.index_view-1976"><a href="#AdminModelView.index_view-1976"><span class="linenos">1976</span></a>
+</span><span id="AdminModelView.index_view-1977"><a href="#AdminModelView.index_view-1977"><span class="linenos">1977</span></a>        <span class="c1"># Get page size</span>
+</span><span id="AdminModelView.index_view-1978"><a href="#AdminModelView.index_view-1978"><span class="linenos">1978</span></a>        <span class="n">page_size</span> <span class="o">=</span> <span class="n">view_args</span><span class="o">.</span><span class="n">page_size</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span>
+</span><span id="AdminModelView.index_view-1979"><a href="#AdminModelView.index_view-1979"><span class="linenos">1979</span></a>
+</span><span id="AdminModelView.index_view-1980"><a href="#AdminModelView.index_view-1980"><span class="linenos">1980</span></a>        <span class="c1"># Get count and data</span>
+</span><span id="AdminModelView.index_view-1981"><a href="#AdminModelView.index_view-1981"><span class="linenos">1981</span></a>        <span class="n">count</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_list</span><span class="p">(</span><span class="n">view_args</span><span class="o">.</span><span class="n">page</span><span class="p">,</span> <span class="n">sort_column</span><span class="p">,</span> <span class="n">view_args</span><span class="o">.</span><span class="n">sort_desc</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-1982"><a href="#AdminModelView.index_view-1982"><span class="linenos">1982</span></a>                                    <span class="n">view_args</span><span class="o">.</span><span class="n">search</span><span class="p">,</span> <span class="n">view_args</span><span class="o">.</span><span class="n">filters</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="n">page_size</span><span class="p">)</span>
+</span><span id="AdminModelView.index_view-1983"><a href="#AdminModelView.index_view-1983"><span class="linenos">1983</span></a>
+</span><span id="AdminModelView.index_view-1984"><a href="#AdminModelView.index_view-1984"><span class="linenos">1984</span></a>        <span class="n">list_forms</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="AdminModelView.index_view-1985"><a href="#AdminModelView.index_view-1985"><span class="linenos">1985</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_editable_list</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-1986"><a href="#AdminModelView.index_view-1986"><span class="linenos">1986</span></a>            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-1987"><a href="#AdminModelView.index_view-1987"><span class="linenos">1987</span></a>                <span class="n">list_forms</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_pk_value</span><span class="p">(</span><span class="n">row</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_form</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">row</span><span class="p">)</span>
+</span><span id="AdminModelView.index_view-1988"><a href="#AdminModelView.index_view-1988"><span class="linenos">1988</span></a>
+</span><span id="AdminModelView.index_view-1989"><a href="#AdminModelView.index_view-1989"><span class="linenos">1989</span></a>        <span class="c1"># Calculate number of pages</span>
+</span><span id="AdminModelView.index_view-1990"><a href="#AdminModelView.index_view-1990"><span class="linenos">1990</span></a>        <span class="k">if</span> <span class="n">count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">page_size</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-1991"><a href="#AdminModelView.index_view-1991"><span class="linenos">1991</span></a>            <span class="n">num_pages</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">page_size</span><span class="p">)))</span>
+</span><span id="AdminModelView.index_view-1992"><a href="#AdminModelView.index_view-1992"><span class="linenos">1992</span></a>        <span class="k">elif</span> <span class="ow">not</span> <span class="n">page_size</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-1993"><a href="#AdminModelView.index_view-1993"><span class="linenos">1993</span></a>            <span class="n">num_pages</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># hide pager for unlimited page_size</span>
+</span><span id="AdminModelView.index_view-1994"><a href="#AdminModelView.index_view-1994"><span class="linenos">1994</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-1995"><a href="#AdminModelView.index_view-1995"><span class="linenos">1995</span></a>            <span class="n">num_pages</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># use simple pager</span>
+</span><span id="AdminModelView.index_view-1996"><a href="#AdminModelView.index_view-1996"><span class="linenos">1996</span></a>
+</span><span id="AdminModelView.index_view-1997"><a href="#AdminModelView.index_view-1997"><span class="linenos">1997</span></a>        <span class="c1"># Various URL generation helpers</span>
+</span><span id="AdminModelView.index_view-1998"><a href="#AdminModelView.index_view-1998"><span class="linenos">1998</span></a>        <span class="k">def</span> <span class="nf">pager_url</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+</span><span id="AdminModelView.index_view-1999"><a href="#AdminModelView.index_view-1999"><span class="linenos">1999</span></a>            <span class="c1"># Do not add page number if it is first page</span>
+</span><span id="AdminModelView.index_view-2000"><a href="#AdminModelView.index_view-2000"><span class="linenos">2000</span></a>            <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-2001"><a href="#AdminModelView.index_view-2001"><span class="linenos">2001</span></a>                <span class="n">p</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="AdminModelView.index_view-2002"><a href="#AdminModelView.index_view-2002"><span class="linenos">2002</span></a>
+</span><span id="AdminModelView.index_view-2003"><a href="#AdminModelView.index_view-2003"><span class="linenos">2003</span></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_list_url</span><span class="p">(</span><span class="n">view_args</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="n">p</span><span class="p">))</span>
+</span><span id="AdminModelView.index_view-2004"><a href="#AdminModelView.index_view-2004"><span class="linenos">2004</span></a>
+</span><span id="AdminModelView.index_view-2005"><a href="#AdminModelView.index_view-2005"><span class="linenos">2005</span></a>        <span class="k">def</span> <span class="nf">sort_url</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="AdminModelView.index_view-2006"><a href="#AdminModelView.index_view-2006"><span class="linenos">2006</span></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">desc</span> <span class="ow">and</span> <span class="n">invert</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">view_args</span><span class="o">.</span><span class="n">sort_desc</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-2007"><a href="#AdminModelView.index_view-2007"><span class="linenos">2007</span></a>                <span class="n">desc</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="AdminModelView.index_view-2008"><a href="#AdminModelView.index_view-2008"><span class="linenos">2008</span></a>
+</span><span id="AdminModelView.index_view-2009"><a href="#AdminModelView.index_view-2009"><span class="linenos">2009</span></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_list_url</span><span class="p">(</span><span class="n">view_args</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="n">column</span><span class="p">,</span> <span class="n">sort_desc</span><span class="o">=</span><span class="n">desc</span><span class="p">))</span>
+</span><span id="AdminModelView.index_view-2010"><a href="#AdminModelView.index_view-2010"><span class="linenos">2010</span></a>
+</span><span id="AdminModelView.index_view-2011"><a href="#AdminModelView.index_view-2011"><span class="linenos">2011</span></a>        <span class="k">def</span> <span class="nf">page_size_url</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span><span id="AdminModelView.index_view-2012"><a href="#AdminModelView.index_view-2012"><span class="linenos">2012</span></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-2013"><a href="#AdminModelView.index_view-2013"><span class="linenos">2013</span></a>                <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span>
+</span><span id="AdminModelView.index_view-2014"><a href="#AdminModelView.index_view-2014"><span class="linenos">2014</span></a>
+</span><span id="AdminModelView.index_view-2015"><a href="#AdminModelView.index_view-2015"><span class="linenos">2015</span></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_list_url</span><span class="p">(</span><span class="n">view_args</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">page_size</span><span class="o">=</span><span class="n">s</span><span class="p">))</span>
+</span><span id="AdminModelView.index_view-2016"><a href="#AdminModelView.index_view-2016"><span class="linenos">2016</span></a>
+</span><span id="AdminModelView.index_view-2017"><a href="#AdminModelView.index_view-2017"><span class="linenos">2017</span></a>        <span class="c1"># Actions</span>
+</span><span id="AdminModelView.index_view-2018"><a href="#AdminModelView.index_view-2018"><span class="linenos">2018</span></a>        <span class="n">actions</span><span class="p">,</span> <span class="n">actions_confirmation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_actions_list</span><span class="p">()</span>
+</span><span id="AdminModelView.index_view-2019"><a href="#AdminModelView.index_view-2019"><span class="linenos">2019</span></a>        <span class="k">if</span> <span class="n">actions</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-2020"><a href="#AdminModelView.index_view-2020"><span class="linenos">2020</span></a>            <span class="n">action_form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_form</span><span class="p">()</span>
+</span><span id="AdminModelView.index_view-2021"><a href="#AdminModelView.index_view-2021"><span class="linenos">2021</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.index_view-2022"><a href="#AdminModelView.index_view-2022"><span class="linenos">2022</span></a>            <span class="n">action_form</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="AdminModelView.index_view-2023"><a href="#AdminModelView.index_view-2023"><span class="linenos">2023</span></a>
+</span><span id="AdminModelView.index_view-2024"><a href="#AdminModelView.index_view-2024"><span class="linenos">2024</span></a>        <span class="n">clear_search_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_list_url</span><span class="p">(</span><span class="n">view_args</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2025"><a href="#AdminModelView.index_view-2025"><span class="linenos">2025</span></a>                                                              <span class="n">sort</span><span class="o">=</span><span class="n">view_args</span><span class="o">.</span><span class="n">sort</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2026"><a href="#AdminModelView.index_view-2026"><span class="linenos">2026</span></a>                                                              <span class="n">sort_desc</span><span class="o">=</span><span class="n">view_args</span><span class="o">.</span><span class="n">sort_desc</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2027"><a href="#AdminModelView.index_view-2027"><span class="linenos">2027</span></a>                                                              <span class="n">search</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2028"><a href="#AdminModelView.index_view-2028"><span class="linenos">2028</span></a>                                                              <span class="n">filters</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+</span><span id="AdminModelView.index_view-2029"><a href="#AdminModelView.index_view-2029"><span class="linenos">2029</span></a>
+</span><span id="AdminModelView.index_view-2030"><a href="#AdminModelView.index_view-2030"><span class="linenos">2030</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
+</span><span id="AdminModelView.index_view-2031"><a href="#AdminModelView.index_view-2031"><span class="linenos">2031</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">list_template</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2032"><a href="#AdminModelView.index_view-2032"><span class="linenos">2032</span></a>            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2033"><a href="#AdminModelView.index_view-2033"><span class="linenos">2033</span></a>            <span class="n">list_forms</span><span class="o">=</span><span class="n">list_forms</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2034"><a href="#AdminModelView.index_view-2034"><span class="linenos">2034</span></a>            <span class="n">delete_form</span><span class="o">=</span><span class="n">delete_form</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2035"><a href="#AdminModelView.index_view-2035"><span class="linenos">2035</span></a>            <span class="n">action_form</span><span class="o">=</span><span class="n">action_form</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2036"><a href="#AdminModelView.index_view-2036"><span class="linenos">2036</span></a>
+</span><span id="AdminModelView.index_view-2037"><a href="#AdminModelView.index_view-2037"><span class="linenos">2037</span></a>            <span class="c1"># List</span>
+</span><span id="AdminModelView.index_view-2038"><a href="#AdminModelView.index_view-2038"><span class="linenos">2038</span></a>            <span class="n">list_columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_list_columns</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2039"><a href="#AdminModelView.index_view-2039"><span class="linenos">2039</span></a>            <span class="n">sortable_columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sortable_columns</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2040"><a href="#AdminModelView.index_view-2040"><span class="linenos">2040</span></a>            <span class="n">editable_columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">column_editable_list</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2041"><a href="#AdminModelView.index_view-2041"><span class="linenos">2041</span></a>            <span class="n">list_row_actions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_list_row_actions</span><span class="p">(),</span>
+</span><span id="AdminModelView.index_view-2042"><a href="#AdminModelView.index_view-2042"><span class="linenos">2042</span></a>
+</span><span id="AdminModelView.index_view-2043"><a href="#AdminModelView.index_view-2043"><span class="linenos">2043</span></a>            <span class="c1"># Pagination</span>
+</span><span id="AdminModelView.index_view-2044"><a href="#AdminModelView.index_view-2044"><span class="linenos">2044</span></a>            <span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2045"><a href="#AdminModelView.index_view-2045"><span class="linenos">2045</span></a>            <span class="n">pager_url</span><span class="o">=</span><span class="n">pager_url</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2046"><a href="#AdminModelView.index_view-2046"><span class="linenos">2046</span></a>            <span class="n">num_pages</span><span class="o">=</span><span class="n">num_pages</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2047"><a href="#AdminModelView.index_view-2047"><span class="linenos">2047</span></a>            <span class="n">can_set_page_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">can_set_page_size</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2048"><a href="#AdminModelView.index_view-2048"><span class="linenos">2048</span></a>            <span class="n">page_size_url</span><span class="o">=</span><span class="n">page_size_url</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2049"><a href="#AdminModelView.index_view-2049"><span class="linenos">2049</span></a>            <span class="n">page</span><span class="o">=</span><span class="n">view_args</span><span class="o">.</span><span class="n">page</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2050"><a href="#AdminModelView.index_view-2050"><span class="linenos">2050</span></a>            <span class="n">page_size</span><span class="o">=</span><span class="n">page_size</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2051"><a href="#AdminModelView.index_view-2051"><span class="linenos">2051</span></a>            <span class="n">default_page_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2052"><a href="#AdminModelView.index_view-2052"><span class="linenos">2052</span></a>
+</span><span id="AdminModelView.index_view-2053"><a href="#AdminModelView.index_view-2053"><span class="linenos">2053</span></a>            <span class="c1"># Sorting</span>
+</span><span id="AdminModelView.index_view-2054"><a href="#AdminModelView.index_view-2054"><span class="linenos">2054</span></a>            <span class="n">sort_column</span><span class="o">=</span><span class="n">view_args</span><span class="o">.</span><span class="n">sort</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2055"><a href="#AdminModelView.index_view-2055"><span class="linenos">2055</span></a>            <span class="n">sort_desc</span><span class="o">=</span><span class="n">view_args</span><span class="o">.</span><span class="n">sort_desc</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2056"><a href="#AdminModelView.index_view-2056"><span class="linenos">2056</span></a>            <span class="n">sort_url</span><span class="o">=</span><span class="n">sort_url</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2057"><a href="#AdminModelView.index_view-2057"><span class="linenos">2057</span></a>
+</span><span id="AdminModelView.index_view-2058"><a href="#AdminModelView.index_view-2058"><span class="linenos">2058</span></a>            <span class="c1"># Search</span>
+</span><span id="AdminModelView.index_view-2059"><a href="#AdminModelView.index_view-2059"><span class="linenos">2059</span></a>            <span class="n">search_supported</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_search_supported</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2060"><a href="#AdminModelView.index_view-2060"><span class="linenos">2060</span></a>            <span class="n">clear_search_url</span><span class="o">=</span><span class="n">clear_search_url</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2061"><a href="#AdminModelView.index_view-2061"><span class="linenos">2061</span></a>            <span class="n">search</span><span class="o">=</span><span class="n">view_args</span><span class="o">.</span><span class="n">search</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2062"><a href="#AdminModelView.index_view-2062"><span class="linenos">2062</span></a>            <span class="n">search_placeholder</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">search_placeholder</span><span class="p">(),</span>
+</span><span id="AdminModelView.index_view-2063"><a href="#AdminModelView.index_view-2063"><span class="linenos">2063</span></a>
+</span><span id="AdminModelView.index_view-2064"><a href="#AdminModelView.index_view-2064"><span class="linenos">2064</span></a>            <span class="c1"># Filters</span>
+</span><span id="AdminModelView.index_view-2065"><a href="#AdminModelView.index_view-2065"><span class="linenos">2065</span></a>            <span class="n">filters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_filters</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2066"><a href="#AdminModelView.index_view-2066"><span class="linenos">2066</span></a>            <span class="n">filter_groups</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_filter_groups</span><span class="p">(),</span>
+</span><span id="AdminModelView.index_view-2067"><a href="#AdminModelView.index_view-2067"><span class="linenos">2067</span></a>            <span class="n">active_filters</span><span class="o">=</span><span class="n">view_args</span><span class="o">.</span><span class="n">filters</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2068"><a href="#AdminModelView.index_view-2068"><span class="linenos">2068</span></a>            <span class="n">filter_args</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_filters</span><span class="p">(</span><span class="n">view_args</span><span class="o">.</span><span class="n">filters</span><span class="p">),</span>
+</span><span id="AdminModelView.index_view-2069"><a href="#AdminModelView.index_view-2069"><span class="linenos">2069</span></a>
+</span><span id="AdminModelView.index_view-2070"><a href="#AdminModelView.index_view-2070"><span class="linenos">2070</span></a>            <span class="c1"># Actions</span>
+</span><span id="AdminModelView.index_view-2071"><a href="#AdminModelView.index_view-2071"><span class="linenos">2071</span></a>            <span class="n">actions</span><span class="o">=</span><span class="n">actions</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2072"><a href="#AdminModelView.index_view-2072"><span class="linenos">2072</span></a>            <span class="n">actions_confirmation</span><span class="o">=</span><span class="n">actions_confirmation</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2073"><a href="#AdminModelView.index_view-2073"><span class="linenos">2073</span></a>
+</span><span id="AdminModelView.index_view-2074"><a href="#AdminModelView.index_view-2074"><span class="linenos">2074</span></a>            <span class="c1"># Misc</span>
+</span><span id="AdminModelView.index_view-2075"><a href="#AdminModelView.index_view-2075"><span class="linenos">2075</span></a>            <span class="nb">enumerate</span><span class="o">=</span><span class="nb">enumerate</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2076"><a href="#AdminModelView.index_view-2076"><span class="linenos">2076</span></a>            <span class="n">get_pk_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_pk_value</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2077"><a href="#AdminModelView.index_view-2077"><span class="linenos">2077</span></a>            <span class="n">get_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_list_value</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2078"><a href="#AdminModelView.index_view-2078"><span class="linenos">2078</span></a>            <span class="n">return_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_list_url</span><span class="p">(</span><span class="n">view_args</span><span class="p">),</span>
+</span><span id="AdminModelView.index_view-2079"><a href="#AdminModelView.index_view-2079"><span class="linenos">2079</span></a>
+</span><span id="AdminModelView.index_view-2080"><a href="#AdminModelView.index_view-2080"><span class="linenos">2080</span></a>            <span class="c1"># Extras</span>
+</span><span id="AdminModelView.index_view-2081"><a href="#AdminModelView.index_view-2081"><span class="linenos">2081</span></a>            <span class="n">extra_args</span><span class="o">=</span><span class="n">view_args</span><span class="o">.</span><span class="n">extra_args</span><span class="p">,</span>
+</span><span id="AdminModelView.index_view-2082"><a href="#AdminModelView.index_view-2082"><span class="linenos">2082</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>List view</p>
+</div>
+
+
+                            </div>
+                            <div id="AdminModelView.create_view" class="classattr">
+                                        <input id="AdminModelView.create_view-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/new/&#39;, methods=(&#39;GET&#39;, &#39;POST&#39;))</div>
+
+        <span class="def">def</span>
+        <span class="name">create_view</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.create_view-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.create_view"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.create_view-2084"><a href="#AdminModelView.create_view-2084"><span class="linenos">2084</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/new/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">))</span>
+</span><span id="AdminModelView.create_view-2085"><a href="#AdminModelView.create_view-2085"><span class="linenos">2085</span></a>    <span class="k">def</span> <span class="nf">create_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.create_view-2086"><a href="#AdminModelView.create_view-2086"><span class="linenos">2086</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AdminModelView.create_view-2087"><a href="#AdminModelView.create_view-2087"><span class="linenos">2087</span></a><span class="sd">            Create model view</span>
+</span><span id="AdminModelView.create_view-2088"><a href="#AdminModelView.create_view-2088"><span class="linenos">2088</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AdminModelView.create_view-2089"><a href="#AdminModelView.create_view-2089"><span class="linenos">2089</span></a>        <span class="n">return_url</span> <span class="o">=</span> <span class="n">get_redirect_target</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;.index_view&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2090"><a href="#AdminModelView.create_view-2090"><span class="linenos">2090</span></a>
+</span><span id="AdminModelView.create_view-2091"><a href="#AdminModelView.create_view-2091"><span class="linenos">2091</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_create</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2092"><a href="#AdminModelView.create_view-2092"><span class="linenos">2092</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2093"><a href="#AdminModelView.create_view-2093"><span class="linenos">2093</span></a>
+</span><span id="AdminModelView.create_view-2094"><a href="#AdminModelView.create_view-2094"><span class="linenos">2094</span></a>        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_form</span><span class="p">()</span>
+</span><span id="AdminModelView.create_view-2095"><a href="#AdminModelView.create_view-2095"><span class="linenos">2095</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="s1">&#39;_validated_ruleset&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">form</span><span class="o">.</span><span class="n">_validated_ruleset</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2096"><a href="#AdminModelView.create_view-2096"><span class="linenos">2096</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_form_instance</span><span class="p">(</span><span class="n">ruleset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form_create_rules</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2097"><a href="#AdminModelView.create_view-2097"><span class="linenos">2097</span></a>
+</span><span id="AdminModelView.create_view-2098"><a href="#AdminModelView.create_view-2098"><span class="linenos">2098</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_form</span><span class="p">(</span><span class="n">form</span><span class="p">):</span>
+</span><span id="AdminModelView.create_view-2099"><a href="#AdminModelView.create_view-2099"><span class="linenos">2099</span></a>            <span class="c1"># in versions 1.1.0 and before, this returns a boolean</span>
+</span><span id="AdminModelView.create_view-2100"><a href="#AdminModelView.create_view-2100"><span class="linenos">2100</span></a>            <span class="c1"># in later versions, this is the model itself</span>
+</span><span id="AdminModelView.create_view-2101"><a href="#AdminModelView.create_view-2101"><span class="linenos">2101</span></a>            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2102"><a href="#AdminModelView.create_view-2102"><span class="linenos">2102</span></a>            <span class="k">if</span> <span class="n">model</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2103"><a href="#AdminModelView.create_view-2103"><span class="linenos">2103</span></a>                <span class="n">flash</span><span class="p">(</span><span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Record was successfully created.&#39;</span><span class="p">),</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2104"><a href="#AdminModelView.create_view-2104"><span class="linenos">2104</span></a>                <span class="k">if</span> <span class="s1">&#39;_add_another&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2105"><a href="#AdminModelView.create_view-2105"><span class="linenos">2105</span></a>                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2106"><a href="#AdminModelView.create_view-2106"><span class="linenos">2106</span></a>                <span class="k">elif</span> <span class="s1">&#39;_continue_editing&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2107"><a href="#AdminModelView.create_view-2107"><span class="linenos">2107</span></a>                    <span class="c1"># if we have a valid model, try to go to the edit view</span>
+</span><span id="AdminModelView.create_view-2108"><a href="#AdminModelView.create_view-2108"><span class="linenos">2108</span></a>                    <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2109"><a href="#AdminModelView.create_view-2109"><span class="linenos">2109</span></a>                        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;.edit_view&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_pk_value</span><span class="p">(</span><span class="n">model</span><span class="p">),</span> <span class="n">url</span><span class="o">=</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2110"><a href="#AdminModelView.create_view-2110"><span class="linenos">2110</span></a>                    <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2111"><a href="#AdminModelView.create_view-2111"><span class="linenos">2111</span></a>                        <span class="n">url</span> <span class="o">=</span> <span class="n">return_url</span>
+</span><span id="AdminModelView.create_view-2112"><a href="#AdminModelView.create_view-2112"><span class="linenos">2112</span></a>                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2113"><a href="#AdminModelView.create_view-2113"><span class="linenos">2113</span></a>                <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2114"><a href="#AdminModelView.create_view-2114"><span class="linenos">2114</span></a>                    <span class="c1"># save button</span>
+</span><span id="AdminModelView.create_view-2115"><a href="#AdminModelView.create_view-2115"><span class="linenos">2115</span></a>                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_save_return_url</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">is_created</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</span><span id="AdminModelView.create_view-2116"><a href="#AdminModelView.create_view-2116"><span class="linenos">2116</span></a>
+</span><span id="AdminModelView.create_view-2117"><a href="#AdminModelView.create_view-2117"><span class="linenos">2117</span></a>        <span class="n">form_opts</span> <span class="o">=</span> <span class="n">FormOpts</span><span class="p">(</span><span class="n">widget_args</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">form_widget_args</span><span class="p">,</span>
+</span><span id="AdminModelView.create_view-2118"><a href="#AdminModelView.create_view-2118"><span class="linenos">2118</span></a>                             <span class="n">form_rules</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form_create_rules</span><span class="p">)</span>
+</span><span id="AdminModelView.create_view-2119"><a href="#AdminModelView.create_view-2119"><span class="linenos">2119</span></a>
+</span><span id="AdminModelView.create_view-2120"><a href="#AdminModelView.create_view-2120"><span class="linenos">2120</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_modal</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;modal&#39;</span><span class="p">):</span>
+</span><span id="AdminModelView.create_view-2121"><a href="#AdminModelView.create_view-2121"><span class="linenos">2121</span></a>            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_modal_template</span>
+</span><span id="AdminModelView.create_view-2122"><a href="#AdminModelView.create_view-2122"><span class="linenos">2122</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.create_view-2123"><a href="#AdminModelView.create_view-2123"><span class="linenos">2123</span></a>            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_template</span>
+</span><span id="AdminModelView.create_view-2124"><a href="#AdminModelView.create_view-2124"><span class="linenos">2124</span></a>
+</span><span id="AdminModelView.create_view-2125"><a href="#AdminModelView.create_view-2125"><span class="linenos">2125</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">template</span><span class="p">,</span>
+</span><span id="AdminModelView.create_view-2126"><a href="#AdminModelView.create_view-2126"><span class="linenos">2126</span></a>                           <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span>
+</span><span id="AdminModelView.create_view-2127"><a href="#AdminModelView.create_view-2127"><span class="linenos">2127</span></a>                           <span class="n">form_opts</span><span class="o">=</span><span class="n">form_opts</span><span class="p">,</span>
+</span><span id="AdminModelView.create_view-2128"><a href="#AdminModelView.create_view-2128"><span class="linenos">2128</span></a>                           <span class="n">return_url</span><span class="o">=</span><span class="n">return_url</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Create model view</p>
+</div>
+
+
+                            </div>
+                            <div id="AdminModelView.edit_view" class="classattr">
+                                        <input id="AdminModelView.edit_view-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/edit/&#39;, methods=(&#39;GET&#39;, &#39;POST&#39;))</div>
+
+        <span class="def">def</span>
+        <span class="name">edit_view</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.edit_view-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.edit_view"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.edit_view-2130"><a href="#AdminModelView.edit_view-2130"><span class="linenos">2130</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/edit/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">))</span>
+</span><span id="AdminModelView.edit_view-2131"><a href="#AdminModelView.edit_view-2131"><span class="linenos">2131</span></a>    <span class="k">def</span> <span class="nf">edit_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.edit_view-2132"><a href="#AdminModelView.edit_view-2132"><span class="linenos">2132</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AdminModelView.edit_view-2133"><a href="#AdminModelView.edit_view-2133"><span class="linenos">2133</span></a><span class="sd">            Edit model view</span>
+</span><span id="AdminModelView.edit_view-2134"><a href="#AdminModelView.edit_view-2134"><span class="linenos">2134</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AdminModelView.edit_view-2135"><a href="#AdminModelView.edit_view-2135"><span class="linenos">2135</span></a>        <span class="n">return_url</span> <span class="o">=</span> <span class="n">get_redirect_target</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;.index_view&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2136"><a href="#AdminModelView.edit_view-2136"><span class="linenos">2136</span></a>
+</span><span id="AdminModelView.edit_view-2137"><a href="#AdminModelView.edit_view-2137"><span class="linenos">2137</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_edit</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2138"><a href="#AdminModelView.edit_view-2138"><span class="linenos">2138</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2139"><a href="#AdminModelView.edit_view-2139"><span class="linenos">2139</span></a>
+</span><span id="AdminModelView.edit_view-2140"><a href="#AdminModelView.edit_view-2140"><span class="linenos">2140</span></a>        <span class="nb">id</span> <span class="o">=</span> <span class="n">get_mdict_item_or_list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2141"><a href="#AdminModelView.edit_view-2141"><span class="linenos">2141</span></a>        <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2142"><a href="#AdminModelView.edit_view-2142"><span class="linenos">2142</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2143"><a href="#AdminModelView.edit_view-2143"><span class="linenos">2143</span></a>
+</span><span id="AdminModelView.edit_view-2144"><a href="#AdminModelView.edit_view-2144"><span class="linenos">2144</span></a>        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2145"><a href="#AdminModelView.edit_view-2145"><span class="linenos">2145</span></a>
+</span><span id="AdminModelView.edit_view-2146"><a href="#AdminModelView.edit_view-2146"><span class="linenos">2146</span></a>        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2147"><a href="#AdminModelView.edit_view-2147"><span class="linenos">2147</span></a>            <span class="n">flash</span><span class="p">(</span><span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Record does not exist.&#39;</span><span class="p">),</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2148"><a href="#AdminModelView.edit_view-2148"><span class="linenos">2148</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2149"><a href="#AdminModelView.edit_view-2149"><span class="linenos">2149</span></a>
+</span><span id="AdminModelView.edit_view-2150"><a href="#AdminModelView.edit_view-2150"><span class="linenos">2150</span></a>        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edit_form</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2151"><a href="#AdminModelView.edit_view-2151"><span class="linenos">2151</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="s1">&#39;_validated_ruleset&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">form</span><span class="o">.</span><span class="n">_validated_ruleset</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2152"><a href="#AdminModelView.edit_view-2152"><span class="linenos">2152</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_form_instance</span><span class="p">(</span><span class="n">ruleset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form_edit_rules</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2153"><a href="#AdminModelView.edit_view-2153"><span class="linenos">2153</span></a>
+</span><span id="AdminModelView.edit_view-2154"><a href="#AdminModelView.edit_view-2154"><span class="linenos">2154</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_form</span><span class="p">(</span><span class="n">form</span><span class="p">):</span>
+</span><span id="AdminModelView.edit_view-2155"><a href="#AdminModelView.edit_view-2155"><span class="linenos">2155</span></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_model</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+</span><span id="AdminModelView.edit_view-2156"><a href="#AdminModelView.edit_view-2156"><span class="linenos">2156</span></a>                <span class="n">flash</span><span class="p">(</span><span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Record was successfully saved.&#39;</span><span class="p">),</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2157"><a href="#AdminModelView.edit_view-2157"><span class="linenos">2157</span></a>                <span class="k">if</span> <span class="s1">&#39;_add_another&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2158"><a href="#AdminModelView.edit_view-2158"><span class="linenos">2158</span></a>                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;.create_view&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">return_url</span><span class="p">))</span>
+</span><span id="AdminModelView.edit_view-2159"><a href="#AdminModelView.edit_view-2159"><span class="linenos">2159</span></a>                <span class="k">elif</span> <span class="s1">&#39;_continue_editing&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2160"><a href="#AdminModelView.edit_view-2160"><span class="linenos">2160</span></a>                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;.edit_view&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_pk_value</span><span class="p">(</span><span class="n">model</span><span class="p">)))</span>
+</span><span id="AdminModelView.edit_view-2161"><a href="#AdminModelView.edit_view-2161"><span class="linenos">2161</span></a>                <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2162"><a href="#AdminModelView.edit_view-2162"><span class="linenos">2162</span></a>                    <span class="c1"># save button</span>
+</span><span id="AdminModelView.edit_view-2163"><a href="#AdminModelView.edit_view-2163"><span class="linenos">2163</span></a>                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_save_return_url</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">is_created</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</span><span id="AdminModelView.edit_view-2164"><a href="#AdminModelView.edit_view-2164"><span class="linenos">2164</span></a>
+</span><span id="AdminModelView.edit_view-2165"><a href="#AdminModelView.edit_view-2165"><span class="linenos">2165</span></a>        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span> <span class="ow">or</span> <span class="n">form</span><span class="o">.</span><span class="n">errors</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2166"><a href="#AdminModelView.edit_view-2166"><span class="linenos">2166</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">on_form_prefill</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2167"><a href="#AdminModelView.edit_view-2167"><span class="linenos">2167</span></a>
+</span><span id="AdminModelView.edit_view-2168"><a href="#AdminModelView.edit_view-2168"><span class="linenos">2168</span></a>        <span class="n">form_opts</span> <span class="o">=</span> <span class="n">FormOpts</span><span class="p">(</span><span class="n">widget_args</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">form_widget_args</span><span class="p">,</span>
+</span><span id="AdminModelView.edit_view-2169"><a href="#AdminModelView.edit_view-2169"><span class="linenos">2169</span></a>                             <span class="n">form_rules</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_form_edit_rules</span><span class="p">)</span>
+</span><span id="AdminModelView.edit_view-2170"><a href="#AdminModelView.edit_view-2170"><span class="linenos">2170</span></a>
+</span><span id="AdminModelView.edit_view-2171"><a href="#AdminModelView.edit_view-2171"><span class="linenos">2171</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">edit_modal</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;modal&#39;</span><span class="p">):</span>
+</span><span id="AdminModelView.edit_view-2172"><a href="#AdminModelView.edit_view-2172"><span class="linenos">2172</span></a>            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edit_modal_template</span>
+</span><span id="AdminModelView.edit_view-2173"><a href="#AdminModelView.edit_view-2173"><span class="linenos">2173</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.edit_view-2174"><a href="#AdminModelView.edit_view-2174"><span class="linenos">2174</span></a>            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edit_template</span>
+</span><span id="AdminModelView.edit_view-2175"><a href="#AdminModelView.edit_view-2175"><span class="linenos">2175</span></a>
+</span><span id="AdminModelView.edit_view-2176"><a href="#AdminModelView.edit_view-2176"><span class="linenos">2176</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">template</span><span class="p">,</span>
+</span><span id="AdminModelView.edit_view-2177"><a href="#AdminModelView.edit_view-2177"><span class="linenos">2177</span></a>                           <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+</span><span id="AdminModelView.edit_view-2178"><a href="#AdminModelView.edit_view-2178"><span class="linenos">2178</span></a>                           <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span>
+</span><span id="AdminModelView.edit_view-2179"><a href="#AdminModelView.edit_view-2179"><span class="linenos">2179</span></a>                           <span class="n">form_opts</span><span class="o">=</span><span class="n">form_opts</span><span class="p">,</span>
+</span><span id="AdminModelView.edit_view-2180"><a href="#AdminModelView.edit_view-2180"><span class="linenos">2180</span></a>                           <span class="n">return_url</span><span class="o">=</span><span class="n">return_url</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Edit model view</p>
+</div>
+
+
+                            </div>
+                            <div id="AdminModelView.details_view" class="classattr">
+                                        <input id="AdminModelView.details_view-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/details/&#39;)</div>
+
+        <span class="def">def</span>
+        <span class="name">details_view</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.details_view-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.details_view"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.details_view-2182"><a href="#AdminModelView.details_view-2182"><span class="linenos">2182</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/details/&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.details_view-2183"><a href="#AdminModelView.details_view-2183"><span class="linenos">2183</span></a>    <span class="k">def</span> <span class="nf">details_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.details_view-2184"><a href="#AdminModelView.details_view-2184"><span class="linenos">2184</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AdminModelView.details_view-2185"><a href="#AdminModelView.details_view-2185"><span class="linenos">2185</span></a><span class="sd">            Details model view</span>
+</span><span id="AdminModelView.details_view-2186"><a href="#AdminModelView.details_view-2186"><span class="linenos">2186</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AdminModelView.details_view-2187"><a href="#AdminModelView.details_view-2187"><span class="linenos">2187</span></a>        <span class="n">return_url</span> <span class="o">=</span> <span class="n">get_redirect_target</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;.index_view&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.details_view-2188"><a href="#AdminModelView.details_view-2188"><span class="linenos">2188</span></a>
+</span><span id="AdminModelView.details_view-2189"><a href="#AdminModelView.details_view-2189"><span class="linenos">2189</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_view_details</span><span class="p">:</span>
+</span><span id="AdminModelView.details_view-2190"><a href="#AdminModelView.details_view-2190"><span class="linenos">2190</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.details_view-2191"><a href="#AdminModelView.details_view-2191"><span class="linenos">2191</span></a>
+</span><span id="AdminModelView.details_view-2192"><a href="#AdminModelView.details_view-2192"><span class="linenos">2192</span></a>        <span class="nb">id</span> <span class="o">=</span> <span class="n">get_mdict_item_or_list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.details_view-2193"><a href="#AdminModelView.details_view-2193"><span class="linenos">2193</span></a>        <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AdminModelView.details_view-2194"><a href="#AdminModelView.details_view-2194"><span class="linenos">2194</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.details_view-2195"><a href="#AdminModelView.details_view-2195"><span class="linenos">2195</span></a>
+</span><span id="AdminModelView.details_view-2196"><a href="#AdminModelView.details_view-2196"><span class="linenos">2196</span></a>        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</span><span id="AdminModelView.details_view-2197"><a href="#AdminModelView.details_view-2197"><span class="linenos">2197</span></a>
+</span><span id="AdminModelView.details_view-2198"><a href="#AdminModelView.details_view-2198"><span class="linenos">2198</span></a>        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AdminModelView.details_view-2199"><a href="#AdminModelView.details_view-2199"><span class="linenos">2199</span></a>            <span class="n">flash</span><span class="p">(</span><span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Record does not exist.&#39;</span><span class="p">),</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.details_view-2200"><a href="#AdminModelView.details_view-2200"><span class="linenos">2200</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.details_view-2201"><a href="#AdminModelView.details_view-2201"><span class="linenos">2201</span></a>
+</span><span id="AdminModelView.details_view-2202"><a href="#AdminModelView.details_view-2202"><span class="linenos">2202</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">details_modal</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;modal&#39;</span><span class="p">):</span>
+</span><span id="AdminModelView.details_view-2203"><a href="#AdminModelView.details_view-2203"><span class="linenos">2203</span></a>            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">details_modal_template</span>
+</span><span id="AdminModelView.details_view-2204"><a href="#AdminModelView.details_view-2204"><span class="linenos">2204</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.details_view-2205"><a href="#AdminModelView.details_view-2205"><span class="linenos">2205</span></a>            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">details_template</span>
+</span><span id="AdminModelView.details_view-2206"><a href="#AdminModelView.details_view-2206"><span class="linenos">2206</span></a>
+</span><span id="AdminModelView.details_view-2207"><a href="#AdminModelView.details_view-2207"><span class="linenos">2207</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">template</span><span class="p">,</span>
+</span><span id="AdminModelView.details_view-2208"><a href="#AdminModelView.details_view-2208"><span class="linenos">2208</span></a>                           <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+</span><span id="AdminModelView.details_view-2209"><a href="#AdminModelView.details_view-2209"><span class="linenos">2209</span></a>                           <span class="n">details_columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_details_columns</span><span class="p">,</span>
+</span><span id="AdminModelView.details_view-2210"><a href="#AdminModelView.details_view-2210"><span class="linenos">2210</span></a>                           <span class="n">get_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_detail_value</span><span class="p">,</span>
+</span><span id="AdminModelView.details_view-2211"><a href="#AdminModelView.details_view-2211"><span class="linenos">2211</span></a>                           <span class="n">return_url</span><span class="o">=</span><span class="n">return_url</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Details model view</p>
+</div>
+
+
+                            </div>
+                            <div id="AdminModelView.delete_view" class="classattr">
+                                        <input id="AdminModelView.delete_view-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/delete/&#39;, methods=(&#39;POST&#39;,))</div>
+
+        <span class="def">def</span>
+        <span class="name">delete_view</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.delete_view-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.delete_view"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.delete_view-2213"><a href="#AdminModelView.delete_view-2213"><span class="linenos">2213</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/delete/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,))</span>
+</span><span id="AdminModelView.delete_view-2214"><a href="#AdminModelView.delete_view-2214"><span class="linenos">2214</span></a>    <span class="k">def</span> <span class="nf">delete_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.delete_view-2215"><a href="#AdminModelView.delete_view-2215"><span class="linenos">2215</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AdminModelView.delete_view-2216"><a href="#AdminModelView.delete_view-2216"><span class="linenos">2216</span></a><span class="sd">            Delete model view. Only POST method is allowed.</span>
+</span><span id="AdminModelView.delete_view-2217"><a href="#AdminModelView.delete_view-2217"><span class="linenos">2217</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AdminModelView.delete_view-2218"><a href="#AdminModelView.delete_view-2218"><span class="linenos">2218</span></a>        <span class="n">return_url</span> <span class="o">=</span> <span class="n">get_redirect_target</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;.index_view&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.delete_view-2219"><a href="#AdminModelView.delete_view-2219"><span class="linenos">2219</span></a>
+</span><span id="AdminModelView.delete_view-2220"><a href="#AdminModelView.delete_view-2220"><span class="linenos">2220</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_delete</span><span class="p">:</span>
+</span><span id="AdminModelView.delete_view-2221"><a href="#AdminModelView.delete_view-2221"><span class="linenos">2221</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.delete_view-2222"><a href="#AdminModelView.delete_view-2222"><span class="linenos">2222</span></a>
+</span><span id="AdminModelView.delete_view-2223"><a href="#AdminModelView.delete_view-2223"><span class="linenos">2223</span></a>        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_form</span><span class="p">()</span>
+</span><span id="AdminModelView.delete_view-2224"><a href="#AdminModelView.delete_view-2224"><span class="linenos">2224</span></a>
+</span><span id="AdminModelView.delete_view-2225"><a href="#AdminModelView.delete_view-2225"><span class="linenos">2225</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_form</span><span class="p">(</span><span class="n">form</span><span class="p">):</span>
+</span><span id="AdminModelView.delete_view-2226"><a href="#AdminModelView.delete_view-2226"><span class="linenos">2226</span></a>            <span class="c1"># id is InputRequired()</span>
+</span><span id="AdminModelView.delete_view-2227"><a href="#AdminModelView.delete_view-2227"><span class="linenos">2227</span></a>            <span class="nb">id</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">data</span>
+</span><span id="AdminModelView.delete_view-2228"><a href="#AdminModelView.delete_view-2228"><span class="linenos">2228</span></a>
+</span><span id="AdminModelView.delete_view-2229"><a href="#AdminModelView.delete_view-2229"><span class="linenos">2229</span></a>            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</span><span id="AdminModelView.delete_view-2230"><a href="#AdminModelView.delete_view-2230"><span class="linenos">2230</span></a>
+</span><span id="AdminModelView.delete_view-2231"><a href="#AdminModelView.delete_view-2231"><span class="linenos">2231</span></a>            <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AdminModelView.delete_view-2232"><a href="#AdminModelView.delete_view-2232"><span class="linenos">2232</span></a>                <span class="n">flash</span><span class="p">(</span><span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Record does not exist.&#39;</span><span class="p">),</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.delete_view-2233"><a href="#AdminModelView.delete_view-2233"><span class="linenos">2233</span></a>                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.delete_view-2234"><a href="#AdminModelView.delete_view-2234"><span class="linenos">2234</span></a>
+</span><span id="AdminModelView.delete_view-2235"><a href="#AdminModelView.delete_view-2235"><span class="linenos">2235</span></a>            <span class="c1"># message is flashed from within delete_model if it fails</span>
+</span><span id="AdminModelView.delete_view-2236"><a href="#AdminModelView.delete_view-2236"><span class="linenos">2236</span></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_model</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+</span><span id="AdminModelView.delete_view-2237"><a href="#AdminModelView.delete_view-2237"><span class="linenos">2237</span></a>                <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="AdminModelView.delete_view-2238"><a href="#AdminModelView.delete_view-2238"><span class="linenos">2238</span></a>                <span class="n">flash</span><span class="p">(</span>
+</span><span id="AdminModelView.delete_view-2239"><a href="#AdminModelView.delete_view-2239"><span class="linenos">2239</span></a>                    <span class="n">ngettext</span><span class="p">(</span><span class="s1">&#39;Record was successfully deleted.&#39;</span><span class="p">,</span>
+</span><span id="AdminModelView.delete_view-2240"><a href="#AdminModelView.delete_view-2240"><span class="linenos">2240</span></a>                             <span class="s1">&#39;</span><span class="si">%(count)s</span><span class="s1"> records were successfully deleted.&#39;</span><span class="p">,</span>
+</span><span id="AdminModelView.delete_view-2241"><a href="#AdminModelView.delete_view-2241"><span class="linenos">2241</span></a>                             <span class="n">count</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">),</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.delete_view-2242"><a href="#AdminModelView.delete_view-2242"><span class="linenos">2242</span></a>                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.delete_view-2243"><a href="#AdminModelView.delete_view-2243"><span class="linenos">2243</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.delete_view-2244"><a href="#AdminModelView.delete_view-2244"><span class="linenos">2244</span></a>            <span class="n">flash_errors</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Failed to delete record. </span><span class="si">%(error)s</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.delete_view-2245"><a href="#AdminModelView.delete_view-2245"><span class="linenos">2245</span></a>
+</span><span id="AdminModelView.delete_view-2246"><a href="#AdminModelView.delete_view-2246"><span class="linenos">2246</span></a>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Delete model view. Only POST method is allowed.</p>
+</div>
+
+
+                            </div>
+                            <div id="AdminModelView.action_view" class="classattr">
+                                        <input id="AdminModelView.action_view-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/action/&#39;, methods=(&#39;POST&#39;,))</div>
+
+        <span class="def">def</span>
+        <span class="name">action_view</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.action_view-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.action_view"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.action_view-2248"><a href="#AdminModelView.action_view-2248"><span class="linenos">2248</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/action/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,))</span>
+</span><span id="AdminModelView.action_view-2249"><a href="#AdminModelView.action_view-2249"><span class="linenos">2249</span></a>    <span class="k">def</span> <span class="nf">action_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.action_view-2250"><a href="#AdminModelView.action_view-2250"><span class="linenos">2250</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AdminModelView.action_view-2251"><a href="#AdminModelView.action_view-2251"><span class="linenos">2251</span></a><span class="sd">            Mass-model action view.</span>
+</span><span id="AdminModelView.action_view-2252"><a href="#AdminModelView.action_view-2252"><span class="linenos">2252</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AdminModelView.action_view-2253"><a href="#AdminModelView.action_view-2253"><span class="linenos">2253</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_action</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Mass-model action view.</p>
+</div>
+
+
+                            </div>
+                            <div id="AdminModelView.export" class="classattr">
+                                        <input id="AdminModelView.export-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/export/&lt;export_type&gt;/&#39;)</div>
+
+        <span class="def">def</span>
+        <span class="name">export</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">export_type</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.export-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.export"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.export-2286"><a href="#AdminModelView.export-2286"><span class="linenos">2286</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/export/&lt;export_type&gt;/&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.export-2287"><a href="#AdminModelView.export-2287"><span class="linenos">2287</span></a>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">export_type</span><span class="p">):</span>
+</span><span id="AdminModelView.export-2288"><a href="#AdminModelView.export-2288"><span class="linenos">2288</span></a>        <span class="n">return_url</span> <span class="o">=</span> <span class="n">get_redirect_target</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="s1">&#39;.index_view&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.export-2289"><a href="#AdminModelView.export-2289"><span class="linenos">2289</span></a>
+</span><span id="AdminModelView.export-2290"><a href="#AdminModelView.export-2290"><span class="linenos">2290</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_export</span> <span class="ow">or</span> <span class="p">(</span><span class="n">export_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_types</span><span class="p">):</span>
+</span><span id="AdminModelView.export-2291"><a href="#AdminModelView.export-2291"><span class="linenos">2291</span></a>            <span class="n">flash</span><span class="p">(</span><span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Permission denied.&#39;</span><span class="p">),</span> <span class="s1">&#39;error&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.export-2292"><a href="#AdminModelView.export-2292"><span class="linenos">2292</span></a>            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.export-2293"><a href="#AdminModelView.export-2293"><span class="linenos">2293</span></a>
+</span><span id="AdminModelView.export-2294"><a href="#AdminModelView.export-2294"><span class="linenos">2294</span></a>        <span class="k">if</span> <span class="n">export_type</span> <span class="o">==</span> <span class="s1">&#39;csv&#39;</span><span class="p">:</span>
+</span><span id="AdminModelView.export-2295"><a href="#AdminModelView.export-2295"><span class="linenos">2295</span></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export_csv</span><span class="p">(</span><span class="n">return_url</span><span class="p">)</span>
+</span><span id="AdminModelView.export-2296"><a href="#AdminModelView.export-2296"><span class="linenos">2296</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.export-2297"><a href="#AdminModelView.export-2297"><span class="linenos">2297</span></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export_tablib</span><span class="p">(</span><span class="n">export_type</span><span class="p">,</span> <span class="n">return_url</span><span class="p">)</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="AdminModelView.ajax_lookup" class="classattr">
+                                        <input id="AdminModelView.ajax_lookup-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/ajax/lookup/&#39;)</div>
+
+        <span class="def">def</span>
+        <span class="name">ajax_lookup</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.ajax_lookup-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.ajax_lookup"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.ajax_lookup-2382"><a href="#AdminModelView.ajax_lookup-2382"><span class="linenos">2382</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/ajax/lookup/&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_lookup-2383"><a href="#AdminModelView.ajax_lookup-2383"><span class="linenos">2383</span></a>    <span class="k">def</span> <span class="nf">ajax_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.ajax_lookup-2384"><a href="#AdminModelView.ajax_lookup-2384"><span class="linenos">2384</span></a>        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_lookup-2385"><a href="#AdminModelView.ajax_lookup-2385"><span class="linenos">2385</span></a>        <span class="n">query</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;query&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_lookup-2386"><a href="#AdminModelView.ajax_lookup-2386"><span class="linenos">2386</span></a>        <span class="n">offset</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;offset&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_lookup-2387"><a href="#AdminModelView.ajax_lookup-2387"><span class="linenos">2387</span></a>        <span class="n">limit</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;limit&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_lookup-2388"><a href="#AdminModelView.ajax_lookup-2388"><span class="linenos">2388</span></a>
+</span><span id="AdminModelView.ajax_lookup-2389"><a href="#AdminModelView.ajax_lookup-2389"><span class="linenos">2389</span></a>        <span class="n">loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form_ajax_refs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_lookup-2390"><a href="#AdminModelView.ajax_lookup-2390"><span class="linenos">2390</span></a>
+</span><span id="AdminModelView.ajax_lookup-2391"><a href="#AdminModelView.ajax_lookup-2391"><span class="linenos">2391</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">loader</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_lookup-2392"><a href="#AdminModelView.ajax_lookup-2392"><span class="linenos">2392</span></a>            <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_lookup-2393"><a href="#AdminModelView.ajax_lookup-2393"><span class="linenos">2393</span></a>
+</span><span id="AdminModelView.ajax_lookup-2394"><a href="#AdminModelView.ajax_lookup-2394"><span class="linenos">2394</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">loader</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_list</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">limit</span><span class="p">)]</span>
+</span><span id="AdminModelView.ajax_lookup-2395"><a href="#AdminModelView.ajax_lookup-2395"><span class="linenos">2395</span></a>        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="AdminModelView.ajax_update" class="classattr">
+                                        <input id="AdminModelView.ajax_update-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose(&#39;/ajax/update/&#39;, methods=(&#39;POST&#39;,))</div>
+
+        <span class="def">def</span>
+        <span class="name">ajax_update</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AdminModelView.ajax_update-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AdminModelView.ajax_update"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AdminModelView.ajax_update-2397"><a href="#AdminModelView.ajax_update-2397"><span class="linenos">2397</span></a>    <span class="nd">@expose</span><span class="p">(</span><span class="s1">&#39;/ajax/update/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,))</span>
+</span><span id="AdminModelView.ajax_update-2398"><a href="#AdminModelView.ajax_update-2398"><span class="linenos">2398</span></a>    <span class="k">def</span> <span class="nf">ajax_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AdminModelView.ajax_update-2399"><a href="#AdminModelView.ajax_update-2399"><span class="linenos">2399</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AdminModelView.ajax_update-2400"><a href="#AdminModelView.ajax_update-2400"><span class="linenos">2400</span></a><span class="sd">            Edits a single column of a record in list view.</span>
+</span><span id="AdminModelView.ajax_update-2401"><a href="#AdminModelView.ajax_update-2401"><span class="linenos">2401</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AdminModelView.ajax_update-2402"><a href="#AdminModelView.ajax_update-2402"><span class="linenos">2402</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_editable_list</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_update-2403"><a href="#AdminModelView.ajax_update-2403"><span class="linenos">2403</span></a>            <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_update-2404"><a href="#AdminModelView.ajax_update-2404"><span class="linenos">2404</span></a>
+</span><span id="AdminModelView.ajax_update-2405"><a href="#AdminModelView.ajax_update-2405"><span class="linenos">2405</span></a>        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_form</span><span class="p">()</span>
+</span><span id="AdminModelView.ajax_update-2406"><a href="#AdminModelView.ajax_update-2406"><span class="linenos">2406</span></a>
+</span><span id="AdminModelView.ajax_update-2407"><a href="#AdminModelView.ajax_update-2407"><span class="linenos">2407</span></a>        <span class="c1"># prevent validation issues due to submitting a single field</span>
+</span><span id="AdminModelView.ajax_update-2408"><a href="#AdminModelView.ajax_update-2408"><span class="linenos">2408</span></a>        <span class="c1"># delete all fields except the submitted fields and csrf token</span>
+</span><span id="AdminModelView.ajax_update-2409"><a href="#AdminModelView.ajax_update-2409"><span class="linenos">2409</span></a>        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">form</span><span class="p">):</span>
+</span><span id="AdminModelView.ajax_update-2410"><a href="#AdminModelView.ajax_update-2410"><span class="linenos">2410</span></a>            <span class="k">if</span> <span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;csrf_token&#39;</span><span class="p">):</span>
+</span><span id="AdminModelView.ajax_update-2411"><a href="#AdminModelView.ajax_update-2411"><span class="linenos">2411</span></a>                <span class="k">pass</span>
+</span><span id="AdminModelView.ajax_update-2412"><a href="#AdminModelView.ajax_update-2412"><span class="linenos">2412</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_update-2413"><a href="#AdminModelView.ajax_update-2413"><span class="linenos">2413</span></a>                <span class="n">form</span><span class="o">.</span><span class="fm">__delitem__</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_update-2414"><a href="#AdminModelView.ajax_update-2414"><span class="linenos">2414</span></a>
+</span><span id="AdminModelView.ajax_update-2415"><a href="#AdminModelView.ajax_update-2415"><span class="linenos">2415</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_form</span><span class="p">(</span><span class="n">form</span><span class="p">):</span>
+</span><span id="AdminModelView.ajax_update-2416"><a href="#AdminModelView.ajax_update-2416"><span class="linenos">2416</span></a>            <span class="n">pk</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">list_form_pk</span><span class="o">.</span><span class="n">data</span>
+</span><span id="AdminModelView.ajax_update-2417"><a href="#AdminModelView.ajax_update-2417"><span class="linenos">2417</span></a>            <span class="n">record</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="n">pk</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_update-2418"><a href="#AdminModelView.ajax_update-2418"><span class="linenos">2418</span></a>
+</span><span id="AdminModelView.ajax_update-2419"><a href="#AdminModelView.ajax_update-2419"><span class="linenos">2419</span></a>            <span class="k">if</span> <span class="n">record</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_update-2420"><a href="#AdminModelView.ajax_update-2420"><span class="linenos">2420</span></a>                <span class="k">return</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Record does not exist.&#39;</span><span class="p">),</span> <span class="mi">500</span>
+</span><span id="AdminModelView.ajax_update-2421"><a href="#AdminModelView.ajax_update-2421"><span class="linenos">2421</span></a>
+</span><span id="AdminModelView.ajax_update-2422"><a href="#AdminModelView.ajax_update-2422"><span class="linenos">2422</span></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_model</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+</span><span id="AdminModelView.ajax_update-2423"><a href="#AdminModelView.ajax_update-2423"><span class="linenos">2423</span></a>                <span class="c1"># Success</span>
+</span><span id="AdminModelView.ajax_update-2424"><a href="#AdminModelView.ajax_update-2424"><span class="linenos">2424</span></a>                <span class="k">return</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Record was successfully saved.&#39;</span><span class="p">)</span>
+</span><span id="AdminModelView.ajax_update-2425"><a href="#AdminModelView.ajax_update-2425"><span class="linenos">2425</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_update-2426"><a href="#AdminModelView.ajax_update-2426"><span class="linenos">2426</span></a>                <span class="c1"># Error: No records changed, or problem saving to database.</span>
+</span><span id="AdminModelView.ajax_update-2427"><a href="#AdminModelView.ajax_update-2427"><span class="linenos">2427</span></a>                <span class="n">msgs</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">msg</span> <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">get_flashed_messages</span><span class="p">()])</span>
+</span><span id="AdminModelView.ajax_update-2428"><a href="#AdminModelView.ajax_update-2428"><span class="linenos">2428</span></a>                <span class="k">return</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Failed to update record. </span><span class="si">%(error)s</span><span class="s1">&#39;</span><span class="p">,</span>
+</span><span id="AdminModelView.ajax_update-2429"><a href="#AdminModelView.ajax_update-2429"><span class="linenos">2429</span></a>                               <span class="n">error</span><span class="o">=</span><span class="n">msgs</span><span class="p">),</span> <span class="mi">500</span>
+</span><span id="AdminModelView.ajax_update-2430"><a href="#AdminModelView.ajax_update-2430"><span class="linenos">2430</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_update-2431"><a href="#AdminModelView.ajax_update-2431"><span class="linenos">2431</span></a>            <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">form</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_update-2432"><a href="#AdminModelView.ajax_update-2432"><span class="linenos">2432</span></a>                <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">field</span><span class="o">.</span><span class="n">errors</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_update-2433"><a href="#AdminModelView.ajax_update-2433"><span class="linenos">2433</span></a>                    <span class="c1"># return validation error to x-editable</span>
+</span><span id="AdminModelView.ajax_update-2434"><a href="#AdminModelView.ajax_update-2434"><span class="linenos">2434</span></a>                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+</span><span id="AdminModelView.ajax_update-2435"><a href="#AdminModelView.ajax_update-2435"><span class="linenos">2435</span></a>                        <span class="k">return</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Failed to update record. </span><span class="si">%(error)s</span><span class="s1">&#39;</span><span class="p">,</span>
+</span><span id="AdminModelView.ajax_update-2436"><a href="#AdminModelView.ajax_update-2436"><span class="linenos">2436</span></a>                                       <span class="n">error</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error</span><span class="p">)),</span> <span class="mi">500</span>
+</span><span id="AdminModelView.ajax_update-2437"><a href="#AdminModelView.ajax_update-2437"><span class="linenos">2437</span></a>                    <span class="k">else</span><span class="p">:</span>
+</span><span id="AdminModelView.ajax_update-2438"><a href="#AdminModelView.ajax_update-2438"><span class="linenos">2438</span></a>                        <span class="k">return</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Failed to update record. </span><span class="si">%(error)s</span><span class="s1">&#39;</span><span class="p">,</span>
+</span><span id="AdminModelView.ajax_update-2439"><a href="#AdminModelView.ajax_update-2439"><span class="linenos">2439</span></a>                                       <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">),</span> <span class="mi">500</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Edits a single column of a record in list view.</p>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>flask_admin.contrib.sqla.view.ModelView</dt>
+                                <dd id="AdminModelView.__init__" class="function">ModelView</dd>
+                <dd id="AdminModelView.column_auto_select_related" class="variable">column_auto_select_related</dd>
+                <dd id="AdminModelView.column_select_related_list" class="variable">column_select_related_list</dd>
+                <dd id="AdminModelView.column_display_all_relations" class="variable">column_display_all_relations</dd>
+                <dd id="AdminModelView.column_searchable_list" class="variable">column_searchable_list</dd>
+                <dd id="AdminModelView.column_filters" class="variable">column_filters</dd>
+                <dd id="AdminModelView.model_form_converter" class="variable">model_form_converter</dd>
+                <dd id="AdminModelView.inline_model_form_converter" class="variable">inline_model_form_converter</dd>
+                <dd id="AdminModelView.filter_converter" class="variable">filter_converter</dd>
+                <dd id="AdminModelView.fast_mass_delete" class="variable">fast_mass_delete</dd>
+                <dd id="AdminModelView.inline_models" class="variable">inline_models</dd>
+                <dd id="AdminModelView.column_type_formatters" class="variable">column_type_formatters</dd>
+                <dd id="AdminModelView.form_choices" class="variable">form_choices</dd>
+                <dd id="AdminModelView.form_optional_types" class="variable">form_optional_types</dd>
+                <dd id="AdminModelView.ignore_hidden" class="variable">ignore_hidden</dd>
+                <dd id="AdminModelView.scaffold_pk" class="function">scaffold_pk</dd>
+                <dd id="AdminModelView.get_pk_value" class="function">get_pk_value</dd>
+                <dd id="AdminModelView.scaffold_list_columns" class="function">scaffold_list_columns</dd>
+                <dd id="AdminModelView.scaffold_sortable_columns" class="function">scaffold_sortable_columns</dd>
+                <dd id="AdminModelView.get_sortable_columns" class="function">get_sortable_columns</dd>
+                <dd id="AdminModelView.get_column_names" class="function">get_column_names</dd>
+                <dd id="AdminModelView.init_search" class="function">init_search</dd>
+                <dd id="AdminModelView.search_placeholder" class="function">search_placeholder</dd>
+                <dd id="AdminModelView.scaffold_filters" class="function">scaffold_filters</dd>
+                <dd id="AdminModelView.handle_filter" class="function">handle_filter</dd>
+                <dd id="AdminModelView.scaffold_form" class="function">scaffold_form</dd>
+                <dd id="AdminModelView.scaffold_list_form" class="function">scaffold_list_form</dd>
+                <dd id="AdminModelView.scaffold_inline_form_models" class="function">scaffold_inline_form_models</dd>
+                <dd id="AdminModelView.scaffold_auto_joins" class="function">scaffold_auto_joins</dd>
+                <dd id="AdminModelView.get_query" class="function">get_query</dd>
+                <dd id="AdminModelView.get_count_query" class="function">get_count_query</dd>
+                <dd id="AdminModelView.get_list" class="function">get_list</dd>
+                <dd id="AdminModelView.get_one" class="function">get_one</dd>
+                <dd id="AdminModelView.handle_view_exception" class="function">handle_view_exception</dd>
+                <dd id="AdminModelView.build_new_instance" class="function">build_new_instance</dd>
+                <dd id="AdminModelView.create_model" class="function">create_model</dd>
+                <dd id="AdminModelView.update_model" class="function">update_model</dd>
+                <dd id="AdminModelView.delete_model" class="function">delete_model</dd>
+                <dd id="AdminModelView.is_action_allowed" class="function">is_action_allowed</dd>
+                <dd id="AdminModelView.action_delete" class="function">action_delete</dd>
+
+            </div>
+            <div><dt>flask_admin.model.base.BaseModelView</dt>
+                                <dd id="AdminModelView.can_create" class="variable">can_create</dd>
+                <dd id="AdminModelView.can_edit" class="variable">can_edit</dd>
+                <dd id="AdminModelView.can_delete" class="variable">can_delete</dd>
+                <dd id="AdminModelView.can_view_details" class="variable">can_view_details</dd>
+                <dd id="AdminModelView.can_export" class="variable">can_export</dd>
+                <dd id="AdminModelView.list_template" class="variable">list_template</dd>
+                <dd id="AdminModelView.edit_template" class="variable">edit_template</dd>
+                <dd id="AdminModelView.create_template" class="variable">create_template</dd>
+                <dd id="AdminModelView.details_template" class="variable">details_template</dd>
+                <dd id="AdminModelView.edit_modal_template" class="variable">edit_modal_template</dd>
+                <dd id="AdminModelView.create_modal_template" class="variable">create_modal_template</dd>
+                <dd id="AdminModelView.details_modal_template" class="variable">details_modal_template</dd>
+                <dd id="AdminModelView.edit_modal" class="variable">edit_modal</dd>
+                <dd id="AdminModelView.create_modal" class="variable">create_modal</dd>
+                <dd id="AdminModelView.details_modal" class="variable">details_modal</dd>
+                <dd id="AdminModelView.column_list" class="variable">column_list</dd>
+                <dd id="AdminModelView.column_exclude_list" class="variable">column_exclude_list</dd>
+                <dd id="AdminModelView.column_details_list" class="variable">column_details_list</dd>
+                <dd id="AdminModelView.column_details_exclude_list" class="variable">column_details_exclude_list</dd>
+                <dd id="AdminModelView.column_export_list" class="variable">column_export_list</dd>
+                <dd id="AdminModelView.column_export_exclude_list" class="variable">column_export_exclude_list</dd>
+                <dd id="AdminModelView.column_formatters" class="variable">column_formatters</dd>
+                <dd id="AdminModelView.column_formatters_export" class="variable">column_formatters_export</dd>
+                <dd id="AdminModelView.column_formatters_detail" class="variable">column_formatters_detail</dd>
+                <dd id="AdminModelView.column_type_formatters_export" class="variable">column_type_formatters_export</dd>
+                <dd id="AdminModelView.column_type_formatters_detail" class="variable">column_type_formatters_detail</dd>
+                <dd id="AdminModelView.column_labels" class="variable">column_labels</dd>
+                <dd id="AdminModelView.column_descriptions" class="variable">column_descriptions</dd>
+                <dd id="AdminModelView.column_sortable_list" class="variable">column_sortable_list</dd>
+                <dd id="AdminModelView.column_default_sort" class="variable">column_default_sort</dd>
+                <dd id="AdminModelView.column_editable_list" class="variable">column_editable_list</dd>
+                <dd id="AdminModelView.column_choices" class="variable">column_choices</dd>
+                <dd id="AdminModelView.named_filter_urls" class="variable">named_filter_urls</dd>
+                <dd id="AdminModelView.column_display_pk" class="variable">column_display_pk</dd>
+                <dd id="AdminModelView.column_display_actions" class="variable">column_display_actions</dd>
+                <dd id="AdminModelView.column_extra_row_actions" class="variable">column_extra_row_actions</dd>
+                <dd id="AdminModelView.simple_list_pager" class="variable">simple_list_pager</dd>
+                <dd id="AdminModelView.form" class="variable">form</dd>
+                <dd id="AdminModelView.form_base_class" class="variable">form_base_class</dd>
+                <dd id="AdminModelView.form_args" class="variable">form_args</dd>
+                <dd id="AdminModelView.form_columns" class="variable">form_columns</dd>
+                <dd id="AdminModelView.form_excluded_columns" class="variable">form_excluded_columns</dd>
+                <dd id="AdminModelView.form_overrides" class="variable">form_overrides</dd>
+                <dd id="AdminModelView.form_widget_args" class="variable">form_widget_args</dd>
+                <dd id="AdminModelView.form_extra_fields" class="variable">form_extra_fields</dd>
+                <dd id="AdminModelView.form_ajax_refs" class="variable">form_ajax_refs</dd>
+                <dd id="AdminModelView.form_rules" class="variable">form_rules</dd>
+                <dd id="AdminModelView.form_edit_rules" class="variable">form_edit_rules</dd>
+                <dd id="AdminModelView.form_create_rules" class="variable">form_create_rules</dd>
+                <dd id="AdminModelView.action_disallowed_list" class="variable">action_disallowed_list</dd>
+                <dd id="AdminModelView.export_max_rows" class="variable">export_max_rows</dd>
+                <dd id="AdminModelView.export_types" class="variable">export_types</dd>
+                <dd id="AdminModelView.page_size" class="variable">page_size</dd>
+                <dd id="AdminModelView.can_set_page_size" class="variable">can_set_page_size</dd>
+                <dd id="AdminModelView.get_column_name" class="function">get_column_name</dd>
+                <dd id="AdminModelView.get_list_row_actions" class="function">get_list_row_actions</dd>
+                <dd id="AdminModelView.get_list_columns" class="function">get_list_columns</dd>
+                <dd id="AdminModelView.get_details_columns" class="function">get_details_columns</dd>
+                <dd id="AdminModelView.get_export_columns" class="function">get_export_columns</dd>
+                <dd id="AdminModelView.is_valid_filter" class="function">is_valid_filter</dd>
+                <dd id="AdminModelView.get_filters" class="function">get_filters</dd>
+                <dd id="AdminModelView.get_filter_arg" class="function">get_filter_arg</dd>
+                <dd id="AdminModelView.get_form" class="function">get_form</dd>
+                <dd id="AdminModelView.get_list_form" class="function">get_list_form</dd>
+                <dd id="AdminModelView.get_create_form" class="function">get_create_form</dd>
+                <dd id="AdminModelView.get_edit_form" class="function">get_edit_form</dd>
+                <dd id="AdminModelView.get_delete_form" class="function">get_delete_form</dd>
+                <dd id="AdminModelView.get_action_form" class="function">get_action_form</dd>
+                <dd id="AdminModelView.create_form" class="function">create_form</dd>
+                <dd id="AdminModelView.edit_form" class="function">edit_form</dd>
+                <dd id="AdminModelView.delete_form" class="function">delete_form</dd>
+                <dd id="AdminModelView.list_form" class="function">list_form</dd>
+                <dd id="AdminModelView.action_form" class="function">action_form</dd>
+                <dd id="AdminModelView.validate_form" class="function">validate_form</dd>
+                <dd id="AdminModelView.get_save_return_url" class="function">get_save_return_url</dd>
+                <dd id="AdminModelView.is_sortable" class="function">is_sortable</dd>
+                <dd id="AdminModelView.is_editable" class="function">is_editable</dd>
+                <dd id="AdminModelView.on_model_change" class="function">on_model_change</dd>
+                <dd id="AdminModelView.after_model_change" class="function">after_model_change</dd>
+                <dd id="AdminModelView.on_model_delete" class="function">on_model_delete</dd>
+                <dd id="AdminModelView.after_model_delete" class="function">after_model_delete</dd>
+                <dd id="AdminModelView.on_form_prefill" class="function">on_form_prefill</dd>
+                <dd id="AdminModelView.get_empty_list_message" class="function">get_empty_list_message</dd>
+                <dd id="AdminModelView.get_invalid_value_msg" class="function">get_invalid_value_msg</dd>
+                <dd id="AdminModelView.get_list_value" class="function">get_list_value</dd>
+                <dd id="AdminModelView.get_detail_value" class="function">get_detail_value</dd>
+                <dd id="AdminModelView.get_export_value" class="function">get_export_value</dd>
+                <dd id="AdminModelView.get_export_name" class="function">get_export_name</dd>
+
+            </div>
+            <div><dt>flask_admin.base.BaseView</dt>
+                                <dd id="AdminModelView.create_blueprint" class="function">create_blueprint</dd>
+                <dd id="AdminModelView.render" class="function">render</dd>
+                <dd id="AdminModelView.is_visible" class="function">is_visible</dd>
+                <dd id="AdminModelView.inaccessible_callback" class="function">inaccessible_callback</dd>
+                <dd id="AdminModelView.get_url" class="function">get_url</dd>
+
+            </div>
+            <div><dt>flask_admin.actions.ActionsMixin</dt>
+                                <dd id="AdminModelView.init_actions" class="function">init_actions</dd>
+                <dd id="AdminModelView.get_actions_list" class="function">get_actions_list</dd>
+                <dd id="AdminModelView.handle_action" class="function">handle_action</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="RestrictedAdminIndexView">
+                            <input id="RestrictedAdminIndexView-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">RestrictedAdminIndexView</span><wbr>(<span class="base">flask_admin.base.AdminIndexView</span>):
+
+                <label class="view-source-button" for="RestrictedAdminIndexView-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#RestrictedAdminIndexView"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="RestrictedAdminIndexView-22"><a href="#RestrictedAdminIndexView-22"><span class="linenos">22</span></a><span class="k">class</span> <span class="nc">RestrictedAdminIndexView</span><span class="p">(</span><span class="n">AdminIndexView</span><span class="p">):</span>
+</span><span id="RestrictedAdminIndexView-23"><a href="#RestrictedAdminIndexView-23"><span class="linenos">23</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="RestrictedAdminIndexView-24"><a href="#RestrictedAdminIndexView-24"><span class="linenos">24</span></a><span class="sd">    Une vue d&#39;index pour Flask-Admin.</span>
+</span><span id="RestrictedAdminIndexView-25"><a href="#RestrictedAdminIndexView-25"><span class="linenos">25</span></a><span class="sd">    Accessible uniquement par les admins.</span>
+</span><span id="RestrictedAdminIndexView-26"><a href="#RestrictedAdminIndexView-26"><span class="linenos">26</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="RestrictedAdminIndexView-27"><a href="#RestrictedAdminIndexView-27"><span class="linenos">27</span></a>
+</span><span id="RestrictedAdminIndexView-28"><a href="#RestrictedAdminIndexView-28"><span class="linenos">28</span></a>    <span class="k">def</span> <span class="nf">is_accessible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="RestrictedAdminIndexView-29"><a href="#RestrictedAdminIndexView-29"><span class="linenos">29</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Vérifie que l&#39;utilisateur a le droit d&#39;accéder à la page&quot;&quot;&quot;</span>
+</span><span id="RestrictedAdminIndexView-30"><a href="#RestrictedAdminIndexView-30"><span class="linenos">30</span></a>        <span class="k">return</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Une vue d'index pour Flask-Admin.
+Accessible uniquement par les admins.</p>
+</div>
+
+
+                            <div id="RestrictedAdminIndexView.is_accessible" class="classattr">
+                                        <input id="RestrictedAdminIndexView.is_accessible-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">is_accessible</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="RestrictedAdminIndexView.is_accessible-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#RestrictedAdminIndexView.is_accessible"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="RestrictedAdminIndexView.is_accessible-28"><a href="#RestrictedAdminIndexView.is_accessible-28"><span class="linenos">28</span></a>    <span class="k">def</span> <span class="nf">is_accessible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="RestrictedAdminIndexView.is_accessible-29"><a href="#RestrictedAdminIndexView.is_accessible-29"><span class="linenos">29</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Vérifie que l&#39;utilisateur a le droit d&#39;accéder à la page&quot;&quot;&quot;</span>
+</span><span id="RestrictedAdminIndexView.is_accessible-30"><a href="#RestrictedAdminIndexView.is_accessible-30"><span class="linenos">30</span></a>        <span class="k">return</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_admin</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Vérifie que l'utilisateur a le droit d'accéder à la page</p>
+</div>
+
+
+                            </div>
+                            <div id="RestrictedAdminIndexView.index" class="classattr">
+                                        <input id="RestrictedAdminIndexView.index-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@expose()</div>
+
+        <span class="def">def</span>
+        <span class="name">index</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="RestrictedAdminIndexView.index-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#RestrictedAdminIndexView.index"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="RestrictedAdminIndexView.index-454"><a href="#RestrictedAdminIndexView.index-454"><span class="linenos">454</span></a>    <span class="nd">@expose</span><span class="p">()</span>
+</span><span id="RestrictedAdminIndexView.index-455"><a href="#RestrictedAdminIndexView.index-455"><span class="linenos">455</span></a>    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="RestrictedAdminIndexView.index-456"><a href="#RestrictedAdminIndexView.index-456"><span class="linenos">456</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_template</span><span class="p">)</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>flask_admin.base.AdminIndexView</dt>
+                                <dd id="RestrictedAdminIndexView.__init__" class="function">AdminIndexView</dd>
+
+            </div>
+            <div><dt>flask_admin.base.BaseView</dt>
+                                <dd id="RestrictedAdminIndexView.create_blueprint" class="function">create_blueprint</dd>
+                <dd id="RestrictedAdminIndexView.render" class="function">render</dd>
+                <dd id="RestrictedAdminIndexView.is_visible" class="function">is_visible</dd>
+                <dd id="RestrictedAdminIndexView.inaccessible_callback" class="function">inaccessible_callback</dd>
+                <dd id="RestrictedAdminIndexView.get_url" class="function">get_url</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+    </main>
+<script>
+    function escapeHTML(html) {
+        return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML;
+    }
+
+    const originalContent = document.querySelector("main.pdoc");
+    let currentContent = originalContent;
+
+    function setContent(innerHTML) {
+        let elem;
+        if (innerHTML) {
+            elem = document.createElement("main");
+            elem.classList.add("pdoc");
+            elem.innerHTML = innerHTML;
+        } else {
+            elem = originalContent;
+        }
+        if (currentContent !== elem) {
+            currentContent.replaceWith(elem);
+            currentContent = elem;
+        }
+    }
+
+    function getSearchTerm() {
+        return (new URL(window.location)).searchParams.get("search");
+    }
+
+    const searchBox = document.querySelector(".pdoc input[type=search]");
+    searchBox.addEventListener("input", function () {
+        let url = new URL(window.location);
+        if (searchBox.value.trim()) {
+            url.hash = "";
+            url.searchParams.set("search", searchBox.value);
+        } else {
+            url.searchParams.delete("search");
+        }
+        history.replaceState("", "", url.toString());
+        onInput();
+    });
+    window.addEventListener("popstate", onInput);
+
+
+    let search, searchErr;
+
+    async function initialize() {
+        try {
+            search = await new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                script.onload = () => resolve(window.pdocSearch);
+                script.onerror = (e) => reject(e);
+                script.src = "../../search.js";
+                document.getElementsByTagName("head")[0].appendChild(script);
+            });
+        } catch (e) {
+            console.error("Cannot fetch pdoc search index");
+            searchErr = "Cannot fetch search index.";
+        }
+        onInput();
+
+        document.querySelector("nav.pdoc").addEventListener("click", e => {
+            if (e.target.hash) {
+                searchBox.value = "";
+                searchBox.dispatchEvent(new Event("input"));
+            }
+        });
+    }
+
+    function onInput() {
+        setContent((() => {
+            const term = getSearchTerm();
+            if (!term) {
+                return null
+            }
+            if (searchErr) {
+                return `<h3>Error: ${searchErr}</h3>`
+            }
+            if (!search) {
+                return "<h3>Searching...</h3>"
+            }
+
+            window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+
+            const results = search(term);
+
+            let html;
+            if (results.length === 0) {
+                html = `No search results for '${escapeHTML(term)}'.`
+            } else {
+                html = `<h4>${results.length} search result${results.length > 1 ? "s" : ""} for '${escapeHTML(term)}'.</h4>`;
+            }
+            for (let result of results.slice(0, 10)) {
+                let doc = result.doc;
+                let url = `../../${doc.modulename.replaceAll(".", "/")}.html`;
+                if (doc.qualname) {
+                    url += `#${doc.qualname}`;
+                }
+
+                let heading;
+                switch (result.doc.kind) {
+                    case "function":
+                        if (doc.fullname.endsWith(".__init__")) {
+                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
+                        } else {
+                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
+                        }
+                        break;
+                    case "class":
+                        heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
+                        if (doc.bases)
+                            heading += `<wbr>(<span class="base">${doc.bases}</span>)`;
+                        heading += `:`;
+                        break;
+                    case "variable":
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        if (doc.annotation)
+                            heading += `<span class="annotation">${doc.annotation}</span>`;
+                        if (doc.default_value)
+                            heading += `<span class="default_value"> = ${doc.default_value}</span>`;
+                        break;
+                    default:
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        break;
+                }
+                html += `
+                        <section class="search-result">
+                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
+                        <div class="docstring">${doc.doc}</div>
+                        </section>
+                    `;
+
+            }
+            return html;
+        })());
+    }
+
+    if (getSearchTerm()) {
+        initialize();
+        searchBox.value = getSearchTerm();
+        onInput();
+    } else {
+        searchBox.addEventListener("focus", initialize, {once: true});
+    }
+
+    searchBox.addEventListener("keydown", e => {
+        if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
+            let focused = currentContent.querySelector(".search-result.focused");
+            if (!focused) {
+                currentContent.querySelector(".search-result").classList.add("focused");
+            } else if (
+                e.key === "ArrowDown"
+                && focused.nextElementSibling
+                && focused.nextElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.nextElementSibling.classList.add("focused");
+                focused.nextElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "ArrowUp"
+                && focused.previousElementSibling
+                && focused.previousElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.previousElementSibling.classList.add("focused");
+                focused.previousElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "Enter"
+            ) {
+                focused.querySelector("a").click();
+            }
+        }
+    });
+</script></body>
+</html>
