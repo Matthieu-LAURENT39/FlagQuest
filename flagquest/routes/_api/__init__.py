@@ -9,7 +9,7 @@ from .. import api
 api_manager = Api(
     version="1.0",
     title="RootMe",
-    description="L'API du site Root Me d'Elysium",
+    description="L'API du site FlagQuest",
     endpoint="/api",
 )
 

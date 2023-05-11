@@ -1,1 +1,1 @@
-docstr-coverage --skip-file-doc .\site_elysium\
+docstr-coverage

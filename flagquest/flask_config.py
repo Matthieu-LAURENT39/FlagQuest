@@ -14,7 +14,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = "sqlite:///db.sqlite"
     # Exemple de l'utilisation d'une base de donnée distante
     # SQLALCHEMY_DATABASE_URI = (
-    #     "mysql+pymysql://Elysium:passw0rd@172.17.50.250:3306/elysium"
+    #     "mysql+pymysql://FlagQuest:passw0rd@172.17.50.250:3306/flagquest"
     # )
 
 
