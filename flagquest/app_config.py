@@ -2,7 +2,7 @@
 Fichier de configuration de l'application
 """
 
-APP_NAME: str = "Edouard Branly"
+APP_NAME: str = "FlagQuest"
 """Le nom de l'application à afficher"""
 # Ce sont des URLs.
 # Il est possible de placer des fichier dans le dossier /static afin
@@ -24,7 +24,7 @@ MENTIONS_LEGALES_LINK: str = "/mention_legales"
 CONDITION_GENERALES_D_UTILISATION_LINK = "/Conditions_generales_d_utilisation"
 """L'URL vers la page des conditions générales d'utilisation"""
 
-SENTENCE_FOOTER_END: str = "Root Me : plateforme d'apprentissage dédiée au hacking et à la sécurité de l'information"
+SENTENCE_FOOTER_END: str = "FlagQuest : plateforme d'apprentissage dédiée au hacking et à la sécurité de l'information"
 """La phrase en haut du footer"""
 COPYRIGHT: str = "© 2023"
 """Le copyright a afficher dans le footer"""
@@ -33,13 +33,11 @@ COPYRIGHT: str = "© 2023"
 # Laissé un lien vide pour le retirer
 TWITTER_LINK: str = "https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fwww.root-me.org%2F&region=follow_link&screen_name=rootme_org&tw_p=followbutton"
 """L'URL du compte Twitter (laissé vide pour cacher)"""
-LINKEDIN_LINK: str = (
-    "https://www.linkedin.com/groups/Root-Me-hacking-and-information-8180601"
-)
+LINKEDIN_LINK: str = "https://www.linkedin.com/in/flag-quest-825419276/"
 """L'URL du compte Linkedin (laissé vide pour cacher)"""
-RSS_FEED_LINK: str = "https://www.root-me.org/?page=flux_rss&lang=fr"
+RSS_FEED_LINK: str = ""
 """L'URL du flux RSS (laissé vide pour cacher)"""
-DISCORD_LINK: str = "https://discord.gg/XejsBJdUch"
+DISCORD_LINK: str = ""
 """L'URL du serveur Discord (laissé vide pour cacher)"""
 
 # ========== ADVANCED ==========
