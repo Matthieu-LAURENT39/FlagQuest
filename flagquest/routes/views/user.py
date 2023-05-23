@@ -33,7 +33,7 @@ class UserWeekPoints(BaseChart):
 
 @main.route("/profile", defaults={"username": None})
 @main.route("/profile/<username>")
-def profile(username):
+def profile(username: str | None):
     """La page de profil de l'utilisateur"""
 
     if username is None:

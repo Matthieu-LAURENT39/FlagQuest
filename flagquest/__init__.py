@@ -46,7 +46,7 @@ def load_user(user_id: str) -> Optional["User"]:
 
 
 def create_app(config: object = Config) -> Flask:
-    """App factory pour Flask
+    """App factory pour l'application Flask
 
     Args:
         config (object, optional): L'objet de configuration à charger. Defaults to Config.
