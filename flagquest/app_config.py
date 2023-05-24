@@ -7,14 +7,27 @@ APP_NAME: str = "FlagQuest"
 # Ce sont des URLs.
 # Il est possible de placer des fichier dans le dossier /static afin
 # de pouvoir les utiliser avec une url de la forme "/static/mon_fichier.png"
-APP_LOGO: str = "/static/img/logo.png"
+APP_LOGO: str = "/static/img/icon_ciel.png"
 """Le logo a afficher sur le site"""
-APP_FAVICO: str = "/static/img/logo.png"
+APP_FAVICO: str = "/static/img/icon_ciel.png"
 """Le logo a afficher pour le favico"""
 
 # ========== Apparence ==========
 ENABLE_ANIMATED_BACKGROUND: bool = True
-"""Si il faut afficher le fond animé sur la page d'acceuil"""
+"""Si il faut afficher le fond animé sur la page d'acceuil au couleur du BTS CIEL"""
+
+
+
+BACKGROUND: str = "bg-black"
+"""background du site class bootstrap voir couleur disponible => https://getbootstrap.com/docs/4.0/utilities/colors/ """
+
+# style suplementaire <room-widget>
+BACKGROUND_BLOCK: str = "room-widget"
+"""background des blocks sur la page d'accueil class bootstrap voir couleur disponible => https://getbootstrap.com/docs/4.0/utilities/colors/ """
+
+TEXT_COLOR_BLOCK: str = "text-black"
+"""couleur du text des blocks sur la page d'accueil class bootstrap voir couleur disponible => https://getbootstrap.com/docs/4.0/utilities/colors/ """
+
 
 # ========== footer ==========
 CONFIDENTIALITE_LINK: str = "/confidentalite"
@@ -71,3 +84,7 @@ Changer cette valeur ne change pas automatiquement le mot de passe sur la VM!
 """
 PROXMOX_VM_BRIDGE: str = "vmbr1"
 """L'interface sur laquelle doivent être placer les VMs"""
+
+
+
+
