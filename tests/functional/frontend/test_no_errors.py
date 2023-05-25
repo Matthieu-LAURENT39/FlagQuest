@@ -6,7 +6,14 @@ from flask_login import login_user
 
 
 # TODO: Tester également quand authentifié
-@pytest.mark.parametrize("user", (None, "regular_user", "admin_user"))
+@pytest.mark.parametrize(
+    "user",
+    (
+        None,
+        "regular_user",
+        "admin_user",
+    ),
+)
 def test_routes_no_server_errors(
     app: Flask, client: FlaskClient, user: str | None, request
 ):
@@ -25,7 +32,14 @@ def test_routes_no_server_errors(
         assert not str(r.status_code).startswith("5")
 
 
-@pytest.mark.parametrize("user", (None, "regular_user", "admin_user"))
+@pytest.mark.parametrize(
+    "user",
+    (
+        None,
+        "regular_user",
+        "admin_user",
+    ),
+)
 def test_rooms_no_error(app: Flask, client: FlaskClient, user: str | None, request):
     with app.app_context():
         from flagquest.models import Room

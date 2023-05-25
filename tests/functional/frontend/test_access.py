@@ -52,7 +52,7 @@ def test_route_access(
     admin_user,
 ):
     """
-    On vérifie que toutes les routes soient accessibles et ai le bon code.
+    Vérifie que toutes les routes soient accessibles et ai le bon status code.
     """
     if login_level == LoginLevel.REGULAR_USER:
         login_user(regular_user)
