@@ -27,7 +27,7 @@ def test_get_n_around_errors():
     """
     lst = [1, 2, 3, 4, 5]
 
-    # On vérifie que des valeurs incorrectes
+    # On vérifie que des valeurs incorrectes fassent les erreurs approprié
     with pytest.raises(ValueError):
         get_n_around(lst, 122, 2)
 

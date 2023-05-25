@@ -7,15 +7,15 @@ APP_NAME: str = "FlagQuest"
 # Ce sont des URLs.
 # Il est possible de placer des fichier dans le dossier /static afin
 # de pouvoir les utiliser avec une url de la forme "/static/mon_fichier.png"
-APP_LOGO: str = "/static/img/icon_ciel.png"
+APP_LOGO: str = "/static/img/logo.png"
 """Le logo a afficher sur le site"""
-APP_FAVICO: str = "/static/img/icon_ciel.png"
+APP_FAVICO: str = "/static/img/logo.png"
 """Le logo a afficher pour le favico"""
+
 
 # ========== Apparence ==========
 ENABLE_ANIMATED_BACKGROUND: bool = True
 """Si il faut afficher le fond animé sur la page d'acceuil au couleur du BTS CIEL"""
-
 
 
 BACKGROUND: str = "bg-black"
@@ -84,7 +84,3 @@ Changer cette valeur ne change pas automatiquement le mot de passe sur la VM!
 """
 PROXMOX_VM_BRIDGE: str = "vmbr1"
 """L'interface sur laquelle doivent être placer les VMs"""
-
-
-
-
