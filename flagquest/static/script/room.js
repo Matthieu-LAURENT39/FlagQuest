@@ -53,10 +53,13 @@ function saveQuestion(question_id) {
     };
 
     fetch(`/api/question/${question_id}`, requestOptions)
-        .then(window.location.reload(true))
-    //.then(response => response.text())
-    //.then(result => console.log(result))
-    //.catch(error => console.log('error', error));
+        .then(response => { window.location.reload(true) })
+        //.then(response => response.text())
+        //.then(result => console.log(result))
+        .catch(error => {
+            console.error(`Error saving question ${question_id}: `, error)
+            showErrorToast("Erreur lors de l'enregistrement des modifications.")
+        })
 }
 
 /**
@@ -76,4 +79,8 @@ function deleteQuestion(question_id) {
 
     fetch(`/api/question/${question_id}`, requestOptions)
         .then(response => window.location.reload(true))
+        .catch(error => {
+            console.error(`Error deleting question ${question_id}: `, error)
+            showErrorToast("Erreur lors de la suppression de la question.")
+        })
 }
