@@ -5,8 +5,9 @@
         id="question_block-{{question.id}}">
         {% if current_user.is_authenticated and current_user.is_admin %}
         {# button edit #}
-        <div class="position-absolute bottom-0 end-0 m-3">
-            <button type="button" class="btn btn-outline-secondary" onclick="toggleEditMode({{question.id}}, true);">
+        <div class="position-absolute bottom-0 end-0 m-3 border-2">
+            <button type="button" class="btn btn-outline-secondary"
+                onclick="toggleQuestionEditMode({{question.id}}, true);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen"
                     viewBox="0 0 16 16">
                     <path
@@ -97,5 +98,19 @@
             </button>
         </div>
     </div>
+</div>
+{% endmacro %}
+
+{% macro edit_room_input(id, name, value, multiline=False, placeholder=none) %}
+<div class="mb-3">
+    <label for="{{id}}" class="form-label">{{name}}</label>
+    {% if multiline %}
+    {% set line_count = value.split('\n') | count %}
+    <textarea class="form-control border-0" placeholder="{{placeholder if placeholder is not none else name}}"
+        autocomplete="off" id="{{id}}" rows="{{line_count + 1}}">{{value}}</textarea>
+    {% else %}
+    <input class=" form-control border-0" type="text" placeholder="{{placeholder if placeholder is not none else name}}"
+        autocomplete="off" id="{{id}}" value="{{value}}">
+    {% endif %}
 </div>
 {% endmacro %}

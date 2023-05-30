@@ -5,6 +5,7 @@ Endpoints API lié aux rooms
 from flask import abort, request
 from flask_login import current_user, login_required
 from flask_restx import Namespace, Resource, fields
+import sqlalchemy.exc
 
 from ... import db
 from ... import models as models
@@ -29,11 +30,23 @@ room_model = room_namespace.model(
     },
 )
 
+edit_room_model = room_namespace.model(
+    "EditRoom",
+    {
+        "instructions": fields.String,
+        "description": fields.String,
+        "url_name": fields.String,
+        "_victim_vm_ids": fields.String,
+        "name": fields.String,
+    },
+)
+
 
 @room_namespace.route("/room/<url_name>")
 @room_namespace.param("url_name", "L'url name de la room")
 @room_namespace.response(200, "Succès")
 @room_namespace.response(404, "La room n'existe pas")
+@room_namespace.response(409, "Une room avec ce nom existe déja")
 class RoomResource(Resource):
     """Informations lié à une room"""
 
@@ -44,6 +57,77 @@ class RoomResource(Resource):
             description="Cette room n'existe pas."
         )
         return room_schema.dump(room)
+
+    @room_namespace.expect(edit_room_model, validate=True)
+    @room_namespace.marshal_with(room_model, as_list=False)
+    def post(self, url_name: str):
+        """Créer une nouvelle room"""
+        data = request.json
+
+        room = models.Room(
+            name=data.get("name") or url_name,
+            url_name=data.get("url_name") or url_name,
+            description=data.get("description") or "# change me",
+            instructions=data.get("instructions") or "# change me",
+        )
+        if data.get("_victim_vm_ids") is not None:
+            room.victim_vm_ids = [
+                int(i)
+                for i in data.get("_victim_vm_ids", "").strip().split(";")
+                if i != ""
+            ]
+        else:
+            room.victim_vm_ids = []
+
+        try:
+            db.session.add(room)
+            db.session.commit()
+        except sqlalchemy.exc.IntegrityError:
+            abort(409)
+
+        return room_schema.dump(room)
+
+    @room_namespace.expect(edit_room_model, validate=True)
+    @room_namespace.marshal_with(room_model, as_list=False)
+    def put(self, url_name: str):
+        """Modifie une room"""
+        data = request.json
+
+        room: models.Room = models.Room.query.filter_by(url_name=url_name).first_or_404(
+            description="Cette room n'existe pas."
+        )
+
+        for key in (
+            "name",
+            "url_name",
+            "description",
+            "instructions",
+        ):
+            if data.get(key) is None:
+                continue
+            setattr(room, key, data.get(key))
+        if data.get("_victim_vm_ids") is not None:
+            room.victim_vm_ids = [
+                int(i)
+                for i in data.get("_victim_vm_ids", "").strip().split(";")
+                if i != ""
+            ]
+
+        db.session.commit()
+        return room_schema.dump(room)
+
+    def delete(self, url_name: str):
+        """Supprime une room"""
+        if not current_user.is_authenticated:
+            abort(401)
+        if not current_user.is_admin:
+            abort(403)
+
+        room: models.Room = models.Room.query.filter_by(url_name=url_name).first_or_404(
+            description="Cet room n'existe pas."
+        )
+        db.session.delete(room)
+        db.session.commit()
 
 
 question_model = room_namespace.model(
@@ -111,14 +195,14 @@ class QuestionResource(Resource):
         return question_schema.dump(question)
 
     @room_namespace.marshal_with(question_model, as_list=False)
-    def post(self, id):
+    def put(self, id):
         """Modifie les informations lié a une question."""
         if not current_user.is_authenticated:
             abort(401)
         if not current_user.is_admin:
             abort(403)
 
-        question: models.User = models.Question.query.filter_by(id=id).first_or_404(
+        question: models.Question = models.Question.query.filter_by(id=id).first_or_404(
             description="Cet question n'existe pas."
         )
 
