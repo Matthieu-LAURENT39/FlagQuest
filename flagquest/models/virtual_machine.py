@@ -75,7 +75,7 @@ class VirtualMachine(_current_base):
 
 
 @listens_for(VirtualMachine, "after_delete")
-def after_user_delete(mapper, connection, target: VirtualMachine):
+def after_vm_delete(mapper, connection, target: VirtualMachine):
     """Supprime automatiquement la VM proxmox correspondante lorsqu'elle est supprimé de la VM"""
     mgr = get_vm_manager()
     mgr.delete_vm(target.proxmox_id)

@@ -313,8 +313,8 @@
                         <div id="list-example" class="list-group mt-3">
                             <a class="list-group-item list-group-item-action" href="#room-info">Consignes</a>
                             {% for q in room.questions %}
-                            <a class="list-group-item list-group-item-action" href="#question_block-{{q.id}}">{{q.prompt
-                                | markdown}}</a>
+                            <a class="list-group-item list-group-item-action" href="#question_block-{{q.id}}"
+                                style="overflow: hidden">{{q.prompt | markdown}}</a>
                             {% endfor %}
                         </div>
                     </div>

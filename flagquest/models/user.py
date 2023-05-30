@@ -100,13 +100,13 @@ class User(_current_base, UserMixin):
 
     @lru_cache(maxsize=5)
     def get_profile_picture(self, size: int = 250) -> bytes:
-        """Gets the profile picture of a user as an image.
+        """La photo de profil, en tant qu'image
 
         Args:
-            size (int, optional): The size of the square, in pixels. Defaults to 250.
+            size (int, optional): La taille de carré, en pixels. Defaults to 250.
 
         Returns:
-            bytes: A PNG image.
+            bytes: Une image PNG.
         """
         return customidenticon.create(
             self.username.casefold(),  # Data used to generate identicon

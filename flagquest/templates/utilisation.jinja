@@ -5,6 +5,21 @@
 {% endblock %}
 
 {% block content %}
+<div class="container text-light">
+    <h1 class="display-3">Utilisation élève</h1>
 
+    <h2 id="participer-room">Participer à une room</h2>
+    <p>Pour participer à une room, il suffit de se rendre sur la page de la room, puis
+        de cliquer le boutton <code>Rejoindre la room</code>.<br>
+        Ensuite, il ne te reste plus qu'a <a href="#utilisation-vms">lancer les machines virtuelles</a> et répondre aux
+        questions!
+    </p>
 
+    <h2 id="utilisation-vms">Utilisations des machines virtuelles.</h2>
+    <p>Une fois que tu a rejoint une room, il apparait en haut de la page un boutton permettant de lancer une VM
+        d'attaque. Clique simplement ce boutton, et les informations de la VM tel que l'adresse IP et le port VNC seront
+        affiché.<br>
+        Si la room contient des machines victimes, tu pourras similairement les lancées via un autre boutton en haut de
+        la page.
+</div>
 {% endblock %}

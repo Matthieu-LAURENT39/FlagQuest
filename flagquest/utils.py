@@ -17,7 +17,7 @@ def get_n_around(lst: list[T], index: int, amount: int) -> list[T]:
     Args:
         lst (list[T]): La liste contenant les éléments
         index (int): L'index servant de centre dans lst
-        amount (int): Combient d'objets récupéré
+        amount (int): Combient d'objets récupérer
 
     Raises:
         ValueError: amount est négatif, ou index n'est pas dans la liste
@@ -38,11 +38,11 @@ def get_n_around(lst: list[T], index: int, amount: int) -> list[T]:
         return lst
 
     def neg_pos_count() -> Iterator[int]:
-        """Yields growing ints, first the negative then the positive
+        """Yields des int grandissant, d'abord négatif puis positif
         ex: 0, -1, -1, -2, 2, -3, ...
 
         Yields:
-            Iterator[int]: An endless iterator of ints
+            Iterator[int]: Un iterator de ints sans fin
         """
         yield 0
         for i in count(start=1):

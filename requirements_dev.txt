@@ -4,3 +4,4 @@ pylint
 flake8
 docstr-coverage
 pdoc==13.1.1
+pytest-html==3.2.0
