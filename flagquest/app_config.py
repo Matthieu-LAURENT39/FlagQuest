@@ -7,9 +7,9 @@ APP_NAME: str = "FlagQuest"
 # Ce sont des URLs.
 # Il est possible de placer des fichier dans le dossier /static afin
 # de pouvoir les utiliser avec une url de la forme "/static/mon_fichier.png"
-APP_LOGO: str = "/static/img/icon_ciel.png"
+APP_LOGO: str = "/static/img/logo.png"
 """Le logo a afficher sur le site"""
-APP_FAVICO: str = "/static/img/icon_ciel.png"
+APP_FAVICO: str = "/static/img/logo.png"
 """Le logo a afficher pour le favico"""
 
 # ========== Apparence ==========
@@ -50,7 +50,7 @@ LINKEDIN_LINK: str = "https://www.linkedin.com/in/flag-quest-825419276/"
 """L'URL du compte Linkedin (laissé vide pour cacher)"""
 RSS_FEED_LINK: str = ""
 """L'URL du flux RSS (laissé vide pour cacher)"""
-DISCORD_LINK: str = ""
+DISCORD_LINK: str = "https://discord.gg/h6jKrx3A"
 """L'URL du serveur Discord (laissé vide pour cacher)"""
 
 # ========== ADVANCED ==========
