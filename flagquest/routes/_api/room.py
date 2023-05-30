@@ -69,8 +69,15 @@ class RoomResource(Resource):
             url_name=data.get("url_name") or url_name,
             description=data.get("description") or "# change me",
             instructions=data.get("instructions") or "# change me",
-            _victim_vm_ids=data.get("_victim_vm_ids") or "",
         )
+        if data.get("_victim_vm_ids") is not None:
+            room.victim_vm_ids = [
+                int(i)
+                for i in data.get("_victim_vm_ids", "").strip().split(";")
+                if i != ""
+            ]
+        else:
+            room.victim_vm_ids = []
 
         try:
             db.session.add(room)
@@ -95,11 +102,16 @@ class RoomResource(Resource):
             "url_name",
             "description",
             "instructions",
-            "_victim_vm_ids",
         ):
-            if not data.get(key):
+            if data.get(key) is None:
                 continue
             setattr(room, key, data.get(key))
+        if data.get("_victim_vm_ids") is not None:
+            room.victim_vm_ids = [
+                int(i)
+                for i in data.get("_victim_vm_ids", "").strip().split(";")
+                if i != ""
+            ]
 
         db.session.commit()
         return room_schema.dump(room)
