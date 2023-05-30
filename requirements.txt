@@ -20,6 +20,7 @@ customidenticon==0.1.5
 
 # Proxmox
 proxmoxer==2.0.1
+requests==2.28.2
 
 # Other
 toml==0.10.2
