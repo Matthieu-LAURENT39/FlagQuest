@@ -47,208 +47,208 @@
 
 
 <body {% block body_args %}class="{{config.BACKGROUND}}" {% endblock body_args %}>
-    {% block header %}
-    <header class=" text-dark bg-transparent">
-        <div class="container-fluid m-0">
-            <div class="d-flex align-items-center justify-content-between ">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
-                    <span class="site-name" itemprop="name">{{config.APP_NAME}}</span>
-                </a>
-
-                <div class="text-end d-flex align-items-center">
-                    {% if current_user.is_authenticated %}
-                    <div class="nom-utilisateur">
-                        <h4> {{current_user.username}} </h4>
-                    </div>
-                    {# <a href="{{ url_for('deconnexion') }}" type="button"
-                        class="btn btn-outline-danger rounded-1 border-2 fw-semibold px-2 py-1">Déconnexion</a> #}
-                    <div class="dropdown text-end"> <!-- creation menu / bouton qui permet le défilement -->
-                        <a href="{{ url_for('main.profile') }}"
-                            class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{url_for('main.profile_picture', username=current_user.username)}}" alt="mdo"
-                                width="36" height="36" class="avatar-user rounded-3">
-                        </a>
-                        <ul class="dropdown-content dropdown-menu text-small" style="">
-                            <!-- contenu du menu / ce qui défile -->
-                            {# lien vers profil user #}
-                            <li>
-                                <a class="dropdown-item" href="{{ url_for('main.profile') }}">
-                                    <span>Mon profil</span>
-                                    <img src="/static/img/avatar.png">
-                                </a>
-                            </li>
-                            {# lien vers classement #}
-                            <li>
-                                <a class="dropdown-item" href="{{ url_for('main.classement') }}">
-                                    <span>Classement</span>
-                                    <img src="/static/img/podium.svg">
-                                </a>
-                            </li>
-                            {# lien vers liste des rooms #}
-                            <li>
-                                <a class="dropdown-item" href="{{ url_for('main.liste_room') }}">
-                                    <span>Rooms</span>
-                                    <img src="/static/img/icon_room.svg">
-                                </a>
-                            </li>
-
-                            {# si user connecté en admin --> liens vers panel admin + edit room#}
-                            {% if current_user.is_admin == true %}
-                            {# lien vers panel administrateur #}
-                            <li>
-                                <a class="dropdown-item" href="{{ url_for('admin.index') }}">
-                                    <span>Panel admin</span>
-                                    <img src="/static/img/cadenas.svg">
-                                </a>
-                            </li>
-                            {% endif%}
-
-                            <li>
-                                <hr class="dropdown-divider"> <!-- simple séparation estétique -->
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ url_for('main.deconnexion') }}">
-                                    <span>Se déconnecter</span>
-                                    <img src="/static/img/logout.svg">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    {% else %}
-                    <!-- <button type="button" class="btn btn-outline-light me-2"><a href="connexion.html" text-decoration-none>J'ai déjà un compte</a></button> -->
-                    <a href="{{ url_for('main.connexion') }}"
-                        class="btn rounded-1 border-2 active text-info fw-semibold px-2 py-1" role="button"
-                        aria-pressed="true">J'ai déjà un compte</a>
-                    <a class="a-rootme-pro" href="http://www.lyceebranly.com/">
-                        <img class="logo-rootme-pro" src="/static/img/university.svg" alt="Logo d'une université"
-                            title="Lycée Edouard Branly">
+    <div style="min-height: 73vh;">
+        {% block header %}
+        <header class=" text-dark bg-transparent">
+            <div class="container-fluid m-0">
+                <div class="d-flex align-items-center justify-content-between ">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                        <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
+                        <span class="site-name" itemprop="name">{{config.APP_NAME}}</span>
                     </a>
-                    {% endif %}
+
+                    <div class="text-end d-flex align-items-center">
+                        {% if current_user.is_authenticated %}
+                        <div class="nom-utilisateur">
+                            <h4> {{current_user.username}} </h4>
+                        </div>
+                        {# <a href="{{ url_for('deconnexion') }}" type="button"
+                            class="btn btn-outline-danger rounded-1 border-2 fw-semibold px-2 py-1">Déconnexion</a> #}
+                        <div class="dropdown text-end"> <!-- creation menu / bouton qui permet le défilement -->
+                            <a href="{{ url_for('main.profile') }}"
+                                class="curseur-avatar d-block link-dark text-decoration-none dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{url_for('main.profile_picture', username=current_user.username)}}" alt="mdo"
+                                    width="36" height="36" class="avatar-user rounded-3">
+                            </a>
+                            <ul class="dropdown-content dropdown-menu text-small" style="">
+                                <!-- contenu du menu / ce qui défile -->
+                                {# lien vers profil user #}
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('main.profile') }}">
+                                        <span>Mon profil</span>
+                                        <img src="/static/img/avatar.png">
+                                    </a>
+                                </li>
+                                {# lien vers classement #}
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('main.classement') }}">
+                                        <span>Classement</span>
+                                        <img src="/static/img/podium.svg">
+                                    </a>
+                                </li>
+                                {# lien vers liste des rooms #}
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('main.liste_room') }}">
+                                        <span>Rooms</span>
+                                        <img src="/static/img/icon_room.svg">
+                                    </a>
+                                </li>
+
+                                {# si user connecté en admin --> liens vers panel admin + edit room#}
+                                {% if current_user.is_admin == true %}
+                                {# lien vers panel administrateur #}
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('admin.index') }}">
+                                        <span>Panel admin</span>
+                                        <img src="/static/img/cadenas.svg">
+                                    </a>
+                                </li>
+                                {% endif%}
+
+                                <li>
+                                    <hr class="dropdown-divider"> <!-- simple séparation estétique -->
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('main.deconnexion') }}">
+                                        <span>Se déconnecter</span>
+                                        <img src="/static/img/logout.svg">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <!-- <button type="button" class="btn btn-outline-light me-2"><a href="connexion.html" text-decoration-none>J'ai déjà un compte</a></button> -->
+                        <a href="{{ url_for('main.connexion') }}"
+                            class="btn rounded-1 border-2 active text-info fw-semibold px-2 py-1" role="button"
+                            aria-pressed="true">J'ai déjà un compte</a>
+                        <a class="a-rootme-pro" href="http://www.lyceebranly.com/">
+                            <img class="logo-rootme-pro" src="/static/img/university.svg" alt="Logo d'une université"
+                                title="Lycée Edouard Branly">
+                        </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
+        </header>
+        {% endblock %}
+
+        <!-- ----------------------------------- layout des flash : success, error, ... ----------------------------------- -->
+        <!-- icons SVG flashing -->
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <!-- icon validée -->
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </symbol>
+            <!-- icon infos -->
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+            </symbol>
+            <!-- icon triangle exclamation -->
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </symbol>
+        </svg>
+
+        <!-- ROUGE alert warning -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        {# VERT - success #}
+        {% if category == 'success' %}
+        <div class="flashingtest alert alert-success alert-dismissible fade show" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                <use xlink:href="#check-circle-fill" />
+            </svg>
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    </header>
+        {% endif %}
+        {# ROUGE - warning #}
+        {% if category == 'error' %}
+        <div class="flashingtest alert alert-danger alert-dismissible fade show" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                <use xlink:href="#exclamation-triangle-fill" />
+            </svg>
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {# BLEU - info #}
+        {% if category == 'info' %}
+        <div class="flashingtest alert alert-info alert-dismissible fade show" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                <use xlink:href="#info-fill" />
+            </svg>
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% block content required %}{% endblock content %}
+    </div>
+    {% block footer %}
+    <footer class="page-footer container-fluid pt-3 align-items-center">
+        <div class="d-flex justify-content-center">
+            <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
+        </div>
+        <ul class="nav justify-content-center">
+            <li class="nav-item"><a href="{{config.CONFIDENTIALITE_LINK}}"
+                    class="nav-link px-2 text-muted text-secondary-emphasis fs-6">Confidentialité</a></li>
+            <!-- <li class="nav-item ">&nbsp;|</li> -->
+            <li class="nav-item"><a href="{{config.MENTIONS_LEGALES_LINK}}"
+                    class="nav-link px-2 text-secondary-emphasis fs-6">Mentions Légales</a></li>
+            <li class="nav-item"><a href="{{config.CONDITION_GENERALES_D_UTILISATION_LINK}}"
+                    class="nav-link px-2 text-secondary-emphasis fs-6">Conditions Générales
+                    d'Utilisation</a></li>
+        </ul>
+        <p class="text-center p-0 m-0 text-white fs-6">{{config.SENTENCE_FOOTER_END}}</p>
+        <p class="text-center border-bottom border-secondary pb-3 mb-0 text-white fs-6">{{config.COPYRIGHT}}</p>
+
+
+        <ul class="nav justify-content-center pt-3">
+            {# TODO: Faire un test que les logos se cachent bien si l'URL n'existe pas #}
+            {% if config.TWITTER_LINK %}
+            <li class="nav-item px-3">
+                <a href="{{config.TWITTER_LINK}}" class="nav-link px-2">
+                    <img src="/static/img/social_network/twitter.svg" alt="logo Twitter">
+                </a>
+            </li>
+            {% endif %}
+
+            {% if config.LINKEDIN_LINK %}
+            <li class="nav-item px-3">
+                <a href="{{config.LINKEDIN_LINK}}" class="nav-link px-2">
+                    <img src="/static/img/social_network/linkedin.svg" alt="logo LinkedIn">
+                </a>
+            </li>
+            {% endif %}
+
+            {% if config.RSS_FEED_LINK %}
+            <li class="nav-item px-3">
+                <a href="{{config.RSS_FEED_LINK}}" class="nav-link px-2">
+                    <img src="/static/img/social_network/rss.svg" alt="logo Flux RSS">
+                </a>
+            </li>
+            {% endif %}
+
+            {% if config.DISCORD_LINK %}
+            <li class="nav-item px-3">
+                <a href="{{config.DISCORD_LINK}}" class="nav-link px-2">
+                    <img src="/static/img/social_network/discord.svg" alt="logo Discord">
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </footer>
     {% endblock %}
 
-    <!-- ----------------------------------- layout des flash : success, error, ... ----------------------------------- -->
-    <!-- icons SVG flashing -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <!-- icon validée -->
-        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-        </symbol>
-        <!-- icon infos -->
-        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path
-                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-        </symbol>
-        <!-- icon triangle exclamation -->
-        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path
-                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-        </symbol>
-    </svg>
-
-    <!-- ROUGE alert warning -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    {# VERT - success #}
-    {% if category == 'success' %}
-    <div class="flashingtest alert alert-success alert-dismissible fade show" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-            <use xlink:href="#check-circle-fill" />
-        </svg>
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endif %}
-    {# ROUGE - warning #}
-    {% if category == 'error' %}
-    <div class="flashingtest alert alert-danger alert-dismissible fade show" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-            <use xlink:href="#exclamation-triangle-fill" />
-        </svg>
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endif %}
-    {# BLEU - info #}
-    {% if category == 'info' %}
-    <div class="flashingtest alert alert-info alert-dismissible fade show" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
-            <use xlink:href="#info-fill" />
-        </svg>
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-
-    {% block content required %}{% endblock content %}
-
 </body>
-
-{% block footer %}
-<footer class="page-footer container-fluid pt-3 align-items-center">
-    <div class="d-flex justify-content-center">
-        <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
-    </div>
-    <ul class="nav justify-content-center">
-        <li class="nav-item"><a href="{{config.CONFIDENTIALITE_LINK}}"
-                class="nav-link px-2 text-muted text-secondary-emphasis fs-6">Confidentialité</a></li>
-        <!-- <li class="nav-item ">&nbsp;|</li> -->
-        <li class="nav-item"><a href="{{config.MENTIONS_LEGALES_LINK}}"
-                class="nav-link px-2 text-secondary-emphasis fs-6">Mentions Légales</a></li>
-        <li class="nav-item"><a href="{{config.CONDITION_GENERALES_D_UTILISATION_LINK}}"
-                class="nav-link px-2 text-secondary-emphasis fs-6">Conditions Générales
-                d'Utilisation</a></li>
-    </ul>
-    <p class="text-center p-0 m-0 text-white fs-6">{{config.SENTENCE_FOOTER_END}}</p>
-    <p class="text-center border-bottom border-secondary pb-3 mb-0 text-white fs-6">{{config.COPYRIGHT}}</p>
-
-
-    <ul class="nav justify-content-center pt-3">
-        {# TODO: Faire un test que les logos se cachent bien si l'URL n'existe pas #}
-        {% if config.TWITTER_LINK %}
-        <li class="nav-item px-3">
-            <a href="{{config.TWITTER_LINK}}" class="nav-link px-2">
-                <img src="/static/img/social_network/twitter.svg" alt="logo Twitter">
-            </a>
-        </li>
-        {% endif %}
-
-        {% if config.LINKEDIN_LINK %}
-        <li class="nav-item px-3">
-            <a href="{{config.LINKEDIN_LINK}}" class="nav-link px-2">
-                <img src="/static/img/social_network/linkedin.svg" alt="logo LinkedIn">
-            </a>
-        </li>
-        {% endif %}
-
-        {% if config.RSS_FEED_LINK %}
-        <li class="nav-item px-3">
-            <a href="{{config.RSS_FEED_LINK}}" class="nav-link px-2">
-                <img src="/static/img/social_network/rss.svg" alt="logo Flux RSS">
-            </a>
-        </li>
-        {% endif %}
-
-        {% if config.DISCORD_LINK %}
-        <li class="nav-item px-3">
-            <a href="{{config.DISCORD_LINK}}" class="nav-link px-2">
-                <img src="/static/img/social_network/discord.svg" alt="logo Discord">
-            </a>
-        </li>
-        {% endif %}
-    </ul>
-
-</footer>
-{% endblock %}
 
 </html>
