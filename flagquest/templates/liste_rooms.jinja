@@ -7,8 +7,21 @@
 {{ super() }} - Accueil
 {% endblock %}
 
+{% block head %}
+{{super()}}
+<script src="{{url_for('static', filename='script/liste_room.js')}}"></script>
+{% endblock head %}
+
 {% block content %}
 <main class="container bg-transparent pt-3">
+    {% if current_user.is_authenticated and current_user.is_admin %}
+    <div class="align-item-top">
+        <button type="submit" name="submit_param" value="submit_value" onclick="createRoom();"
+            class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Créer une room
+        </button>
+    </div>
+    {% endif %}
+
     <div class="container-index row">
         <div class="d-flex row align-items-md-stretch">
             {% for r in rooms %}
