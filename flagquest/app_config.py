@@ -14,11 +14,11 @@ APP_FAVICO: str = "/static/img/logo.png"
 
 
 # ========== Apparence ==========
-ENABLE_ANIMATED_BACKGROUND: bool = True
+ENABLE_ANIMATED_BACKGROUND: bool = False
 """Si il faut afficher le fond animé sur la page d'acceuil au couleur du BTS CIEL"""
 
 
-BACKGROUND: str = "bg-black"
+BACKGROUND: str = "bg-danger"
 """background du site class bootstrap voir couleur disponible => https://getbootstrap.com/docs/4.0/utilities/colors/ """
 
 # style suplementaire <room-widget>
@@ -50,7 +50,7 @@ LINKEDIN_LINK: str = "https://www.linkedin.com/in/flag-quest-825419276/"
 """L'URL du compte Linkedin (laissé vide pour cacher)"""
 RSS_FEED_LINK: str = ""
 """L'URL du flux RSS (laissé vide pour cacher)"""
-DISCORD_LINK: str = ""
+DISCORD_LINK: str = "https://discord.gg/h6jKrx3A"
 """L'URL du serveur Discord (laissé vide pour cacher)"""
 
 # ========== ADVANCED ==========
