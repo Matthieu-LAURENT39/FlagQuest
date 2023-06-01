@@ -18,7 +18,7 @@ ENABLE_ANIMATED_BACKGROUND: bool = False
 """Si il faut afficher le fond animé sur la page d'acceuil au couleur du BTS CIEL"""
 
 
-BACKGROUND: str = "bg-danger"
+BACKGROUND: str = "bg-black"
 """background du site class bootstrap voir couleur disponible => https://getbootstrap.com/docs/4.0/utilities/colors/ """
 
 # style suplementaire <room-widget>
