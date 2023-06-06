@@ -20,6 +20,7 @@ from flask_sqlalchemy import SQLAlchemy
 from .backend.filters import markdown_filter
 from .flask_config import Config
 from .utils import add_room_from_toml
+import click
 
 if TYPE_CHECKING:
     from .models import User
@@ -109,11 +110,25 @@ def create_app(config: object = Config) -> Flask:
     app.register_blueprint(main)
     app.register_blueprint(api)
 
+    @app.cli.command("make-admin")
+    @click.argument("username")
+    def make_admin(username):
+        """Donne les privilèges administrateur à un admin"""
+        u = User.query.filter_by(username=username).first()
+        if u is None:
+            click.echo(f"L'utilisateur '{u.username}' n'existe pas", err=True)
+        elif u.is_admin:
+            click.echo(f"L'utilisateur '{u.username}' est déja admin", err=True)
+        else:
+            u.is_admin = True
+            db.session.commit()
+            click.echo(f"L'utilisateur '{u.username}' est maintenant admin!")
+
     # Enfin, on créer toutes les données
     if not app.testing:
         setup_app(app)
 
-    print(app.url_map)
+    # print(app.url_map)
 
     return app
 
