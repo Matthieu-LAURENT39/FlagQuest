@@ -32,4 +32,5 @@ echo Lancement du site web
 echo =====================
 
 REM Start the Flask app
-flask run
+REM flask run
+waitress-serve --port=5000 --call main:create_app
