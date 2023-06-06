@@ -116,7 +116,7 @@ def create_app(config: object = Config) -> Flask:
         """Donne les privilèges administrateur à un admin"""
         u = User.query.filter_by(username=username).first()
         if u is None:
-            click.echo(f"L'utilisateur '{u.username}' n'existe pas", err=True)
+            click.echo(f"L'utilisateur '{username}' n'existe pas", err=True)
         elif u.is_admin:
             click.echo(f"L'utilisateur '{u.username}' est déja admin", err=True)
         else:

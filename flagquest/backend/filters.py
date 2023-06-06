@@ -20,6 +20,7 @@ def markdown_filter(text: str) -> str:
     # - fenced_code: permet l'utilisation de code block avec ```
     # - nl2br: remplace \n par <br>
     # - CodeHiliteExtension: permet le synthax highlighting dans les code blocks
+    # - tables: permet l'utilisation de tableaux
     return md(
         text,
         extensions=[
