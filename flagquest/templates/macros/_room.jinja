@@ -101,16 +101,17 @@
 </div>
 {% endmacro %}
 
-{% macro edit_room_input(id, name, value, multiline=False, placeholder=none) %}
+{% macro edit_room_input(id, name, value, multiline=False, placeholder=none, required=true) %}
 <div class="mb-3">
     <label for="{{id}}" class="form-label">{{name}}</label>
     {% if multiline %}
     {% set line_count = value.split('\n') | count %}
     <textarea class="form-control border-0" placeholder="{{placeholder if placeholder is not none else name}}"
-        autocomplete="off" id="{{id}}" rows="{{line_count + 1}}">{{value}}</textarea>
+        autocomplete="off" id="{{id}}" rows="{{line_count + 1}}" {{"required" if required else ""
+        }}>{{value}}</textarea>
     {% else %}
     <input class=" form-control border-0" type="text" placeholder="{{placeholder if placeholder is not none else name}}"
-        autocomplete="off" id="{{id}}" value="{{value}}">
+        autocomplete="off" id="{{id}}" value="{{value}}" {{"required" if required else "" }}>
     {% endif %}
 </div>
 {% endmacro %}

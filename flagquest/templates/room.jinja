@@ -346,7 +346,8 @@
                                 {{ edit_room_input("room-description-edit", "Description", room.description,
                                 multiline=true) }}
                                 {{ edit_room_input("room-victim_vm_ids-edit", "ID des VMs victimes",
-                                room._victim_vm_ids, placeholder="ID des VMs victimes, séparé par des points-virgules")
+                                room._victim_vm_ids, placeholder="ID des VMs victimes, séparé par des points-virgules",
+                                required=false)
                                 }}
                                 <input type="button" class="btn rounded-1 border-2 active text-info fw-semibold mb-2"
                                     role="button" onclick="saveRoom('{{room.url_name}}')"
@@ -378,6 +379,29 @@
                                     Supprimer la room
                                 </button>
                             </div>
+
+                            <script>
+                                $(document).ready(function () {
+                                    const field1 = $('#room-name-edit');
+                                    const field2 = $('#room-url_name-edit');
+                                    field2.data('modifiedByUser', field2.val() != toSnakeCase(field1.val()));
+
+                                    field1.on('input', function () {
+                                        if (!field2.data('modifiedByUser')) {
+                                            field2.val(toSnakeCase(field1.val()));
+                                        }
+                                    });
+
+                                    field2.on('input', function () {
+                                        if (field2.val() === '') {
+                                            field2.data('modifiedByUser', false);
+                                            field2.val(toSnakeCase(field1.val()));
+                                        } else {
+                                            field2.data('modifiedByUser', true);
+                                        }
+                                    });
+                                });
+                            </script>
                             {% endif %}
                         </div>
                     </div>
@@ -394,59 +418,7 @@
                     {# si l'user est CONNECTE et est DANS LA ROOM ---> afficher progression #}
                     {% if current_user.is_authenticated %}
                     {% if user_is_in_room %}
-                    {#
-                    <script>
-                        // légère animation de la progression lorsque l'on scroll vers le bas
-                        window.onscroll = function () { scrollFunction() };
-                        function scrollFunction() {
-                            var progressBar = document.getElementById("progress-bar-scroll")
-                            // Si la progress bar est "pinned"
-                            if (progressBar.getBoundingClientRect().top <= 50) {
-                                document.getElementById("progress-bar-scroll").removeAttribute('class');
-                                document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 px-4 py-2 pb-3 justify-content-center border border-2 border-primary progress-bar-vertical-transition mt-2")
-                                document.getElementById("progress-bar-scroll").setAttribute("style", "width: 80%;")
-                            } else {
-                                document.getElementById("progress-bar-scroll").removeAttribute('class');
-                                document.getElementById("progress-bar-scroll").setAttribute("class", "bg-white rounded-3 p-4 justify-content-center border border-2 border-primary progress-bar-vertical-transition")
-                                document.getElementById("progress-bar-scroll").setAttribute("style", "width: 100%;")
-                            }
-                        }
-                    </script> #}
-                    {# <div class="mx-2 sticky-top pb-1 d-flex justify-content-center"> #}
-                        <!-- Progression -->
-                        {# <div class="bg-white rounded-3 p-4 justify-content-center border border-2 border-primary"
-                            id="progress-bar-scroll" style="width: 100%">
-                            <div class="row">
-                                <div class="col">
-                                    <p><strong>Progression:</strong> {{nbr_question_solved}}/{{nbr_question_total}}</p>
-                                    <div class="progress">
-                                        <div class="progress-bar {{'bg-success progress-bar-striped progress-bar-animated' if nbr_question_solved == nbr_question_total else ''}}"
-                                            aria-valuenow="{{nbr_question_solved}}" aria-valuemin="0"
-                                            aria-valuemax="{{nbr_question_total}}"
-                                            style="width: {{ progress_percentage }}%"></div>
-                                    </div>
-                                </div>
-                                <!-- button SUPPRIMER VM ----- call :  deleteVms() -->
-                                <div class="col-md-auto" id="delete-vms-button-container" style="display: none;">
-                                    <button type="submit" name="submit_param" value="submit_value"
-                                        onclick="deleteVms();"
-                                        class="btn text-danger rounded-1 border-2 active fw-semibold m-2 align-self-end"
-                                        role="button" id="delete-vms-button">Supprimer les VMs
-                                    </button>
-                                </div>
-                            </div>
-                        </div> #}
-                        {# <!-- VM --> #}
-                        {# <iframe class="responsive-iframe " style="width: 100% height: 100%;"
-                            src="http://172.17.50.249:6080/vnc.html?host=172.17.50.249&port=6080&autoconnect=true&resize=scale">
-                        </iframe> #}
-                        {# <iframe class="responsive-iframe " sandbox='allow-same-origin allow-scripts allow-modals'
-                            style="width: 100% height: 100%;" src="{{vnc_url}}">
-                        </iframe> #}
-                        {# <iframe class="responsive-iframe " style="width: 100% height: 100%;" src="{{vnc_url}}">
-                        </iframe> #}
-                        {#
-                    </div> #}
+
                     {% endif %}
                     {% endif %}
                     {% endblock %}

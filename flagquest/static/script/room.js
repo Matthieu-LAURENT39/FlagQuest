@@ -161,7 +161,12 @@ function saveRoom(room_url_name) {
     };
 
     fetch(`/api/room/${room_url_name}`, requestOptions)
-        .then(response => response.json())
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Status not ok');
+        })
         .then(data => { window.location.href = `/room/${data.url_name}` })
         //.then(response => response.text())
         //.then(result => console.log(result))

@@ -47,6 +47,9 @@ edit_room_model = room_namespace.model(
 @room_namespace.response(200, "Succès")
 @room_namespace.response(404, "La room n'existe pas")
 @room_namespace.response(409, "Une room avec ce nom existe déja")
+@room_namespace.response(
+    422, "Une string vide a été donnée pour un champ ne le permettant pas"
+)
 class RoomResource(Resource):
     """Informations lié à une room"""
 
@@ -105,6 +108,8 @@ class RoomResource(Resource):
         ):
             if data.get(key) is None:
                 continue
+            if data.get(key).strip() == "":
+                abort(422)
             setattr(room, key, data.get(key))
         if data.get("_victim_vm_ids") is not None:
             room.victim_vm_ids = [

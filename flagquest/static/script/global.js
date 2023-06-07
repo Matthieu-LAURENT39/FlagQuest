@@ -25,3 +25,15 @@ function randomString(len) {
     }
     return randomString;
 }
+
+function toSnakeCase(str) {
+    return str
+        .toLowerCase()
+        // Normalise accents, eg: à -> a
+        .normalize("NFD")
+        .replace(/\s+/g, '_')
+        .replace(/[^a-z0-9_]/g, '')
+        // Remove consecutive underscores
+        .replace(/_+/g, '_')
+        .replace(/^_|_$/g, '');
+}
