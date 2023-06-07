@@ -116,6 +116,12 @@
                 'Content-Type': 'application/json'
             },
         })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Status not ok');
+            })
             .then(response => response.json())
             // .then(response => alert(JSON.stringify(response)))
             .then(data => displayVictimVMInfos(data))
@@ -160,6 +166,12 @@
                 'Content-Type': 'application/json'
             },
         })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Status not ok');
+            })
             .then(response => response.json())
             //.then(response => alert(JSON.stringify(response)))
             .then(response => displayAttackVMInfos(response))
