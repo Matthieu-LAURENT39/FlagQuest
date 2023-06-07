@@ -13,7 +13,7 @@ def acceuil():
     from ...models import Room
 
     signup_form = SignupForm()
-    rooms = Room.query.limit(4).all()
+    rooms = Room.query.order_by(Room.id.desc()).limit(4).all()
     return render_template("acceuil.jinja", signup_form=signup_form, rooms=rooms)
 
 

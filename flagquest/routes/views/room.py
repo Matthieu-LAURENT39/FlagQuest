@@ -10,12 +10,11 @@ from flask_login import current_user
 @main.route("/liste_rooms")
 def liste_room():
     """Une liste de l'intégralité des rooms"""
-    from ...forms import SignupForm
     from ...models import Room
 
-    signup_form = SignupForm()
-    rooms = Room.query.all()
-    return render_template("liste_rooms.jinja", signup_form=signup_form, rooms=rooms)
+    # On affiche les rooms par ordre alphabétique
+    rooms = sorted(Room.query.all(), key=lambda r: r.name.casefold())
+    return render_template("liste_rooms.jinja", rooms=rooms)
 
 
 @main.route("/room/<room_url_name>")

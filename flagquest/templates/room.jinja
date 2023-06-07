@@ -384,7 +384,7 @@
                     {% endblock %}
 
                     <!-- Confettis -->
-                    {% if nbr_question_solved == nbr_question_total %}
+                    {% if nbr_question_solved == nbr_question_total and nbr_question_total != 0 %}
                     <script>
                         confetti({ particleCount: 500, spread: 95, origin: { y: 1.5 }, startVelocity: 130, });
                     </script>
