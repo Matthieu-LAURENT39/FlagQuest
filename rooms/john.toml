@@ -44,7 +44,7 @@ Une des plus célèbres est RockYou, elle est issue d'une fuite de données du r
 
 Wordlist : `https://github.com/danielmiessler/SecLists`
 
-`john --wordlist=</path/to/wordlist>` --format=<hash-format> <filename>`
+`john --wordlist=</path/to/wordlist> --format=<hash-format> <filename>`
 
 ### Mode incrémental (Incremental)
 Dans ce mode, John essai tout les combinaisons de caractères possibles pour trouver le mot de passe.
