@@ -50,7 +50,7 @@ LINKEDIN_LINK: str = "https://www.linkedin.com/in/flag-quest-825419276/"
 """L'URL du compte Linkedin (laissé vide pour cacher)"""
 RSS_FEED_LINK: str = ""
 """L'URL du flux RSS (laissé vide pour cacher)"""
-DISCORD_LINK: str = "https://discord.gg/h6jKrx3A"
+DISCORD_LINK: str = "https://discord.gg/j8GHYkGACm"
 """L'URL du serveur Discord (laissé vide pour cacher)"""
 
 # ========== ADVANCED ==========
