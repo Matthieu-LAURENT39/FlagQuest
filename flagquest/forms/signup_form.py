@@ -29,7 +29,7 @@ class SignupForm(FlaskForm):
     )
     """Le mot de passe"""
     password_confirmation = wtforms.PasswordField(
-        label="Password confirm",
+        label="Confirmation du mot de passe",
         validators=[
             wtforms.validators.DataRequired(),
             wtforms.validators.EqualTo(
