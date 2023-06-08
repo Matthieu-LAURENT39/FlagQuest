@@ -1,7 +1,16 @@
 name = "Room 1"
-description = "Wow what a cool room **desu wa**"
+description = "A very cool **test** room, wow"
 url_name = "room1"
-instructions = "QCM"
+instructions = """
+# title
+hello **world**, i am *epic* and ==stuff==, ~~wow~~!!
+
+| a | b |
+|---|---|
+| lorem | ispum |
+| dolor | sit |
+| amet | vide |
+"""
 victim_vm_ids = [ 101 ]
 
 [[question]]
