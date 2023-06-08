@@ -22,7 +22,7 @@ Profile - {{user.username}}
 
             {# partie haute #}
             <div class="col col-lg-5">
-                <div class="div-statistiques stats-profile-bar-responsive">
+                <div class="div-statistiques stats-profile-bar-responsive" id="statistics">
                     <div class="sous-div-stat">
                         <h2 class="variable-stat">
                             <img class="icon-stat" src="/static/img/podium.svg" alt="logo de la catégorie classement">
@@ -54,7 +54,7 @@ Profile - {{user.username}}
         <div class="second-part-profile row h-100">
 
             {# partie droite / rooms faites#}
-            <div class="rooms sous-section col h-100">
+            <div class="rooms sous-section col h-100" id="rooms-participated">
                 <h2 class="title-sous-section">
                     <img class="icon-second-part-profile" src="/static/img/challenges.svg"
                         alt="logo de le section challenges réussis">
@@ -93,7 +93,7 @@ Profile - {{user.username}}
             {# partie gauche / classement #}
             <!-- on affiche que 3 users dans CE classement et l'user concerné est TOUJOURS au milieu -->
             <div class="col ranking h-100">
-                <div class="row sous-section mb-3">
+                <div class="row sous-section mb-3" id="ranking">
                     <a href="{{ url_for('main.classement') }}">
                         <h2 class="title-sous-section">
                             <img class="icon-second-part-profile" src="/static/img/podium.svg"
@@ -144,9 +144,47 @@ Profile - {{user.username}}
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </main>
+
+<script>
+    const driver = new Driver({
+        stageBackground: 'grey'
+    });
+    // Define the steps for introduction
+    driver.defineSteps([
+        {
+            element: '#statistics',
+            popover: {
+                title: "Statistiques",
+                description: "Tu peut voir ici la position globale dans le classement du site, le nombre de points du joueur et le nombre de room auquelle il a participé.",
+                position: 'bottom'
+            }
+        },
+        {
+            element: '#rooms-participated',
+            popover: {
+                title: "Statistiques",
+                description: "Ce sont toutes les room auquel l'utilisateur à participé.",
+                position: 'bottom'
+            }
+        },
+        {
+            element: '#ranking',
+            popover: {
+                title: "Statistiques",
+                description: "Le classement du joueur par rapport aux autres membres du site. Vise le sommet!",
+                position: 'bottom'
+            }
+        },
+        {
+            element: '#myChart',
+            popover: {
+                title: "Statistiques",
+                description: "Le nombre de points du joueur au cours du temps.",
+                position: 'top'
+            }
+        },
+    ]);
+</script>
 {% endblock %}

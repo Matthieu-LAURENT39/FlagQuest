@@ -37,7 +37,7 @@
     <div class="index-right-part modal modal-signin position-static d-block col" tabindex="-1" role="dialog"
       id="modalSignin">
       <div class="modal-dialog" role="document">
-        <div class="modal-content rounded-2 bg-dark">
+        <div class="modal-content rounded-2 bg-dark" id="signup-form">
           <div class="modal-header px-4 pb-0 border-bottom-0">
             <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
             <h1 class="text-white">
@@ -95,13 +95,14 @@
     </div>
     {% endif %}
     {% if current_user.is_authenticated %}
-    <div class="d-flex row align-items-md-stretch">
+    <div class="d-flex row align-items-md-stretch" id="all-widgets">
+
 
       {% for r in rooms %}
       {{room_widget(r.name, r.description, r.url_name)}}
       {% endfor %}
 
-      <div class="col-md-6 p-3">
+      <div class="col-md-6 p-3" id="liste-room">
         <div class="{{config.BACKGROUND_BLOCK}} h-100 p-5 rounded-3 {{config.TEXT_COLOR_BLOCK}}">
           <h2>Liste Rooms</h2>
           <p>liste de toutes les rooms</p>
@@ -110,10 +111,10 @@
         </div>
       </div>
 
-      <div class="col-md-6 p-3">
+      <div class="col-md-6 p-3" id="utilisation">
         <div class="{{config.BACKGROUND_BLOCK}} h-100 p-5 rounded-3 {{config.TEXT_COLOR_BLOCK}}">
           <h2>Utilisation Générale</h2>
-          <p>utilisation des rooms et des machines virtuelles</p>
+          <p>Utilisation des rooms et des machines virtuelles</p>
           <a href="/utilisation" class="btn rounded-1 border-2 active text-info fw-semibold px-4 py-2 mt-5"
             role="button">Lancer</a>
         </div>
@@ -125,4 +126,53 @@
   </div>
 </main>
 
+
+<script>
+  const driver = new Driver({
+    stageBackground: 'grey'
+  });
+  // Define the steps for introduction
+  driver.defineSteps([
+    {
+      element: '#signup-form',
+      popover: {
+        title: "Inscription",
+        description: "Avant de continuer, tu doit te créer un compte!",
+        position: 'left'
+      }
+    },
+    {
+      element: '#btn-login',
+      popover: {
+        title: "Connexion",
+        description: "Tu peut aussi te connecter si tu a déja un compte!",
+        position: 'left'
+      }
+    },
+    {
+      element: '.room-widget-class',
+      popover: {
+        title: "Rooms",
+        description: "Différentes rooms sont disponible, lance les pour apprendres de nouvelles compétences!",
+        position: 'top'
+      }
+    },
+    {
+      element: '#liste-room',
+      popover: {
+        title: "Liste room",
+        description: "Tu trouvera ici la liste de toutes le rooms",
+        position: 'top'
+      }
+    },
+    {
+      element: '#utilisation',
+      popover: {
+        title: "Utilisation",
+        description: "Des l'aide supplémentaire expliquant comment réaliser quelques tâches courantes sur le site.",
+        position: 'top'
+      }
+    },
+  ]);
+</script>
 {% endblock %}

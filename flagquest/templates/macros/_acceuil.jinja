@@ -1,5 +1,5 @@
 {% macro room_widget(name, description, url_name, size=6) -%}
-<div class="col-md-{{size}} p-3">
+<div class="col-md-{{size}} p-3 room-widget-class">
     <div class="{{config.BACKGROUND_BLOCK}} h-100 p-5 rounded-3 {{config.TEXT_COLOR_BLOCK}}">
         <h2>{{name|e}}</h2>
         <p>{{description|markdown}}</p>

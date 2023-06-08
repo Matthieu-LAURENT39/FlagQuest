@@ -40,6 +40,10 @@
     <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
+    <!-- driver.js -->
+    <script src="https://unpkg.com/driver.js/dist/driver.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/driver.js/dist/driver.min.css" />
+
     <!-- Our own scripts -->
     <script src="{{url_for('static', filename='script/global.js')}}"></script>
     {% endblock %}
@@ -51,8 +55,9 @@
         {% block header %}
         <header class=" text-dark bg-transparent">
             <div class="container-fluid m-0">
-                <div class="d-flex align-items-center justify-content-between ">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <div class="d-flex align-items-center justify-content-between">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+                        id="logo-name">
                         <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
                         <span class="site-name" itemprop="name">{{config.APP_NAME}}</span>
                     </a>
@@ -121,7 +126,7 @@
                         <!-- <button type="button" class="btn btn-outline-light me-2"><a href="connexion.html" text-decoration-none>J'ai déjà un compte</a></button> -->
                         <a href="{{ url_for('main.connexion') }}"
                             class="btn rounded-1 border-2 active text-info fw-semibold px-2 py-1" role="button"
-                            aria-pressed="true">J'ai déjà un compte</a>
+                            aria-pressed="true" id="btn-login">J'ai déjà un compte</a>
                         <a class="a-rootme-pro" href="http://www.lyceebranly.com/">
                             <img class="logo-rootme-pro" src="/static/img/university.svg" alt="Logo d'une université"
                                 title="Lycée Edouard Branly">
@@ -194,7 +199,7 @@
         {% block content required %}{% endblock content %}
     </div>
     {% block footer %}
-    <footer class="page-footer container-fluid pt-3 align-items-center">
+    <footer class="page-footer container-fluid pt-3 align-items-center ">
         <div class="d-flex justify-content-center">
             <img class="logo" src="{{config.APP_LOGO}}" alt="logo root-me.org" itemprop=image>
         </div>
@@ -212,7 +217,7 @@
         <p class="text-center border-bottom border-secondary pb-3 mb-0 text-white fs-6">{{config.COPYRIGHT}}</p>
 
 
-        <ul class="nav justify-content-center pt-3">
+        <ul class="nav justify-content-center pt-3 position-relative">
             {# TODO: Faire un test que les logos se cachent bien si l'URL n'existe pas #}
             {% if config.TWITTER_LINK %}
             <li class="nav-item px-3">
@@ -245,6 +250,10 @@
                 </a>
             </li>
             {% endif %}
+
+            <div class="position-absolute start-0 ms-5 center-0">
+                <p class="text-secondary">Appuyer sur F1 pour de l'aide</p>
+            </div>
         </ul>
     </footer>
     {% endblock %}

@@ -37,3 +37,17 @@ function toSnakeCase(str) {
         .replace(/_+/g, '_')
         .replace(/^_|_$/g, '');
 }
+
+// Show the introduction when ? is pressed
+document.addEventListener("keydown", function (event) {
+    if (event.key === "F1") {
+        event.preventDefault();
+
+        // Start the introduction if one exists
+        if (typeof driver !== 'undefined') {
+            driver.start();
+        } else {
+            showErrorToast("Pas d'aide disponible pour cette page.");
+        }
+    }
+});

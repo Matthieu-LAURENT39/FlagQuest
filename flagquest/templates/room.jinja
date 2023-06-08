@@ -262,8 +262,8 @@
             {% if not user_is_in_room %}
             <div class="align-item-top">
                 <button type="submit" name="submit_param" value="submit_value" onclick="joinRoom();"
-                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button">Rejoindre
-                    la room
+                    class="btn text-success rounded-1 border-2 active fw-semibold m-2" role="button"
+                    id="btn-join-room">Rejoindre la room
                 </button>
             </div>
             {% else %}
@@ -316,7 +316,7 @@
             <div class="row">
                 {# Navbar - Seulement afficher sur les grands écrans #}
                 <div class="col-4 d-none d-lg-block p-0">
-                    <div class="sticky-top pt-3">
+                    <div class="sticky-top pt-3" id="sidebar">
                         {{ progress_bar(nbr_question_solved, nbr_question_total) }}
                         <div id="list-example" class="list-group mt-3">
                             <a class="list-group-item list-group-item-action" href="#room-info">Consignes</a>
@@ -444,4 +444,61 @@
             </div>
         </div>
 </main>
+
+<script>
+    const driver = new Driver({
+        stageBackground: 'grey'
+    });
+    // Define the steps for introduction
+    driver.defineSteps([
+        {
+            element: '#btn-join-room',
+            popover: {
+                title: "Rejoindre la room",
+                description: "Avant de repondre aux questions et de lancer les machines virtuelles, tu dois rejoindre la room en cliquant ici.",
+                position: 'bottom'
+            }
+        },
+        {
+            element: '#attack-vm-info-container',
+            popover: {
+                title: "Machines virtuelles d'attaque",
+                description: "Les VMs d'attaques possède tout les outils nécéssaire pour les attaques.",
+                position: 'bottom'
+            }
+        },
+        {
+            element: '#victim-vm-info-container',
+            popover: {
+                title: "Machines virtuelles victimes",
+                description: "Les VMs victimes contiennent des flag que tu dois récupérer en les piratant.",
+                position: 'bottom'
+            }
+        },
+        {
+            element: '#roomInfoWidget',
+            popover: {
+                title: 'Information et consignes',
+                description: 'Toutes les informations nécéssaire pour réussir cette room sont ici.',
+                position: 'left'
+            }
+        },
+        {
+            element: '#sidebar',
+            popover: {
+                title: 'Progression et navigation',
+                description: "Tu peut suivre ici ta progression sur l'ensemble de la room, et facilement naviguer entre les différentes questions.",
+                position: 'right'
+            }
+        },
+        {
+            element: '#logo-name',
+            popover: {
+                title: "Retour à l'acceuil",
+                description: "Tu peut quitter la room et revenir à l'acceuil à tout moment, et reprendre la room plus tard.",
+                position: 'bottom'
+            }
+        },
+    ]);
+</script>
 {% endblock %}
