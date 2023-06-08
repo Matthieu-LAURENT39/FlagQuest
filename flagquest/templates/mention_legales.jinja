@@ -1,8 +1,11 @@
 {% extends 'base.jinja' %}
-{% block content %}
 
 {% block title %}
 {{ super() }} - Mentions légales
 {% endblock %}
 
+{% block content %}
+<div class="container text-light">
+    {{lipsum()}}
+</div>
 {% endblock %}

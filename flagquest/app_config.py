@@ -34,7 +34,7 @@ CONFIDENTIALITE_LINK: str = "/confidentalite"
 """L'URL vers la page de confidentialité"""
 MENTIONS_LEGALES_LINK: str = "/mention_legales"
 """L'URL vers la page des mentions légales"""
-CONDITION_GENERALES_D_UTILISATION_LINK = "/Conditions_generales_d_utilisation"
+CONDITION_GENERALES_D_UTILISATION_LINK = "/conditions_generales_d_utilisation"
 """L'URL vers la page des conditions générales d'utilisation"""
 
 SENTENCE_FOOTER_END: str = "FlagQuest : plateforme d'apprentissage dédiée au hacking et à la sécurité de l'information"
