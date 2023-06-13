@@ -80,7 +80,7 @@
 
             </li>
             <li>
-                    <a class="function" href="#after_user_delete">after_user_delete</a>
+                    <a class="function" href="#after_vm_delete">after_vm_delete</a>
             </li>
     </ul>
 
@@ -96,7 +96,7 @@
     </nav>
     <main class="pdoc">
             <section class="module-info">
-                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/models/virtual_machine.py">Edit Source</a>
+                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/flagquest/models/virtual_machine.py">Edit Source</a>
                     <h1 class="modulename">
 <a href="./../../flagquest.html">flagquest</a><wbr>.<a href="./../models.html">models</a><wbr>.virtual_machine    </h1>
 
@@ -184,7 +184,7 @@
 </span><span id="L-75"><a href="#L-75"><span class="linenos">75</span></a>
 </span><span id="L-76"><a href="#L-76"><span class="linenos">76</span></a>
 </span><span id="L-77"><a href="#L-77"><span class="linenos">77</span></a><span class="nd">@listens_for</span><span class="p">(</span><span class="n">VirtualMachine</span><span class="p">,</span> <span class="s2">&quot;after_delete&quot;</span><span class="p">)</span>
-</span><span id="L-78"><a href="#L-78"><span class="linenos">78</span></a><span class="k">def</span> <span class="nf">after_user_delete</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">VirtualMachine</span><span class="p">):</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos">78</span></a><span class="k">def</span> <span class="nf">after_vm_delete</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">VirtualMachine</span><span class="p">):</span>
 </span><span id="L-79"><a href="#L-79"><span class="linenos">79</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Supprime automatiquement la VM proxmox correspondante lorsqu&#39;elle est supprimé de la VM&quot;&quot;&quot;</span>
 </span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a>    <span class="n">mgr</span> <span class="o">=</span> <span class="n">get_vm_manager</span><span class="p">()</span>
 </span><span id="L-81"><a href="#L-81"><span class="linenos">81</span></a>    <span class="n">mgr</span><span class="o">.</span><span class="n">delete_vm</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">proxmox_id</span><span class="p">)</span>
@@ -379,23 +379,23 @@
 
                             </div>
                 </section>
-                <section id="after_user_delete">
-                            <input id="after_user_delete-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="after_vm_delete">
+                            <input id="after_vm_delete-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
                     <div class="decorator">@listens_for(VirtualMachine, &#39;after_delete&#39;)</div>
 
         <span class="def">def</span>
-        <span class="name">after_user_delete</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">mapper</span>,</span><span class="param">	<span class="n">connection</span>,</span><span class="param">	<span class="n">target</span><span class="p">:</span> <span class="n"><a href="#VirtualMachine">flagquest.models.virtual_machine.VirtualMachine</a></span></span><span class="return-annotation">):</span></span>
+        <span class="name">after_vm_delete</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">mapper</span>,</span><span class="param">	<span class="n">connection</span>,</span><span class="param">	<span class="n">target</span><span class="p">:</span> <span class="n"><a href="#VirtualMachine">flagquest.models.virtual_machine.VirtualMachine</a></span></span><span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="after_user_delete-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="after_vm_delete-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#after_user_delete"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="after_user_delete-78"><a href="#after_user_delete-78"><span class="linenos">78</span></a><span class="nd">@listens_for</span><span class="p">(</span><span class="n">VirtualMachine</span><span class="p">,</span> <span class="s2">&quot;after_delete&quot;</span><span class="p">)</span>
-</span><span id="after_user_delete-79"><a href="#after_user_delete-79"><span class="linenos">79</span></a><span class="k">def</span> <span class="nf">after_user_delete</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">VirtualMachine</span><span class="p">):</span>
-</span><span id="after_user_delete-80"><a href="#after_user_delete-80"><span class="linenos">80</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Supprime automatiquement la VM proxmox correspondante lorsqu&#39;elle est supprimé de la VM&quot;&quot;&quot;</span>
-</span><span id="after_user_delete-81"><a href="#after_user_delete-81"><span class="linenos">81</span></a>    <span class="n">mgr</span> <span class="o">=</span> <span class="n">get_vm_manager</span><span class="p">()</span>
-</span><span id="after_user_delete-82"><a href="#after_user_delete-82"><span class="linenos">82</span></a>    <span class="n">mgr</span><span class="o">.</span><span class="n">delete_vm</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">proxmox_id</span><span class="p">)</span>
+    <a class="headerlink" href="#after_vm_delete"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="after_vm_delete-78"><a href="#after_vm_delete-78"><span class="linenos">78</span></a><span class="nd">@listens_for</span><span class="p">(</span><span class="n">VirtualMachine</span><span class="p">,</span> <span class="s2">&quot;after_delete&quot;</span><span class="p">)</span>
+</span><span id="after_vm_delete-79"><a href="#after_vm_delete-79"><span class="linenos">79</span></a><span class="k">def</span> <span class="nf">after_vm_delete</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">VirtualMachine</span><span class="p">):</span>
+</span><span id="after_vm_delete-80"><a href="#after_vm_delete-80"><span class="linenos">80</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Supprime automatiquement la VM proxmox correspondante lorsqu&#39;elle est supprimé de la VM&quot;&quot;&quot;</span>
+</span><span id="after_vm_delete-81"><a href="#after_vm_delete-81"><span class="linenos">81</span></a>    <span class="n">mgr</span> <span class="o">=</span> <span class="n">get_vm_manager</span><span class="p">()</span>
+</span><span id="after_vm_delete-82"><a href="#after_vm_delete-82"><span class="linenos">82</span></a>    <span class="n">mgr</span><span class="o">.</span><span class="n">delete_vm</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">proxmox_id</span><span class="p">)</span>
 </span></pre></div>
 
 

@@ -66,7 +66,7 @@
     </nav>
     <main class="pdoc">
             <section class="module-info">
-                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/utils.py">Edit Source</a>
+                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/flagquest/utils.py">Edit Source</a>
                     <h1 class="modulename">
 <a href="./../flagquest.html">flagquest</a><wbr>.utils    </h1>
 
@@ -96,7 +96,7 @@
 </span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a><span class="sd">    Args:</span>
 </span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a><span class="sd">        lst (list[T]): La liste contenant les éléments</span>
 </span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a><span class="sd">        index (int): L&#39;index servant de centre dans lst</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a><span class="sd">        amount (int): Combient d&#39;objets récupéré</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a><span class="sd">        amount (int): Combient d&#39;objets récupérer</span>
 </span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>
 </span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a><span class="sd">    Raises:</span>
 </span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a><span class="sd">        ValueError: amount est négatif, ou index n&#39;est pas dans la liste</span>
@@ -117,11 +117,11 @@
 </span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>        <span class="k">return</span> <span class="n">lst</span>
 </span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>
 </span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>    <span class="k">def</span> <span class="nf">neg_pos_count</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Yields growing ints, first the negative then the positive</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Yields des int grandissant, d&#39;abord négatif puis positif</span>
 </span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a><span class="sd">        ex: 0, -1, -1, -2, 2, -3, ...</span>
 </span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>
 </span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a><span class="sd">        Yields:</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="sd">            Iterator[int]: An endless iterator of ints</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="sd">            Iterator[int]: Un iterator de ints sans fin</span>
 </span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>        <span class="k">yield</span> <span class="mi">0</span>
 </span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">count</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -207,7 +207,7 @@
 </span><span id="get_n_around-18"><a href="#get_n_around-18"><span class="linenos">18</span></a><span class="sd">    Args:</span>
 </span><span id="get_n_around-19"><a href="#get_n_around-19"><span class="linenos">19</span></a><span class="sd">        lst (list[T]): La liste contenant les éléments</span>
 </span><span id="get_n_around-20"><a href="#get_n_around-20"><span class="linenos">20</span></a><span class="sd">        index (int): L&#39;index servant de centre dans lst</span>
-</span><span id="get_n_around-21"><a href="#get_n_around-21"><span class="linenos">21</span></a><span class="sd">        amount (int): Combient d&#39;objets récupéré</span>
+</span><span id="get_n_around-21"><a href="#get_n_around-21"><span class="linenos">21</span></a><span class="sd">        amount (int): Combient d&#39;objets récupérer</span>
 </span><span id="get_n_around-22"><a href="#get_n_around-22"><span class="linenos">22</span></a>
 </span><span id="get_n_around-23"><a href="#get_n_around-23"><span class="linenos">23</span></a><span class="sd">    Raises:</span>
 </span><span id="get_n_around-24"><a href="#get_n_around-24"><span class="linenos">24</span></a><span class="sd">        ValueError: amount est négatif, ou index n&#39;est pas dans la liste</span>
@@ -228,11 +228,11 @@
 </span><span id="get_n_around-39"><a href="#get_n_around-39"><span class="linenos">39</span></a>        <span class="k">return</span> <span class="n">lst</span>
 </span><span id="get_n_around-40"><a href="#get_n_around-40"><span class="linenos">40</span></a>
 </span><span id="get_n_around-41"><a href="#get_n_around-41"><span class="linenos">41</span></a>    <span class="k">def</span> <span class="nf">neg_pos_count</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-</span><span id="get_n_around-42"><a href="#get_n_around-42"><span class="linenos">42</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Yields growing ints, first the negative then the positive</span>
+</span><span id="get_n_around-42"><a href="#get_n_around-42"><span class="linenos">42</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Yields des int grandissant, d&#39;abord négatif puis positif</span>
 </span><span id="get_n_around-43"><a href="#get_n_around-43"><span class="linenos">43</span></a><span class="sd">        ex: 0, -1, -1, -2, 2, -3, ...</span>
 </span><span id="get_n_around-44"><a href="#get_n_around-44"><span class="linenos">44</span></a>
 </span><span id="get_n_around-45"><a href="#get_n_around-45"><span class="linenos">45</span></a><span class="sd">        Yields:</span>
-</span><span id="get_n_around-46"><a href="#get_n_around-46"><span class="linenos">46</span></a><span class="sd">            Iterator[int]: An endless iterator of ints</span>
+</span><span id="get_n_around-46"><a href="#get_n_around-46"><span class="linenos">46</span></a><span class="sd">            Iterator[int]: Un iterator de ints sans fin</span>
 </span><span id="get_n_around-47"><a href="#get_n_around-47"><span class="linenos">47</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="get_n_around-48"><a href="#get_n_around-48"><span class="linenos">48</span></a>        <span class="k">yield</span> <span class="mi">0</span>
 </span><span id="get_n_around-49"><a href="#get_n_around-49"><span class="linenos">49</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">count</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -266,7 +266,7 @@ l'élémént à la position index.</p>
 <ul>
 <li><strong>lst (list[T]):</strong>  La liste contenant les éléments</li>
 <li><strong>index (int):</strong>  L'index servant de centre dans lst</li>
-<li><strong>amount (int):</strong>  Combient d'objets récupéré</li>
+<li><strong>amount (int):</strong>  Combient d'objets récupérer</li>
 </ul>
 
 <h6 id="raises">Raises:</h6>

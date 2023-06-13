@@ -87,7 +87,7 @@
     </nav>
     <main class="pdoc">
             <section class="module-info">
-                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/models/user.py">Edit Source</a>
+                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/flagquest/models/user.py">Edit Source</a>
                     <h1 class="modulename">
 <a href="./../../flagquest.html">flagquest</a><wbr>.<a href="./../models.html">models</a><wbr>.user    </h1>
 
@@ -200,13 +200,13 @@
 </span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>
 </span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>    <span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>    <span class="k">def</span> <span class="nf">get_profile_picture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">250</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the profile picture of a user as an image.</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;La photo de profil, en tant qu&#39;image</span>
 </span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>
 </span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="sd">        Args:</span>
-</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a><span class="sd">            size (int, optional): The size of the square, in pixels. Defaults to 250.</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a><span class="sd">            size (int, optional): La taille de carré, en pixels. Defaults to 250.</span>
 </span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
 </span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">        Returns:</span>
-</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="sd">            bytes: A PNG image.</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="sd">            bytes: Une image PNG.</span>
 </span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>        <span class="k">return</span> <span class="n">customidenticon</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
 </span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">casefold</span><span class="p">(),</span>  <span class="c1"># Data used to generate identicon</span>
@@ -311,13 +311,13 @@
 </span><span id="User-101"><a href="#User-101"><span class="linenos">101</span></a>
 </span><span id="User-102"><a href="#User-102"><span class="linenos">102</span></a>    <span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </span><span id="User-103"><a href="#User-103"><span class="linenos">103</span></a>    <span class="k">def</span> <span class="nf">get_profile_picture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">250</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-</span><span id="User-104"><a href="#User-104"><span class="linenos">104</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the profile picture of a user as an image.</span>
+</span><span id="User-104"><a href="#User-104"><span class="linenos">104</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;La photo de profil, en tant qu&#39;image</span>
 </span><span id="User-105"><a href="#User-105"><span class="linenos">105</span></a>
 </span><span id="User-106"><a href="#User-106"><span class="linenos">106</span></a><span class="sd">        Args:</span>
-</span><span id="User-107"><a href="#User-107"><span class="linenos">107</span></a><span class="sd">            size (int, optional): The size of the square, in pixels. Defaults to 250.</span>
+</span><span id="User-107"><a href="#User-107"><span class="linenos">107</span></a><span class="sd">            size (int, optional): La taille de carré, en pixels. Defaults to 250.</span>
 </span><span id="User-108"><a href="#User-108"><span class="linenos">108</span></a>
 </span><span id="User-109"><a href="#User-109"><span class="linenos">109</span></a><span class="sd">        Returns:</span>
-</span><span id="User-110"><a href="#User-110"><span class="linenos">110</span></a><span class="sd">            bytes: A PNG image.</span>
+</span><span id="User-110"><a href="#User-110"><span class="linenos">110</span></a><span class="sd">            bytes: Une image PNG.</span>
 </span><span id="User-111"><a href="#User-111"><span class="linenos">111</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="User-112"><a href="#User-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="n">customidenticon</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
 </span><span id="User-113"><a href="#User-113"><span class="linenos">113</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">casefold</span><span class="p">(),</span>  <span class="c1"># Data used to generate identicon</span>
@@ -534,13 +534,13 @@ Voir également <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#we
     <a class="headerlink" href="#User.get_profile_picture"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="User.get_profile_picture-102"><a href="#User.get_profile_picture-102"><span class="linenos">102</span></a>    <span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </span><span id="User.get_profile_picture-103"><a href="#User.get_profile_picture-103"><span class="linenos">103</span></a>    <span class="k">def</span> <span class="nf">get_profile_picture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">250</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-</span><span id="User.get_profile_picture-104"><a href="#User.get_profile_picture-104"><span class="linenos">104</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the profile picture of a user as an image.</span>
+</span><span id="User.get_profile_picture-104"><a href="#User.get_profile_picture-104"><span class="linenos">104</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;La photo de profil, en tant qu&#39;image</span>
 </span><span id="User.get_profile_picture-105"><a href="#User.get_profile_picture-105"><span class="linenos">105</span></a>
 </span><span id="User.get_profile_picture-106"><a href="#User.get_profile_picture-106"><span class="linenos">106</span></a><span class="sd">        Args:</span>
-</span><span id="User.get_profile_picture-107"><a href="#User.get_profile_picture-107"><span class="linenos">107</span></a><span class="sd">            size (int, optional): The size of the square, in pixels. Defaults to 250.</span>
+</span><span id="User.get_profile_picture-107"><a href="#User.get_profile_picture-107"><span class="linenos">107</span></a><span class="sd">            size (int, optional): La taille de carré, en pixels. Defaults to 250.</span>
 </span><span id="User.get_profile_picture-108"><a href="#User.get_profile_picture-108"><span class="linenos">108</span></a>
 </span><span id="User.get_profile_picture-109"><a href="#User.get_profile_picture-109"><span class="linenos">109</span></a><span class="sd">        Returns:</span>
-</span><span id="User.get_profile_picture-110"><a href="#User.get_profile_picture-110"><span class="linenos">110</span></a><span class="sd">            bytes: A PNG image.</span>
+</span><span id="User.get_profile_picture-110"><a href="#User.get_profile_picture-110"><span class="linenos">110</span></a><span class="sd">            bytes: Une image PNG.</span>
 </span><span id="User.get_profile_picture-111"><a href="#User.get_profile_picture-111"><span class="linenos">111</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="User.get_profile_picture-112"><a href="#User.get_profile_picture-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="n">customidenticon</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
 </span><span id="User.get_profile_picture-113"><a href="#User.get_profile_picture-113"><span class="linenos">113</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">casefold</span><span class="p">(),</span>  <span class="c1"># Data used to generate identicon</span>
@@ -555,18 +555,18 @@ Voir également <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#we
 </span></pre></div>
 
 
-            <div class="docstring"><p>Gets the profile picture of a user as an image.</p>
+            <div class="docstring"><p>La photo de profil, en tant qu'image</p>
 
 <h6 id="arguments">Arguments:</h6>
 
 <ul>
-<li><strong>size (int, optional):</strong>  The size of the square, in pixels. Defaults to 250.</li>
+<li><strong>size (int, optional):</strong>  La taille de carré, en pixels. Defaults to 250.</li>
 </ul>
 
 <h6 id="returns">Returns:</h6>
 
 <blockquote>
-  <p>bytes: A PNG image.</p>
+  <p>bytes: Une image PNG.</p>
 </blockquote>
 </div>
 

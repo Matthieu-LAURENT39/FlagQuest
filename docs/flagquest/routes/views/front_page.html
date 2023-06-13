@@ -75,7 +75,7 @@
     </nav>
     <main class="pdoc">
             <section class="module-info">
-                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/routes/views/front_page.py">Edit Source</a>
+                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/flagquest/routes/views/front_page.py">Edit Source</a>
                     <h1 class="modulename">
 <a href="./../../../flagquest.html">flagquest</a><wbr>.<a href="./../../routes.html">routes</a><wbr>.<a href="./../views.html">views</a><wbr>.front_page    </h1>
 
@@ -101,7 +101,7 @@
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>    <span class="kn">from</span> <span class="nn">...models</span> <span class="kn">import</span> <span class="n">Room</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>
 </span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>    <span class="n">signup_form</span> <span class="o">=</span> <span class="n">SignupForm</span><span class="p">()</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="n">rooms</span> <span class="o">=</span> <span class="n">Room</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="n">rooms</span> <span class="o">=</span> <span class="n">Room</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">Room</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;acceuil.jinja&quot;</span><span class="p">,</span> <span class="n">signup_form</span><span class="o">=</span><span class="n">signup_form</span><span class="p">,</span> <span class="n">rooms</span><span class="o">=</span><span class="n">rooms</span><span class="p">)</span>
 </span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>
 </span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
@@ -150,7 +150,7 @@
 </span><span id="acceuil-14"><a href="#acceuil-14"><span class="linenos">14</span></a>    <span class="kn">from</span> <span class="nn">...models</span> <span class="kn">import</span> <span class="n">Room</span>
 </span><span id="acceuil-15"><a href="#acceuil-15"><span class="linenos">15</span></a>
 </span><span id="acceuil-16"><a href="#acceuil-16"><span class="linenos">16</span></a>    <span class="n">signup_form</span> <span class="o">=</span> <span class="n">SignupForm</span><span class="p">()</span>
-</span><span id="acceuil-17"><a href="#acceuil-17"><span class="linenos">17</span></a>    <span class="n">rooms</span> <span class="o">=</span> <span class="n">Room</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span id="acceuil-17"><a href="#acceuil-17"><span class="linenos">17</span></a>    <span class="n">rooms</span> <span class="o">=</span> <span class="n">Room</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">Room</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </span><span id="acceuil-18"><a href="#acceuil-18"><span class="linenos">18</span></a>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;acceuil.jinja&quot;</span><span class="p">,</span> <span class="n">signup_form</span><span class="o">=</span><span class="n">signup_form</span><span class="p">,</span> <span class="n">rooms</span><span class="o">=</span><span class="n">rooms</span><span class="p">)</span>
 </span></pre></div>
 

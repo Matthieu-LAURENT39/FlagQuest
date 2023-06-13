@@ -59,6 +59,15 @@
                     <a class="variable" href="#ENABLE_ANIMATED_BACKGROUND">ENABLE_ANIMATED_BACKGROUND</a>
             </li>
             <li>
+                    <a class="variable" href="#BACKGROUND">BACKGROUND</a>
+            </li>
+            <li>
+                    <a class="variable" href="#BACKGROUND_BLOCK">BACKGROUND_BLOCK</a>
+            </li>
+            <li>
+                    <a class="variable" href="#TEXT_COLOR_BLOCK">TEXT_COLOR_BLOCK</a>
+            </li>
+            <li>
                     <a class="variable" href="#CONFIDENTIALITE_LINK">CONFIDENTIALITE_LINK</a>
             </li>
             <li>
@@ -132,7 +141,7 @@
     </nav>
     <main class="pdoc">
             <section class="module-info">
-                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/site_elysium/app_config.py">Edit Source</a>
+                        <a class="pdoc-button git-button" href="https://dev.azure.com/Root-Me-BTS-2022/Root%20Me%20BTS/_git/site-web?path=/flagquest/app_config.py">Edit Source</a>
                     <h1 class="modulename">
 <a href="./../flagquest.html">flagquest</a><wbr>.app_config    </h1>
 
@@ -157,65 +166,78 @@
 </span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="n">APP_FAVICO</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/static/img/logo.png&quot;</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="sd">&quot;&quot;&quot;Le logo a afficher pour le favico&quot;&quot;&quot;</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="c1"># ========== Apparence ==========</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="n">ENABLE_ANIMATED_BACKGROUND</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="sd">&quot;&quot;&quot;Si il faut afficher le fond animé sur la page d&#39;acceuil&quot;&quot;&quot;</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="c1"># ========== footer ==========</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="n">CONFIDENTIALITE_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/confidentalite&quot;</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL vers la page de confidentialité&quot;&quot;&quot;</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="n">MENTIONS_LEGALES_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/mention_legales&quot;</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL vers la page des mentions légales&quot;&quot;&quot;</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="n">CONDITION_GENERALES_D_UTILISATION_LINK</span> <span class="o">=</span> <span class="s2">&quot;/Conditions_generales_d_utilisation&quot;</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL vers la page des conditions générales d&#39;utilisation&quot;&quot;&quot;</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a><span class="n">SENTENCE_FOOTER_END</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;FlagQuest : plateforme d&#39;apprentissage dédiée au hacking et à la sécurité de l&#39;information&quot;</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a><span class="sd">&quot;&quot;&quot;La phrase en haut du footer&quot;&quot;&quot;</span>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a><span class="n">COPYRIGHT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;© 2023&quot;</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a><span class="sd">&quot;&quot;&quot;Le copyright a afficher dans le footer&quot;&quot;&quot;</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="c1"># ========== Apparence ==========</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="n">ENABLE_ANIMATED_BACKGROUND</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a><span class="sd">&quot;&quot;&quot;Si il faut afficher le fond animé sur la page d&#39;acceuil au couleur du BTS CIEL&quot;&quot;&quot;</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="n">BACKGROUND</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;bg-black&quot;</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="sd">&quot;&quot;&quot;background du site class bootstrap voir couleur disponible =&gt; https://getbootstrap.com/docs/4.0/utilities/colors/ &quot;&quot;&quot;</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="c1"># style suplementaire &lt;room-widget&gt;</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="n">BACKGROUND_BLOCK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;room-widget&quot;</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a><span class="sd">&quot;&quot;&quot;background des blocks sur la page d&#39;accueil class bootstrap voir couleur disponible =&gt; https://getbootstrap.com/docs/4.0/utilities/colors/ &quot;&quot;&quot;</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a><span class="n">TEXT_COLOR_BLOCK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;text-black&quot;</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a><span class="sd">&quot;&quot;&quot;couleur du text des blocks sur la page d&#39;accueil class bootstrap voir couleur disponible =&gt; https://getbootstrap.com/docs/4.0/utilities/colors/ &quot;&quot;&quot;</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>
 </span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a><span class="c1"># ========== Liens Footer ==========</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a><span class="c1"># Laissé un lien vide pour le retirer</span>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a><span class="n">TWITTER_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://twitter.com/intent/follow?original_referer=https%3A</span><span class="si">%2F%2F</span><span class="s2">www.root-me.org</span><span class="si">%2F</span><span class="s2">&amp;region=follow_link&amp;screen_name=rootme_org&amp;tw_p=followbutton&quot;</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL du compte Twitter (laissé vide pour cacher)&quot;&quot;&quot;</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a><span class="n">LINKEDIN_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://www.linkedin.com/in/flag-quest-825419276/&quot;</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL du compte Linkedin (laissé vide pour cacher)&quot;&quot;&quot;</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a><span class="n">RSS_FEED_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL du flux RSS (laissé vide pour cacher)&quot;&quot;&quot;</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a><span class="n">DISCORD_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL du serveur Discord (laissé vide pour cacher)&quot;&quot;&quot;</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>
-</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a><span class="c1"># ========== ADVANCED ==========</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a><span class="c1"># ===== Proxmox =====</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a><span class="n">PROXMOX_IP</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;172.17.50.250:8006&quot;</span>
-</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a><span class="sd">&quot;&quot;&quot;L&#39;adresse IP de l&#39;interface web Proxmox&quot;&quot;&quot;</span>
-</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a><span class="n">PROXMOX_HOST</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;172.17.50.250&quot;</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a><span class="sd">&quot;&quot;&quot;L&#39;adresse IP de l&#39;hôte Proxmox&quot;&quot;&quot;</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a><span class="n">PROXMOX_LOGIN</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;root@pam&quot;</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a><span class="sd">&quot;&quot;&quot;Le login a utilisé pour Proxmox&quot;&quot;&quot;</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a><span class="n">PROXMOX_PASSWORD</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;passw0rd&quot;</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a><span class="sd">&quot;&quot;&quot;Le mot de passe a utiliser pour Promox&quot;&quot;&quot;</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a><span class="n">PROXMOX_VERIFY_SSL</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a><span class="sd">&quot;&quot;&quot;Si il faut vérifier le certificat SSL de l&#39;hyperviseur&quot;&quot;&quot;</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a><span class="c1"># ========== footer ==========</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a><span class="n">CONFIDENTIALITE_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/confidentalite&quot;</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL vers la page de confidentialité&quot;&quot;&quot;</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="n">MENTIONS_LEGALES_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;/mention_legales&quot;</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL vers la page des mentions légales&quot;&quot;&quot;</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a><span class="n">CONDITION_GENERALES_D_UTILISATION_LINK</span> <span class="o">=</span> <span class="s2">&quot;/conditions_generales_d_utilisation&quot;</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL vers la page des conditions générales d&#39;utilisation&quot;&quot;&quot;</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>
+</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a><span class="n">SENTENCE_FOOTER_END</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;FlagQuest : plateforme d&#39;apprentissage dédiée au hacking et à la sécurité de l&#39;information&quot;</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a><span class="sd">&quot;&quot;&quot;La phrase en haut du footer&quot;&quot;&quot;</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a><span class="n">COPYRIGHT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;© 2023&quot;</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a><span class="sd">&quot;&quot;&quot;Le copyright a afficher dans le footer&quot;&quot;&quot;</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>
+</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a><span class="c1"># ========== Liens Footer ==========</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a><span class="c1"># Laissé un lien vide pour le retirer</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a><span class="n">TWITTER_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://twitter.com/intent/follow?original_referer=https%3A</span><span class="si">%2F%2F</span><span class="s2">www.root-me.org</span><span class="si">%2F</span><span class="s2">&amp;region=follow_link&amp;screen_name=rootme_org&amp;tw_p=followbutton&quot;</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL du compte Twitter (laissé vide pour cacher)&quot;&quot;&quot;</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a><span class="n">LINKEDIN_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://www.linkedin.com/in/flag-quest-825419276/&quot;</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL du compte Linkedin (laissé vide pour cacher)&quot;&quot;&quot;</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a><span class="n">RSS_FEED_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL du flux RSS (laissé vide pour cacher)&quot;&quot;&quot;</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a><span class="n">DISCORD_LINK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://discord.gg/j8GHYkGACm&quot;</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a><span class="sd">&quot;&quot;&quot;L&#39;URL du serveur Discord (laissé vide pour cacher)&quot;&quot;&quot;</span>
 </span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a>
-</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a><span class="n">VM_NETWORK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;10.0.0.0/16&quot;</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a><span class="sd">&quot;&quot;&quot;Le réseau des VM victime, sous notation X.X.X.X/CIDR&quot;&quot;&quot;</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a><span class="n">VICTIM_VM_PREFIX</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;automatic&quot;</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a><span class="sd">&quot;&quot;&quot;Le préfix à ajouté aux nom des VMs victimes&quot;&quot;&quot;</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a><span class="n">ATTACK_VM_TEMPLATE_ID</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;130&quot;</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a><span class="sd">&quot;&quot;&quot;L&#39;ID de la template pour les VMs d&#39;attaques&quot;&quot;&quot;</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a><span class="n">ATTACK_VM_USERNAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;hacker&quot;</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a><span class="sd">Le login pour la VM d&#39;attaque qui sera affiché à l&#39;utilisateur.</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a><span class="sd">Changer cette valeur ne change pas automatiquement le nom d&#39;utilisateur sur la VM!</span>
-</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a><span class="n">ATTACK_VM_PASSWORD</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;hacker&quot;</span>
-</span><span id="L-68"><a href="#L-68"><span class="linenos">68</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-69"><a href="#L-69"><span class="linenos">69</span></a><span class="sd">Le mot de passe pour la VM d&#39;attaque.</span>
-</span><span id="L-70"><a href="#L-70"><span class="linenos">70</span></a><span class="sd">Changer cette valeur ne change pas automatiquement le mot de passe sur la VM!</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos">71</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-72"><a href="#L-72"><span class="linenos">72</span></a><span class="n">PROXMOX_VM_BRIDGE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;vmbr1&quot;</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos">73</span></a><span class="sd">&quot;&quot;&quot;L&#39;interface sur laquelle doivent être placer les VMs&quot;&quot;&quot;</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a><span class="c1"># ========== ADVANCED ==========</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a><span class="c1"># ===== Proxmox =====</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a><span class="n">PROXMOX_IP</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;172.17.50.250:8006&quot;</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a><span class="sd">&quot;&quot;&quot;L&#39;adresse IP de l&#39;interface web Proxmox&quot;&quot;&quot;</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a><span class="n">PROXMOX_HOST</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;172.17.50.250&quot;</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a><span class="sd">&quot;&quot;&quot;L&#39;adresse IP de l&#39;hôte Proxmox&quot;&quot;&quot;</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a><span class="n">PROXMOX_LOGIN</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;root@pam&quot;</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a><span class="sd">&quot;&quot;&quot;Le login a utilisé pour Proxmox&quot;&quot;&quot;</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a><span class="n">PROXMOX_PASSWORD</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;passw0rd&quot;</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a><span class="sd">&quot;&quot;&quot;Le mot de passe a utiliser pour Promox&quot;&quot;&quot;</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a><span class="n">PROXMOX_VERIFY_SSL</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a><span class="sd">&quot;&quot;&quot;Si il faut vérifier le certificat SSL de l&#39;hyperviseur&quot;&quot;&quot;</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos">68</span></a>
+</span><span id="L-69"><a href="#L-69"><span class="linenos">69</span></a><span class="n">VM_NETWORK</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;10.0.0.0/16&quot;</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos">70</span></a><span class="sd">&quot;&quot;&quot;Le réseau des VM victime, sous notation X.X.X.X/CIDR&quot;&quot;&quot;</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos">71</span></a><span class="n">VICTIM_VM_PREFIX</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;automatic&quot;</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos">72</span></a><span class="sd">&quot;&quot;&quot;Le préfix à ajouté aux nom des VMs victimes&quot;&quot;&quot;</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos">73</span></a><span class="n">ATTACK_VM_TEMPLATE_ID</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;120&quot;</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos">74</span></a><span class="sd">&quot;&quot;&quot;L&#39;ID de la template pour les VMs d&#39;attaques&quot;&quot;&quot;</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos">75</span></a><span class="n">ATTACK_VM_USERNAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;hacker&quot;</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos">76</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos">77</span></a><span class="sd">Le login pour la VM d&#39;attaque qui sera affiché à l&#39;utilisateur.</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos">78</span></a><span class="sd">Changer cette valeur ne change pas automatiquement le nom d&#39;utilisateur sur la VM!</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos">79</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a><span class="n">ATTACK_VM_PASSWORD</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;kali&quot;</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos">81</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos">82</span></a><span class="sd">Le mot de passe pour la VM d&#39;attaque.</span>
+</span><span id="L-83"><a href="#L-83"><span class="linenos">83</span></a><span class="sd">Changer cette valeur ne change pas automatiquement le mot de passe sur la VM!</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos">84</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos">85</span></a><span class="n">PROXMOX_VM_BRIDGE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;vmbr1&quot;</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos">86</span></a><span class="sd">&quot;&quot;&quot;L&#39;interface sur laquelle doivent être placer les VMs&quot;&quot;&quot;</span>
 </span></pre></div>
 
 
@@ -271,7 +293,49 @@
     </div>
     <a class="headerlink" href="#ENABLE_ANIMATED_BACKGROUND"></a>
     
-            <div class="docstring"><p>Si il faut afficher le fond animé sur la page d'acceuil</p>
+            <div class="docstring"><p>Si il faut afficher le fond animé sur la page d'acceuil au couleur du BTS CIEL</p>
+</div>
+
+
+                </section>
+                <section id="BACKGROUND">
+                    <div class="attr variable">
+            <span class="name">BACKGROUND</span><span class="annotation">: str</span>        =
+<span class="default_value">&#39;bg-black&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#BACKGROUND"></a>
+    
+            <div class="docstring"><p>background du site class bootstrap voir couleur disponible =&gt; <a href="https://getbootstrap.com/docs/4.0/utilities/colors/">https://getbootstrap.com/docs/4.0/utilities/colors/</a></p>
+</div>
+
+
+                </section>
+                <section id="BACKGROUND_BLOCK">
+                    <div class="attr variable">
+            <span class="name">BACKGROUND_BLOCK</span><span class="annotation">: str</span>        =
+<span class="default_value">&#39;room-widget&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#BACKGROUND_BLOCK"></a>
+    
+            <div class="docstring"><p>background des blocks sur la page d'accueil class bootstrap voir couleur disponible =&gt; <a href="https://getbootstrap.com/docs/4.0/utilities/colors/">https://getbootstrap.com/docs/4.0/utilities/colors/</a></p>
+</div>
+
+
+                </section>
+                <section id="TEXT_COLOR_BLOCK">
+                    <div class="attr variable">
+            <span class="name">TEXT_COLOR_BLOCK</span><span class="annotation">: str</span>        =
+<span class="default_value">&#39;text-black&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#TEXT_COLOR_BLOCK"></a>
+    
+            <div class="docstring"><p>couleur du text des blocks sur la page d'accueil class bootstrap voir couleur disponible =&gt; <a href="https://getbootstrap.com/docs/4.0/utilities/colors/">https://getbootstrap.com/docs/4.0/utilities/colors/</a></p>
 </div>
 
 
@@ -307,7 +371,7 @@
                 <section id="CONDITION_GENERALES_D_UTILISATION_LINK">
                     <div class="attr variable">
             <span class="name">CONDITION_GENERALES_D_UTILISATION_LINK</span>        =
-<span class="default_value">&#39;/Conditions_generales_d_utilisation&#39;</span>
+<span class="default_value">&#39;/conditions_generales_d_utilisation&#39;</span>
 
         
     </div>
@@ -392,7 +456,7 @@
                 <section id="DISCORD_LINK">
                     <div class="attr variable">
             <span class="name">DISCORD_LINK</span><span class="annotation">: str</span>        =
-<span class="default_value">&#39;&#39;</span>
+<span class="default_value">&#39;https://discord.gg/j8GHYkGACm&#39;</span>
 
         
     </div>
@@ -504,7 +568,7 @@
                 <section id="ATTACK_VM_TEMPLATE_ID">
                     <div class="attr variable">
             <span class="name">ATTACK_VM_TEMPLATE_ID</span><span class="annotation">: str</span>        =
-<span class="default_value">&#39;130&#39;</span>
+<span class="default_value">&#39;120&#39;</span>
 
         
     </div>
@@ -533,7 +597,7 @@ Changer cette valeur ne change pas automatiquement le nom d'utilisateur sur la V
                 <section id="ATTACK_VM_PASSWORD">
                     <div class="attr variable">
             <span class="name">ATTACK_VM_PASSWORD</span><span class="annotation">: str</span>        =
-<span class="default_value">&#39;hacker&#39;</span>
+<span class="default_value">&#39;kali&#39;</span>
 
         
     </div>
