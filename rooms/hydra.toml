@@ -37,7 +37,7 @@ hydra -l <username> -P </path/to/wordlist> <ssh-ip-adress> -t 4 ssh
 -P - indiquer le chemin de la wordlist à utiliser
 -t - nombre de connexions en parallèle (16 par défaut)
 """
-victim_vm_ids = [121]
+victim_vm_ids = [100]
 
 
 [[question]]
