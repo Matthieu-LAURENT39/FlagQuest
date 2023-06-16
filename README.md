@@ -1,6 +1,11 @@
 # FlagQuest
-## Pourquoi ce Projet ?
 
-L'objectif est d'apporter une solution conviviable et ludique propice à l'apprentissage de la Cybersécurité.  
-Pour atteindre cet objectif, la solution doit faciliter l'accès à une machine ayant tous les outils d'installés permettant de mettre en pratique les différents scénarii de penteste.  
-L'idée est également de permettre un guide sous forme de questionnement pour faciliter l'avancement de l'apprentissage.
+## Objectif
+
+Ce projet a pour but d'apporter une solution conviviable et ludique pour l'apprentissage de la cybersécurité.  
+Pour ce faire, un environement de CTF est proposé, avec une intégration de tout les outils nécessaire via des machines virtuelles.
+
+Pour les administrateurs, l est possible de facilement créer de nouveaux défis (appelé "rooms") ainsi que de les modifier directement depuis le site. 
+
+## License
+Ce projet utilise la license MIT
