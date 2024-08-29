@@ -24,8 +24,6 @@ Des diagrames sont disponibles dans le dossier `./images/diagrams`
 
 ## Rapport
 Le rapport associé à ce projet est disponible dans le fichier `./rapport.pdf`  
-Adrien BRUAS n'ayant pas voulu que sa partie soit rendu publique, elle à été retiré, d'où l'absence des pages 53 à 67
-
 
 ## License
 Ce projet utilise la license MIT
